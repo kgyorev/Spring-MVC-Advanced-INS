@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: site-head">
+<body>
+<header th:replace="~{fragments/layout :: site-header}"></header>
+<div class="container d-flex justify-content-md-center mt-5 mb-5">
+    <form class="mx-auto" th:method="POST" th:action="@{/persons}" th:object="${searchPersonModel}">
+        <label for="egn">EGN</label>
+        <input type="text" id="egn"th:value="*{egn}" name="egn" placeholder="Search...">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <form class="mx-auto" th:method="GET" th:action="@{/persons}" th:object="${searchPersonModel}">
+        <button class="btn btn-primary" type="submit">Reset</button>
+    </form>
+</div>
+<div class="container col-sm-4 align-content-center">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Person ID</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Birth Date</th>
+            <th scope="col">EGN</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="person,iter : ${clientall}" th:object="${person}">
+            <tr>
+                <th scope="row" th:text="${iter.count}+'. '">1</th>
+                <th th:text="*{id}"></th>
+                <td th:text="*{fullName}"></td>
+                <td th:text="${#temporals.format(person.startDate,'dd-MM-yyyy')}"></td>
+                <td th:text="*{egn}"></td>
+                <td><a th:href="@{/customers/{id}(id=*{id})}">View Summary</a></td>
+                <td><a th:href="@{/customers/edit/{id}/(id=*{id})}">Edit</a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="~{fragments/layout :: site-footer}"></footer>
+</body>
+</html>
