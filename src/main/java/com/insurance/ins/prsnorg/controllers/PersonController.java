@@ -1,12 +1,15 @@
 package com.insurance.ins.prsnorg.controllers;
 
 import com.insurance.ins.prsnorg.entites.prsn.entities.Person;
+import com.insurance.ins.prsnorg.entites.prsn.models.AllPersonsViewModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.PersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
 import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,9 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 @Controller
@@ -53,33 +53,60 @@ public class PersonController {
 //        return "clients/index";
 //    }
     @GetMapping(value="/persons")
-    public String view_all(@ModelAttribute(name = "searchPersonModel")SearchPersonModel searchPersonModel, Model model) {
-        List<Person> personAll = personService.findAll();
-        model.addAttribute("clientall", personAll);
-        model.addAttribute("egn", "");
-        return "prsnorg/prsn/search-person";
-    }
-    @PostMapping(value="/persons")
-    public String searchClient(SearchPersonModel searchPersonModel, Model model) {
+    public String view_all(@ModelAttribute(name = "searchPersonModel")SearchPersonModel searchPersonModel, Model model,@PageableDefault(size = 10)Pageable pageable) {
+
+//        model.addAttribute("clientall", personAll);
+//        model.addAttribute("egn", "");
+//        return "prsnorg/prsn/search-person";
         String egn = searchPersonModel.getEgn();
-        List<Person> allclients = personService.findAll();
-        List<Person> clientall;
-        if(!egn.equals("")) {
-            Stream<Person> userstream = allclients.stream().filter(u -> u.getEgn().equals(egn));
-            List<Person> clientall_tmp = userstream.collect(Collectors.toList());
-            if(clientall_tmp.size()==0)
-            {
-                notifyService.addWarningMessage("Cannot find client with EGN: " + egn);
-                clientall= allclients;
-            }
-            else
-                clientall = clientall_tmp;
+
+        AllPersonsViewModel personAll;
+        if(egn!=null&&!egn.equals("")) {
+             personAll = personService.findAllByEgnOrFullNameIsLike(egn, "a", pageable);
+        }else{
+             personAll = personService.findAllByPage(pageable);
         }
-        else
-          clientall= allclients;
-        model.addAttribute("clientall", clientall);
+
+//        List<Person> allclients = personService.findAll();
+//        List<Person> clientall;
+//        if(egn!=null&&!egn.equals("")) {
+//            Stream<Person> userstream = personAll.getCompanies().stream().filter(u -> u.getEgn().equals(egn));
+//            Page<Person> clientall_tmp = userstream.collect(Collectors.toPage());
+//            personAll.setCompanies(clientall_tmp);
+//            if(clientall_tmp.size()==0)
+//            {
+//                notifyService.addWarningMessage("Cannot find client with EGN: " + egn);
+//                clientall= allclients;
+//            }
+//            else
+//                clientall = clientall_tmp;
+//        }
+//        else
+//            clientall= allclients;
+        model.addAttribute("clientall", personAll);
         return "prsnorg/prsn/search-person";
     }
+//    @PostMapping(value="/persons")
+//    public String searchClient(SearchPersonModel searchPersonModel, Model model) {
+//        String egn = searchPersonModel.getEgn();
+//        List<Person> allclients = personService.findAll();
+//        List<Person> clientall;
+//        if(!egn.equals("")) {
+//            Stream<Person> userstream = allclients.stream().filter(u -> u.getEgn().equals(egn));
+//            List<Person> clientall_tmp = userstream.collect(Collectors.toList());
+//            if(clientall_tmp.size()==0)
+//            {
+//                notifyService.addWarningMessage("Cannot find client with EGN: " + egn);
+//                clientall= allclients;
+//            }
+//            else
+//                clientall = clientall_tmp;
+//        }
+//        else
+//          clientall= allclients;
+//        model.addAttribute("clientall", clientall);
+//        return "prsnorg/prsn/search-person";
+//    }
 //    @RequestMapping(value ="/clients/delete/{id}", method = RequestMethod.GET)
 //    public String delete(SearchClientForm searchClientForm, @PathVariable("id") Long id, Model model) {
 //        Object user = httpSession.getAttribute(USER_LOGIN);

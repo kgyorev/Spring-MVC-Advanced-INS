@@ -14,10 +14,11 @@ public class PersonModel {
     @Size(min=5,message="Please enter Full Name minimum 5 symbols")
     private String fullName;
     @Size(min=10,max=10, message="Please enter EGN with 10 numbers")
-    @Unique(service = PersonService.class, fieldName = "egn", message = "EGN must be unique")
+    @Unique(service = PersonService.class, fieldName = "egn", message = "There is person with this EGN, EGN must be unique")
     private String egn;
     @NotNull(message="Please enter Birth Date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+//    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @NotNull(message="Please select Gender")
     private Gender sex;

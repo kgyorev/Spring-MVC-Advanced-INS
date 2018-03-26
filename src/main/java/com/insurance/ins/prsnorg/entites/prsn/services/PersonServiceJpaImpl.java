@@ -1,9 +1,11 @@
 package com.insurance.ins.prsnorg.entites.prsn.services;
 
 import com.insurance.ins.prsnorg.entites.prsn.entities.Person;
+import com.insurance.ins.prsnorg.entites.prsn.models.AllPersonsViewModel;
 import com.insurance.ins.prsnorg.entites.prsn.reposiotries.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -28,6 +30,30 @@ public class PersonServiceJpaImpl implements PersonService {
         return this.personRepository.findAll();
     }
 
+    @Override
+    public AllPersonsViewModel findAllByPage(Pageable pageable) {
+        AllPersonsViewModel viewModel = new AllPersonsViewModel();
+
+        viewModel.setCompanies(this.personRepository.findAll(pageable));
+        viewModel.setTotalPageCount(this.getTotalPages());
+
+        return viewModel;
+    }
+
+    @Override
+    public AllPersonsViewModel findAllByEgnOrFullNameIsLike(String egn, String fullName, Pageable pageable) {
+        AllPersonsViewModel viewModel = new AllPersonsViewModel();
+
+        viewModel.setCompanies(this.personRepository.findAllByEgnOrFullNameIsLike(egn,fullName,pageable));
+        viewModel.setTotalPageCount(this.getTotalPages());
+
+        return viewModel;
+    }
+
+    @Override
+    public long getTotalPages(int size) {
+        return this.personRepository.count() / size;
+    }
     @Override
     public Person findById(Long id) {
         return this.personRepository.getOne(id);
