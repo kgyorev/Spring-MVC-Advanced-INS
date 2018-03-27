@@ -9,14 +9,25 @@ import java.util.List;
 
 public interface PersonService extends FieldValueExists {
     List<Person> findAll();
-   AllPersonsViewModel findAllByPage(Pageable pageable);
-    AllPersonsViewModel findAllByEgnOrFullNameIsLike(String egn, String fullName, Pageable pageable);
+
+    AllPersonsViewModel findAllByPage(Pageable pageable);
+
+    AllPersonsViewModel findAllByEgnAndFullName(String egn, String fullName, Pageable pageable);
+
+    AllPersonsViewModel findAllByFullName(String fullName, Pageable pageable);
+
+    AllPersonsViewModel findAllByEgn(String egn, Pageable pageable);
+
     default long getTotalPages() {
         return getTotalPages(12);
     }
+
     long getTotalPages(int size);
+
     Person findById(Long id);
+
     Person create(Person client);
+
     Person edit(Person client);
 
     void deleteById(Long id);

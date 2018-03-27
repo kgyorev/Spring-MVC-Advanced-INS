@@ -41,10 +41,30 @@ public class PersonServiceJpaImpl implements PersonService {
     }
 
     @Override
-    public AllPersonsViewModel findAllByEgnOrFullNameIsLike(String egn, String fullName, Pageable pageable) {
+    public AllPersonsViewModel findAllByEgnAndFullName(String egn, String fullName, Pageable pageable) {
         AllPersonsViewModel viewModel = new AllPersonsViewModel();
 
-        viewModel.setCompanies(this.personRepository.findAllByEgnOrFullNameIsLike(egn,fullName,pageable));
+        viewModel.setCompanies(this.personRepository.findAllByEgnAndFullNameContains(egn,fullName,pageable));
+        viewModel.setTotalPageCount(this.getTotalPages());
+
+        return viewModel;
+    }
+
+    @Override
+    public AllPersonsViewModel findAllByFullName(String fullName, Pageable pageable) {
+        AllPersonsViewModel viewModel = new AllPersonsViewModel();
+
+        viewModel.setCompanies(this.personRepository.findAllByFullNameContains(fullName,pageable));
+        viewModel.setTotalPageCount(this.getTotalPages());
+
+        return viewModel;
+    }
+
+    @Override
+    public AllPersonsViewModel findAllByEgn(String egn, Pageable pageable) {
+        AllPersonsViewModel viewModel = new AllPersonsViewModel();
+
+        viewModel.setCompanies(this.personRepository.findAllByEgn(egn,pageable));
         viewModel.setTotalPageCount(this.getTotalPages());
 
         return viewModel;

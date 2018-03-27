@@ -34,7 +34,7 @@ public class PersonController {
         this.personService = personService;
     }
 
-//    @RequestMapping("/clients/view/{id}")
+    //    @RequestMapping("/clients/view/{id}")
 //    public String view(@PathVariable("id") Long id, Model model) {
 //        Person person = personService.findById(id);
 //        if (person == null) {
@@ -52,20 +52,38 @@ public class PersonController {
 //        model.addAttribute("contractall", contractall);
 //        return "clients/index";
 //    }
-    @GetMapping(value="/persons")
-    public String view_all(@ModelAttribute(name = "searchPersonModel")SearchPersonModel searchPersonModel, Model model,@PageableDefault(size = 10)Pageable pageable) {
+    @GetMapping(value = "/persons")
+    public String view_all(@ModelAttribute(name = "searchPersonModel") SearchPersonModel searchPersonModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
 
 //        model.addAttribute("clientall", personAll);
 //        model.addAttribute("egn", "");
 //        return "prsnorg/prsn/search-person";
         String egn = searchPersonModel.getEgn();
+        String fullName = searchPersonModel.getFullName();
 
         AllPersonsViewModel personAll;
-        if(egn!=null&&!egn.equals("")) {
-             personAll = personService.findAllByEgnOrFullNameIsLike(egn, "a", pageable);
-        }else{
-             personAll = personService.findAllByPage(pageable);
+
+        if (!egn.equals("") && !fullName.equals("")) {
+            personAll = personService.findAllByEgnAndFullName(egn, fullName, pageable);
+        } else if (!egn.equals("") && fullName.equals("")) {
+            personAll = personService.findAllByEgn(egn, pageable);
+        } else if (egn.equals("")&& !fullName.equals("")) {
+            personAll = personService.findAllByFullName(fullName, pageable);
+        } else {
+            personAll = personService.findAllByPage(pageable);
         }
+
+
+
+//        if (egn != null && !egn.equals("") && fullName != null && !fullName.equals("")) {
+//            personAll = personService.findAllByEgnAndFullName(egn, fullName, pageable);
+//        } else if (egn != null && !egn.equals("") && (fullName == null || fullName.equals(""))) {
+//            personAll = personService.findAllByEgn(egn, pageable);
+//        } else if ((egn == null || egn.equals("") )&& (fullName != null && !fullName.equals(""))) {
+//            personAll = personService.findAllByFullName(fullName, pageable);
+//        } else {
+//            personAll = personService.findAllByPage(pageable);
+//        }
 
 //        List<Person> allclients = personService.findAll();
 //        List<Person> clientall;
@@ -86,7 +104,8 @@ public class PersonController {
         model.addAttribute("clientall", personAll);
         return "prsnorg/prsn/search-person";
     }
-//    @PostMapping(value="/persons")
+
+    //    @PostMapping(value="/persons")
 //    public String searchClient(SearchPersonModel searchPersonModel, Model model) {
 //        String egn = searchPersonModel.getEgn();
 //        List<Person> allclients = personService.findAll();
@@ -178,19 +197,20 @@ public class PersonController {
 //        notifyService.addInfoMessage("Edit successful");
 //        return "redirect:/clients";
 //    }
-    @GetMapping(value ="/persons/create")
+    @GetMapping(value = "/persons/create")
     public String createPage(@ModelAttribute(name = "personModel") PersonModel personModel) {
         return "prsnorg/prsn/create-person";
     }
-    @PostMapping(value ="/persons/create")
-    public String create(@Valid PersonModel personModel, BindingResult bindingResult){
+
+    @PostMapping(value = "/persons/create")
+    public String create(@Valid PersonModel personModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
             return "/prsnorg/prsn/create-person";
         }
         Person person = DTOConvertUtil.convert(personModel, Person.class);
         this.personService.create(person);
-        notifyService.addInfoMessage("Person with Id: "+person.getId()+" was created.");
+        notifyService.addInfoMessage("Person with Id: " + person.getId() + " was created.");
         return "redirect:/";
     }
 }

@@ -11,7 +11,10 @@ import org.springframework.stereotype.Repository;
 public interface PersonRepository extends  JpaRepository<Person, Long> {
 
     Boolean existsByEgn(String egn);
-    Page<Person> findAllByEgnOrFullNameIsLike(String egn, String fullName, Pageable pageable);
+    Page<Person> findAllByEgnAndFullNameContains(String egn, String fullName, Pageable pageable);
+    Page<Person> findAllByFullName(String fullName, Pageable pageable);
+    Page<Person> findAllByFullNameContains(String fullName, Pageable pageable);
+    Page<Person> findAllByEgn(String egn, Pageable pageable);
 }
 
 

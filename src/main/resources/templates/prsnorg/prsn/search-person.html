@@ -2,6 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/layout :: site-head">
+    <link rel="stylesheet" href="../../../static/css/bootstrap.css">
 <body>
 
 
@@ -10,16 +11,46 @@
     <!--<div class="container-fluid">-->
     <!--<div class="container mt-4">-->
     <!--<div class="container d-flex justify-content-md-center mt-5 mb-5">-->
-    <form class="mx-auto" th:method="GET" th:action="@{/persons}" th:object="${searchPersonModel}">
-        <label for="egn">EGN</label>
-        <input type="text" id="egn" th:value="*{egn}" name="egn" placeholder="Search...">
-        <input type="text" id="page"  name="page" th:value="0" placeholder="Search..." hidden>
-        <button class="btn btn-primary" type="submit">Search</button>
-    </form>
     <!--<form class="mx-auto" th:method="GET" th:action="@{/persons}" th:object="${searchPersonModel}">-->
+    <!--<label for="egn">EGN</label>-->
+    <!--<input type="text" id="egn" th:value="*{egn}" name="egn" placeholder="Search...">-->
+    <!--<input type="text" id="page1" name="page" th:value="0" placeholder="Search..." hidden>-->
+    <!--<button class="btn btn-primary" type="submit">Search</button>-->
+    <!--</form>-->
+    <!--<form class="mx-auto" th:method="GET" th:action="@{/persons}" th:object="${searchPersonModel}">-->
+    <!--<input type="text" id="page2" name="page" th:value="0" placeholder="Search..." hidden>-->
     <!--<button class="btn btn-primary" type="submit">Reset</button>-->
     <!--</form>-->
-    <!--</div>-->
+
+    <div class="container">
+             <form th:method="GET" th:action="@{/persons}" th:object="${searchPersonModel}">
+                <div class="form-group row">
+                    <label for="egn" class="col-sm-2 col-form-label">EGN</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="egn" th:value="*{egn}" name="egn"
+                               placeholder="Search...">
+                        <input type="text" id="page1" name="page" th:value="0" placeholder="Search by EGN..." hidden>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fullName" class="col-sm-2 col-form-label">Full Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="fullName" th:value="*{fullName}" name="fullName"
+                               placeholder="Search by any phrase...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button class="btn btn-outline-primary" type="submit">Search <i class="fas fa-search"></i></button>
+                        <a class="btn btn-outline-secondary" th:href="@{/persons(page=0)}" type="submit">Reset <i class="fas fa-eraser"></i></a>
+                    </div>
+                </div>
+            </form>
+            <!--<form th:method="GET" th:action="@{/persons}" th:object="${searchPersonModel}">-->
+                <!--<input type="text" id="page2" name="page" th:value="0" placeholder="Search..." hidden>-->
+                <!--<button class="btn btn-primary" type="submit">Reset</button>-->
+            <!--</form>-->
+    </div>
     <div class="table-responsive-sm">
         <table class="table table-striped">
             <thead>
@@ -35,33 +66,42 @@
             <tbody>
             <th:block th:each="person,iter : ${clientall.getCompanies()}" th:object="${person}">
                 <tr>
-                    <th scope="row" th:text="${((#conversions.convert(#request.getParameter('page'), 'Integer')) * 10) + iter.index + 1}">1</th>
+                    <th scope="row"
+                        th:text="${((#conversions.convert(#request.getParameter('page'), 'Integer')) * 10) + iter.index + 1}">
+                        1
+                    </th>
                     <th th:text="*{id}"></th>
                     <td th:text="*{fullName}"></td>
                     <td th:text="${#temporals.format(person.startDate,'dd-MM-yyyy')}"></td>
                     <td th:text="*{egn}"></td>
-                    <td><a th:href="@{/customers/{id}(id=*{id})}"><i class="fas fa-binoculars" title="Client details"></i></a></td>
-                    <td><a th:href="@{/customers/edit/{id}/(id=*{id})}"><i class="fas fa-edit" title="Edit client"></i></a></td>
+                    <td><a th:href="@{/customers/{id}(id=*{id})}"><i class="fas fa-binoculars"
+                                                                     title="Client details"></i></a></td>
+                    <td><a th:href="@{/customers/edit/{id}/(id=*{id})}"><i class="fas fa-edit" title="Edit client"></i></a>
+                    </td>
                 </tr>
             </th:block>
             </tbody>
         </table>
-        <nav>
-            <ul class="pagination">
-
-                <li class="page-item"><a class="page-link" th:if="${clientall.getCompanies().hasPrevious()}" th:href="@{/persons(page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1})}">Previous</a></li>
-
-                <!--<li class="page-item"><a class="page-link" th:if="${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1} >= 0" th:href="@{/persons(page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1})}">Previous</a></li>-->
-                <!---->
-                <!--<li class="page-item"><a class="page-link" th:href="@{/companies(page=0)}">0</a></li>-->
-                <!--<li class="page-item"><a class="page-link" th:href="@{/companies(page=1)}">1</a></li>-->
-                <!--<li class="page-item"><a class="page-link" th:href="@{/companies(page=2)}">2</a></li>-->
-                <!--<li class="page-item"><a class="page-link" th:if="${(#conversions.convert(#request.getParameter('page'), 'Integer')) -1 <= clientall.getTotalPageCount()}" th:href="@{/persons(page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) + 1})}">Next</a></li>-->
-                <li class="page-item"><a class="page-link" th:if="${clientall.getCompanies().hasNext()}"th:href="@{/persons(page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) + 1})}">Next</a></li>
-
-            </ul>
-        </nav>
     </div>
+    <nav>
+        <ul class="pagination">
+
+            <li class="page-item"><a class="page-link" th:if="${clientall.getCompanies().hasPrevious()}"
+                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1})}">Previous</a>
+            </li>
+
+            <!--<li class="page-item"><a class="page-link" th:if="${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1} >= 0" th:href="@{/persons(page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1})}">Previous</a></li>-->
+            <!---->
+            <!--<li class="page-item"><a class="page-link" th:href="@{/companies(page=0)}">0</a></li>-->
+            <!--<li class="page-item"><a class="page-link" th:href="@{/companies(page=1)}">1</a></li>-->
+            <!--<li class="page-item"><a class="page-link" th:href="@{/companies(page=2)}">2</a></li>-->
+            <!--<li class="page-item"><a class="page-link" th:if="${(#conversions.convert(#request.getParameter('page'), 'Integer')) -1 <= clientall.getTotalPageCount()}" th:href="@{/persons(page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) + 1})}">Next</a></li>-->
+            <li class="page-item"><a class="page-link" th:if="${clientall.getCompanies().hasNext()}"
+                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) + 1})}">Next</a>
+            </li>
+
+        </ul>
+    </nav>
     <footer th:replace="~{fragments/layout :: site-footer}"></footer>
 </div>
 </body>

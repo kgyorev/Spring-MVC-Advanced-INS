@@ -52,11 +52,11 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure to delete user?
+                                        Are you sure to delete this user?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <a class="btn btn-primary" th:href="@{/users/delete/{id}/(id=${user.id})}">Save changes</a>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <a class="btn btn-primary" th:href="@{/users/delete/{id}/(id=${user.id})}">Delete</a>
                                     </div>
                                 </div>
                             </div>
