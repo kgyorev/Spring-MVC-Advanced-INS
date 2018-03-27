@@ -41,8 +41,8 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <button class="btn btn-outline-primary" type="submit">Search <i class="fas fa-search"></i></button>
-                        <a class="btn btn-outline-secondary" th:href="@{/persons(page=0)}" type="submit">Reset <i class="fas fa-eraser"></i></a>
+                        <button class="btn btn-outline-primary" type="submit"> <i class="fas fa-search"></i> Search</button>
+                        <a class="btn btn-outline-secondary" th:href="@{/persons(page=0)}" type="submit"><i class="fas fa-eraser"></i> Reset </a>
                     </div>
                 </div>
             </form>
@@ -87,7 +87,7 @@
         <ul class="pagination">
 
             <li class="page-item"><a class="page-link" th:if="${clientall.getCompanies().hasPrevious()}"
-                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1})}">Previous</a>
+                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1})}"><i class="fas fa-angle-left"></i> Previous</a>
             </li>
 
             <!--<li class="page-item"><a class="page-link" th:if="${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1} >= 0" th:href="@{/persons(page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1})}">Previous</a></li>-->
@@ -97,7 +97,7 @@
             <!--<li class="page-item"><a class="page-link" th:href="@{/companies(page=2)}">2</a></li>-->
             <!--<li class="page-item"><a class="page-link" th:if="${(#conversions.convert(#request.getParameter('page'), 'Integer')) -1 <= clientall.getTotalPageCount()}" th:href="@{/persons(page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) + 1})}">Next</a></li>-->
             <li class="page-item"><a class="page-link" th:if="${clientall.getCompanies().hasNext()}"
-                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) + 1})}">Next</a>
+                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) + 1})}">Next <i class="fas fa-angle-right"></i></a>
             </li>
 
         </ul>
