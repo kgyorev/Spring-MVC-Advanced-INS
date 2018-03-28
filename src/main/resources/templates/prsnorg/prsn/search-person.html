@@ -88,7 +88,7 @@
     <nav>
         <ul class="pagination">
 
-            <li class="page-item"><a class="page-link" th:if="${clientall.getCompanies().hasPrevious()}"
+            <li class="page-item"><a class="page-link" th:if="${clientall.getCompanies().hasPrevious()&& clientall.getCompanies().hasContent()}"
                                      th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${clientall.getCompanies().previousPageable().getPageNumber() + 1})}"><i class="fas fa-angle-left"></i> Previous</a>
             </li>
 
