@@ -28,8 +28,7 @@
                     <label for="egn" class="col-sm-2 col-form-label">EGN</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="egn" th:value="*{egn}" name="egn"
-                               placeholder="Search...">
-                        <input type="text" id="page1" name="page" th:value="0" placeholder="Search by EGN..." hidden>
+                               placeholder="Search by EGN...">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -42,7 +41,7 @@
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <button class="btn btn-outline-primary" type="submit"> <i class="fas fa-search"></i> Search</button>
-                        <a class="btn btn-outline-secondary" th:href="@{/persons(page=0)}" type="submit"><i class="fas fa-eraser"></i> Reset </a>
+                        <a class="btn btn-outline-secondary" th:href="@{/persons}" type="submit"><i class="fas fa-eraser"></i> Reset </a>
                     </div>
                 </div>
             </form>
@@ -67,7 +66,10 @@
             <th:block th:each="person,iter : ${clientall.getCompanies()}" th:object="${person}">
                 <tr>
                     <th scope="row"
-                        th:text="${((#conversions.convert(#request.getParameter('page'), 'Integer')) * 10) + iter.index + 1}">
+                        th:text="${
+                (clientall.getCompanies().getPageable().getPageNumber() + 1 <= 1
+                ? 0
+                : clientall.getCompanies().getPageable().getPageNumber()) * 10 + (iter.index + 1)}">>
                         1
                     </th>
                     <th th:text="*{id}"></th>
@@ -87,7 +89,7 @@
         <ul class="pagination">
 
             <li class="page-item"><a class="page-link" th:if="${clientall.getCompanies().hasPrevious()}"
-                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1})}"><i class="fas fa-angle-left"></i> Previous</a>
+                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${clientall.getCompanies().previousPageable().getPageNumber() + 1})}"><i class="fas fa-angle-left"></i> Previous</a>
             </li>
 
             <!--<li class="page-item"><a class="page-link" th:if="${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1} >= 0" th:href="@{/persons(page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) - 1})}">Previous</a></li>-->
@@ -97,9 +99,8 @@
             <!--<li class="page-item"><a class="page-link" th:href="@{/companies(page=2)}">2</a></li>-->
             <!--<li class="page-item"><a class="page-link" th:if="${(#conversions.convert(#request.getParameter('page'), 'Integer')) -1 <= clientall.getTotalPageCount()}" th:href="@{/persons(page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) + 1})}">Next</a></li>-->
             <li class="page-item"><a class="page-link" th:if="${clientall.getCompanies().hasNext()}"
-                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${(#conversions.convert(#request.getParameter('page'), 'Integer')) + 1})}">Next <i class="fas fa-angle-right"></i></a>
+                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${clientall.getCompanies().nextPageable().getPageNumber() + 1})}">Next <i class="fas fa-angle-right"></i></a>
             </li>
-
         </ul>
     </nav>
     <footer th:replace="~{fragments/layout :: site-footer}"></footer>

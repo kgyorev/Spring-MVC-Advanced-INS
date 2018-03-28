@@ -25,4 +25,5 @@ public class SearchPersonModel {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
+
 }

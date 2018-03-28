@@ -61,6 +61,7 @@ public class PersonController {
         String egn = searchPersonModel.getEgn();
         String fullName = searchPersonModel.getFullName();
 
+
         AllPersonsViewModel personAll;
 
         if (!egn.equals("") && !fullName.equals("")) {
@@ -72,7 +73,6 @@ public class PersonController {
         } else {
             personAll = personService.findAllByPage(pageable);
         }
-
 
 
 //        if (egn != null && !egn.equals("") && fullName != null && !fullName.equals("")) {

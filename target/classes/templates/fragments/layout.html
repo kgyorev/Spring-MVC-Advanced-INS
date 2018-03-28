@@ -54,7 +54,8 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/persons/create" >New Person</a>
-                            <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/persons?page=0" >Person Area</a>
+                            <!--<a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/persons?page=0" >Person Area</a>-->
+                            <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/persons" >Person Area</a>
                             <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/organization/add" >New Organization</a>
                         </div>
                     </li>
