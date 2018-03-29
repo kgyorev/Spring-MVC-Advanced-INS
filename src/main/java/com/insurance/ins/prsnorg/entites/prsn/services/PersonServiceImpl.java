@@ -2,6 +2,7 @@ package com.insurance.ins.prsnorg.entites.prsn.services;
 
 import com.insurance.ins.prsnorg.entites.prsn.entities.Person;
 import com.insurance.ins.prsnorg.entites.prsn.models.AllPersonsViewModel;
+import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.reposiotries.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -15,13 +16,13 @@ import java.util.List;
 @Service
 @Primary
 @Transactional
-public class PersonServiceJpaImpl implements PersonService {
+public class PersonServiceImpl implements PersonService {
 
 
     private final PersonRepository personRepository;
 
     @Autowired
-    public PersonServiceJpaImpl(PersonRepository personRepository) {
+    public PersonServiceImpl(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 
@@ -94,6 +95,25 @@ public class PersonServiceJpaImpl implements PersonService {
         this.personRepository.deleteById(id);
     }
 
+    @Override
+    public AllPersonsViewModel searchPerson(SearchPersonModel searchPersonModel, Pageable pageable) {
+
+        String egn = searchPersonModel.getEgn();
+        String fullName = searchPersonModel.getFullName();
+
+        AllPersonsViewModel personAll;
+
+        if (!egn.equals("") && !fullName.equals("")) {
+            personAll = this.findAllByEgnAndFullName(egn, fullName, pageable);
+        } else if (!egn.equals("") && fullName.equals("")) {
+            personAll = this.findAllByEgn(egn, pageable);
+        } else if (egn.equals("")&& !fullName.equals("")) {
+            personAll = this.findAllByFullName(fullName, pageable);
+        } else {
+            personAll = this.findAllByPage(pageable);
+        }
+        return personAll;
+    }
     @Override
     public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
         Assert.notNull(fieldName,"Can't be null");

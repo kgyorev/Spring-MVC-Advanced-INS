@@ -33,75 +33,14 @@ public class PersonController {
         this.httpSession = httpSession;
         this.personService = personService;
     }
-
-    //    @RequestMapping("/clients/view/{id}")
-//    public String view(@PathVariable("id") Long id, Model model) {
-//        Person person = personService.findById(id);
-//        if (person == null) {
-//            notifyService.addErrorMessage("Cannot find person #" + id);
-//            return "redirect:/";
-//        }
-//        model.addAttribute("person", person);
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        String birthdt = df.format(person.getBirthdt());
-//        model.addAttribute("birthdt", birthdt);
-//        Date now = new Date();
-//        int age=person.getAge(now);
-//        model.addAttribute("age", age);
-//        Set<Contract> contractall = person.getContracts();
-//        model.addAttribute("contractall", contractall);
-//        return "clients/index";
-//    }
     @GetMapping(value = "/persons")
     public String view_all(@ModelAttribute(name = "searchPersonModel") SearchPersonModel searchPersonModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
+        AllPersonsViewModel personAll =  personService.searchPerson(searchPersonModel,pageable);
 
-//        model.addAttribute("clientall", personAll);
-//        model.addAttribute("egn", "");
-//        return "prsnorg/prsn/search-person";
-        String egn = searchPersonModel.getEgn();
-        String fullName = searchPersonModel.getFullName();
-
-
-        AllPersonsViewModel personAll;
-
-        if (!egn.equals("") && !fullName.equals("")) {
-            personAll = personService.findAllByEgnAndFullName(egn, fullName, pageable);
-        } else if (!egn.equals("") && fullName.equals("")) {
-            personAll = personService.findAllByEgn(egn, pageable);
-        } else if (egn.equals("")&& !fullName.equals("")) {
-            personAll = personService.findAllByFullName(fullName, pageable);
-        } else {
-            personAll = personService.findAllByPage(pageable);
-        }
-
-
-//        if (egn != null && !egn.equals("") && fullName != null && !fullName.equals("")) {
-//            personAll = personService.findAllByEgnAndFullName(egn, fullName, pageable);
-//        } else if (egn != null && !egn.equals("") && (fullName == null || fullName.equals(""))) {
-//            personAll = personService.findAllByEgn(egn, pageable);
-//        } else if ((egn == null || egn.equals("") )&& (fullName != null && !fullName.equals(""))) {
-//            personAll = personService.findAllByFullName(fullName, pageable);
-//        } else {
-//            personAll = personService.findAllByPage(pageable);
-//        }
-
-//        List<Person> allclients = personService.findAll();
-//        List<Person> clientall;
-//        if(egn!=null&&!egn.equals("")) {
-//            Stream<Person> userstream = personAll.getCompanies().stream().filter(u -> u.getEgn().equals(egn));
-//            Page<Person> clientall_tmp = userstream.collect(Collectors.toPage());
-//            personAll.setCompanies(clientall_tmp);
-//            if(clientall_tmp.size()==0)
-//            {
-//                notifyService.addWarningMessage("Cannot find client with EGN: " + egn);
-//                clientall= allclients;
-//            }
-//            else
-//                clientall = clientall_tmp;
-//        }
-//        else
-//            clientall= allclients;
-        model.addAttribute("clientall", personAll);
+        if((!searchPersonModel.getEgn().equals("")||!searchPersonModel.getFullName().equals("")&&!personAll.getCompanies().hasContent())) {
+                notifyService.addWarningMessage("Cannot find clients with given search criteria.");
+            }
+        model.addAttribute("personAll", personAll);
         return "prsnorg/prsn/search-person";
     }
 
