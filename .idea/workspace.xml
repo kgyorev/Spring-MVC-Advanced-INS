@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc342cc2-56d8-4d9a-b971-434d4de32925" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/PersonController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/PersonController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/models/PersonModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/models/PersonModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonService.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonServiceJpaImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/search-person.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/search-person.html" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/controllers/PersonController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/controllers/PersonController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/models/PersonModel.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/models/PersonModel.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/services/PersonService.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/services/PersonService.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/services/PersonServiceJpaImpl.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/prsnorg/prsn/search-person.html" afterPath="$PROJECT_DIR$/target/classes/templates/prsnorg/prsn/search-person.html" />
-    </list>
+    <list default="true" id="fc342cc2-56d8-4d9a-b971-434d4de32925" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -627,16 +612,15 @@
       <workItem from="1522057309437" duration="19258000" />
       <workItem from="1522165790217" duration="2018000" />
       <workItem from="1522263189431" duration="2813000" />
-      <workItem from="1522315562477" duration="5503000" />
+      <workItem from="1522315562477" duration="5508000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41112000" />
+    <option name="totallyTimeSpent" value="41117000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1620" height="920" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24965133" sideWeight="0.5025707" order="4" side_tool="true" content_ui="tabs" />
@@ -655,7 +639,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4261438" sideWeight="0.4974293" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4261438" sideWeight="0.4974293" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33974358" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
