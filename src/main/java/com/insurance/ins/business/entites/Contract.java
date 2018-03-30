@@ -1,6 +1,7 @@
 package com.insurance.ins.business.entites;
 
-import com.insurance.ins.prsnorg.entites.prsn.entities.Person;
+import com.insurance.ins.business.enums.Status;
+import com.insurance.ins.prsnorg.entites.prsn.Person;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,26 +14,28 @@ public class Contract {
     private Long id;
 
     @Column(nullable = false)
-    private Date startdt = new Date();
+    private Date startDt = new Date();
 
     @Column(nullable = false)
-    private Date enddt = new Date();
+    private Date endDt = new Date();
 
     @Column(nullable = false)
-    private Date creationdt = new Date();
+    private Date creationDt = new Date();
 
     @Column(nullable = false)
     private Double amount;
 
     @Column(nullable = false)
-    private Double premiumamount;
+    private Double premiumAmount;
 
     @Column(nullable = false)
     private int duration;
 
     @Column(nullable = false)
-    private String status;
+    private Status status;
 
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Product product;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Distributor distributor;
@@ -48,20 +51,20 @@ public class Contract {
         this.id = id;
     }
 
-    public Date getEnddt() {
-        return enddt;
+    public Date getEndDt() {
+        return endDt;
     }
 
-    public void setEnddt(Date enddt) {
-        this.enddt = enddt;
+    public void setEndDt(Date endDt) {
+        this.endDt = endDt;
     }
 
-    public Double getPremiumamount() {
-        return premiumamount;
+    public Double getPremiumAmount() {
+        return premiumAmount;
     }
 
-    public void setPremiumamount(Double premiumamount) {
-        this.premiumamount = premiumamount;
+    public void setPremiumAmount(Double premiumAmount) {
+        this.premiumAmount = premiumAmount;
     }
 
     public int getDuration() {
@@ -72,28 +75,28 @@ public class Contract {
         this.duration = duration;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public Date getStartdt() {
-        return startdt;
+    public Date getStartDt() {
+        return startDt;
     }
 
-    public void setStartdt(Date startdt) {
-        this.startdt = startdt;
+    public void setStartDt(Date startDt) {
+        this.startDt = startDt;
     }
 
-    public Date getCreationdt() {
-        return creationdt;
+    public Date getCreationDt() {
+        return creationDt;
     }
 
-    public void setCreationdt(Date creationdt) {
-        this.creationdt = creationdt;
+    public void setCreationDt(Date creationDt) {
+        this.creationDt = creationDt;
     }
 
     public Double getAmount() {
@@ -118,5 +121,13 @@ public class Contract {
 
     public void setOwner(Person owner) {
         this.owner = owner;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

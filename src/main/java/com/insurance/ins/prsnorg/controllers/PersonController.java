@@ -1,6 +1,6 @@
 package com.insurance.ins.prsnorg.controllers;
 
-import com.insurance.ins.prsnorg.entites.prsn.entities.Person;
+import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.models.AllPersonsViewModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.PersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
@@ -37,7 +37,9 @@ public class PersonController {
     public String view_all(@ModelAttribute(name = "searchPersonModel") SearchPersonModel searchPersonModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
         AllPersonsViewModel personAll =  personService.searchPerson(searchPersonModel,pageable);
 
-        if((!searchPersonModel.getEgn().equals("")||!searchPersonModel.getFullName().equals("")&&!personAll.getCompanies().hasContent())) {
+        if(
+                (!searchPersonModel.getEgn().equals("")||!searchPersonModel.getFullName().equals(""))
+                        &&!personAll.getPersons().hasContent()) {
                 notifyService.addWarningMessage("Cannot find clients with given search criteria.");
             }
         model.addAttribute("personAll", personAll);

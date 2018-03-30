@@ -47,6 +47,9 @@
                     <li class="nav-item">
                         <a sec:authorize="isAnonymous()"  class="nav-link" href="/register" >Register</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contracts/create" >New Business</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkCustomers"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +59,8 @@
                             <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/persons/create" >New Person</a>
                             <!--<a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/persons?page=0" >Person Area</a>-->
                             <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/persons" >Person Area</a>
-                            <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/organization/add" >New Organization</a>
+                            <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/organizations/create" >New Organization</a>
+                            <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/organizations" >Organization Area</a>
                         </div>
                     </li>
                     <li sec:authorize="hasRole('USER')" class="nav-item">

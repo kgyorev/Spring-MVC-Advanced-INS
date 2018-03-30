@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: site-head">
+<body>
+
+
+<div class="container-fluid">
+    <header th:replace="~{fragments/layout :: site-header}"></header>
+    <div class="container">
+        <form th:method="GET" th:action="@{/organizations}" th:object="${searchOrganizationModel}">
+            <div class="form-group row">
+                <label for="vat" class="col-sm-2 col-form-label">VAT</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="vat" th:value="*{vat}" name="vat"
+                           placeholder="Search by VAT...">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fullName" class="col-sm-2 col-form-label">Organization Full Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="fullName" th:value="*{fullName}" name="fullName"
+                           placeholder="Search by any phrase...">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Search</button>
+                    <a class="btn btn-outline-secondary" th:href="@{/organizations}" type="submit"><i
+                            class="fas fa-eraser"></i> Reset </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive-sm">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Organization Full Name</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">VAT</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="organization,iter : ${organizationAll.getOrganizations()}" th:object="${organization}">
+                <tr>
+                    <th scope="row"
+                        th:text="${
+                (organizationAll.getOrganizations().getPageable().getPageNumber() + 1 <= 1
+                ? 0
+                : organizationAll.getOrganizations().getPageable().getPageNumber()) * 10 + (iter.index + 1)}">>
+                        1
+                    </th>
+                    <th th:text="*{id}"></th>
+                    <td th:text="*{fullName}"></td>
+                    <td th:text="${#temporals.format(organization.startDate,'dd-MM-yyyy')}"></td>
+                    <td th:text="*{vat}"></td>
+                    <td><a th:href="@{/organizations/{id}(id=*{id})}"><i class="fas fa-binoculars"
+                                                                     title="Organization details"></i></a></td>
+                    <td><a th:href="@{/organizations/edit/{id}/(id=*{id})}"><i class="fas fa-edit" title="Edit organization"></i></a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+    <nav>
+        <ul class="pagination">
+
+            <li class="page-item"><a class="page-link"
+                                     th:if="${organizationAll.getOrganizations().hasPrevious()&& organizationAll.getOrganizations().hasContent()}"
+                                     th:href="@{/persons(fullName=${searchOrganizationModel.getFullName()},page=${organizationAll.getOrganizations().previousPageable().getPageNumber() + 1})}"><i
+                    class="fas fa-angle-left"></i> Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" th:if="${organizationAll.getOrganizations().hasNext()}"
+                                     th:href="@{/persons(fullName=${searchOrganizationModel.getFullName()},page=${organizationAll.getOrganizations().nextPageable().getPageNumber() + 1})}">Next
+                <i class="fas fa-angle-right"></i></a>
+            </li>
+        </ul>
+    </nav>
+    <footer th:replace="~{fragments/layout :: site-footer}"></footer>
+</div>
+</body>
+</html>

@@ -45,13 +45,13 @@
             </tr>
             </thead>
             <tbody>
-            <th:block th:each="person,iter : ${personAll.getCompanies()}" th:object="${person}">
+            <th:block th:each="person,iter : ${personAll.getPersons()}" th:object="${person}">
                 <tr>
                     <th scope="row"
                         th:text="${
-                (personAll.getCompanies().getPageable().getPageNumber() + 1 <= 1
+                (personAll.getPersons().getPageable().getPageNumber() + 1 <= 1
                 ? 0
-                : personAll.getCompanies().getPageable().getPageNumber()) * 10 + (iter.index + 1)}">>
+                : personAll.getPersons().getPageable().getPageNumber()) * 10 + (iter.index + 1)}">>
                         1
                     </th>
                     <th th:text="*{id}"></th>
@@ -59,8 +59,8 @@
                     <td th:text="${#temporals.format(person.startDate,'dd-MM-yyyy')}"></td>
                     <td th:text="*{egn}"></td>
                     <td><a th:href="@{/customers/{id}(id=*{id})}"><i class="fas fa-binoculars"
-                                                                     title="Client details"></i></a></td>
-                    <td><a th:href="@{/customers/edit/{id}/(id=*{id})}"><i class="fas fa-edit" title="Edit client"></i></a>
+                                                                     title="Person details"></i></a></td>
+                    <td><a th:href="@{/customers/edit/{id}/(id=*{id})}"><i class="fas fa-edit" title="Edit person"></i></a>
                     </td>
                 </tr>
             </th:block>
@@ -71,12 +71,12 @@
         <ul class="pagination">
 
             <li class="page-item"><a class="page-link"
-                                     th:if="${personAll.getCompanies().hasPrevious()&& personAll.getCompanies().hasContent()}"
-                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${personAll.getCompanies().previousPageable().getPageNumber() + 1})}"><i
+                                     th:if="${personAll.getPersons().hasPrevious()&& personAll.getPersons().hasContent()}"
+                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${personAll.getPersons().previousPageable().getPageNumber() + 1})}"><i
                     class="fas fa-angle-left"></i> Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" th:if="${personAll.getCompanies().hasNext()}"
-                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${personAll.getCompanies().nextPageable().getPageNumber() + 1})}">Next
+            <li class="page-item"><a class="page-link" th:if="${personAll.getPersons().hasNext()}"
+                                     th:href="@{/persons(fullName=${searchPersonModel.getFullName()},page=${personAll.getPersons().nextPageable().getPageNumber() + 1})}">Next
                 <i class="fas fa-angle-right"></i></a>
             </li>
         </ul>

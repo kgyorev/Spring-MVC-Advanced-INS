@@ -1,6 +1,6 @@
 package com.insurance.ins.prsnorg.entites.prsn.services;
 
-import com.insurance.ins.prsnorg.entites.prsn.entities.Person;
+import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.models.AllPersonsViewModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.reposiotries.PersonRepository;
@@ -35,7 +35,7 @@ public class PersonServiceImpl implements PersonService {
     public AllPersonsViewModel findAllByPage(Pageable pageable) {
         AllPersonsViewModel viewModel = new AllPersonsViewModel();
 
-        viewModel.setCompanies(this.personRepository.findAll(pageable));
+        viewModel.setPersons(this.personRepository.findAll(pageable));
         viewModel.setTotalPageCount(this.getTotalPages());
 
         return viewModel;
@@ -45,7 +45,7 @@ public class PersonServiceImpl implements PersonService {
     public AllPersonsViewModel findAllByEgnAndFullName(String egn, String fullName, Pageable pageable) {
         AllPersonsViewModel viewModel = new AllPersonsViewModel();
 
-        viewModel.setCompanies(this.personRepository.findAllByEgnAndFullNameContains(egn,fullName,pageable));
+        viewModel.setPersons(this.personRepository.findAllByEgnAndFullNameContains(egn,fullName,pageable));
         viewModel.setTotalPageCount(this.getTotalPages());
 
         return viewModel;
@@ -55,7 +55,7 @@ public class PersonServiceImpl implements PersonService {
     public AllPersonsViewModel findAllByFullName(String fullName, Pageable pageable) {
         AllPersonsViewModel viewModel = new AllPersonsViewModel();
 
-        viewModel.setCompanies(this.personRepository.findAllByFullNameContains(fullName,pageable));
+        viewModel.setPersons(this.personRepository.findAllByFullNameContains(fullName,pageable));
         viewModel.setTotalPageCount(this.getTotalPages());
 
         return viewModel;
@@ -65,7 +65,7 @@ public class PersonServiceImpl implements PersonService {
     public AllPersonsViewModel findAllByEgn(String egn, Pageable pageable) {
         AllPersonsViewModel viewModel = new AllPersonsViewModel();
 
-        viewModel.setCompanies(this.personRepository.findAllByEgn(egn,pageable));
+        viewModel.setPersons(this.personRepository.findAllByEgn(egn,pageable));
         viewModel.setTotalPageCount(this.getTotalPages());
 
         return viewModel;

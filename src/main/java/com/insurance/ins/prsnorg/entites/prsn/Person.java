@@ -1,4 +1,4 @@
-package com.insurance.ins.prsnorg.entites.prsn.entities;
+package com.insurance.ins.prsnorg.entites.prsn;
 
 import com.insurance.ins.prsnorg.entites.PrsnOrg;
 import com.insurance.ins.prsnorg.entites.prsn.enums.Gender;

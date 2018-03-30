@@ -1,6 +1,6 @@
 package com.insurance.ins.prsnorg.entites.prsn.services;
 
-import com.insurance.ins.prsnorg.entites.prsn.entities.Person;
+import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.models.AllPersonsViewModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
 import com.insurance.ins.utils.interfaces.FieldValueExists;
@@ -20,7 +20,7 @@ public interface PersonService extends FieldValueExists {
     AllPersonsViewModel findAllByEgn(String egn, Pageable pageable);
 
     default long getTotalPages() {
-        return getTotalPages(12);
+        return getTotalPages(10);
     }
 
     long getTotalPages(int size);

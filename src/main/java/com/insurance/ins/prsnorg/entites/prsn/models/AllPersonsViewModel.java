@@ -1,6 +1,6 @@
 package com.insurance.ins.prsnorg.entites.prsn.models;
 
-import com.insurance.ins.prsnorg.entites.prsn.entities.Person;
+import com.insurance.ins.prsnorg.entites.prsn.Person;
 import org.springframework.data.domain.Page;
 
 public class AllPersonsViewModel {
@@ -8,11 +8,11 @@ public class AllPersonsViewModel {
 
     private long totalPageCount;
 
-    public Page<Person> getCompanies() {
+    public Page<Person> getPersons() {
         return persons;
     }
 
-    public void setCompanies(Page<Person> persons) {
+    public void setPersons(Page<Person> persons) {
         this.persons = persons;
     }
 
