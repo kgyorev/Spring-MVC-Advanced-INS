@@ -2,9 +2,10 @@ package com.insurance.ins.business.entites;
 
 import com.insurance.ins.business.enums.Status;
 import com.insurance.ins.prsnorg.entites.prsn.Person;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "contracts")
@@ -14,13 +15,15 @@ public class Contract {
     private Long id;
 
     @Column(nullable = false)
-    private Date startDt = new Date();
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDt = LocalDate.MIN;
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate endDt = LocalDate.ofYearDay(9999,1);
 
     @Column(nullable = false)
-    private Date endDt = new Date();
-
-    @Column(nullable = false)
-    private Date creationDt = new Date();
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate creationDt = LocalDate.MIN;
 
     @Column(nullable = false)
     private Double amount;
@@ -51,11 +54,11 @@ public class Contract {
         this.id = id;
     }
 
-    public Date getEndDt() {
+    public LocalDate getEndDt() {
         return endDt;
     }
 
-    public void setEndDt(Date endDt) {
+    public void setEndDt(LocalDate endDt) {
         this.endDt = endDt;
     }
 
@@ -83,19 +86,19 @@ public class Contract {
         this.status = status;
     }
 
-    public Date getStartDt() {
+    public LocalDate getStartDt() {
         return startDt;
     }
 
-    public void setStartDt(Date startDt) {
+    public void setStartDt(LocalDate startDt) {
         this.startDt = startDt;
     }
 
-    public Date getCreationDt() {
+    public LocalDate getCreationDt() {
         return creationDt;
     }
 
-    public void setCreationDt(Date creationDt) {
+    public void setCreationDt(LocalDate creationDt) {
         this.creationDt = creationDt;
     }
 

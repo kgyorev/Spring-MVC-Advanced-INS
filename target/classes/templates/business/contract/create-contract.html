@@ -27,97 +27,62 @@
 <header th:replace="~{fragments/layout :: site-header}"></header>
 <div class="container-fluid">
     <div class="container mt-4">
-        <form class="my-4" th:object="${personModel}" th:action="@{/persons/create}" th:method="post">
-            <h2>New Person</h2>
+        <form class="my-4" th:object="${contractModel}" th:action="@{/contracts/create}" th:method="post">
+            <h2>New Business</h2>
             <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('fullName')}? 'is-invalid'"
-                       id="fullName" name="fullName" th:field="*{fullName}"/>
-                <th:block th:each="error : ${#fields.errors('fullName')}">
-                    <small id="fullNameHelp" class="text-danger"
+                <label for="product">Product ID</label>
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('product')}? 'is-invalid'"
+                       id="product" name="product" th:field="*{product}"/>
+                <th:block th:each="error : ${#fields.errors('product')}">
+                    <small id="productHelp" class="text-danger"
                            th:text="${error}">
                         Error Message
                     </small>
                 </th:block>
             </div>
             <div class="form-group">
-                <label for="egn">EGN</label>
-                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('egn')}? 'is-invalid'"
-                       id="egn" name="egn" th:field="*{egn}"/>
-                <th:block th:each="error : ${#fields.errors('egn')}">
-                    <small id="egnHelp" class="text-danger"
+                <label for="owner">Owner ID</label>
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('owner')}? 'is-invalid'"
+                       id="owner" name="clientId" th:field="*{owner}"/>
+                <th:block th:each="error : ${#fields.errors('owner')}">
+                    <small id="ownerHelp" class="text-danger"
                            th:text="${error}">
                         Error Message
                     </small>
                 </th:block>
             </div>
-            <!--<div class="form-check">-->
-                <!--<label class="form-check-label">-->
-                    <!--<input type="checkbox" class="form-check-input" name="isSmoker" th:field="*{smoker}">-->
-                    <!--Is Smoker?-->
-                <!--</label>-->
-            <!--</div>-->
-
-            <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" name="isSmoker" id="isSmoker" th:field="*{smoker}">
-                <label class="custom-control-label" for="isSmoker">Is Smoker?</label>
-            </div>
-
-
-            <!--<fieldset class="form-group">-->
-                <!--<legend>Gender</legend>-->
-                <!--<div class="form-check" th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'">-->
-                    <!--<label class="form-check-label">-->
-                        <!--<input type="radio" class="form-check-input" name="sex" id="male" value="MALE"-->
-                               <!--th:field="*{sex}">-->
-                        <!--Male-->
-                    <!--</label>-->
-                <!--</div>-->
-                <!--<div class="form-check" th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'">-->
-                    <!--<label class="form-check-label">-->
-                        <!--<input type="radio" class="form-check-input"-->
-                               <!--th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'" name="sex" id="female"-->
-                               <!--value="FEMALE" th:field="*{sex}">-->
-                        <!--Female-->
-                    <!--</label>-->
-                <!--</div>-->
-                <!--<th:block th:each="error : ${#fields.errors('sex')}">-->
-                    <!--<small id="sexHelp" class="text-danger"-->
-                           <!--th:text="${error}">-->
-                        <!--Error Message-->
-                    <!--</small>-->
-                <!--</th:block>-->
-            <!--</fieldset>-->
-            <fieldset class="form-group">
-                <legend>Gender</legend>
-                <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'"  id="male"
-                           name="sex" value="MALE" th:field="*{sex}">
-                    <label class="custom-control-label" for="male">Male</label>
-                </div>
-                <div class="custom-control custom-radio mb-3">
-                    <input type="radio" class="custom-control-input"  th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'"  id="female"
-                           name="sex" value="FEMALE" th:field="*{sex}">
-                    <label class="custom-control-label" for="female">Female</label>
-                </div>
-                <th:block th:each="error : ${#fields.errors('sex')}">
-                    <small id="sexHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
-            </fieldset>
-            <div class="form-group" th:classappend="${#fields.hasErrors('startDate')}? 'has-danger'">
-                <label for="startDate">Birth Date</label>
-                <input class="form-control" type="date" id="startDate" name="startDate" th:field="*{startDate}">
-                <th:block th:each="error : ${#fields.errors('startDate')}">
-                    <small id="releaseOnTurnHelp" class="text-danger"
+            <div class="form-group" th:classappend="${#fields.hasErrors('startDt')}? 'has-danger'">
+                <label for="startDt">Contract Start Date</label>
+                <input class="form-control" type="date" id="startDt" name="startDate" th:field="*{startDt}">
+                <th:block th:each="error : ${#fields.errors('startDt')}">
+                    <small id="startDtTurnHelp" class="text-danger"
                            th:text="${error}">
                         Error Message
                     </small>
                 </th:block>
             </div>
-
+            <div class="form-group">
+                <label for="duration">Contract Duration(in Years)</label>
+                <input type="number" class="form-control" th:classappend="${#fields.hasErrors('duration')}? 'is-invalid'"
+                       id="duration" name="duration" th:field="*{duration}"/>
+                <th:block th:each="error : ${#fields.errors('duration')}">
+                    <small id="durationHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="duration">Beneficiary Amount(in EUR)</label>
+                <input type="number" class="form-control" th:classappend="${#fields.hasErrors('amount')}? 'is-invalid'"
+                       id="amount" name="amount" th:field="*{amount}"/>
+                <th:block th:each="error : ${#fields.errors('amount')}">
+                    <small id="amountHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

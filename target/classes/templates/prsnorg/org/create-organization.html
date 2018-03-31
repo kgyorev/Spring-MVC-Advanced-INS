@@ -56,7 +56,7 @@
                 <label for="startDate">Creation Date</label>
                 <input class="form-control" type="date" id="startDate" name="startDate" th:field="*{startDate}">
                 <th:block th:each="error : ${#fields.errors('startDate')}">
-                    <small id="releaseOnTurnHelp" class="text-danger"
+                    <small id="startDateTurnHelp" class="text-danger"
                            th:text="${error}">
                         Error Message
                     </small>

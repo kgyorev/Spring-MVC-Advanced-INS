@@ -17,6 +17,30 @@ public class Product {
     @Column(nullable = false, length = 30, unique = true)
     private String label;
 
+    public Product() {
+    }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getIdntfr() {
+        return idntfr;
+    }
+
+    public void setIdntfr(String idntfr) {
+        this.idntfr = idntfr;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
 }

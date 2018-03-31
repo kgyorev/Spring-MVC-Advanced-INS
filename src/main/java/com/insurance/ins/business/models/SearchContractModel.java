@@ -1,7 +1,7 @@
 package com.insurance.ins.business.models;
 
 
-public class SearchContractForm {
+public class SearchContractModel {
     private Long cntrctId;
 
     public Long getCntrctId() {

@@ -1,15 +1,28 @@
 package com.insurance.ins.business.controllers;
 
-import com.insurance.ins.business.models.CreateContractForm;
+import com.insurance.ins.business.entites.Contract;
+import com.insurance.ins.business.entites.Distributor;
+import com.insurance.ins.business.entites.Product;
+import com.insurance.ins.business.enums.Status;
+import com.insurance.ins.business.models.ContractModel;
 import com.insurance.ins.business.services.ContractService;
+import com.insurance.ins.business.services.DistributorService;
+import com.insurance.ins.business.services.ProductService;
+import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
+import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.text.ParseException;
+import java.time.LocalDate;
 
 @Controller
 public class ContractsController {
@@ -19,12 +32,15 @@ public class ContractsController {
     @Autowired
     private ContractService contractService;
     @Autowired
-//    private DistributorService distributorService;
-//    @Autowired
+    private ProductService productService;
+    @Autowired
+    private DistributorService distributorService;
+    @Autowired
     private PersonService personService;
     @Autowired
     private NotificationService notifyService;
-//    @RequestMapping("/contracts/view/{id}")
+
+    //    @RequestMapping("/contracts/view/{id}")
 //    public String view(@PathVariable("id") Long id, Model model) {
 //        Contract contract = contractService.findById(id);
 //        if (contract == null) {
@@ -48,7 +64,7 @@ public class ContractsController {
 //        return "contracts/index";
 //    }
 //    @RequestMapping(value="/contracts",method = RequestMethod.GET)
-//    public String view_all(SearchContractForm searchContractForm, Model model) {
+//    public String view_all(SearchContractModel searchContractForm, Model model) {
 //        Object user = httpSession.getAttribute(USER_LOGIN);
 //        if (user == null) {
 //            notifyService.addErrorMessage("Please Login!");
@@ -59,7 +75,7 @@ public class ContractsController {
 //        return "contracts/index_all";
 //    }
 //    @RequestMapping(value="/contracts",method = RequestMethod.POST)
-//    public String searchContract(SearchContractForm searchContractForm, Model model) {
+//    public String searchContract(SearchContractModel searchContractForm, Model model) {
 //        Long id = searchContractForm.getCntrctId();
 //        List<Contract> allcontracts = contractService.findAll();
 //        List<Contract> contractall;
@@ -97,7 +113,7 @@ public class ContractsController {
 //        return "contracts/index_all";  // v primera e view.html
 //    }
 //    @RequestMapping(value ="/contracts/cancel/{id}", method = RequestMethod.GET)
-//    public String cancel(SearchContractForm searchContractForm, @PathVariable("id") Long id, Model model) {
+//    public String cancel(SearchContractModel searchContractForm, @PathVariable("id") Long id, Model model) {
 //        Object user = httpSession.getAttribute(USER_LOGIN);
 //        if (user == null) {
 //            notifyService.addErrorMessage("Please Login!");
@@ -115,7 +131,7 @@ public class ContractsController {
 //        return "contracts/index_all";  // v primera e view.html
 //    }
 //    @RequestMapping(value ="/contracts/inforce/{id}", method = RequestMethod.GET)
-//    public String inforce(SearchContractForm searchContractForm, @PathVariable("id") Long id, Model model) {
+//    public String inforce(SearchContractModel searchContractForm, @PathVariable("id") Long id, Model model) {
 //        Object user = httpSession.getAttribute(USER_LOGIN);
 //        if (user == null) {
 //            notifyService.addErrorMessage("Please Login!");
@@ -133,7 +149,7 @@ public class ContractsController {
 //        return "contracts/index_all";  // v primera e view.html
 //    }
 //    @RequestMapping(value ="/contracts/edit/{id}", method = RequestMethod.GET)
-//    public String editPage(CreateContractForm createContractForm, @PathVariable("id") Long id, Model model) {
+//    public String editPage(ContractModel contractModel, @PathVariable("id") Long id, Model model) {
 //        Object user = httpSession.getAttribute(USER_LOGIN);
 //        if (user == null) {
 //            notifyService.addErrorMessage("Please Login!");
@@ -154,7 +170,7 @@ public class ContractsController {
 //        return "contracts/edit";
 //    }
 //    @RequestMapping(value ="/contracts/edit/{id}", method = RequestMethod.POST)
-//    public String edit(@Valid CreateContractForm createContractForm, BindingResult bindingResult, @PathVariable("id") Long id, Model model) throws ParseException {
+//    public String edit(@Valid ContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model) throws ParseException {
 //        Contract contract = contractService.findById(id);
 //        Client client = contract.getClient();
 //        if (contract == null) {
@@ -171,9 +187,9 @@ public class ContractsController {
 //            model.addAttribute("startdt", startdt);
 //            return "/contracts/edit";
 //        }
-//        String startdt = createContractForm.getStartdt();
-//        int duration = createContractForm.getDuration();
-//        double amount=createContractForm.getAmount();
+//        String startdt = contractModel.getStartdt();
+//        int duration = contractModel.getDuration();
+//        double amount=contractModel.getAmount();
 //        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 //        Date startDate = df.parse(startdt);
 //        contract.setStartdt(startDate);
@@ -193,21 +209,25 @@ public class ContractsController {
 //        notifyService.addInfoMessage("Edit successful");
 //        return "redirect:/contracts";
 //    }
-    @RequestMapping(value ="/contracts/create", method = RequestMethod.GET)
-    public String createPage(CreateContractForm createContractForm) {
+    @RequestMapping(value = "/contracts/create", method = RequestMethod.GET)
+    public String createPage(@ModelAttribute(name = "contractModel") ContractModel contractModel) {
 //        Object user = httpSession.getAttribute(USER_LOGIN);
 //        if (user == null) {
 //            notifyService.addErrorMessage("Please Login!");
 //            return "redirect:/";
 //        }
-           return "business/contracts/create-contract";
+        return "business/contract/create-contract";
     }
-//    @RequestMapping(value ="/contracts/create", method = RequestMethod.POST)
-//    public String create(@Valid CreateContractForm createContractForm, BindingResult bindingResult)  throws ParseException {
-//        if (bindingResult.hasErrors()) {
-//            notifyService.addErrorMessage("Please fill the form correctly!");
-//            return "/contracts/create";
-//        }
+
+    @RequestMapping(value = "/contracts/create", method = RequestMethod.POST)
+    public String create(@Valid ContractModel contractModel, BindingResult bindingResult) throws ParseException {
+        if (bindingResult.hasErrors()) {
+            notifyService.addErrorMessage("Please fill the form correctly!");
+            return "/business/contract/create-contract";
+        }
+
+        Contract contract = DTOConvertUtil.convert(contractModel, Contract.class);
+
 //        Contract contract=new Contract();
 //        Object usernameObject = httpSession.getAttribute(USER_LOGIN);
 //
@@ -229,27 +249,43 @@ public class ContractsController {
 //        Date startDate = df.parse(startdt);
 //        contract.setStartdt(startDate);
 //        contract.setAmount(amount);
-//        long id= Long.parseLong(id_str);
-//
-//        Client client = clientService.findById(id);
-//        if (client==null) {
-//            notifyService.addErrorMessage("Client not found!");
-//            return "/contracts/create";
-//        }
-//        contract.setClient(client);
+        String id_str = contractModel.getOwner();
+        long id = Long.parseLong(id_str);
+
+        Person person = personService.findById(id);
+        if (person == null) {
+            notifyService.addErrorMessage("Owner not found!");
+            return "/business/contract/create-contract";
+        }
+        contract.setOwner(person);
+
+
+        String idProdStr = contractModel.getProduct();
+        long idProd = Long.parseLong(idProdStr);
+
+        Product product = productService.findById(idProd);
+        if (product == null) {
+            notifyService.addErrorMessage("Product not found!");
+            return "/business/contract/create-contract";
+        }
+        contract.setProduct(product);
 //        contract.setDuration(duration);
 //        Calendar cal = Calendar.getInstance();
 //        cal.setTime(startDate);
 //        cal.add(Calendar.YEAR, duration);
 //        cal.add(Calendar.DATE, -1);
 //        Date endDate = cal.getTime();
-//        contract.setEnddt(endDate);
-//        contract.setStatus("In Force");
-//        int age=client.getAge(startDate)+1;
-//        Double premiumamount = age*amount/(duration*12*100);
-//        contract.setPremiumamount(premiumamount);
-//        contractService.create(contract);
-//        notifyService.addInfoMessage("Contract with Id: "+contract.getId()+" was created.");
-//        return "redirect:/";
-//    }
+        Distributor distributor = distributorService.findById(1L);
+        contract.setDistributor(distributor);
+        LocalDate endDate = contractModel.getStartDt().plusYears(contract.getDuration());
+        contract.setEndDt(endDate);
+        contract.setCreationDt(LocalDate.now());
+        contract.setStatus(Status.IN_FORCE);
+        int age = person.getAge(contract.getStartDt()) + 1;
+        Double premiumAmount = age * contract.getAmount() / (contract.getDuration() * 12 * 100);
+        contract.setPremiumAmount(premiumAmount);
+        contractService.create(contract);
+        notifyService.addInfoMessage("Contract with Id: " + contract.getId() + " was created.");
+        return "redirect:/";
+    }
 }

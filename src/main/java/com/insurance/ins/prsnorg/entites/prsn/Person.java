@@ -3,11 +3,11 @@ package com.insurance.ins.prsnorg.entites.prsn;
 import com.insurance.ins.prsnorg.entites.PrsnOrg;
 import com.insurance.ins.prsnorg.entites.prsn.enums.Gender;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 
 @Entity
 @Table(name = "persons")
@@ -21,11 +21,11 @@ public class Person extends PrsnOrg {
 
     @Column(nullable = false,unique = true)
     private String egn;
-    public int getAge(Date dateNow) {
-         LocalDate dateNowLocal = dateNow.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    public int getAge(LocalDate dateNow) {
+//         LocalDate dateNowLocal = dateNow.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate birthdtLocal = this.getStartDate();
 
-        int diffInYears = (int) ChronoUnit.YEARS.between(birthdtLocal, dateNowLocal);
+        int diffInYears = (int) ChronoUnit.YEARS.between(birthdtLocal, dateNow);
 
         return diffInYears;
     }
