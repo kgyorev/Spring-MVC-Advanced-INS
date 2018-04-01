@@ -73,6 +73,19 @@
                 </th:block>
             </div>
             <div class="form-group">
+                <label for="frequency">Frequency</label>
+                <select class="form-control"  th:classappend="${#fields.hasErrors('frequency')}? 'is-invalid'"
+                        id="frequency" name="duration" th:field="*{frequency}">
+                    <option th:each="freq : ${T(com.insurance.ins.business.enums.Frequency).values()}" th:value="${freq}" th:text="${freq.getFreqLabel()}"></option>
+                </select>
+                <th:block th:each="error : ${#fields.errors('frequency')}">
+                    <small id="frequencyHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
                 <label for="duration">Beneficiary Amount(in EUR)</label>
                 <input type="number" class="form-control" th:classappend="${#fields.hasErrors('amount')}? 'is-invalid'"
                        id="amount" name="amount" th:field="*{amount}"/>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: site-head">
+    <!--<meta charset="UTF-8">-->
+    <!--<meta name="viewport"-->
+    <!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" href="../../../static/css/bootstrap.css"/>
+
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../../static/css/style.css">-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+    <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"-->
+    <!--integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+    <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
+    <!--integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
+    <!--crossorigin="anonymous"></script>-->
+    <title>New Person</title>
+</head>
+<body>
+<header th:replace="~{fragments/layout :: site-header}"></header>
+<div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+            <!--<nav class="bd-links collapse" id="bd-docs-nav" style="">-->
+                <ul class="nav col-2 bd-sidenav">
+                    <li class="active bd-sidenav-active">
+                        <a href="/docs/4.0/getting-started/introduction/">
+                            Introduction
+                        </a></li>
+                    <li>
+                        <a href="/docs/4.0/getting-started/download/">
+                            Download
+                        </a></li>
+                    <li>
+                        <a href="/docs/4.0/getting-started/contents/">
+                            Contents
+                        </a></li>
+                    <li>
+                        <a href="/docs/4.0/getting-started/browsers-devices/">
+                            Browsers &amp; devices
+                        </a></li>
+                    <li>
+                        <a href="/docs/4.0/getting-started/javascript/">
+                            JavaScript
+                        </a></li>
+                    <li>
+                        <a href="/docs/4.0/getting-started/theming/">
+                            Theming
+                        </a></li>
+                    <li>
+                        <a href="/docs/4.0/getting-started/build-tools/">
+                            Build tools
+                        </a></li>
+                    <li>
+                        <a href="/docs/4.0/getting-started/webpack/">
+                            Webpack
+                        </a></li>
+                    <li>
+                        <a href="/docs/4.0/getting-started/accessibility/">
+                            Accessibility
+                        </a></li>
+                </ul>
+            <!--</nav>-->
+        </div>
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+            <div class="container mt-4">
+                <form class="my-4" th:object="${personModel}" th:action="@{/persons/create}" th:method="post">
+                    <h2>New Person</h2>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" class="form-control"
+                               th:classappend="${#fields.hasErrors('fullName')}? 'is-invalid'"
+                               id="fullName" name="fullName" th:field="*{fullName}"/>
+                        <th:block th:each="error : ${#fields.errors('fullName')}">
+                            <small id="fullNameHelp" class="text-danger"
+                                   th:text="${error}">
+                                Error Message
+                            </small>
+                        </th:block>
+                    </div>
+                    <div class="form-group">
+                        <label for="egn">EGN</label>
+                        <input type="text" class="form-control"
+                               th:classappend="${#fields.hasErrors('egn')}? 'is-invalid'"
+                               id="egn" name="egn" th:field="*{egn}"/>
+                        <th:block th:each="error : ${#fields.errors('egn')}">
+                            <small id="egnHelp" class="text-danger"
+                                   th:text="${error}">
+                                Error Message
+                            </small>
+                        </th:block>
+                    </div>
+                    <!--<div class="form-check">-->
+                    <!--<label class="form-check-label">-->
+                    <!--<input type="checkbox" class="form-check-input" name="isSmoker" th:field="*{smoker}">-->
+                    <!--Is Smoker?-->
+                    <!--</label>-->
+                    <!--</div>-->
+
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-control-input" name="isSmoker" id="isSmoker"
+                               th:field="*{smoker}">
+                        <label class="custom-control-label" for="isSmoker">Is Smoker?</label>
+                    </div>
+
+
+                    <!--<fieldset class="form-group">-->
+                    <!--<legend>Gender</legend>-->
+                    <!--<div class="form-check" th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'">-->
+                    <!--<label class="form-check-label">-->
+                    <!--<input type="radio" class="form-check-input" name="sex" id="male" value="MALE"-->
+                    <!--th:field="*{sex}">-->
+                    <!--Male-->
+                    <!--</label>-->
+                    <!--</div>-->
+                    <!--<div class="form-check" th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'">-->
+                    <!--<label class="form-check-label">-->
+                    <!--<input type="radio" class="form-check-input"-->
+                    <!--th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'" name="sex" id="female"-->
+                    <!--value="FEMALE" th:field="*{sex}">-->
+                    <!--Female-->
+                    <!--</label>-->
+                    <!--</div>-->
+                    <!--<th:block th:each="error : ${#fields.errors('sex')}">-->
+                    <!--<small id="sexHelp" class="text-danger"-->
+                    <!--th:text="${error}">-->
+                    <!--Error Message-->
+                    <!--</small>-->
+                    <!--</th:block>-->
+                    <!--</fieldset>-->
+                    <fieldset class="form-group">
+                        <legend>Gender</legend>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input"
+                                   th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'" id="male"
+                                   name="sex" value="MALE" th:field="*{sex}">
+                            <label class="custom-control-label" for="male">Male</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-3">
+                            <input type="radio" class="custom-control-input"
+                                   th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'" id="female"
+                                   name="sex" value="FEMALE" th:field="*{sex}">
+                            <label class="custom-control-label" for="female">Female</label>
+                        </div>
+                        <th:block th:each="error : ${#fields.errors('sex')}">
+                            <small id="sexHelp" class="text-danger"
+                                   th:text="${error}">
+                                Error Message
+                            </small>
+                        </th:block>
+                    </fieldset>
+                    <div class="form-group" th:classappend="${#fields.hasErrors('startDate')}? 'has-danger'">
+                        <label for="startDate">Birth Date</label>
+                        <input class="form-control" type="date" id="startDate" name="startDate" th:field="*{startDate}">
+                        <th:block th:each="error : ${#fields.errors('startDate')}">
+                            <small id="startDateTurnHelp" class="text-danger"
+                                   th:text="${error}">
+                                Error Message
+                            </small>
+                        </th:block>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+<footer th:replace="~{fragments/layout :: site-footer}"></footer>
+</body>
+</html>

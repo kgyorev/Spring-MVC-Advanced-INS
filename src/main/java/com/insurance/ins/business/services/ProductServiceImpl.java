@@ -33,6 +33,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product findByIdntfr(String idntfr) {
+        return productRepository.findByIdntfr(idntfr);
+    }
+
+    @Override
     public Product create(Product product) {
         return this.productRepository.save(product);
     }

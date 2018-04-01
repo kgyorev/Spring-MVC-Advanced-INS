@@ -260,10 +260,8 @@ public class ContractsController {
         contract.setOwner(person);
 
 
-        String idProdStr = contractModel.getProduct();
-        long idProd = Long.parseLong(idProdStr);
-
-        Product product = productService.findById(idProd);
+        String productIdntfr = contractModel.getProduct();
+        Product product = productService.findByIdntfr(productIdntfr);
         if (product == null) {
             notifyService.addErrorMessage("Product not found!");
             return "/business/contract/create-contract";

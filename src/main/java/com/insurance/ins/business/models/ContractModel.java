@@ -1,6 +1,7 @@
 package com.insurance.ins.business.models;
 
 
+import com.insurance.ins.business.enums.Frequency;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Max;
@@ -26,6 +27,11 @@ public class ContractModel {
     @Size(min = 1,message="Please enter Product Id")
     private String product;
 
+    private Frequency frequency;
+
+    public ContractModel() {
+        this.frequency=Frequency.MONTHLY;
+    }
 
     public int getDuration() {
         return duration;
@@ -65,5 +71,13 @@ public class ContractModel {
 
     public void setProduct(String product) {
         this.product = product;
+    }
+
+    public Frequency getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Frequency frequency) {
+        this.frequency = frequency;
     }
 }

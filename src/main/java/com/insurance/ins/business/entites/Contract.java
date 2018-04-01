@@ -1,5 +1,6 @@
 package com.insurance.ins.business.entites;
 
+import com.insurance.ins.business.enums.Frequency;
 import com.insurance.ins.business.enums.Status;
 import com.insurance.ins.prsnorg.entites.prsn.Person;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,14 +17,17 @@ public class Contract {
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate startDt = LocalDate.MIN;
+    private LocalDate startDt;
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate endDt = LocalDate.ofYearDay(9999,1);
+    private LocalDate endDt ;
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate creationDt = LocalDate.MIN;
+    private LocalDate creationDt;
+
+    @Column(nullable = false)
+    private Frequency frequency;
 
     @Column(nullable = false)
     private Double amount;
@@ -45,6 +49,14 @@ public class Contract {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Person owner;
+
+
+    public Contract() {
+        this.frequency=Frequency.MONTHLY;
+        this.creationDt = LocalDate.MIN;
+        this.startDt = LocalDate.MIN;
+        this.endDt = LocalDate.ofYearDay(9999,1);
+    }
 
     public Long getId() {
         return id;
@@ -132,5 +144,13 @@ public class Contract {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Frequency getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Frequency frequency) {
+        this.frequency = frequency;
     }
 }
