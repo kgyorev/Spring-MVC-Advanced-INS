@@ -4,7 +4,9 @@ import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.entites.Distributor;
 import com.insurance.ins.business.entites.Product;
 import com.insurance.ins.business.enums.Status;
+import com.insurance.ins.business.models.AllContractsViewModel;
 import com.insurance.ins.business.models.ContractModel;
+import com.insurance.ins.business.models.SearchContractModel;
 import com.insurance.ins.business.services.ContractService;
 import com.insurance.ins.business.services.DistributorService;
 import com.insurance.ins.business.services.ProductService;
@@ -13,7 +15,10 @@ import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
 import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,17 +68,18 @@ public class ContractsController {
 //        model.addAttribute("premiumAmount", premiumAmount);
 //        return "contracts/index";
 //    }
-//    @RequestMapping(value="/contracts",method = RequestMethod.GET)
-//    public String view_all(SearchContractModel searchContractForm, Model model) {
-//        Object user = httpSession.getAttribute(USER_LOGIN);
-//        if (user == null) {
-//            notifyService.addErrorMessage("Please Login!");
-//            return "redirect:/";
-//        }
-//        List<Contract> contractall = contractService.findAll();
-//        model.addAttribute("contractall", contractall);
-//        return "contracts/index_all";
-//    }
+    @RequestMapping(value="/contracts",method = RequestMethod.GET)
+    public String view_all(@ModelAttribute(name = "searchContractModel") SearchContractModel searchContractModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
+        AllContractsViewModel contractall =  contractService.searchContract(searchContractModel,pageable);
+
+        if(
+                (!searchContractModel.getCntrctId().equals("")||!searchContractModel.getStatus().equals(""))
+                        &&!contractall.getContracts().hasContent()) {
+            notifyService.addWarningMessage("Cannot find contracts with given search criteria.");
+        }
+        model.addAttribute("contractall", contractall);
+        return "business/contract/search-contract";
+    }
 //    @RequestMapping(value="/contracts",method = RequestMethod.POST)
 //    public String searchContract(SearchContractModel searchContractForm, Model model) {
 //        Long id = searchContractForm.getCntrctId();

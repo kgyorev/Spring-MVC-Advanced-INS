@@ -12,6 +12,7 @@ import java.time.LocalDate;
 
 public class ContractModel {
 
+    private Long id;
     @Size(min = 1,message="Please enter Owner Id")
     private String owner;
     @NotNull(message="Please enter Contract Start Date")

@@ -1,6 +1,10 @@
 package com.insurance.ins.business.services;
 
 import com.insurance.ins.business.entites.Contract;
+import com.insurance.ins.business.enums.Status;
+import com.insurance.ins.business.models.AllContractsViewModel;
+import com.insurance.ins.business.models.SearchContractModel;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -12,4 +16,12 @@ public interface ContractService {
     void deleteById(Long id);
     void cancel(Contract contract);
     void inForce(Contract contract);
+    AllContractsViewModel findAllById(Long id, Pageable pageable);
+
+    AllContractsViewModel findAllByStatus(Status status, Pageable pageable);
+
+    AllContractsViewModel findAllByIdAndStatus(Long id, Status status, Pageable pageable);
+    AllContractsViewModel findAllByPage(Pageable pageable);
+
+    AllContractsViewModel searchContract(SearchContractModel searchContractModel, Pageable pageable);
 }

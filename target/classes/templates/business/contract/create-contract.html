@@ -75,7 +75,7 @@
             <div class="form-group">
                 <label for="frequency">Frequency</label>
                 <select class="form-control"  th:classappend="${#fields.hasErrors('frequency')}? 'is-invalid'"
-                        id="frequency" name="duration" th:field="*{frequency}">
+                        id="frequency" name="frequency" th:field="*{frequency}">
                     <option th:each="freq : ${T(com.insurance.ins.business.enums.Frequency).values()}" th:value="${freq}" th:text="${freq.getFreqLabel()}"></option>
                 </select>
                 <th:block th:each="error : ${#fields.errors('frequency')}">
