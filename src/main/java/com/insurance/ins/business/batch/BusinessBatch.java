@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class BusinessBatch {
-
-    @Scheduled(cron = "0 0 23 * * ?")
+    @Scheduled(cron = "0 0 1 ? * *")
     public void scheduleTaskUsingCronExpression() {
 
         long now = System.currentTimeMillis() / 1000;

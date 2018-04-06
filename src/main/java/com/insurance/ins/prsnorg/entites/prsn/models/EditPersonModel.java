@@ -2,20 +2,16 @@ package com.insurance.ins.prsnorg.entites.prsn.models;
 
 
 import com.insurance.ins.prsnorg.entites.prsn.enums.Gender;
-import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
-import com.insurance.ins.utils.annotations.Unique;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-public class PersonModel {
+public class EditPersonModel {
     private Long id;
     @Size(min=5,message="Please enter Full Name minimum 5 symbols")
     private String fullName;
-    @Size(min=10,max=10, message="Please enter EGN with 10 numbers")
-    @Unique(service = PersonService.class, fieldName = "egn", message = "There is person with this EGN, EGN must be unique")
     private String egn;
     @NotNull(message="Please enter Birth Date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

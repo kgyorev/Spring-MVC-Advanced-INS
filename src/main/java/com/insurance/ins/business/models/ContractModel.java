@@ -2,6 +2,8 @@ package com.insurance.ins.business.models;
 
 
 import com.insurance.ins.business.enums.Frequency;
+import com.insurance.ins.business.services.ContractService;
+import com.insurance.ins.utils.annotations.Existing;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Max;
@@ -14,6 +16,7 @@ public class ContractModel {
 
     private Long id;
     @Size(min = 1,message="Please enter Owner Id")
+    @Existing(service = ContractService.class, fieldName = "owner", message = "Person with this id not exists.")
     private String owner;
     @NotNull(message="Please enter Contract Start Date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -5,11 +5,13 @@ import com.insurance.ins.business.enums.Status;
 import com.insurance.ins.business.models.AllContractsViewModel;
 import com.insurance.ins.business.models.SearchContractModel;
 import com.insurance.ins.business.repositories.ContractRepository;
+import com.insurance.ins.prsnorg.entites.prsn.reposiotries.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -19,10 +21,12 @@ import java.util.List;
 public class ContractServiceImpl implements ContractService {
 
     private final ContractRepository contractRepository;
+    private final PersonRepository personRepository;
 
     @Autowired
-    public ContractServiceImpl(ContractRepository contractRepository) {
+    public ContractServiceImpl(ContractRepository contractRepository, PersonRepository personRepository) {
         this.contractRepository = contractRepository;
+        this.personRepository = personRepository;
     }
 
     @Override
@@ -126,5 +130,20 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public long getTotalPages(int size) {
         return this.contractRepository.count() / size;
+    }
+
+    @Override
+    public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
+        Assert.notNull(fieldName,"Can't be null");
+
+        if (!fieldName.equals("owner")) {
+            throw new UnsupportedOperationException("Field name not supported");
+        }
+
+        if (value == null) {
+            return false;
+        }
+
+        return this.personRepository.findById(Long.parseLong(value.toString())).isPresent();
     }
 }

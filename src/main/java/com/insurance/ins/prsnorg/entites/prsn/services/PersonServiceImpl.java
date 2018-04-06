@@ -87,7 +87,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person edit(Person person) {
-        return this.personRepository.save(person);
+        return this.personRepository.saveAndFlush(person);
     }
 
     @Override

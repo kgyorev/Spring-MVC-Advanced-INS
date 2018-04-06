@@ -1,7 +1,9 @@
 package com.insurance.ins.prsnorg.controllers;
 
+import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.models.AllPersonsViewModel;
+import com.insurance.ins.prsnorg.entites.prsn.models.EditPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.PersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
@@ -13,12 +15,12 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.util.Set;
 
 
 @Controller
@@ -46,98 +48,56 @@ public class PersonController {
         return "prsnorg/prsn/search-person";
     }
 
-    //    @PostMapping(value="/persons")
-//    public String searchClient(SearchPersonModel searchPersonModel, Model model) {
-//        String egn = searchPersonModel.getEgn();
-//        List<Person> allclients = personService.findAll();
-//        List<Person> clientall;
-//        if(!egn.equals("")) {
-//            Stream<Person> userstream = allclients.stream().filter(u -> u.getEgn().equals(egn));
-//            List<Person> clientall_tmp = userstream.collect(Collectors.toList());
-//            if(clientall_tmp.size()==0)
-//            {
-//                notifyService.addWarningMessage("Cannot find client with EGN: " + egn);
-//                clientall= allclients;
-//            }
-//            else
-//                clientall = clientall_tmp;
-//        }
-//        else
-//          clientall= allclients;
-//        model.addAttribute("clientall", clientall);
-//        return "prsnorg/prsn/search-person";
-//    }
-//    @RequestMapping(value ="/clients/delete/{id}", method = RequestMethod.GET)
-//    public String delete(SearchClientForm searchClientForm, @PathVariable("id") Long id, Model model) {
-//        Object user = httpSession.getAttribute(USER_LOGIN);
-//        if (user == null) {
-//            notifyService.addErrorMessage("Please Login!");
-//            return "redirect:/";
-//        }
-//        Client client = personService.findById(id);
-//        if (client == null) {
-//            notifyService.addErrorMessage("Cannot find client #" + id);
-//            return "redirect:/";
-//        }
-//        Set<Contract> contracts = client.getContracts();
-//        int contracts_count = contracts.size();
-//        if (contracts_count != 0) {
-//            notifyService.addErrorMessage("Cannot delete client #" + id + " ,it has contracts.");
-//            List<Client> clientall = personService.findAll();
-//            model.addAttribute("clientall", clientall);
-//            return "clients/index_all";
-//        }
-//       personService.deleteById(id);
-//        List<Client> clientall = personService.findAll();
-//        model.addAttribute("clientall", clientall);
-//        notifyService.addInfoMessage("Delete successful");
-//        return "clients/index_all";
-//    }
-//    @RequestMapping(value ="/clients/edit/{id}", method = RequestMethod.GET)
-//    public String editPage(CreateClientForm createClientForm, @PathVariable("id") Long id, Model model) {
-//        Object user = httpSession.getAttribute(USER_LOGIN);
-//        if (user == null) {
-//            notifyService.addErrorMessage("Please Login!");
-//            return "redirect:/";
-//        }
-//        Client client = personService.findById(id);
-//        if (client == null) {
-//            notifyService.addErrorMessage("Cannot find client #" + id);
-//            return "redirect:/";
-//        }
-//        model.addAttribute("client", client);
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        String birthdt = df.format(client.getBirthdt());
-//        model.addAttribute("birthdt", birthdt);
-//        return "clients/edit";
-//    }
-//    @RequestMapping(value ="/clients/edit/{id}", method = RequestMethod.POST)
-//    public String edit(@Valid CreateClientForm createClientForm, BindingResult bindingResult, @PathVariable("id") Long id, Model model) throws ParseException {
-//        Client client = personService.findById(id);
-//        if (client == null) {
-//            notifyService.addErrorMessage("Cannot find client #" + id);
-//            return "redirect:/";
-//        }
-//        if (bindingResult.hasErrors()) {
-//            notifyService.addErrorMessage("Please fill the form correctly!");
-//            model.addAttribute("client", client);
-//            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//            String birthdt = df.format(client.getBirthdt());
-//            model.addAttribute("birthdt", birthdt);
-//            return "/clients/edit";
-//        }
-//        String date_str = createClientForm.getBirthdt();
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        Date birthDate = df.parse(date_str);
-//        String fullName = createClientForm.getFullName();
-//        client.setBirthdt(birthDate);
-//        client.setFullName(fullName);
-//        client.setSex(createClientForm.getSex());
-//        client.setEgn(createClientForm.getEgn());
-//        personService.edit(client);
-//        notifyService.addInfoMessage("Edit successful");
-//        return "redirect:/clients";
-//    }
+    @RequestMapping(value ="/persons/delete/{id}", method = RequestMethod.GET)
+    public String delete(SearchPersonModel searchPersonModel, @PathVariable("id") Long id, Model model) {
+        Person person = personService.findById(id);
+        if (person == null) {
+            notifyService.addErrorMessage("Cannot find person #" + id);
+            return "redirect:/";
+        }
+        Set<Contract> contracts = person.getContracts();
+        int contracts_count = contracts.size();
+        if (contracts_count != 0) {
+            notifyService.addErrorMessage("Cannot delete client #" + id + " ,it has contracts.");
+            return "redirect:/persons";
+//            List<Person> personAll = personService.findAll();
+//            model.addAttribute("personAll", personAll);
+//            return "prsnorg/prsn/search-person";
+        }
+       personService.deleteById(id);
+//        List<Person> personall = personService.findAll();
+//        model.addAttribute("personall", personall);
+        notifyService.addInfoMessage("Delete successful");
+        return "redirect:/persons";
+    }
+    @RequestMapping(value ="/persons/edit/{id}", method = RequestMethod.GET)
+    public String editPage(@ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id, Model model) {
+
+        Person person = personService.findById(id);
+        if (person == null) {
+            notifyService.addErrorMessage("Cannot find person #" + id);
+            return "redirect:/";
+        }
+        personModel = DTOConvertUtil.convert(person, EditPersonModel.class);
+        model.addAttribute("personModel", personModel);
+        return "prsnorg/prsn/edit-person";
+    }
+    @RequestMapping(value ="/persons/edit/{id}", method = RequestMethod.POST)
+    public String edit(@Valid @ModelAttribute(name = "personModel") EditPersonModel personModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model) throws ParseException {
+        Person person = personService.findById(id);
+        if (person == null) {
+            notifyService.addErrorMessage("Cannot find person #" + id);
+            return "redirect:/";
+        }
+        if (bindingResult.hasErrors()) {
+            notifyService.addErrorMessage("Please fill the form correctly!");
+            return "/prsnorg/prsn/edit-person";
+        }
+        Person personEdit = DTOConvertUtil.convert(personModel, Person.class);
+        personService.edit(personEdit);
+        notifyService.addInfoMessage("Edit successful");
+        return "redirect:/persons";
+    }
     @GetMapping(value = "/persons/create")
     public String createPage(@ModelAttribute(name = "personModel") PersonModel personModel) {
         return "prsnorg/prsn/create-person";
