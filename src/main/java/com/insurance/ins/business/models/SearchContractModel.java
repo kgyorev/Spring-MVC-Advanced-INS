@@ -11,6 +11,11 @@ public class SearchContractModel {
     }
     private Status status;
 
+    public SearchContractModel() {
+        this.cntrctId = "";
+       this.status = Status.IN_FORCE;
+    }
+
     public Status getStatus() {
         return status;
     }

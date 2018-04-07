@@ -61,6 +61,16 @@
                     </small>
                 </th:block>
             </div>
+            <div class="form-group" th:classappend="${#fields.hasErrors('nextBillingDueDate')}? 'has-danger'">
+                <label for="nextBillingDueDate">Next Billing Due Date</label>
+                <input class="form-control" type="date" id="nextBillingDueDate" name="nextBillingDueDate" th:field="*{nextBillingDueDate}">
+                <th:block th:each="error : ${#fields.errors('nextBillingDueDate')}">
+                    <small id="nextBillingDueDateHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
             <div class="form-group">
                 <label for="duration">Contract Duration(in Years)</label>
                 <input type="number" class="form-control" th:classappend="${#fields.hasErrors('duration')}? 'is-invalid'"

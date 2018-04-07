@@ -27,6 +27,10 @@ public class Contract {
     private LocalDate creationDt;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate nextBillingDueDate;
+
+    @Column(nullable = false)
     private Frequency frequency;
 
     @Column(nullable = false)
@@ -152,5 +156,13 @@ public class Contract {
 
     public void setFrequency(Frequency frequency) {
         this.frequency = frequency;
+    }
+
+    public LocalDate getNextBillingDueDate() {
+        return nextBillingDueDate;
+    }
+
+    public void setNextBillingDueDate(LocalDate nextBillingDueDate) {
+        this.nextBillingDueDate = nextBillingDueDate;
     }
 }

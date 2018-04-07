@@ -66,17 +66,33 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public AllContractsViewModel findAllByStatus(Status status, Pageable pageable) {
-        return null;
+
+        AllContractsViewModel viewModel = new AllContractsViewModel();
+
+        viewModel.setContracts(this.contractRepository.findAllByStatus(status,pageable));
+        viewModel.setTotalPageCount(this.getTotalPages());
+
+        return viewModel;
     }
 
     @Override
     public AllContractsViewModel findAllByIdAndStatus(Long id, Status status, Pageable pageable) {
-        return null;
+        AllContractsViewModel viewModel = new AllContractsViewModel();
+
+        viewModel.setContracts(this.contractRepository.findAllByIdAndStatus(id,status,pageable));
+        viewModel.setTotalPageCount(this.getTotalPages());
+
+        return viewModel;
     }
 
     @Override
     public AllContractsViewModel findAllByPage(Pageable pageable) {
-        return null;
+        AllContractsViewModel viewModel = new AllContractsViewModel();
+
+        viewModel.setContracts(this.contractRepository.findAll(pageable));
+        viewModel.setTotalPageCount(this.getTotalPages());
+
+        return viewModel;
     }
 
     @Override
@@ -86,15 +102,29 @@ public class ContractServiceImpl implements ContractService {
 
         AllContractsViewModel allContractsViewModel;
 
-        if (!id.equals("") && !status.equals("")) {
+//        if (!id.equals("") && !status.equals("")) {
+//            allContractsViewModel = this.findAllByIdAndStatus(Long.parseLong(id), status, pageable);
+//        } else if (!id.equals("") && status.equals("")) {
+//            allContractsViewModel = this.findAllById(Long.parseLong(id), pageable);
+//        } else if (id.equals("")&& !status.equals("")) {
+//            allContractsViewModel = this.findAllByStatus(status, pageable);
+//        } else {
+//            allContractsViewModel = this.findAllByPage(pageable);
+//        }
+        if (!id.equals("") && !(status==null)) {
             allContractsViewModel = this.findAllByIdAndStatus(Long.parseLong(id), status, pageable);
-        } else if (!id.equals("") && status.equals("")) {
+        } else if (!id.equals("") && status==null) {
             allContractsViewModel = this.findAllById(Long.parseLong(id), pageable);
-        } else if (id.equals("")&& !status.equals("")) {
+        } else if (id.equals("")&& !(status==null)) {
             allContractsViewModel = this.findAllByStatus(status, pageable);
         } else {
             allContractsViewModel = this.findAllByPage(pageable);
         }
         return allContractsViewModel;
+    }
+
+    @Override
+    public long getTotalPages(int size) {
+        return this.contractRepository.count() / size;
     }
 }

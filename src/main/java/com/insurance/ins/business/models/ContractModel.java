@@ -18,6 +18,10 @@ public class ContractModel {
     @NotNull(message="Please enter Contract Start Date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDt;
+
+    @NotNull(message="Please enter Next Billing Due  Date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate nextBillingDueDate;
     @NotNull
     @Min(value=500,message = "Minimum Amiunt is 500 EUR") @Max(value = 100000 ,message = "Maximum Amiunt is 100000 EUR")
     private double amount;
@@ -80,5 +84,21 @@ public class ContractModel {
 
     public void setFrequency(Frequency frequency) {
         this.frequency = frequency;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getNextBillingDueDate() {
+        return nextBillingDueDate;
+    }
+
+    public void setNextBillingDueDate(LocalDate nextBillingDueDate) {
+        this.nextBillingDueDate = nextBillingDueDate;
     }
 }

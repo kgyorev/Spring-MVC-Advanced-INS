@@ -73,7 +73,7 @@ public class ContractsController {
         AllContractsViewModel contractall =  contractService.searchContract(searchContractModel,pageable);
 
         if(
-                (!searchContractModel.getCntrctId().equals("")||!searchContractModel.getStatus().equals(""))
+                (!searchContractModel.getCntrctId().equals("")||!(searchContractModel.getStatus()==null))
                         &&!contractall.getContracts().hasContent()) {
             notifyService.addWarningMessage("Cannot find contracts with given search criteria.");
         }

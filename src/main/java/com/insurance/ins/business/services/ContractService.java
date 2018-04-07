@@ -24,4 +24,9 @@ public interface ContractService {
     AllContractsViewModel findAllByPage(Pageable pageable);
 
     AllContractsViewModel searchContract(SearchContractModel searchContractModel, Pageable pageable);
+    default long getTotalPages() {
+        return getTotalPages(10);
+    }
+    long getTotalPages(int size);
+
 }
