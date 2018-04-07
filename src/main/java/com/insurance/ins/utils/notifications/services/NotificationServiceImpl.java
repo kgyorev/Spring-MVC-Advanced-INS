@@ -21,16 +21,16 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public void addInfoMessage(String msg) {
-        addNotificationMessage(NotificationMessageType.INFO, msg);
+        addNotificationMessage(NotificationMessageType.SUCCESS, msg);
     }
 
     @Override
     public void addErrorMessage(String msg) {
-        addNotificationMessage(NotificationMessageType.ERROR, msg);
+        addNotificationMessage(NotificationMessageType.DANGER, msg);
     }
     @Override
     public void addWarningMessage(String msg) {
-        addNotificationMessage(NotificationMessageType.WARN, msg);
+        addNotificationMessage(NotificationMessageType.WARNING, msg);
     }
 
     private void addNotificationMessage(NotificationMessageType type, String msg) {
@@ -44,9 +44,9 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     public enum NotificationMessageType {
-        INFO,
-        WARN,
-        ERROR
+        SUCCESS,
+        WARNING,
+        DANGER
     }
 
     public class NotificationMessage {

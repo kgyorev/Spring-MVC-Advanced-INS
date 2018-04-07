@@ -21,55 +21,50 @@
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
     <!--integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
     <!--crossorigin="anonymous"></script>-->
-    <title>New Organization</title>
+    <title>New Person</title>
 </head>
 <body>
 <header th:replace="~{fragments/layout :: site-header}"></header>
 <div class="container-fluid">
     <div class="container mt-4">
-        <form class="my-4" th:object="${organizationModel}" th:action="@{/organizations/confirm/create}">
-            <h2>New Person</h2>
+        <form class="my-4" th:object="${personModel}" th:action="@{/persons}">
+            <h2 class="text-center" th:text="'Information for Person ID: '+${personModel.id}"></h2>
             <div class="form-group">
                 <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('fullName')}? 'is-invalid'"
-                       id="fullName" name="fullName" th:field="*{fullName}"/>
-                <th:block th:each="error : ${#fields.errors('fullName')}">
-                    <small id="fullNameHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
+                <input type="text" class="form-control"
+                       id="fullName" name="fullName" th:field="*{fullName}" disabled/>
             </div>
             <div class="form-group">
-                <label for="vat">VAT</label>
-                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('vat')}? 'is-invalid'"
-                       id="vat" name="vat" th:field="*{vat}"/>
-                <th:block th:each="error : ${#fields.errors('vat')}">
-                    <small id="egnHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
+                <label for="egn">EGN</label>
+                <input type="text" class="form-control"
+                       id="egn" name="egn" th:field="*{egn}" disabled/>
             </div>
-
-            <div class="form-group" th:classappend="${#fields.hasErrors('startDate')}? 'has-danger'">
-                <label for="startDate">Creation Date</label>
-                <input class="form-control" type="date" id="startDate" name="startDate" th:field="*{startDate}">
-                <th:block th:each="error : ${#fields.errors('startDate')}">
-                    <small id="startDateTurnHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
+            <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" name="isSmoker" id="isSmoker" th:field="*{smoker}" disabled>
+                <label class="custom-control-label" for="isSmoker">Is Smoker?</label>
+            </div>
+            <fieldset class="form-group">
+                <legend>Gender</legend>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="male"
+                           name="sex" value="MALE" th:field="*{sex}" disabled>
+                    <label class="custom-control-label" for="male">Male</label>
+                </div>
+                <div class="custom-control custom-radio mb-3">
+                    <input type="radio" class="custom-control-input" id="female"
+                           name="sex" value="FEMALE" th:field="*{sex}" disabled>
+                    <label class="custom-control-label" for="female">Female</label>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <label for="startDate">Birth Date</label>
+                <input class="form-control" type="date" id="startDate" name="startDate" th:field="*{startDate}" disabled>
             </div>
             <div class="text-center">
-                <button type="submit" name="action" value="return" class="btn btn-secondary"><i
-                        class="fas fa-chevron-circle-left"></i> Return
-                </button>
-                <button type="submit" name="action" value="save" class="btn btn-primary">Continue <i
-                        class="fas fa-chevron-circle-right"></i></button>
+            <button type="submit" class="btn btn-secondary"><i class="fas fa-chevron-circle-left"></i> Return</button>
             </div>
         </form>
+
     </div>
 </div>
 <footer th:replace="~{fragments/layout :: site-footer}"></footer>

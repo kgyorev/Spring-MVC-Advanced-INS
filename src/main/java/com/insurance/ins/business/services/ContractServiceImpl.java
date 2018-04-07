@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -134,14 +133,12 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
-        Assert.notNull(fieldName,"Can't be null");
 
         if (!fieldName.equals("owner")) {
             throw new UnsupportedOperationException("Field name not supported");
         }
-
-        if (value == null) {
-            return false;
+        if (value.equals("")) {
+            return true;
         }
 
         return this.personRepository.findById(Long.parseLong(value.toString())).isPresent();

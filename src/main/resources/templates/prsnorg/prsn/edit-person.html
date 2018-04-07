@@ -27,8 +27,8 @@
 <header th:replace="~{fragments/layout :: site-header}"></header>
 <div class="container-fluid">
     <div class="container mt-4">
-        <form class="my-4" th:object="${personModel}" th:action="@{/persons/edit/{id}/(id=${personModel.id})}" th:method="post">
-            <h2>New Person</h2>
+        <form class="my-4" th:object="${personModel}" th:action="@{/persons/confirm/edit/{id}/(id=${personModel.id})}">
+            <h2 class="text-center" th:text="'Modification for Person ID: '+${personModel.id}"></h2>
             <div class="form-group">
                 <label for="fullName">Full Name</label>
                 <input type="text" class="form-control" th:classappend="${#fields.hasErrors('fullName')}? 'is-invalid'"
@@ -117,8 +117,10 @@
                     </small>
                 </th:block>
             </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="text-center">
+                <button type="submit" name="action" value="return" class="btn btn-secondary"><i class="fas fa-chevron-circle-left"></i> Return</button>
+                <button type="submit" name="action" value="save" class="btn btn-primary">Continue <i class="fas fa-chevron-circle-right"></i> </button>
+            </div>
         </form>
     </div>
 </div>

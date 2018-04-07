@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="common-organization">
+    <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" class="form-control" readonly
+               id="fullName" name="fullName" th:field="*{fullName}"/>
+    </div>
+    <div class="form-group">
+        <label for="vat">VAT</label>
+        <input type="text" class="form-control"
+               id="vat" name="vat" th:field="*{vat}" readonly/>
+    </div>
+
+    <div class="form-group" >
+        <label for="startDate">Creation Date</label>
+        <input class="form-control" type="date" id="startDate" name="startDate" th:field="*{startDate}" readonly>
+    </div>
+    <div class="text-center">
+        <button type="submit" name="action" value="return" class="btn btn-secondary"><i
+                class="fas fa-chevron-circle-left"></i> Return
+        </button>
+        <button type="button" data-toggle="modal" th:attr="data-target='#'+${organizationModel}"
+                class="btn btn-primary"><i class="fas fa-check-circle"></i> Validate
+        </button>
+    </div>
+    <div class="modal fade" th:id="${organizationModel}" tabindex="-1" role="dialog"
+         aria-labelledby="deleteUserLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteUserLabel">This action can't be undone</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to save this organization?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button name="action" value="save" class="btn btn-primary" type="submit"
+                            >Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

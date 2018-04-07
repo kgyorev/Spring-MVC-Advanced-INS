@@ -44,6 +44,13 @@ th,td{
     /*display: block;*/
     /*clear: both;*/
 /*}*/
+
+div#messages div {
+    width: 80%;
+    margin: 5px auto;
+    border-radius: 5px;
+}
+
 ul#messages li {
     display: block;
     width: 80%;

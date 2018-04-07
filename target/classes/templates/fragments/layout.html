@@ -4,25 +4,29 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="site-head">
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
     <!--<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css"/>-->
     <!--<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css"/>-->
     <!--<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">-->
     <!--<link rel="stylesheet" th:href="@{/css/bootstrap.css}" href="../../static/css/bootstrap.css">-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../static/css/styles.css" th:href="@{/css/styles.css}" />
-    <link rel="icon" href="../../static/img/INS-Logo1.png" th:href="@{/img/INS-Logo1.png}" />
+    <link rel="stylesheet" href="../../static/css/styles.css" th:href="@{/css/styles.css}"/>
+    <link rel="icon" href="../../static/img/INS-Logo1.png" th:href="@{/img/INS-Logo1.png}"/>
     <script src="../../static/js/jquery-3.1.0.min.js"
             th:src="@{/js/jquery-3.1.0.min.js}"></script>
     <script src="../../static/js/ins-scripts.js" th:src="@{/js/ins-scripts.js}"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
+            integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
+            crossorigin="anonymous"></script>
     <!--<meta th:include="this :: head" th:remove="tag"/>-->
 </head>
 
@@ -42,16 +46,16 @@
                     </li>
 
                     <li class="nav-item">
-                        <a sec:authorize="isAnonymous()"  class="nav-link" href="/login"  >Login</a>
+                        <a sec:authorize="isAnonymous()" class="nav-link" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a sec:authorize="isAnonymous()"  class="nav-link" href="/register" >Register</a>
+                        <a sec:authorize="isAnonymous()" class="nav-link" href="/register">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contracts/create" >New Business</a>
+                        <a class="nav-link" href="/contracts/create">New Business</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contracts" >Contract Area</a>
+                        <a class="nav-link" href="/contracts">Contract Area</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkCustomers"
@@ -59,18 +63,21 @@
                             Perosn/Organization
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/persons/create" >New Person</a>
+                            <a sec:authorize="hasRole('USER')" class="dropdown-item" href="/persons/create">New
+                                Person</a>
                             <!--<a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/persons?page=0" >Person Area</a>-->
-                            <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/persons" >Person Area</a>
-                            <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/organizations/create" >New Organization</a>
-                            <a sec:authorize="hasRole('USER')"  class="dropdown-item" href="/organizations" >Organization Area</a>
+                            <a sec:authorize="hasRole('USER')" class="dropdown-item" href="/persons">Person Area</a>
+                            <a sec:authorize="hasRole('USER')" class="dropdown-item" href="/organizations/create">New
+                                Organization</a>
+                            <a sec:authorize="hasRole('USER')" class="dropdown-item" href="/organizations">Organization
+                                Area</a>
                         </div>
                     </li>
                     <li sec:authorize="hasRole('USER')" class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a sec:authorize="hasRole('ADMIN')"  class="nav-link" href="/logs/all" >Logs</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="/logs/all">Logs</a>
                     </li>
 
                     <li sec:authorize="hasRole('ADMIN')" class="nav-item">
@@ -79,16 +86,28 @@
                 </ul>
             </div>
         </nav>
-        <ul id="messages" th:with="notifyMessages=${session[T(com.insurance.ins.utils.notifications.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
-        <li th:each="msg : ${notifyMessages}"
-        th:text="${msg.text}"
-        th:class="${#strings.toLowerCase(msg.type)}">
-        </li>
-        <span th:if="${notifyMessages}" th:remove="all" th:text="${#httpSession.removeAttribute(T(com.insurance.ins.utils.notifications.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
-        </ul>
+        <!--<ul id="messages" th:with="notifyMessages=${session[T(com.insurance.ins.utils.notifications.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">-->
+        <!--<li th:each="msg : ${notifyMessages}"-->
+        <!--th:text="${msg.text}"-->
+        <!--th:class="${#strings.toLowerCase(msg.type)}">-->
+        <!--</li>-->
+        <!--<span th:if="${notifyMessages}" th:remove="all" th:text="${#httpSession.removeAttribute(T(com.insurance.ins.utils.notifications.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>-->
+        <!--</ul>-->
+
+        <div id="messages"
+             th:with="notifyMessages=${session[T(com.insurance.ins.utils.notifications.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+            <div th:each="msg : ${notifyMessages}"
+                 role="alert"
+                 th:text="${msg.text}"
+                 th:class="|text-center alert|"
+                 th:classappend="|alert-${#strings.toLowerCase(msg.type)}|">
+            </div>
+            <span th:if="${notifyMessages}" th:remove="all"
+                  th:text="${#httpSession.removeAttribute(T(com.insurance.ins.utils.notifications.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+        </div>
+
+
     </header>
-
-
     <h1>Welcome</h1>
     <p>Welcome to Car Dealer System.</p>
 

@@ -27,8 +27,9 @@
 <header th:replace="~{fragments/layout :: site-header}"></header>
 <div class="container-fluid">
     <div class="container mt-4">
-        <form class="my-4" th:object="${organizationModel}" th:action="@{/organizations/confirm/create}">
-            <h2>New Person</h2>
+        <form class="my-4" th:object="${organizationModel}"
+              th:action="@{/organizations/confirm/edit/{id}/(id=${organizationModel.id})}">
+            <h2 class="text-center" th:text="'Modification for Organization ID: '+${organizationModel.id}"></h2>
             <div class="form-group">
                 <label for="fullName">Full Name</label>
                 <input type="text" class="form-control" th:classappend="${#fields.hasErrors('fullName')}? 'is-invalid'"
@@ -43,7 +44,7 @@
             <div class="form-group">
                 <label for="vat">VAT</label>
                 <input type="text" class="form-control" th:classappend="${#fields.hasErrors('vat')}? 'is-invalid'"
-                       id="vat" name="vat" th:field="*{vat}"/>
+                       id="vat" name="vat" th:field="*{vat}" readonly/>
                 <th:block th:each="error : ${#fields.errors('vat')}">
                     <small id="egnHelp" class="text-danger"
                            th:text="${error}">

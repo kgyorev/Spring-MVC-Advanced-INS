@@ -58,7 +58,7 @@
                     <td th:text="*{fullName}"></td>
                     <td th:text="${#temporals.format(person.startDate,'dd-MM-yyyy')}"></td>
                     <td th:text="*{egn}"></td>
-                    <td><a th:href="@{/persons/edit/{id}(id=*{id})}"><i class="fas fa-binoculars"
+                    <td><a th:href="@{/persons/{id}(id=*{id})}"><i class="fas fa-binoculars"
                                                                      title="Person details"></i></a></td>
                     <td><a th:href="@{/persons/edit/{id}/(id=*{id})}"><i class="fas fa-edit" title="Edit person"></i></a>
                     </td>
@@ -74,7 +74,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Are you sure to delete this user?
+                                    Are you sure to delete this person?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

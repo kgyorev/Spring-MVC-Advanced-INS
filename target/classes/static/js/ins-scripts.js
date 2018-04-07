@@ -1,8 +1,8 @@
 $(function() {
-    $('#messages li').click(function() {
+    $('#messages div').click(function() {
         $(this).fadeOut();
     });
     setTimeout(function() {
-        $('#messages li.info').fadeOut();
+        $('#messages div.alert-success').fadeOut();
     }, 3000);
 });

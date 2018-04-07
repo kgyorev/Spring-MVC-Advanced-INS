@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.text.ParseException;
 import java.util.Set;
 
 
@@ -60,15 +59,22 @@ public class PersonController {
         if (contracts_count != 0) {
             notifyService.addErrorMessage("Cannot delete client #" + id + " ,it has contracts.");
             return "redirect:/persons";
-//            List<Person> personAll = personService.findAll();
-//            model.addAttribute("personAll", personAll);
-//            return "prsnorg/prsn/search-person";
         }
-       personService.deleteById(id);
-//        List<Person> personall = personService.findAll();
-//        model.addAttribute("personall", personall);
+        personService.deleteById(id);
         notifyService.addInfoMessage("Delete successful");
         return "redirect:/persons";
+    }
+    @RequestMapping(value ="/persons/{id}", method = RequestMethod.GET)
+    public String viewPerson(@ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id, Model model) {
+
+        Person person = personService.findById(id);
+        if (person == null) {
+            notifyService.addErrorMessage("Cannot find person #" + id);
+            return "redirect:/";
+        }
+        personModel = DTOConvertUtil.convert(person, EditPersonModel.class);
+        model.addAttribute("personModel", personModel);
+        return "prsnorg/prsn/view-person";
     }
     @RequestMapping(value ="/persons/edit/{id}", method = RequestMethod.GET)
     public String editPage(@ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id, Model model) {
@@ -82,8 +88,26 @@ public class PersonController {
         model.addAttribute("personModel", personModel);
         return "prsnorg/prsn/edit-person";
     }
+    @RequestMapping(value ="/persons/confirm/edit/{id}", method = RequestMethod.GET)
+    public String confirmEditPage(@Valid @ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id,BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
+        if(action.equals("return")){
+            return "redirect:/persons";
+        }
+        if (personModel == null) {
+            notifyService.addErrorMessage("Cannot find person #" + id);
+            return "redirect:/";
+        }
+        if (bindingResult.hasErrors()) {
+            notifyService.addErrorMessage("Please fill the form correctly!");
+            return "/prsnorg/prsn/edit-person";
+        }
+        return "prsnorg/prsn/confirm-edit-person";
+    }
     @RequestMapping(value ="/persons/edit/{id}", method = RequestMethod.POST)
-    public String edit(@Valid @ModelAttribute(name = "personModel") EditPersonModel personModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model) throws ParseException {
+    public String edit(@Valid @ModelAttribute(name = "personModel") EditPersonModel personModel, BindingResult bindingResult, @PathVariable("id") Long id,@RequestParam(value="action", required=true) String action) {
+        if(action.equals("return")){
+            return "/prsnorg/prsn/edit-person";
+        }
         Person person = personService.findById(id);
         if (person == null) {
             notifyService.addErrorMessage("Cannot find person #" + id);
@@ -102,9 +126,23 @@ public class PersonController {
     public String createPage(@ModelAttribute(name = "personModel") PersonModel personModel) {
         return "prsnorg/prsn/create-person";
     }
+    @GetMapping(value = "/persons/confirm/create")
+    public String confirmPage(@Valid @ModelAttribute(name = "personModel") PersonModel personModel,BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
+        if(action.equals("return")){
+            return "redirect:/";
+        }
+        if (bindingResult.hasErrors()) {
+            notifyService.addErrorMessage("Please fill the form correctly!");
+            return "/prsnorg/prsn/create-person";
+        }
+        return "prsnorg/prsn/confirm-create-person";
+    }
 
     @PostMapping(value = "/persons/create")
-    public String create(@Valid PersonModel personModel, BindingResult bindingResult) {
+    public String create(@Valid PersonModel personModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
+        if(action.equals("return")){
+            return "/prsnorg/prsn/create-person";
+        }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
             return "/prsnorg/prsn/create-person";
