@@ -73,4 +73,9 @@ public abstract class PrsnOrg {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
+
+    @Override
+    public String toString() {
+        return this.id.toString();
+    }
 }

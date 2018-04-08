@@ -27,7 +27,7 @@
 <header th:replace="~{fragments/layout :: site-header}"></header>
 <div class="container-fluid">
     <div class="container mt-4">
-        <form class="my-4" th:object="${contractModel}" th:action="@{/contracts/create}" th:method="post">
+        <form class="my-4" th:object="${contractModel}" th:action="@{/contracts/confirm/create}">
             <h2>New Business</h2>
             <div class="form-group">
                 <label for="product">Product ID</label>
@@ -106,7 +106,13 @@
                     </small>
                 </th:block>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="text-center">
+                <button type="submit" name="action" value="return" class="btn btn-secondary"><i
+                        class="fas fa-chevron-circle-left"></i> Return
+                </button>
+                <button type="submit" name="action" value="save" class="btn btn-primary">Continue <i
+                        class="fas fa-chevron-circle-right"></i></button>
+            </div>
         </form>
     </div>
 </div>

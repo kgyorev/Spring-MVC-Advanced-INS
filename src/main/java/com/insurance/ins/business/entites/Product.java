@@ -43,4 +43,9 @@ public class Product {
     public void setLabel(String label) {
         this.label = label;
     }
+
+    @Override
+    public String toString() {
+        return this.idntfr;
+    }
 }

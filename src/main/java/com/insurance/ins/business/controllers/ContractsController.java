@@ -20,9 +20,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -154,18 +152,17 @@ public class ContractsController {
 //        model.addAttribute("contractall", contractall);
 //        return "contracts/index_all";  // v primera e view.html
 //    }
-//    @RequestMapping(value ="/contracts/edit/{id}", method = RequestMethod.GET)
-//    public String editPage(ContractModel contractModel, @PathVariable("id") Long id, Model model) {
-//        Object user = httpSession.getAttribute(USER_LOGIN);
-//        if (user == null) {
-//            notifyService.addErrorMessage("Please Login!");
-//            return "redirect:/";
-//        }
-//        Contract contract = contractService.findById(id);
-//        if (contract == null) {
-//            notifyService.addErrorMessage("Cannot find contract #" + id);
-//            return "redirect:/";
-//        }
+    @RequestMapping(value ="/contracts/edit/{id}", method = RequestMethod.GET)
+    public String editPage(@ModelAttribute(name = "contractModel") ContractModel contractModel, @PathVariable("id") Long id, Model model) {
+        Contract contract = contractService.findById(id);
+        if (contract == null) {
+            notifyService.addErrorMessage("Cannot find contract #" + id);
+            return "redirect:/";
+        }
+
+         contractModel = DTOConvertUtil.convert(contract, ContractModel.class);
+         model.addAttribute("contractModel", contractModel);
+
 //        Client client = contract.getClient();
 //        model.addAttribute("contract", contract);
 //        Long clientId=client.getId();
@@ -173,26 +170,28 @@ public class ContractsController {
 //        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 //        String startdt = df.format(contract.getStartdt());
 //        model.addAttribute("startdt", startdt);
-//        return "contracts/edit";
-//    }
-//    @RequestMapping(value ="/contracts/edit/{id}", method = RequestMethod.POST)
-//    public String edit(@Valid ContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model) throws ParseException {
-//        Contract contract = contractService.findById(id);
-//        Client client = contract.getClient();
-//        if (contract == null) {
-//            notifyService.addErrorMessage("Cannot find contract #" + id);
-//            return "redirect:/";
-//        }
-//        if (bindingResult.hasErrors()) {
-//            notifyService.addErrorMessage("Please fill the form correctly!");
-//            model.addAttribute("contract", contract);
-//            Long clientId=client.getId();
-//            model.addAttribute("clientId", clientId);
-//            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//            String startdt = df.format(contract.getStartdt());
-//            model.addAttribute("startdt", startdt);
-//            return "/contracts/edit";
-//        }
+        return "business/contract/edit-contract";
+    }
+    @RequestMapping(value ="/contracts/confirm/edit/{id}", method = RequestMethod.GET)
+    public String confirmEdit(@Valid @ModelAttribute(name = "contractModel") ContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model,@RequestParam(value="action", required=true) String action) {
+        if(action.equals("return")){
+            return "redirect:/contracts";
+        }
+        String productIdntfr = contractModel.getProduct();
+        Product product = productService.findByIdntfr(productIdntfr);
+        if (product == null) {
+            notifyService.addErrorMessage("Product not found!");
+            return "/business/contract/edit-contract";
+        }
+        Contract contract = contractService.findById(id);
+        if (contract == null) {
+            notifyService.addErrorMessage("Cannot find contract #" + id);
+            return "redirect:/";
+        }
+        if (bindingResult.hasErrors()) {
+            notifyService.addErrorMessage("Please fill the form correctly!");
+            return "/business/contract/edit-contract";
+        }
 //        String startdt = contractModel.getStartdt();
 //        int duration = contractModel.getDuration();
 //        double amount=contractModel.getAmount();
@@ -213,48 +212,110 @@ public class ContractsController {
 //
 //        contractService.edit(contract);
 //        notifyService.addInfoMessage("Edit successful");
-//        return "redirect:/contracts";
-//    }
-    @RequestMapping(value = "/contracts/create", method = RequestMethod.GET)
-    public String createPage(@ModelAttribute(name = "contractModel") ContractModel contractModel) {
-//        Object user = httpSession.getAttribute(USER_LOGIN);
-//        if (user == null) {
-//            notifyService.addErrorMessage("Please Login!");
-//            return "redirect:/";
-//        }
-        return "business/contract/create-contract";
+        String id_str = contractModel.getOwner();
+        long personId = Long.parseLong(id_str);
+        Person person = personService.findById(personId);
+        int age = person.getAge(contractModel.getStartDt()) + 1;
+        Double premiumAmount = age * contractModel.getAmount() / (contractModel.getDuration() * 12 * 100);
+        contractModel.setPremiumAmount(premiumAmount);
+        return "business/contract/confirm-edit-contract";
     }
-
-    @RequestMapping(value = "/contracts/create", method = RequestMethod.POST)
-    public String create(@Valid ContractModel contractModel, BindingResult bindingResult) throws ParseException {
+    @RequestMapping(value ="/contracts/edit/{id}", method = RequestMethod.POST)
+    public String edit(@Valid ContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model,@RequestParam(value="action", required=true) String action) throws ParseException {
+        if(action.equals("return")){
+            return "/business/contract/edit-contract";
+        }
+//        Contract contract = contractService.findById(id);
+//        Client client = contract.getClient();
+        if (contractModel == null) {
+            notifyService.addErrorMessage("Cannot find contract #" + id);
+            return "redirect:/";
+        }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/contract/create-contract";
+            return "/business/contract/edit-contract";
         }
-
-        Contract contract = DTOConvertUtil.convert(contractModel, Contract.class);
-
-//        Contract contract=new Contract();
-//        Object usernameObject = httpSession.getAttribute(USER_LOGIN);
-//
-//        if (usernameObject!=null)
-//        {
-//            String username = usernameObject.toString();
-//            List<Distributor> userall = distributorService.findAll();
-//            Stream<Distributor> userstream = userall.stream().filter(u->u.getUsername().equals(username));
-//            List<Distributor> userslist = userstream.collect(Collectors.toList());
-//            Distributor distributor = userslist.get(0);
-//            contract.setDistributor(distributor);
-//        }
-//
-//        String id_str = createContractForm.getClientId();
-//        String startdt = createContractForm.getStartdt();
-//        int duration = createContractForm.getDuration();
-//        double amount=createContractForm.getAmount();
+//        String startdt = contractModel.getStartdt();
+//        int duration = contractModel.getDuration();
+//        double amount=contractModel.getAmount();
 //        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 //        Date startDate = df.parse(startdt);
 //        contract.setStartdt(startDate);
 //        contract.setAmount(amount);
+//        contract.setDuration(duration);
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(startDate);
+//        cal.add(Calendar.YEAR, duration);
+//        cal.add(Calendar.DATE, -1);
+//        Date endDate = cal.getTime();
+//        contract.setEnddt(endDate);
+//        int age=client.getAge(startDate)+1;
+//        Double premiumamount = age*amount/(duration*12*100);
+//        contract.setPremiumamount(premiumamount);
+        contractService.edit(contractModel);
+        notifyService.addInfoMessage("Edit successful");
+        return "redirect:/contracts";
+    }
+    @RequestMapping(value = "/contracts/create", method = RequestMethod.GET)
+    public String createPage(@ModelAttribute(name = "contractModel") ContractModel contractModel) {
+        return "business/contract/create-contract";
+    }
+
+
+    @RequestMapping(value = "/contracts/confirm/create", method = RequestMethod.GET)
+    public String confirmCreate(@Valid @ModelAttribute(name = "contractModel") ContractModel contractModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
+        if(action.equals("return")){
+            return "redirect:/";
+        }
+        if (bindingResult.hasErrors()) {
+            notifyService.addErrorMessage("Please fill the form correctly!");
+            return "/business/contract/create-contract";
+        }
+//        Contract contract = DTOConvertUtil.convert(contractModel, Contract.class);
+        String id_str = contractModel.getOwner();
+        long id = Long.parseLong(id_str);
+//
+        Person person = personService.findById(id);
+//        if (person == null) {
+//            notifyService.addErrorMessage("Owner not found!");
+//            return "/business/contract/create-contract";
+//        }
+//        contract.setOwner(person);
+        String productIdntfr = contractModel.getProduct();
+        Product product = productService.findByIdntfr(productIdntfr);
+        if (product == null) {
+            notifyService.addErrorMessage("Product not found!");
+            return "/business/contract/create-contract";
+        }
+//        contract.setProduct(product);
+//        Distributor distributor = distributorService.findById(1L);
+//        contract.setDistributor(distributor);
+//        LocalDate endDate = contractModel.getStartDt().plusYears(contract.getDuration());
+//        contract.setEndDt(endDate);
+//        contract.setCreationDt(LocalDate.now());
+//        contract.setStatus(Status.IN_FORCE);
+        int age = person.getAge(contractModel.getStartDt()) + 1;
+        Double premiumAmount = age * contractModel.getAmount() / (contractModel.getDuration() * 12 * 100);
+        contractModel.setPremiumAmount(premiumAmount);
+//        contractService.create(contract);
+//        notifyService.addInfoMessage("Contract with Id: " + contract.getId() + " was created.");
+        return "business/contract/confirm-edit-contract";
+    }
+
+
+
+
+
+    @RequestMapping(value = "/contracts/create", method = RequestMethod.POST)
+    public String create(@Valid ContractModel contractModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
+        if(action.equals("return")){
+            return "/business/contract/create-contract";
+        }
+        if (bindingResult.hasErrors()) {
+            notifyService.addErrorMessage("Please fill the form correctly!");
+            return "/business/contract/create-contract";
+        }
+        Contract contract = DTOConvertUtil.convert(contractModel, Contract.class);
         String id_str = contractModel.getOwner();
         long id = Long.parseLong(id_str);
 
@@ -264,8 +325,6 @@ public class ContractsController {
             return "/business/contract/create-contract";
         }
         contract.setOwner(person);
-
-
         String productIdntfr = contractModel.getProduct();
         Product product = productService.findByIdntfr(productIdntfr);
         if (product == null) {
@@ -273,12 +332,6 @@ public class ContractsController {
             return "/business/contract/create-contract";
         }
         contract.setProduct(product);
-//        contract.setDuration(duration);
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(startDate);
-//        cal.add(Calendar.YEAR, duration);
-//        cal.add(Calendar.DATE, -1);
-//        Date endDate = cal.getTime();
         Distributor distributor = distributorService.findById(1L);
         contract.setDistributor(distributor);
         LocalDate endDate = contractModel.getStartDt().plusYears(contract.getDuration());

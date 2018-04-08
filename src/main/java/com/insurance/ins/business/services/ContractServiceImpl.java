@@ -3,6 +3,7 @@ package com.insurance.ins.business.services;
 import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.enums.Status;
 import com.insurance.ins.business.models.AllContractsViewModel;
+import com.insurance.ins.business.models.ContractModel;
 import com.insurance.ins.business.models.SearchContractModel;
 import com.insurance.ins.business.repositories.ContractRepository;
 import com.insurance.ins.prsnorg.entites.prsn.reposiotries.PersonRepository;
@@ -45,22 +46,33 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public Contract edit(Contract contract) {
-        return this.contractRepository.save(contract);
+    public Contract edit(ContractModel contractModel) {
+
+        Contract contract = this.findById(contractModel.getId());
+        contract.setFrequency(contractModel.getFrequency());
+        contract.setDuration(contractModel.getDuration());
+        contract.setAmount(contractModel.getAmount());
+        contract.setPremiumAmount(contractModel.getPremiumAmount());
+        contract.setNextBillingDueDate(contractModel.getNextBillingDueDate());
+        return this.contractRepository.saveAndFlush(contract);
     }
 
     @Override
     public void deleteById(Long id) {
         this.contractRepository.deleteById(id);
     }
+
     @Override
     public void cancel(Contract contract) {
         contract.setStatus(Status.CANCELED);
-        this.contractRepository.save(contract);}
+        this.contractRepository.save(contract);
+    }
+
     @Override
     public void inForce(Contract contract) {
         contract.setStatus(Status.IN_FORCE);
-        this.contractRepository.save(contract);}
+        this.contractRepository.save(contract);
+    }
 
     @Override
     public AllContractsViewModel findAllById(Long id, Pageable pageable) {
@@ -72,7 +84,7 @@ public class ContractServiceImpl implements ContractService {
 
         AllContractsViewModel viewModel = new AllContractsViewModel();
 
-        viewModel.setContracts(this.contractRepository.findAllByStatus(status,pageable));
+        viewModel.setContracts(this.contractRepository.findAllByStatus(status, pageable));
         viewModel.setTotalPageCount(this.getTotalPages());
 
         return viewModel;
@@ -82,7 +94,7 @@ public class ContractServiceImpl implements ContractService {
     public AllContractsViewModel findAllByIdAndStatus(Long id, Status status, Pageable pageable) {
         AllContractsViewModel viewModel = new AllContractsViewModel();
 
-        viewModel.setContracts(this.contractRepository.findAllByIdAndStatus(id,status,pageable));
+        viewModel.setContracts(this.contractRepository.findAllByIdAndStatus(id, status, pageable));
         viewModel.setTotalPageCount(this.getTotalPages());
 
         return viewModel;
@@ -114,11 +126,11 @@ public class ContractServiceImpl implements ContractService {
 //        } else {
 //            allContractsViewModel = this.findAllByPage(pageable);
 //        }
-        if (!id.equals("") && !(status==null)) {
+        if (!id.equals("") && !(status == null)) {
             allContractsViewModel = this.findAllByIdAndStatus(Long.parseLong(id), status, pageable);
-        } else if (!id.equals("") && status==null) {
+        } else if (!id.equals("") && status == null) {
             allContractsViewModel = this.findAllById(Long.parseLong(id), pageable);
-        } else if (id.equals("")&& !(status==null)) {
+        } else if (id.equals("") && !(status == null)) {
             allContractsViewModel = this.findAllByStatus(status, pageable);
         } else {
             allContractsViewModel = this.findAllByPage(pageable);

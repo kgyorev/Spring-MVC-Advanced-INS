@@ -37,6 +37,8 @@ public class ContractModel {
 
     private Frequency frequency;
 
+    private double premiumAmount;
+
     public ContractModel() {
         this.frequency=Frequency.MONTHLY;
     }
@@ -103,5 +105,13 @@ public class ContractModel {
 
     public void setNextBillingDueDate(LocalDate nextBillingDueDate) {
         this.nextBillingDueDate = nextBillingDueDate;
+    }
+
+    public double getPremiumAmount() {
+        return premiumAmount;
+    }
+
+    public void setPremiumAmount(double premiumAmount) {
+        this.premiumAmount = premiumAmount;
     }
 }
