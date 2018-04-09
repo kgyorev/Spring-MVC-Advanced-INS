@@ -96,7 +96,7 @@
                 </th:block>
             </div>
             <div class="form-group">
-                <label for="duration">Beneficiary Amount(in EUR)</label>
+                <label for="amount">Beneficiary Amount(in EUR)</label>
                 <input type="number" class="form-control" th:classappend="${#fields.hasErrors('amount')}? 'is-invalid'"
                        id="amount" name="amount" th:field="*{amount}"/>
                 <th:block th:each="error : ${#fields.errors('amount')}">

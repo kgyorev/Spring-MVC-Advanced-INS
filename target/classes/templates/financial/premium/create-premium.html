@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: site-head">
+    <!--<meta charset="UTF-8">-->
+    <!--<meta name="viewport"-->
+    <!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" href="../../../static/css/bootstrap.css"/>
+
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../../static/css/style.css">-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+    <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"-->
+    <!--integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+    <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
+    <!--integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
+    <!--crossorigin="anonymous"></script>-->
+    <title>Create Premium</title>
+</head>
+<body>
+<header th:replace="~{fragments/layout :: site-header}"></header>
+<div class="container-fluid">
+    <div class="container mt-4">
+        <form class="my-4" th:object="${premiumModel}" th:action="@{/contracts/create/premium/{id}(id=${premiumModel.cntrctId})}" method="post">
+            <h2>Create Premium</h2>
+            <div class="form-group" th:classappend="${#fields.hasErrors('startDate')}? 'has-danger'">
+                <label for="startDate">Premium Start Date</label>
+                <input class="form-control" type="date" id="startDate" name="startDate" th:field="*{startDate}">
+                <th:block th:each="error : ${#fields.errors('startDate')}">
+                    <small id="startDtTurnHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group" th:classappend="${#fields.hasErrors('endDate')}? 'has-danger'">
+                <label for="endDate">Premium End Date</label>
+                <input class="form-control" type="date" id="endDate" name="endDate" th:field="*{endDate}">
+                <th:block th:each="error : ${#fields.errors('endDate')}">
+                    <small id="endDateHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="operationAmount">Premium Amount(in EUR)</label>
+                <input type="number" class="form-control" th:classappend="${#fields.hasErrors('operationAmount')}? 'is-invalid'"
+                       id="operationAmount" name="operationAmount" th:field="*{operationAmount}"/>
+                <th:block th:each="error : ${#fields.errors('operationAmount')}">
+                    <small id="operationAmountHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="text-center">
+                <button type="submit" name="action" value="return" class="btn btn-secondary"><i
+                        class="fas fa-chevron-circle-left"></i> Return
+                </button>
+                <button type="submit" name="action" value="save" class="btn btn-primary">Continue <i
+                        class="fas fa-chevron-circle-right"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+<footer th:replace="~{fragments/layout :: site-footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: site-head">
+    <!--<meta charset="UTF-8">-->
+    <!--<meta name="viewport"-->
+    <!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" href="../../../static/css/bootstrap.css"/>
+
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../../static/css/style.css">-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+    <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"-->
+    <!--integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+    <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
+    <!--integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
+    <!--crossorigin="anonymous"></script>-->
+    <title>New Person</title>
+</head>
+<body>
+<header th:replace="~{fragments/layout :: site-header}"></header>
+<div class="container-fluid">
+    <div class="container mt-4">
+
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#summary">Summary</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#premium">Premium</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#moneyIn">Money In</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Contextual Activity</a>
+                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    <a class="dropdown-item" th:href="@{/contracts/create/premium/{id}(id=${contractModel.id})}">Create Premium</a>
+                    <a class="dropdown-item" href="#">Create Money In</a>
+                </div>
+            </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade show active" id="summary">
+                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+            </div>
+            <div class="tab-pane fade" id="premium">
+                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+            </div>
+            <div class="tab-pane fade" id="moneyIn">
+                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+            </div>
+        </div>
+
+
+        <form class="my-4" th:object="${contractModel}" th:action="@{/contracts/edit/{id}/(id=${contractModel.id})}" th:method="post">
+            <h2 class="text-center" th:text="'Modification of Contract ID: '+${contractModel.id}"></h2>
+            <div class="form-group">
+                <label for="product">Product ID</label>
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('product')}? 'is-invalid'"
+                       id="product" name="product" th:field="*{product}" readonly/>
+                <th:block th:each="error : ${#fields.errors('product')}">
+                    <small id="productHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="owner">Owner ID</label>
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('owner')}? 'is-invalid'"
+                       id="owner" name="clientId" th:field="*{owner}" readonly/>
+                <th:block th:each="error : ${#fields.errors('owner')}">
+                    <small id="ownerHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group" th:classappend="${#fields.hasErrors('startDt')}? 'has-danger'">
+                <label for="startDt">Contract Start Date</label>
+                <input class="form-control" type="date" id="startDt" name="startDate" th:field="*{startDt}" readonly>
+                <th:block th:each="error : ${#fields.errors('startDt')}">
+                    <small id="startDtTurnHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group" th:classappend="${#fields.hasErrors('nextBillingDueDate')}? 'has-danger'">
+                <label for="nextBillingDueDate">Next Billing Due Date</label>
+                <input class="form-control" type="date" id="nextBillingDueDate" name="nextBillingDueDate" th:field="*{nextBillingDueDate}" readonly>
+                <th:block th:each="error : ${#fields.errors('nextBillingDueDate')}">
+                    <small id="nextBillingDueDateHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="duration">Contract Duration(in Years)</label>
+                <input type="number" class="form-control" th:classappend="${#fields.hasErrors('duration')}? 'is-invalid'"
+                       id="duration" name="duration" th:field="*{duration}" readonly/>
+                <th:block th:each="error : ${#fields.errors('duration')}">
+                    <small id="durationHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="frequencyShow">Frequency</label>
+                <input type="text" class="form-control"
+                       id="frequencyShow" name="frequencyShow"  th:value="*{frequency.getFreqLabel()}" readonly/>
+            </div>
+            <input type="text" class="form-control"
+                   id="frequency" name="frequency"  th:field="*{frequency}" th:value="*{frequency}" hidden/>
+
+            <div class="form-group">
+                <label for="duration">Beneficiary Amount(in EUR)</label>
+                <input type="number" class="form-control" th:classappend="${#fields.hasErrors('amount')}? 'is-invalid'"
+                       id="amount" name="amount" th:field="*{amount}"  readonly/>
+                <th:block th:each="error : ${#fields.errors('amount')}">
+                    <small id="amountHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="duration">Premium Amount(in EUR)</label>
+                <input type="number" class="form-control"
+                       id="premimAmount" name="amount" th:field="*{premiumAmount}" readonly/>
+            </div>
+            <div class="text-center">
+                <button type="submit" name="action" value="return" class="btn btn-secondary"><i
+                        class="fas fa-chevron-circle-left"></i> Return
+                </button>
+                <button type="button" data-toggle="modal" th:attr="data-target='#'+${contractModel}"
+                        class="btn btn-primary"><i class="fas fa-check-circle"></i> Validate
+                </button>
+            </div>
+            <div class="modal fade" th:id="${contractModel}" tabindex="-1" role="dialog"
+                 aria-labelledby="deleteUserLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteUserLabel">This action can't be undone</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure to save this contract?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button name="action" value="save" class="btn btn-primary" type="submit"
+                            >Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+<footer th:replace="~{fragments/layout :: site-footer}"></footer>
+</body>
+
+</html>

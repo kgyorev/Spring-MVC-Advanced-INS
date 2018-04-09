@@ -6,3 +6,4 @@ $(function() {
         $('#messages div.alert-success').fadeOut();
     }, 3000);
 });
+

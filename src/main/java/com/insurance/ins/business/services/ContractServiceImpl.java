@@ -1,6 +1,7 @@
 package com.insurance.ins.business.services;
 
 import com.insurance.ins.business.entites.Contract;
+import com.insurance.ins.business.enums.Frequency;
 import com.insurance.ins.business.enums.Status;
 import com.insurance.ins.business.models.AllContractsViewModel;
 import com.insurance.ins.business.models.ContractModel;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -27,6 +29,26 @@ public class ContractServiceImpl implements ContractService {
     public ContractServiceImpl(ContractRepository contractRepository, PersonRepository personRepository) {
         this.contractRepository = contractRepository;
         this.personRepository = personRepository;
+    }
+
+    @Override
+    public LocalDate calculateNextBillingDueDate(Contract contract) {
+
+        Frequency frequency = contract.getFrequency();
+
+       Long months =  this.getFrequencyMonths(frequency);
+
+       return contract.getNextBillingDueDate().plusMonths(months);
+
+    }
+
+    private Long getFrequencyMonths(Frequency frequency) {
+       switch (frequency){
+           case ANNUAL: return 12L;
+           case SEMI_ANNUAL: return 6L;
+           case TRIMESTER: return 3L;
+           default: return 1L;
+       }
     }
 
     @Override

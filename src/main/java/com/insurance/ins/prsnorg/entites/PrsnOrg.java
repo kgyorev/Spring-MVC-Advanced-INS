@@ -21,15 +21,15 @@ public abstract class PrsnOrg {
     @Column(nullable = false)
 //    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate startDate = LocalDate.MIN;
+    private LocalDate startDate;
     @Column(nullable = false)
 //    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate endDate = LocalDate.ofYearDay(9999,1);
+    private LocalDate endDate;
 
 
     @OneToMany(mappedBy = "owner")
-    private Set<Contract> contracts = new HashSet<Contract>();
+    private Set<Contract> contracts;
 
     public Set<Contract> getContracts() {
         return contracts;
@@ -40,6 +40,9 @@ public abstract class PrsnOrg {
     }
 
     public PrsnOrg() {
+        this.contracts = new HashSet<>();
+        this.startDate = LocalDate.MIN;
+        this.endDate = LocalDate.ofYearDay(9999, 1);
     }
 
     public Long getId() {

@@ -22,11 +22,8 @@ public class Person extends PrsnOrg {
     @Column(nullable = false,unique = true)
     private String egn;
     public int getAge(LocalDate dateNow) {
-//         LocalDate dateNowLocal = dateNow.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate birthdtLocal = this.getStartDate();
-
         int diffInYears = (int) ChronoUnit.YEARS.between(birthdtLocal, dateNow);
-
         return diffInYears;
     }
 

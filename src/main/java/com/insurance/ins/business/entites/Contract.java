@@ -2,11 +2,15 @@ package com.insurance.ins.business.entites;
 
 import com.insurance.ins.business.enums.Frequency;
 import com.insurance.ins.business.enums.Status;
+import com.insurance.ins.financial.MoneyIn;
+import com.insurance.ins.financial.Premium;
 import com.insurance.ins.prsnorg.entites.prsn.Person;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "contracts")
@@ -54,12 +58,18 @@ public class Contract {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Person owner;
 
+    @OneToMany(mappedBy = "contract")
+    private Set<Premium> premiums;
+    @OneToMany(mappedBy = "contract")
+    private Set<MoneyIn> moneyIns;
 
     public Contract() {
         this.frequency=Frequency.MONTHLY;
         this.creationDt = LocalDate.MIN;
         this.startDt = LocalDate.MIN;
         this.endDt = LocalDate.ofYearDay(9999,1);
+        this.premiums = new HashSet<>();
+        this.moneyIns = new HashSet<>();
     }
 
     public Long getId() {
@@ -164,5 +174,21 @@ public class Contract {
 
     public void setNextBillingDueDate(LocalDate nextBillingDueDate) {
         this.nextBillingDueDate = nextBillingDueDate;
+    }
+
+    public Set<Premium> getPremiums() {
+        return premiums;
+    }
+
+    public void setPremiums(Set<Premium> premiums) {
+        this.premiums = premiums;
+    }
+
+    public Set<MoneyIn> getMoneyIns() {
+        return moneyIns;
+    }
+
+    public void setMoneyIns(Set<MoneyIn> moneyIns) {
+        this.moneyIns = moneyIns;
     }
 }

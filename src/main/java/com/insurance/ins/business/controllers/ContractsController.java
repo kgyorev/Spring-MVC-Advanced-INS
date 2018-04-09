@@ -43,42 +43,32 @@ public class ContractsController {
     @Autowired
     private NotificationService notifyService;
 
-    //    @RequestMapping("/contracts/view/{id}")
-//    public String view(@PathVariable("id") Long id, Model model) {
-//        Contract contract = contractService.findById(id);
-//        if (contract == null) {
-//            notifyService.addErrorMessage("Cannot find contract #" + id);
-//            return "redirect:/";
-//        }
-//        Client client = contract.getClient();
-//        Long clientId=client.getId();
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        String startdt = df.format(contract.getStartdt());
-//        String enddt = df.format(contract.getEnddt());
-//        model.addAttribute("enddt", enddt);
-//        model.addAttribute("startdt", startdt);
-//        model.addAttribute("clientId", clientId);
-//        model.addAttribute("contract", contract);
-//        double premiumAmount_tmp = contract.getPremiumamount();
-//        DecimalFormat dfDec = new DecimalFormat("#.##");
-//        String premiumAmount = String.valueOf(dfDec.format(premiumAmount_tmp));
-//
-//        model.addAttribute("premiumAmount", premiumAmount);
-//        return "contracts/index";
-//    }
-    @RequestMapping(value="/contracts",method = RequestMethod.GET)
-    public String view_all(@ModelAttribute(name = "searchContractModel") SearchContractModel searchContractModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
-        AllContractsViewModel contractall =  contractService.searchContract(searchContractModel,pageable);
+    @RequestMapping(value = "/contracts/{id}", method = RequestMethod.GET)
+    public String view(@ModelAttribute(name = "contractModel") ContractModel contractModel, @PathVariable("id") Long id, Model model) {
+        Contract contract = contractService.findById(id);
+        if (contract == null) {
+            notifyService.addErrorMessage("Cannot find contract #" + id);
+            return "redirect:/";
+        }
+        contractModel = DTOConvertUtil.convert(contract, ContractModel.class);
+        model.addAttribute("contractModel", contractModel);
+        return "business/contract/view-contract";
+    }
 
-        if(
-                (!searchContractModel.getCntrctId().equals("")||!(searchContractModel.getStatus()==null))
-                        &&!contractall.getContracts().hasContent()) {
+    @RequestMapping(value = "/contracts", method = RequestMethod.GET)
+    public String view_all(@ModelAttribute(name = "searchContractModel") SearchContractModel searchContractModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
+        AllContractsViewModel contractall = contractService.searchContract(searchContractModel, pageable);
+
+        if (
+                (!searchContractModel.getCntrctId().equals("") || !(searchContractModel.getStatus() == null))
+                        && !contractall.getContracts().hasContent()) {
             notifyService.addWarningMessage("Cannot find contracts with given search criteria.");
         }
         model.addAttribute("contractall", contractall);
         return "business/contract/search-contract";
     }
-//    @RequestMapping(value="/contracts",method = RequestMethod.POST)
+
+    //    @RequestMapping(value="/contracts",method = RequestMethod.POST)
 //    public String searchContract(SearchContractModel searchContractForm, Model model) {
 //        Long id = searchContractForm.getCntrctId();
 //        List<Contract> allcontracts = contractService.findAll();
@@ -152,7 +142,7 @@ public class ContractsController {
 //        model.addAttribute("contractall", contractall);
 //        return "contracts/index_all";  // v primera e view.html
 //    }
-    @RequestMapping(value ="/contracts/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/contracts/edit/{id}", method = RequestMethod.GET)
     public String editPage(@ModelAttribute(name = "contractModel") ContractModel contractModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
@@ -160,8 +150,8 @@ public class ContractsController {
             return "redirect:/";
         }
 
-         contractModel = DTOConvertUtil.convert(contract, ContractModel.class);
-         model.addAttribute("contractModel", contractModel);
+        contractModel = DTOConvertUtil.convert(contract, ContractModel.class);
+        model.addAttribute("contractModel", contractModel);
 
 //        Client client = contract.getClient();
 //        model.addAttribute("contract", contract);
@@ -172,9 +162,10 @@ public class ContractsController {
 //        model.addAttribute("startdt", startdt);
         return "business/contract/edit-contract";
     }
-    @RequestMapping(value ="/contracts/confirm/edit/{id}", method = RequestMethod.GET)
-    public String confirmEdit(@Valid @ModelAttribute(name = "contractModel") ContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model,@RequestParam(value="action", required=true) String action) {
-        if(action.equals("return")){
+
+    @RequestMapping(value = "/contracts/confirm/edit/{id}", method = RequestMethod.GET)
+    public String confirmEdit(@Valid @ModelAttribute(name = "contractModel") ContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) {
+        if (action.equals("return")) {
             return "redirect:/contracts";
         }
         String productIdntfr = contractModel.getProduct();
@@ -220,9 +211,10 @@ public class ContractsController {
         contractModel.setPremiumAmount(premiumAmount);
         return "business/contract/confirm-edit-contract";
     }
-    @RequestMapping(value ="/contracts/edit/{id}", method = RequestMethod.POST)
-    public String edit(@Valid ContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model,@RequestParam(value="action", required=true) String action) throws ParseException {
-        if(action.equals("return")){
+
+    @RequestMapping(value = "/contracts/edit/{id}", method = RequestMethod.POST)
+    public String edit(@Valid ContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
+        if (action.equals("return")) {
             return "/business/contract/edit-contract";
         }
 //        Contract contract = contractService.findById(id);
@@ -256,6 +248,7 @@ public class ContractsController {
         notifyService.addInfoMessage("Edit successful");
         return "redirect:/contracts";
     }
+
     @RequestMapping(value = "/contracts/create", method = RequestMethod.GET)
     public String createPage(@ModelAttribute(name = "contractModel") ContractModel contractModel) {
         return "business/contract/create-contract";
@@ -263,8 +256,8 @@ public class ContractsController {
 
 
     @RequestMapping(value = "/contracts/confirm/create", method = RequestMethod.GET)
-    public String confirmCreate(@Valid @ModelAttribute(name = "contractModel") ContractModel contractModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
-        if(action.equals("return")){
+    public String confirmCreate(@Valid @ModelAttribute(name = "contractModel") ContractModel contractModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
+        if (action.equals("return")) {
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
@@ -303,12 +296,9 @@ public class ContractsController {
     }
 
 
-
-
-
     @RequestMapping(value = "/contracts/create", method = RequestMethod.POST)
-    public String create(@Valid ContractModel contractModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
-        if(action.equals("return")){
+    public String create(@Valid ContractModel contractModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
+        if (action.equals("return")) {
             return "/business/contract/create-contract";
         }
         if (bindingResult.hasErrors()) {
