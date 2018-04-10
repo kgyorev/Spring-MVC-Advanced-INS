@@ -39,7 +39,10 @@ public class ContractModel {
 
     private double premiumAmount;
 
+    private String selectedTab;
+
     public ContractModel() {
+        this.selectedTab ="summary";
         this.frequency=Frequency.MONTHLY;
     }
 
@@ -113,5 +116,13 @@ public class ContractModel {
 
     public void setPremiumAmount(double premiumAmount) {
         this.premiumAmount = premiumAmount;
+    }
+
+    public String getSelectedTab() {
+        return selectedTab;
+    }
+
+    public void setSelectedTab(String selectedTab) {
+        this.selectedTab = selectedTab;
     }
 }

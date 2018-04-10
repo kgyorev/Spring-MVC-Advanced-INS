@@ -31,28 +31,149 @@
 
         <ul class="nav nav-tabs" id="myTab">
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#summary">Summary</a>
+                <a class="nav-link" th:classappend="${contractModel.selectedTab.equals('summary')}? 'active'"
+                   th:href="@{/contracts/{id}(id=${contractModel.id},selectedTab='summary')}">Summary</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#premium" id="premiumLink">Premium</a>
+                <a class="nav-link" th:classappend="${contractModel.selectedTab.equals('premium')}? 'active'"
+                   th:href="@{/contracts/{id}(id=${contractModel.id},selectedTab='premium')}">Premium</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#moneyIn">Money In</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Contextual Activity</a>
-                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-                    <a class="dropdown-item" th:href="@{/contracts/create/premium/{id}(id=${contractModel.id})}">Create Premium</a>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false">Contextual Activity</a>
+                <div class="dropdown-menu" x-placement="bottom-start"
+                     style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    <a class="dropdown-item" th:href="@{/contracts/create/premium/{id}(id=${contractModel.id})}">Create
+                        Premium</a>
                     <a class="dropdown-item" href="#">Create Money In</a>
                 </div>
             </li>
         </ul>
         <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade" id="summary">
-                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-            </div>
-            <div class="tab-pane fade show active" id="premium">
+            <div class="tab-pane fade" th:classappend="${contractModel.selectedTab.equals('summary')}? 'show active'"
+                 id="summary">
+                <form class="my-4" th:object="${contractModel}"
+                th:action="@{/contracts/edit/{id}/(id=${contractModel.id})}" th:method="post">
+                <h2 class="text-center" th:text="'Modification of Contract ID: '+${contractModel.id}"></h2>
+                <div class="form-group">
+                    <label for="product">Product ID</label>
+                    <input type="text" class="form-control"
+                           th:classappend="${#fields.hasErrors('product')}? 'is-invalid'"
+                           id="product" name="product" th:field="*{product}" readonly/>
+                    <th:block th:each="error : ${#fields.errors('product')}">
+                        <small id="productHelp" class="text-danger"
+                               th:text="${error}">
+                            Error Message
+                        </small>
+                    </th:block>
+                </div>
+                <div class="form-group">
+                    <label for="owner">Owner ID</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('owner')}? 'is-invalid'"
+                           id="owner" name="clientId" th:field="*{owner}" readonly/>
+                    <th:block th:each="error : ${#fields.errors('owner')}">
+                        <small id="ownerHelp" class="text-danger"
+                               th:text="${error}">
+                            Error Message
+                        </small>
+                    </th:block>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('startDt')}? 'has-danger'">
+                    <label for="startDt">Contract Start Date</label>
+                    <input class="form-control" type="date" id="startDt" name="startDate" th:field="*{startDt}"
+                           readonly>
+                    <th:block th:each="error : ${#fields.errors('startDt')}">
+                        <small id="startDtTurnHelp" class="text-danger"
+                               th:text="${error}">
+                            Error Message
+                        </small>
+                    </th:block>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('nextBillingDueDate')}? 'has-danger'">
+                    <label for="nextBillingDueDate">Next Billing Due Date</label>
+                    <input class="form-control" type="date" id="nextBillingDueDate" name="nextBillingDueDate"
+                           th:field="*{nextBillingDueDate}" readonly>
+                    <th:block th:each="error : ${#fields.errors('nextBillingDueDate')}">
+                        <small id="nextBillingDueDateHelp" class="text-danger"
+                               th:text="${error}">
+                            Error Message
+                        </small>
+                    </th:block>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Contract Duration(in Years)</label>
+                    <input type="number" class="form-control"
+                           th:classappend="${#fields.hasErrors('duration')}? 'is-invalid'"
+                           id="duration" name="duration" th:field="*{duration}" readonly/>
+                    <th:block th:each="error : ${#fields.errors('duration')}">
+                        <small id="durationHelp" class="text-danger"
+                               th:text="${error}">
+                            Error Message
+                        </small>
+                    </th:block>
+                </div>
+                <div class="form-group">
+                    <label for="frequencyShow">Frequency</label>
+                    <input type="text" class="form-control"
+                           id="frequencyShow" name="frequencyShow" th:value="*{frequency.getFreqLabel()}" readonly/>
+                </div>
+                <input type="text" class="form-control"
+                       id="frequency" name="frequency" th:field="*{frequency}" th:value="*{frequency}" hidden/>
 
+                <div class="form-group">
+                    <label for="duration">Beneficiary Amount(in EUR)</label>
+                    <input type="number" class="form-control"
+                           th:classappend="${#fields.hasErrors('amount')}? 'is-invalid'"
+                           id="amount" name="amount" th:field="*{amount}" readonly/>
+                    <th:block th:each="error : ${#fields.errors('amount')}">
+                        <small id="amountHelp" class="text-danger"
+                               th:text="${error}">
+                            Error Message
+                        </small>
+                    </th:block>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Premium Amount(in EUR)</label>
+                    <input type="number" class="form-control"
+                           id="premimAmount" name="amount" th:field="*{premiumAmount}" readonly/>
+                </div>
+                <div class="text-center">
+                    <button type="submit" name="action" value="return" class="btn btn-secondary"><i
+                            class="fas fa-chevron-circle-left"></i> Return
+                    </button>
+                    <button type="button" data-toggle="modal" th:attr="data-target='#'+${contractModel}"
+                            class="btn btn-primary"><i class="fas fa-check-circle"></i> Validate
+                    </button>
+                </div>
+                <div class="modal fade" th:id="${contractModel}" tabindex="-1" role="dialog"
+                     aria-labelledby="deleteUserLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteUserLabel">This action can't be undone</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure to save this contract?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button name="action" value="save" class="btn btn-primary" type="submit"
+                                >Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="tab-pane fade mt-4" th:classappend="${contractModel.selectedTab.equals('premium')}? 'show active'"
+                 id="premium">
                 <div class="table-responsive-sm">
                     <table class="table table-striped">
                         <thead>
@@ -77,7 +198,8 @@
                                 <td th:text="${premium.startDate}"></td>
                                 <td><a th:href="@{/contracts/{id}(id=*{id})}"><i class="fas fa-binoculars"
                                                                                  title="Contract details"></i></a></td>
-                                <td><a th:href="@{/contracts/edit/{id}/(id=*{id})}"><i class="fas fa-edit" title="Edit contract"></i></a>
+                                <td><a th:href="@{/contracts/edit/{id}/(id=*{id})}"><i class="fas fa-edit"
+                                                                                       title="Edit contract"></i></a>
                                 </td>
                             </tr>
                         </th:block>
@@ -89,11 +211,11 @@
 
                         <li class="page-item"><a class="page-link"
                                                  th:if="${premiumAll.getPremiums().hasPrevious()&&premiumAll.getPremiums().hasContent()}"
-                                                 th:href="@{/contracts/{id}(id=${contractModel.id},page=${premiumAll.getPremiums().previousPageable().getPageNumber() + 1})}"><i
+                                                 th:href="@{/contracts/{id}(id=${contractModel.id},selectedTab='premium',page=${premiumAll.getPremiums().previousPageable().getPageNumber() + 1})}"><i
                                 class="fas fa-angle-left"></i> Previous</a>
                         </li>
                         <li class="page-item"><a class="page-link" th:if="${premiumAll.getPremiums().hasNext()}"
-                                                 th:href="@{/contracts/{id}(id=${contractModel.id},page=${premiumAll.getPremiums().nextPageable().getPageNumber() + 1})}">Next
+                                                 th:href="@{/contracts/{id}(id=${contractModel.id},selectedTab='premium',page=${premiumAll.getPremiums().nextPageable().getPageNumber() + 1})}">Next
                             <i class="fas fa-angle-right"></i></a>
                         </li>
                     </ul>
@@ -102,121 +224,12 @@
 
             </div>
             <div class="tab-pane fade" id="moneyIn">
-                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro
+                    fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer,
+                    iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
+                    Leggings gentrify squid 8-bit cred pitchfork.</p>
             </div>
         </div>
-
-
-        <form class="my-4" th:object="${contractModel}" th:action="@{/contracts/edit/{id}/(id=${contractModel.id})}" th:method="post">
-            <h2 class="text-center" th:text="'Modification of Contract ID: '+${contractModel.id}"></h2>
-            <div class="form-group">
-                <label for="product">Product ID</label>
-                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('product')}? 'is-invalid'"
-                       id="product" name="product" th:field="*{product}" readonly/>
-                <th:block th:each="error : ${#fields.errors('product')}">
-                    <small id="productHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
-            </div>
-            <div class="form-group">
-                <label for="owner">Owner ID</label>
-                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('owner')}? 'is-invalid'"
-                       id="owner" name="clientId" th:field="*{owner}" readonly/>
-                <th:block th:each="error : ${#fields.errors('owner')}">
-                    <small id="ownerHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
-            </div>
-            <div class="form-group" th:classappend="${#fields.hasErrors('startDt')}? 'has-danger'">
-                <label for="startDt">Contract Start Date</label>
-                <input class="form-control" type="date" id="startDt" name="startDate" th:field="*{startDt}" readonly>
-                <th:block th:each="error : ${#fields.errors('startDt')}">
-                    <small id="startDtTurnHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
-            </div>
-            <div class="form-group" th:classappend="${#fields.hasErrors('nextBillingDueDate')}? 'has-danger'">
-                <label for="nextBillingDueDate">Next Billing Due Date</label>
-                <input class="form-control" type="date" id="nextBillingDueDate" name="nextBillingDueDate" th:field="*{nextBillingDueDate}" readonly>
-                <th:block th:each="error : ${#fields.errors('nextBillingDueDate')}">
-                    <small id="nextBillingDueDateHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
-            </div>
-            <div class="form-group">
-                <label for="duration">Contract Duration(in Years)</label>
-                <input type="number" class="form-control" th:classappend="${#fields.hasErrors('duration')}? 'is-invalid'"
-                       id="duration" name="duration" th:field="*{duration}" readonly/>
-                <th:block th:each="error : ${#fields.errors('duration')}">
-                    <small id="durationHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
-            </div>
-            <div class="form-group">
-                <label for="frequencyShow">Frequency</label>
-                <input type="text" class="form-control"
-                       id="frequencyShow" name="frequencyShow"  th:value="*{frequency.getFreqLabel()}" readonly/>
-            </div>
-            <input type="text" class="form-control"
-                   id="frequency" name="frequency"  th:field="*{frequency}" th:value="*{frequency}" hidden/>
-
-            <div class="form-group">
-                <label for="duration">Beneficiary Amount(in EUR)</label>
-                <input type="number" class="form-control" th:classappend="${#fields.hasErrors('amount')}? 'is-invalid'"
-                       id="amount" name="amount" th:field="*{amount}"  readonly/>
-                <th:block th:each="error : ${#fields.errors('amount')}">
-                    <small id="amountHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
-            </div>
-            <div class="form-group">
-                <label for="duration">Premium Amount(in EUR)</label>
-                <input type="number" class="form-control"
-                       id="premimAmount" name="amount" th:field="*{premiumAmount}" readonly/>
-            </div>
-            <div class="text-center">
-                <button type="submit" name="action" value="return" class="btn btn-secondary"><i
-                        class="fas fa-chevron-circle-left"></i> Return
-                </button>
-                <button type="button" data-toggle="modal" th:attr="data-target='#'+${contractModel}"
-                        class="btn btn-primary"><i class="fas fa-check-circle"></i> Validate
-                </button>
-            </div>
-            <div class="modal fade" th:id="${contractModel}" tabindex="-1" role="dialog"
-                 aria-labelledby="deleteUserLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteUserLabel">This action can't be undone</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure to save this contract?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button name="action" value="save" class="btn btn-primary" type="submit"
-                            >Save
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
     </div>
 </div>
 <footer th:replace="~{fragments/layout :: site-footer}"></footer>

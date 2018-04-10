@@ -48,14 +48,18 @@ public class ContractsController {
     private NotificationService notifyService;
 
     @RequestMapping(value = "/contracts/{id}", method = RequestMethod.GET)
-    public String view(@ModelAttribute(name = "contractModel") ContractModel contractModel, @PathVariable("id") Long id, Model model,@PageableDefault(size = 10) Pageable premiumPageable) {
+    public String view(@ModelAttribute(name = "contractModel") ContractModel contractModel, @PathVariable("id") Long id, Model model,@PageableDefault(size = 10) Pageable page) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
             notifyService.addErrorMessage("Cannot find contract #" + id);
             return "redirect:/";
         }
+//        if(contractModel==null){
+        String selectedTab = contractModel.getSelectedTab();
         contractModel = DTOConvertUtil.convert(contract, ContractModel.class);
-        AllPremiumsViewModel premiumAll = premiumService.searchPremiumForContract(contract, premiumPageable);
+        contractModel.setSelectedTab(selectedTab);
+//        }
+        AllPremiumsViewModel premiumAll = premiumService.searchPremiumForContract(contract, page);
         model.addAttribute("premiumAll", premiumAll);
 
         model.addAttribute("contractModel", contractModel);
