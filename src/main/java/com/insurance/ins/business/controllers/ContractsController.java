@@ -10,6 +10,8 @@ import com.insurance.ins.business.models.SearchContractModel;
 import com.insurance.ins.business.services.ContractService;
 import com.insurance.ins.business.services.DistributorService;
 import com.insurance.ins.business.services.ProductService;
+import com.insurance.ins.financial.models.AllPremiumsViewModel;
+import com.insurance.ins.financial.services.PremiumService;
 import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
 import com.insurance.ins.utils.DTOConvertUtil;
@@ -41,16 +43,21 @@ public class ContractsController {
     @Autowired
     private PersonService personService;
     @Autowired
+    private PremiumService premiumService;
+    @Autowired
     private NotificationService notifyService;
 
     @RequestMapping(value = "/contracts/{id}", method = RequestMethod.GET)
-    public String view(@ModelAttribute(name = "contractModel") ContractModel contractModel, @PathVariable("id") Long id, Model model) {
+    public String view(@ModelAttribute(name = "contractModel") ContractModel contractModel, @PathVariable("id") Long id, Model model,@PageableDefault(size = 10) Pageable premiumPageable) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
             notifyService.addErrorMessage("Cannot find contract #" + id);
             return "redirect:/";
         }
         contractModel = DTOConvertUtil.convert(contract, ContractModel.class);
+        AllPremiumsViewModel premiumAll = premiumService.searchPremiumForContract(contract, premiumPageable);
+        model.addAttribute("premiumAll", premiumAll);
+
         model.addAttribute("contractModel", contractModel);
         return "business/contract/view-contract";
     }

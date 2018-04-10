@@ -29,12 +29,12 @@
     <div class="container mt-4">
 
 
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs" id="myTab">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#summary">Summary</a>
+                <a class="nav-link" data-toggle="tab" href="#summary">Summary</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#premium">Premium</a>
+                <a class="nav-link active" data-toggle="tab" href="#premium" id="premiumLink">Premium</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#moneyIn">Money In</a>
@@ -48,11 +48,58 @@
             </li>
         </ul>
         <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade show active" id="summary">
+            <div class="tab-pane fade" id="summary">
                 <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
             </div>
-            <div class="tab-pane fade" id="premium">
-                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+            <div class="tab-pane fade show active" id="premium">
+
+                <div class="table-responsive-sm">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="premium,iter : ${premiumAll.getPremiums()}" th:object="${premium}">
+                            <tr>
+                                <th scope="row"
+                                    th:text="${
+                (premiumAll.getPremiums().getPageable().getPageNumber() + 1 <= 1
+                ? 0
+                : premiumAll.getPremiums().getPageable().getPageNumber()) * 10 + (iter.index + 1)}">>
+                                    1
+                                </th>
+                                <th th:text="*{id}"></th>
+                                <td th:text="${premium.startDate}"></td>
+                                <td><a th:href="@{/contracts/{id}(id=*{id})}"><i class="fas fa-binoculars"
+                                                                                 title="Contract details"></i></a></td>
+                                <td><a th:href="@{/contracts/edit/{id}/(id=*{id})}"><i class="fas fa-edit" title="Edit contract"></i></a>
+                                </td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                </div>
+                <nav>
+                    <ul class="pagination">
+
+                        <li class="page-item"><a class="page-link"
+                                                 th:if="${premiumAll.getPremiums().hasPrevious()&&premiumAll.getPremiums().hasContent()}"
+                                                 th:href="@{/contracts/{id}(id=${contractModel.id},page=${premiumAll.getPremiums().previousPageable().getPageNumber() + 1})}"><i
+                                class="fas fa-angle-left"></i> Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" th:if="${premiumAll.getPremiums().hasNext()}"
+                                                 th:href="@{/contracts/{id}(id=${contractModel.id},page=${premiumAll.getPremiums().nextPageable().getPageNumber() + 1})}">Next
+                            <i class="fas fa-angle-right"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+
+
             </div>
             <div class="tab-pane fade" id="moneyIn">
                 <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
@@ -168,10 +215,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </form>
     </div>
 </div>
 <footer th:replace="~{fragments/layout :: site-footer}"></footer>
 </body>
-
 </html>
