@@ -10,7 +10,9 @@ import com.insurance.ins.business.models.SearchContractModel;
 import com.insurance.ins.business.services.ContractService;
 import com.insurance.ins.business.services.DistributorService;
 import com.insurance.ins.business.services.ProductService;
+import com.insurance.ins.financial.models.AllMoneyInsViewModel;
 import com.insurance.ins.financial.models.AllPremiumsViewModel;
+import com.insurance.ins.financial.services.MoneyInService;
 import com.insurance.ins.financial.services.PremiumService;
 import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
@@ -45,6 +47,8 @@ public class ContractsController {
     @Autowired
     private PremiumService premiumService;
     @Autowired
+    private MoneyInService moneyInService;
+    @Autowired
     private NotificationService notifyService;
 
     @RequestMapping(value = "/contracts/{id}", method = RequestMethod.GET)
@@ -62,7 +66,13 @@ public class ContractsController {
         AllPremiumsViewModel premiumAll = premiumService.searchPremiumForContract(contract, page);
         model.addAttribute("premiumAll", premiumAll);
 
+        AllMoneyInsViewModel moneyInAll = moneyInService.searchMoneyInsForContract(contract, page);
+        model.addAttribute("moneyInAll", moneyInAll);
+
+
         model.addAttribute("contractModel", contractModel);
+
+
         return "business/contract/view-contract";
     }
 

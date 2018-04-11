@@ -39,7 +39,8 @@
                    th:href="@{/contracts/{id}(id=${contractModel.id},selectedTab='premium')}">Premium</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#moneyIn">Money In</a>
+                <a class="nav-link" th:classappend="${contractModel.selectedTab.equals('moneyIn')}? 'active'"
+                   th:href="@{/contracts/{id}(id=${contractModel.id},selectedTab='moneyIn')}">Money In</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -48,7 +49,7 @@
                      style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                     <a class="dropdown-item" th:href="@{/contracts/create/premium/{id}(id=${contractModel.id})}">Create
                         Premium</a>
-                    <a class="dropdown-item" href="#">Create Money In</a>
+                    <a class="dropdown-item" th:href="@{/contracts/create/money-in/{id}(id=${contractModel.id})}">Create Money In</a>
                 </div>
             </li>
         </ul>
@@ -181,6 +182,9 @@
                             <th scope="col">#</th>
                             <th scope="col">ID</th>
                             <th scope="col">Start Date</th>
+                            <th scope="col">End Date</th>
+                            <th scope="col">Operation Amount</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -195,7 +199,10 @@
                                     1
                                 </th>
                                 <th th:text="*{id}"></th>
-                                <td th:text="${premium.startDate}"></td>
+                                <td th:text="${#temporals.format(premium.startDate,'dd.MM.yyyy')}"></td>
+                                <td th:text="${#temporals.format(premium.endDate,'dd.MM.yyyy')}"></td>
+                                <td th:text="${premium.operationAmount}"></td>
+                                <td th:text="${premium.getStatus().getStatusLabel()}"></td>
                                 <td><a th:href="@{/contracts/{id}(id=*{id})}"><i class="fas fa-binoculars"
                                                                                  title="Contract details"></i></a></td>
                                 <td><a th:href="@{/contracts/edit/{id}/(id=*{id})}"><i class="fas fa-edit"
@@ -223,13 +230,58 @@
 
 
             </div>
-            <div class="tab-pane fade" id="moneyIn">
-                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro
-                    fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer,
-                    iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
-                    Leggings gentrify squid 8-bit cred pitchfork.</p>
+            <div class="tab-pane fade mt-4" th:classappend="${contractModel.selectedTab.equals('moneyIn')}? 'show active'"
+                     id="moneyIn">
+                    <div class="table-responsive-sm">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Operation Amount</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="moneyIn,iter : ${moneyInAll.getMoneyIns()}" th:object="${moneyIn}">
+                                <tr>
+                                    <th scope="row"
+                                        th:text="${
+                (moneyInAll.getMoneyIns().getPageable().getPageNumber() + 1 <= 1
+                ? 0
+                : moneyInAll.getMoneyIns().getPageable().getPageNumber()) * 10 + (iter.index + 1)}">>
+                                        1
+                                    </th>
+                                    <th th:text="*{id}"></th>
+                                    <td th:text="${moneyIn.operationAmount}"></td>
+                                    <td><a th:href="@{/contracts/{id}(id=*{id})}"><i class="fas fa-binoculars"
+                                                                                     title="Contract details"></i></a></td>
+                                    <td><a th:href="@{/contracts/edit/{id}/(id=*{id})}"><i class="fas fa-edit"
+                                                                                           title="Edit contract"></i></a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav>
+                        <ul class="pagination">
+
+                            <li class="page-item"><a class="page-link"
+                                                     th:if="${moneyInAll.getMoneyIns().hasPrevious()&&moneyInAll.getMoneyIns().hasContent()}"
+                                                     th:href="@{/contracts/{id}(id=${contractModel.id},selectedTab='moneyIn',page=${moneyInAll.getMoneyIns().previousPageable().getPageNumber() + 1})}"><i
+                                    class="fas fa-angle-left"></i> Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" th:if="${moneyInAll.getMoneyIns().hasNext()}"
+                                                     th:href="@{/contracts/{id}(id=${contractModel.id},selectedTab='moneyIn',page=${moneyInAll.getMoneyIns().nextPageable().getPageNumber() + 1})}">Next
+                                <i class="fas fa-angle-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+
+
+                </div>
             </div>
-        </div>
     </div>
 </div>
 <footer th:replace="~{fragments/layout :: site-footer}"></footer>

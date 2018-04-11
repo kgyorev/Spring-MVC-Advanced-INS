@@ -3,10 +3,11 @@ package com.insurance.ins.financial.services;
 import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.repositories.ContractRepository;
 import com.insurance.ins.business.services.ContractService;
-import com.insurance.ins.financial.Premium;
+import com.insurance.ins.financial.MoneyIn;
 import com.insurance.ins.financial.enums.Status;
-import com.insurance.ins.financial.models.AllPremiumsViewModel;
-import com.insurance.ins.financial.models.PremiumModel;
+import com.insurance.ins.financial.models.AllMoneyInsViewModel;
+import com.insurance.ins.financial.models.MoneyInModel;
+import com.insurance.ins.financial.repositories.MoneyInRepository;
 import com.insurance.ins.financial.repositories.PremiumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -21,38 +22,40 @@ import java.util.List;
 @Service
 @Transactional
 @Primary
-public class PremiumServiceImpl implements PremiumService {
+public class MoneyInServiceImpl implements MoneyInService {
 
     private final ContractRepository contractRepository;
     private final ContractService contractService;
     private final PremiumRepository premiumRepository;
+    private final MoneyInRepository moneyInRepository;
 
     @Autowired
-    public PremiumServiceImpl(ContractRepository contractRepository, ContractService contractService, PremiumRepository premiumRepository) {
+    public MoneyInServiceImpl(ContractRepository contractRepository, ContractService contractService, PremiumRepository premiumRepository, MoneyInRepository moneyInRepository) {
         this.contractRepository = contractRepository;
         this.contractService = contractService;
         this.premiumRepository = premiumRepository;
+        this.moneyInRepository = moneyInRepository;
     }
 
     @Override
-    public List<Premium> findAll() {
-        return this.premiumRepository.findAll();
+    public List<MoneyIn> findAll() {
+        return this.moneyInRepository.findAll();
     }
 
 
     @Override
-    public Premium findById(Long id) {
-        return this.premiumRepository.getOne(id);
+    public MoneyIn findById(Long id) {
+        return this.moneyInRepository.getOne(id);
     }
 
     @Override
-    public Premium create(Contract contract,Premium premium) {
-        premium.setRecordDate(LocalDate.now());
+    public MoneyIn create(Contract contract,MoneyIn moneyIn) {
+        moneyIn.setRecordDate(LocalDate.now());
         LocalDate nextBillingDueDate = contractService.calculateNextBillingDueDate(contract);
         contract.setNextBillingDueDate(nextBillingDueDate);
-        premium.setContract(contract);
+        moneyIn.setContract(contract);
         this.contractRepository.saveAndFlush(contract);
-        return this.premiumRepository.saveAndFlush(premium);
+        return this.moneyInRepository.saveAndFlush(moneyIn);
     }
 
 //    @Override
@@ -69,19 +72,19 @@ public class PremiumServiceImpl implements PremiumService {
 
     @Override
     public void deleteById(Long id) {
-        this.premiumRepository.deleteById(id);
+        this.moneyInRepository.deleteById(id);
     }
 
     @Override
-    public void cancel(Premium premium) {
-        premium.setStatus(Status.CANCELED);
-        this.premiumRepository.save(premium);
+    public void cancel(MoneyIn moneyIn) {
+        moneyIn.setStatus(Status.CANCELED);
+        this.moneyInRepository.save(moneyIn);
     }
 
     @Override
-    public void pay(Premium premium) {
-        premium.setStatus(Status.PAID);
-        this.premiumRepository.save(premium);
+    public void pay(MoneyIn moneyIn) {
+        moneyIn.setStatus(Status.PAID);
+        this.moneyInRepository.save(moneyIn);
     }
 
 //    @Override
@@ -121,10 +124,10 @@ public class PremiumServiceImpl implements PremiumService {
 //    }
 
     @Override
-    public AllPremiumsViewModel searchPremiumForContract(Contract contract, Pageable pageable) {
+    public AllMoneyInsViewModel searchMoneyInsForContract(Contract contract, Pageable pageable) {
 
 
-        AllPremiumsViewModel allPremiumsViewModel = new AllPremiumsViewModel();
+        AllMoneyInsViewModel allMoneyInsViewModel = new AllMoneyInsViewModel();
 
 //        if (!id.equals("") && !status.equals("")) {
 //            allContractsViewModel = this.findAllByIdAndStatus(Long.parseLong(id), status, pageable);
@@ -145,10 +148,10 @@ public class PremiumServiceImpl implements PremiumService {
 //            allContractsViewModel = this.findAllByPage(pageable);
 //        }
 
-        Page<Premium> allPremiumsByContract = premiumRepository.findAllByContract(contract, pageable);
-        allPremiumsViewModel.setPremiums(allPremiumsByContract);
-        allPremiumsViewModel.setTotalPageCount(this.getTotalPages());
-        return allPremiumsViewModel;
+        Page<MoneyIn> allMoneyInsByContract = moneyInRepository.findAllByContract(contract, pageable);
+        allMoneyInsViewModel.setMoneyIns(allMoneyInsByContract);
+        allMoneyInsViewModel.setTotalPageCount(this.getTotalPages());
+        return allMoneyInsViewModel;
     }
 
     @Override
@@ -157,16 +160,12 @@ public class PremiumServiceImpl implements PremiumService {
     }
 
     @Override
-    public PremiumModel createForView(Contract contract) {
+    public MoneyInModel createForView(Contract contract) {
 
-        PremiumModel premiumModel = new PremiumModel();
-        LocalDate nextBillingDueDate = contract.getNextBillingDueDate();
-        LocalDate nextBillingDueDateNew  =  contractService.calculateNextBillingDueDate(contract);
-        premiumModel.setStartDate(nextBillingDueDate);
-        premiumModel.setEndDate(nextBillingDueDateNew.minusDays(1));
-        premiumModel.setOperationAmount(contract.getPremiumAmount());
-        premiumModel.setCntrctId(String.valueOf(contract.getId()));
-        return premiumModel;
+        MoneyInModel moneyInModel = new MoneyInModel();
+        moneyInModel.setOperationAmount(contract.getPremiumAmount());
+        moneyInModel.setCntrctId(String.valueOf(contract.getId()));
+        return moneyInModel;
     }
 
 //    @Override

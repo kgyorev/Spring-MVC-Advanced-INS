@@ -4,8 +4,11 @@ import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.services.ContractService;
 import com.insurance.ins.business.services.DistributorService;
 import com.insurance.ins.business.services.ProductService;
+import com.insurance.ins.financial.MoneyIn;
 import com.insurance.ins.financial.Premium;
+import com.insurance.ins.financial.models.MoneyInModel;
 import com.insurance.ins.financial.models.PremiumModel;
+import com.insurance.ins.financial.services.MoneyInService;
 import com.insurance.ins.financial.services.PremiumService;
 import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.notifications.services.NotificationService;
@@ -31,6 +34,8 @@ public class FinancialController {
     private DistributorService distributorService;
     @Autowired
     private PremiumService premiumService;
+    @Autowired
+    private MoneyInService moneyInService;
     @Autowired
     private NotificationService notifyService;
 
@@ -253,7 +258,19 @@ public class FinancialController {
 
         return "financial/premium/create-premium";
     }
+    @RequestMapping(value = "/contracts/create/money-in/{id}", method = RequestMethod.GET)
+    public String createMoneyIn(@ModelAttribute(name = "moneyInModel") MoneyInModel moneyInModel, @PathVariable("id") Long id, Model model) {
+        Contract contract = contractService.findById(id);
+        if (contract == null) {
+            notifyService.addErrorMessage("Cannot find contract #" + id);
+            return "redirect:/";
+        }
 
+        moneyInModel = this.moneyInService.createForView(contract);
+        model.addAttribute("moneyInModel", moneyInModel);
+
+        return "financial/money-in/create-money-in";
+    }
     //
 //    @RequestMapping(value = "/contracts/confirm/create", method = RequestMethod.GET)
 //    public String confirmCreate(@Valid @ModelAttribute(name = "contractModel") ContractModel contractModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
@@ -313,6 +330,25 @@ public class FinancialController {
         Premium premium = DTOConvertUtil.convert(premiumModel, Premium.class);
         premiumService.create(contract,premium);
         notifyService.addInfoMessage("Premium with Id: " + premium.getId() + " was created.");
+        return "redirect:/contracts/" + id;
+    }
+    @RequestMapping(value = "/contracts/create/money-in/{id}", method = RequestMethod.POST)
+    public String createMoneyInValidate(@Valid MoneyInModel moneyInModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action, @PathVariable("id") Long id) {
+        Contract contract = contractService.findById(id);
+        if (contract == null) {
+            notifyService.addErrorMessage("Cannot find contract #" + id);
+            return "redirect:/";
+        }
+        if (action.equals("return")) {
+            return "redirect:/contracts/" + id;
+        }
+        if (bindingResult.hasErrors()) {
+            notifyService.addErrorMessage("Please fill the form correctly!");
+            return "/financial/money-in/create/create-money-in";
+        }
+        MoneyIn moneyIn = DTOConvertUtil.convert(moneyInModel, MoneyIn.class);
+        moneyInService.create(contract,moneyIn);
+        notifyService.addInfoMessage("Money In with Id: " + moneyIn.getId() + " was created.");
         return "redirect:/contracts/" + id;
     }
 }
