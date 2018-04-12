@@ -20,4 +20,5 @@ public interface MoneyInRepository extends
     Page<MoneyIn> findAllByStatus(Status status, Pageable pageable);
 
     Page<MoneyIn> findAllByIdAndStatus(Long id, Status status, Pageable pageable);
+    MoneyIn findFirstByStatusOrderByRecordDate(Status status);
 }

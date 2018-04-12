@@ -30,4 +30,5 @@ public interface MoneyInService {
 
     MoneyInModel createForView(Contract contract);
 
+    MoneyIn findOldestPendingMoneyIn(Contract contract);
 }

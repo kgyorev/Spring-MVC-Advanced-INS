@@ -254,6 +254,12 @@ public class FinancialController {
         }
 
         premiumModel = this.premiumService.createForView(contract);
+        MoneyIn moneyIn= this.moneyInService.findOldestPendingMoneyIn(contract);
+        MoneyInModel moneyInModel=null;
+        if(moneyIn!=null){
+            moneyInModel = DTOConvertUtil.convert(moneyIn,MoneyInModel.class);
+        }
+        model.addAttribute("moneyInModel", moneyInModel);
         model.addAttribute("premiumModel", premiumModel);
 
         return "financial/premium/create-premium";
@@ -329,6 +335,10 @@ public class FinancialController {
         }
         Premium premium = DTOConvertUtil.convert(premiumModel, Premium.class);
         premiumService.create(contract,premium);
+        MoneyIn moneyIn= this.moneyInService.findOldestPendingMoneyIn(contract);
+        if(moneyIn!=null){
+            premiumService.pay(premium,moneyIn);
+        }
         notifyService.addInfoMessage("Premium with Id: " + premium.getId() + " was created.");
         return "redirect:/contracts/" + id;
     }

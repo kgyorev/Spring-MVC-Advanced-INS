@@ -168,6 +168,12 @@ public class MoneyInServiceImpl implements MoneyInService {
         return moneyInModel;
     }
 
+    @Override
+    public MoneyIn findOldestPendingMoneyIn(Contract contract) {
+        MoneyIn allByStatusOrderByRecordDate = this.moneyInRepository.findFirstByStatusOrderByRecordDate(Status.PENDING);
+        return allByStatusOrderByRecordDate;
+    }
+
 //    @Override
 //    public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
 //

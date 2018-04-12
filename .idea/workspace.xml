@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc342cc2-56d8-4d9a-b971-434d4de32925" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/repositories/MoneyInRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/repositories/MoneyInRepository.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInService.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInService.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumService.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumService.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/controllers/FinancialController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/controllers/FinancialController.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/repositories/MoneyInRepository.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/repositories/MoneyInRepository.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/services/MoneyInService.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/services/MoneyInService.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/services/MoneyInServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/services/MoneyInServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/services/PremiumServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/services/PremiumServiceImpl.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,95 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FinancialController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="334" column="55" lean-forward="false" selection-start-line="334" selection-start-column="55" selection-end-line="334" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-561">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view-contract.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="view-contract.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="202" column="16" lean-forward="false" selection-start-line="202" selection-start-column="16" selection-end-line="203" selection-end-column="89" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#9897#9904#1" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#td#0;n#tr#0;n#th:block#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create-person.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/create-person.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-408">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="2089">
+              <caret line="173" column="23" lean-forward="false" selection-start-line="173" selection-start-column="23" selection-end-line="173" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="confirm-create-person.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/confirm-create-person.html">
+      <file leaf-file-name="AllPremiumsViewModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/AllPremiumsViewModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-335">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common-person.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/common-person.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="confirm-edit-contract.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/confirm-edit-contract.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="93" column="34" lean-forward="false" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Frequency.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/enums/Frequency.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Status.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/enums/Status.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="32" />
+            <state relative-caret-position="153">
+              <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -111,8 +48,82 @@
       <file leaf-file-name="ContractsController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="140">
+              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FinancialController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="339" column="33" lean-forward="false" selection-start-line="339" selection-start-column="33" selection-end-line="339" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoneyInService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="32" column="56" lean-forward="false" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoneyInRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/repositories/MoneyInRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PremiumModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/PremiumModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="541">
+              <caret line="55" column="33" lean-forward="false" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
+              <folding>
+                <element signature="e#1255#1256#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoneyInModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/MoneyInModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PremiumServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="84" column="13" lean-forward="true" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoneyInServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="165" column="35" lean-forward="false" selection-start-line="165" selection-start-column="35" selection-end-line="165" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -207,14 +218,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/AllPremiumsViewModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/AllMoneyInsViewModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/MoneyInModel.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/financial/money-in/create-money-in.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractsController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/repositories/MoneyInRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/financial/money-in/create-money-in.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractsController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -224,10 +235,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-7" />
-    <option name="width" value="1612" />
-    <option name="height" value="867" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -247,7 +259,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -333,7 +348,53 @@
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="business" type="462c0819:PsiDirectoryNode" />
-              <item name="enums" type="462c0819:PsiDirectoryNode" />
+              <item name="entites" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -399,6 +460,178 @@
               <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
+              <item name="entites" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
+              <item name="entites" type="462c0819:PsiDirectoryNode" />
+              <item name="prsn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
+              <item name="entites" type="462c0819:PsiDirectoryNode" />
+              <item name="prsn" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
+              <item name="entites" type="462c0819:PsiDirectoryNode" />
+              <item name="prsn" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="technical" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="annotations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="notifications" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="notifications" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="validators" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="validators" type="462c0819:PsiDirectoryNode" />
+              <item name="fields" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -435,53 +668,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="financial" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="financial" type="462c0819:PsiDirectoryNode" />
-              <item name="money-in" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="financial" type="462c0819:PsiDirectoryNode" />
-              <item name="premium" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="fragments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -493,6 +679,15 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
               <item name="prsn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -538,9 +733,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -562,12 +754,9 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\financial\money-in" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\financial\premium" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\java\com\insurance\ins\financial" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\business\contract" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\prsnorg\org" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\fragments" />
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\.idea" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.insurance.ins.financial.models" />
@@ -576,9 +765,12 @@
       <recent name="com.insurance.ins.financial.controllers" />
       <recent name="com.insurance.ins.financial" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\fragments" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\.idea" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\financial\money-in" />
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\financial\premium" />
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\java\com\insurance\ins\financial" />
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\business\contract" />
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\prsnorg\org" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -740,10 +932,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184034000" />
+    <option name="totallyTimeSpent" value="187371000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1612" height="867" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -755,21 +947,21 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49157304" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47502774" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31882024" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31895426" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3525281" sideWeight="0.4974293" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42508325" sideWeight="0.4974293" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32474226" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35021323" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871014" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -856,19 +1048,13 @@
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java</url>
-          <line>163</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java</url>
+          <line>256</line>
           <properties />
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractsController.java</url>
-          <line>55</line>
-          <properties />
-          <option name="timeStamp" value="62" />
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="63" />
+      <option name="time" value="65" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -972,13 +1158,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/PremiumModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="55" column="33" lean-forward="false" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/financial/premium/create-premium.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1032,7 +1211,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="76" column="17" lean-forward="true" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1062,6 +1240,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
           <caret line="41" column="30" lean-forward="false" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="30" />
+          <folding>
+            <element signature="e#3052#3053#0" expanded="false" />
+            <element signature="e#3086#3087#0" expanded="false" />
+            <element signature="e#3140#3141#0" expanded="false" />
+            <element signature="e#3186#3187#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1112,6 +1296,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1123,34 +1308,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/MoneyInModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/AllPremiumsViewModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="24" column="5" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="30" column="16" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/repositories/MoneyInRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        <state relative-caret-position="153">
+          <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1159,33 +1320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="14" column="53" lean-forward="true" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
-          <folding>
-            <element signature="e#281#282#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
-            <element signature="e#407#408#0" expanded="true" />
-            <element signature="e#446#447#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#541#542#0" expanded="true" />
-            <element signature="e#593#594#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="163" column="0" lean-forward="true" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1201,23 +1335,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-561">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="334" column="55" lean-forward="false" selection-start-line="334" selection-start-column="55" selection-end-line="334" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1233,7 +1350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-335">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1241,7 +1357,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-153">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1249,7 +1364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1257,7 +1371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1265,19 +1378,82 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
           <caret line="93" column="34" lean-forward="false" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="202" column="16" lean-forward="false" selection-start-line="202" selection-start-column="16" selection-end-line="203" selection-end-column="89" />
+        <state relative-caret-position="2089">
+          <caret line="173" column="23" lean-forward="false" selection-start-line="173" selection-start-column="23" selection-end-line="173" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/PremiumModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="55" column="33" lean-forward="false" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#9897#9904#1" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#0;n#tr#0;n#th:block#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#1255#1256#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/MoneyInModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="32" column="56" lean-forward="false" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/repositories/MoneyInRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="165" column="35" lean-forward="false" selection-start-line="165" selection-start-column="35" selection-end-line="165" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="339" column="33" lean-forward="false" selection-start-line="339" selection-start-column="33" selection-end-line="339" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="84" column="13" lean-forward="true" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

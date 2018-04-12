@@ -3,10 +3,12 @@ package com.insurance.ins.financial.services;
 import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.repositories.ContractRepository;
 import com.insurance.ins.business.services.ContractService;
+import com.insurance.ins.financial.MoneyIn;
 import com.insurance.ins.financial.Premium;
 import com.insurance.ins.financial.enums.Status;
 import com.insurance.ins.financial.models.AllPremiumsViewModel;
 import com.insurance.ins.financial.models.PremiumModel;
+import com.insurance.ins.financial.repositories.MoneyInRepository;
 import com.insurance.ins.financial.repositories.PremiumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -26,12 +28,14 @@ public class PremiumServiceImpl implements PremiumService {
     private final ContractRepository contractRepository;
     private final ContractService contractService;
     private final PremiumRepository premiumRepository;
+    private final MoneyInRepository moneyInRepository;
 
     @Autowired
-    public PremiumServiceImpl(ContractRepository contractRepository, ContractService contractService, PremiumRepository premiumRepository) {
+    public PremiumServiceImpl(ContractRepository contractRepository, ContractService contractService, PremiumRepository premiumRepository, MoneyInRepository moneyInRepository, MoneyInRepository moneyInRepository1) {
         this.contractRepository = contractRepository;
         this.contractService = contractService;
         this.premiumRepository = premiumRepository;
+        this.moneyInRepository = moneyInRepository1;
     }
 
     @Override
@@ -79,9 +83,12 @@ public class PremiumServiceImpl implements PremiumService {
     }
 
     @Override
-    public void pay(Premium premium) {
+    public void pay(Premium premium, MoneyIn moneyIn) {
         premium.setStatus(Status.PAID);
+        moneyIn.setStatus(Status.PAID);
+        moneyIn.setPremium(premium);
         this.premiumRepository.save(premium);
+        this.moneyInRepository.save(moneyIn);
     }
 
 //    @Override

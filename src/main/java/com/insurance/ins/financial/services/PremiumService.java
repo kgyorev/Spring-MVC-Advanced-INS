@@ -1,6 +1,7 @@
 package com.insurance.ins.financial.services;
 
 import com.insurance.ins.business.entites.Contract;
+import com.insurance.ins.financial.MoneyIn;
 import com.insurance.ins.financial.Premium;
 import com.insurance.ins.financial.models.AllPremiumsViewModel;
 import com.insurance.ins.financial.models.PremiumModel;
@@ -14,7 +15,7 @@ public interface PremiumService  {
     Premium create(Contract contract,Premium premium);
     void deleteById(Long id);
     void cancel(Premium premium);
-    void pay(Premium premium);
+    void pay(Premium premium, MoneyIn moneyIn);
 //    AllContractsViewModel findAllById(Long id, Pageable pageable);
 //
 //    AllContractsViewModel findAllByStatus(Status status, Pageable pageable);
