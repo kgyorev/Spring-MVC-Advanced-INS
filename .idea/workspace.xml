@@ -2,16 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc342cc2-56d8-4d9a-b971-434d4de32925" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/AllMoneyInsViewModel.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/models/MoneyInModel.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/repositories/MoneyInRepository.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/MoneyInServiceImpl.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/financial/money-in/create-money-in.html" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractsController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,11 +37,12 @@
       <file leaf-file-name="view-contract.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="203" column="60" lean-forward="false" selection-start-line="203" selection-start-column="60" selection-end-line="203" selection-end-column="60" />
+            <state relative-caret-position="260">
+              <caret line="202" column="16" lean-forward="false" selection-start-line="202" selection-start-column="16" selection-end-line="203" selection-end-column="89" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="e#9897#9904#1" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#0;n#tr#0;n#th:block#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -233,7 +224,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="-7" />
     <option name="width" value="1612" />
     <option name="height" value="867" />
@@ -744,15 +735,15 @@
       <workItem from="1522402623562" duration="8632000" />
       <workItem from="1522752826321" duration="16786000" />
       <workItem from="1523024713383" duration="37000" />
-      <workItem from="1523024828056" duration="74939000" />
+      <workItem from="1523024828056" duration="76923000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182050000" />
+    <option name="totallyTimeSpent" value="184034000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1612" height="867" extended-state="0" />
+    <frame x="-7" y="0" width="1612" height="867" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1280,11 +1271,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="203" column="60" lean-forward="false" selection-start-line="203" selection-start-column="60" selection-end-line="203" selection-end-column="60" />
+        <state relative-caret-position="260">
+          <caret line="202" column="16" lean-forward="false" selection-start-line="202" selection-start-column="16" selection-end-line="203" selection-end-column="89" />
           <folding>
             <element signature="n#style#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="e#9897#9904#1" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#0;n#tr#0;n#th:block#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

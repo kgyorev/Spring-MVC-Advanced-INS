@@ -199,7 +199,9 @@
                                     1
                                 </th>
                                 <th th:text="*{id}"></th>
-                                <td th:text="${#temporals.format(premium.startDate,'dd.MM.yyyy')}"></td>
+                                <!--<td type="date" th:text="${#temporals.format(premium.startDate,'dd.MM.yyyy')}"></td>-->
+                                <td><input class="border-0" style="background-color:transparent;color: #111111" type="date" id="premStartDate" name="premStartDate"
+                                           th:value="${premium.startDate}" disabled></td>
                                 <td th:text="${#temporals.format(premium.endDate,'dd.MM.yyyy')}"></td>
                                 <td th:text="${premium.operationAmount}"></td>
                                 <td th:text="${premium.getStatus().getStatusLabel()}"></td>
