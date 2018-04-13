@@ -254,16 +254,17 @@ public class FinancialController {
         }
 
         premiumModel = this.premiumService.createForView(contract);
-        MoneyIn moneyIn= this.moneyInService.findOldestPendingMoneyIn(contract);
-        MoneyInModel moneyInModel=null;
-        if(moneyIn!=null){
-            moneyInModel = DTOConvertUtil.convert(moneyIn,MoneyInModel.class);
+        MoneyIn moneyIn = this.moneyInService.findOldestPendingMoneyIn(contract);
+        MoneyInModel moneyInModel = null;
+        if (moneyIn != null) {
+            moneyInModel = DTOConvertUtil.convert(moneyIn, MoneyInModel.class);
         }
         model.addAttribute("moneyInModel", moneyInModel);
         model.addAttribute("premiumModel", premiumModel);
 
         return "financial/premium/create-premium";
     }
+
     @RequestMapping(value = "/contracts/create/money-in/{id}", method = RequestMethod.GET)
     public String createMoneyIn(@ModelAttribute(name = "moneyInModel") MoneyInModel moneyInModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
@@ -277,6 +278,7 @@ public class FinancialController {
 
         return "financial/money-in/create-money-in";
     }
+
     //
 //    @RequestMapping(value = "/contracts/confirm/create", method = RequestMethod.GET)
 //    public String confirmCreate(@Valid @ModelAttribute(name = "contractModel") ContractModel contractModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
@@ -334,14 +336,16 @@ public class FinancialController {
             return "/financial/premium/create/create-premium";
         }
         Premium premium = DTOConvertUtil.convert(premiumModel, Premium.class);
-        premiumService.create(contract,premium);
-        MoneyIn moneyIn= this.moneyInService.findOldestPendingMoneyIn(contract);
-        if(moneyIn!=null){
-            premiumService.pay(premium,moneyIn);
-        }
-        notifyService.addInfoMessage("Premium with Id: " + premium.getId() + " was created.");
+        premiumService.create(contract, premium);
+        MoneyIn moneyIn = this.moneyInService.findOldestPendingMoneyIn(contract);
+        if (moneyIn != null) {
+            premiumService.tryToPay(premium, moneyIn);
+            notifyService.addWarningMessage("Premium with Id: " + premium.getId() + " was created. And Money In with Id: " + moneyIn.getId() + " was applied to it.");
+        } else
+            notifyService.addInfoMessage("Premium with Id: " + premium.getId() + " was created.");
         return "redirect:/contracts/" + id;
     }
+
     @RequestMapping(value = "/contracts/create/money-in/{id}", method = RequestMethod.POST)
     public String createMoneyInValidate(@Valid MoneyInModel moneyInModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action, @PathVariable("id") Long id) {
         Contract contract = contractService.findById(id);
@@ -357,8 +361,13 @@ public class FinancialController {
             return "/financial/money-in/create/create-money-in";
         }
         MoneyIn moneyIn = DTOConvertUtil.convert(moneyInModel, MoneyIn.class);
-        moneyInService.create(contract,moneyIn);
-        notifyService.addInfoMessage("Money In with Id: " + moneyIn.getId() + " was created.");
+        moneyInService.create(contract, moneyIn);
+        Premium premium = this.premiumService.findOldestPendingPremium(contract);
+        if (premium != null) {
+            premiumService.tryToPay(premium, moneyIn);
+            notifyService.addWarningMessage("Money In with Id: " + moneyIn.getId() + " was created. And Premium with Id: " + premium.getId() + " was paid with it.");
+        } else
+            notifyService.addInfoMessage("Money In with Id: " + moneyIn.getId() + " was created.");
         return "redirect:/contracts/" + id;
     }
 }

@@ -81,12 +81,6 @@ public class MoneyInServiceImpl implements MoneyInService {
         this.moneyInRepository.save(moneyIn);
     }
 
-    @Override
-    public void pay(MoneyIn moneyIn) {
-        moneyIn.setStatus(Status.PAID);
-        this.moneyInRepository.save(moneyIn);
-    }
-
 //    @Override
 //    public AllContractsViewModel findAllById(Long id, Pageable pageable) {
 //        return null;
@@ -170,8 +164,9 @@ public class MoneyInServiceImpl implements MoneyInService {
 
     @Override
     public MoneyIn findOldestPendingMoneyIn(Contract contract) {
-        MoneyIn allByStatusOrderByRecordDate = this.moneyInRepository.findFirstByStatusOrderByRecordDate(Status.PENDING);
+        MoneyIn allByStatusOrderByRecordDate = this.moneyInRepository.findFirstByStatusAndContractOrderByRecordDate(Status.PENDING,contract);
         return allByStatusOrderByRecordDate;
+    }
     }
 
 //    @Override
@@ -186,4 +181,4 @@ public class MoneyInServiceImpl implements MoneyInService {
 //
 //        return this.personRepository.findById(Long.parseLong(value.toString())).isPresent();
 //    }
-}
+

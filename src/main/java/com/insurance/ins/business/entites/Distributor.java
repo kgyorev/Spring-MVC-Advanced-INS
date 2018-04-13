@@ -1,6 +1,9 @@
 package com.insurance.ins.business.entites;
 
 
+import com.insurance.ins.prsnorg.entites.org.Organization;
+import com.insurance.ins.technical.entites.User;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,14 +15,14 @@ public class Distributor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 30, unique = true)
-    private String username;
-
-    @Column(length = 60)
-    private String passwordHash;
-
     @Column(length = 100)
     private String fullName;
+
+    @OneToOne
+    private User user;
+
+    @OneToOne
+    private Organization organization;
 
     @OneToMany(mappedBy = "distributor")
     private Set<Contract> contracts = new HashSet<Contract>();
@@ -32,21 +35,6 @@ public class Distributor {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
 
     public String getFullName() {
         return fullName;
@@ -67,23 +55,35 @@ public class Distributor {
     public Distributor() {
     }
 
-    public Distributor(String username, String fullName) {
-        this.username = username;
+    public Distributor(String fullName) {
         this.fullName = fullName;
     }
 
-    public Distributor(Long id, String username, String fullName) {
+    public Distributor(Long id, String fullName) {
         this.id = id;
-        this.username = username;
         this.fullName = fullName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 
     @Override
     public String toString() {
         return "Distributor{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
-                ", passwordHash='" + passwordHash + '\'' +
                 ", fullName='" + fullName + '\'' +
                 '}';
     }

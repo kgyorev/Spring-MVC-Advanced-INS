@@ -1,5 +1,6 @@
 package com.insurance.ins.prsnorg.entites.prsn.services;
 
+import com.insurance.ins.business.repositories.DistributorRepository;
 import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.models.AllPersonsViewModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
@@ -20,10 +21,12 @@ public class PersonServiceImpl implements PersonService {
 
 
     private final PersonRepository personRepository;
+    private final DistributorRepository distributorRepository;
 
     @Autowired
-    public PersonServiceImpl(PersonRepository personRepository) {
+    public PersonServiceImpl(PersonRepository personRepository, DistributorRepository distributorRepository) {
         this.personRepository = personRepository;
+        this.distributorRepository = distributorRepository;
     }
 
     @Override
@@ -83,6 +86,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person create(Person person) {
         return this.personRepository.saveAndFlush(person);
+
     }
 
     @Override

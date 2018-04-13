@@ -15,7 +15,7 @@ public interface PremiumService  {
     Premium create(Contract contract,Premium premium);
     void deleteById(Long id);
     void cancel(Premium premium);
-    void pay(Premium premium, MoneyIn moneyIn);
+    void tryToPay(Premium premium, MoneyIn moneyIn);
 //    AllContractsViewModel findAllById(Long id, Pageable pageable);
 //
 //    AllContractsViewModel findAllByStatus(Status status, Pageable pageable);
@@ -31,4 +31,5 @@ public interface PremiumService  {
 
     PremiumModel createForView(Contract contract);
 
+    Premium findOldestPendingPremium(Contract contract);
 }

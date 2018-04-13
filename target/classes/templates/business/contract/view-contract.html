@@ -141,36 +141,6 @@
                     <input type="number" class="form-control"
                            id="premimAmount" name="amount" th:field="*{premiumAmount}" readonly/>
                 </div>
-                <div class="text-center">
-                    <button type="submit" name="action" value="return" class="btn btn-secondary"><i
-                            class="fas fa-chevron-circle-left"></i> Return
-                    </button>
-                    <button type="button" data-toggle="modal" th:attr="data-target='#'+${contractModel}"
-                            class="btn btn-primary"><i class="fas fa-check-circle"></i> Validate
-                    </button>
-                </div>
-                <div class="modal fade" th:id="${contractModel}" tabindex="-1" role="dialog"
-                     aria-labelledby="deleteUserLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteUserLabel">This action can't be undone</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure to save this contract?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button name="action" value="save" class="btn btn-primary" type="submit"
-                                >Save
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 </form>
             </div>
             <div class="tab-pane fade mt-4" th:classappend="${contractModel.selectedTab.equals('premium')}? 'show active'"
@@ -241,6 +211,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">ID</th>
                                 <th scope="col">Operation Amount</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -256,6 +227,7 @@
                                     </th>
                                     <th th:text="*{id}"></th>
                                     <td th:text="${moneyIn.operationAmount}"></td>
+                                    <td th:text="${moneyIn.getStatus().getStatusLabel()}"></td>
                                     <td><a th:href="@{/contracts/{id}(id=*{id})}"><i class="fas fa-binoculars"
                                                                                      title="Contract details"></i></a></td>
                                     <td><a th:href="@{/contracts/edit/{id}/(id=*{id})}"><i class="fas fa-edit"
@@ -280,10 +252,15 @@
                             </li>
                         </ul>
                     </nav>
-
-
                 </div>
             </div>
+        <form th:action="@{/contracts}">
+        <div class="text-center">
+            <button type="submit" class="btn btn-secondary"><i
+                    class="fas fa-chevron-circle-left"></i> Return
+            </button>
+        </div>
+        </form>
     </div>
 </div>
 <footer th:replace="~{fragments/layout :: site-footer}"></footer>

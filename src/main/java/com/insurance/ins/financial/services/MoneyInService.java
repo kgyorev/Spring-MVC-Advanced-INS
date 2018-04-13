@@ -14,7 +14,6 @@ public interface MoneyInService {
     MoneyIn create(Contract contract, MoneyIn moneyIn);
     void deleteById(Long id);
     void cancel(MoneyIn moneyIn);
-    void pay(MoneyIn moneyIn);
 //    AllContractsViewModel findAllById(Long id, Pageable pageable);
 //
 //    AllContractsViewModel findAllByStatus(Status status, Pageable pageable);
@@ -31,4 +30,5 @@ public interface MoneyInService {
     MoneyInModel createForView(Contract contract);
 
     MoneyIn findOldestPendingMoneyIn(Contract contract);
+
 }

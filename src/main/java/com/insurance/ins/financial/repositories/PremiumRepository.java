@@ -20,4 +20,5 @@ public interface PremiumRepository extends
     Page<Premium> findAllByStatus(Status status, Pageable pageable);
 
     Page<Premium> findAllByIdAndStatus(Long id, Status status, Pageable pageable);
+    Premium findFirstByStatusAndContractOrderByRecordDate(Status status, Contract contract);
 }

@@ -83,7 +83,7 @@ public class PremiumServiceImpl implements PremiumService {
     }
 
     @Override
-    public void pay(Premium premium, MoneyIn moneyIn) {
+    public void tryToPay(Premium premium, MoneyIn moneyIn) {
         premium.setStatus(Status.PAID);
         moneyIn.setStatus(Status.PAID);
         moneyIn.setPremium(premium);
@@ -174,6 +174,12 @@ public class PremiumServiceImpl implements PremiumService {
         premiumModel.setOperationAmount(contract.getPremiumAmount());
         premiumModel.setCntrctId(String.valueOf(contract.getId()));
         return premiumModel;
+    }
+
+    @Override
+    public Premium findOldestPendingPremium(Contract contract) {
+        Premium firstByStatusAndContractOrderByRecordDate = this.premiumRepository.findFirstByStatusAndContractOrderByRecordDate(Status.PENDING, contract);
+        return firstByStatusAndContractOrderByRecordDate;
     }
 
 //    @Override

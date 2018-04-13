@@ -31,14 +31,8 @@
             <h2>Create Money In</h2>
             <div class="form-group">
                 <label for="operationAmount">Premium Amount(in EUR)</label>
-                <input type="number" class="form-control" th:classappend="${#fields.hasErrors('operationAmount')}? 'is-invalid'"
-                       id="operationAmount" name="operationAmount" th:field="*{operationAmount}"/>
-                <th:block th:each="error : ${#fields.errors('operationAmount')}">
-                    <small id="operationAmountHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
+                <input type="number" class="form-control"
+                       id="operationAmount" name="operationAmount" th:field="*{operationAmount}" readonly/>
             </div>
             <div class="text-center">
                 <button type="submit" name="action" value="return" class="btn btn-secondary"><i

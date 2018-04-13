@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Table(name = "organizations")
 public class Organization extends PrsnOrg{
 
-
     @Column(nullable = false,unique = true)
     private String vat;
 
