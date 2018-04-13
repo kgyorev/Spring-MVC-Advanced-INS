@@ -4,9 +4,9 @@ import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.entites.Distributor;
 import com.insurance.ins.business.entites.Product;
 import com.insurance.ins.business.enums.Status;
-import com.insurance.ins.business.models.AllContractsViewModel;
-import com.insurance.ins.business.models.ContractModel;
-import com.insurance.ins.business.models.SearchContractModel;
+import com.insurance.ins.business.models.contract.AllContractsViewModel;
+import com.insurance.ins.business.models.contract.ContractModel;
+import com.insurance.ins.business.models.contract.SearchContractModel;
 import com.insurance.ins.business.services.ContractService;
 import com.insurance.ins.business.services.DistributorService;
 import com.insurance.ins.business.services.ProductService;
@@ -313,7 +313,7 @@ public class ContractsController {
         contractModel.setPremiumAmount(premiumAmount);
 //        contractService.create(contract);
 //        notifyService.addInfoMessage("Contract with Id: " + contract.getId() + " was created.");
-        return "business/contract/confirm-edit-contract";
+        return "business/contract/confirm-create-contract";
     }
 
 

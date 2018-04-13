@@ -1,4 +1,4 @@
-package com.insurance.ins.business.models;
+package com.insurance.ins.business.models.contract;
 
 import com.insurance.ins.business.entites.Contract;
 import org.springframework.data.domain.Page;

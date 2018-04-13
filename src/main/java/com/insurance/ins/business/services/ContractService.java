@@ -2,9 +2,9 @@ package com.insurance.ins.business.services;
 
 import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.enums.Status;
-import com.insurance.ins.business.models.AllContractsViewModel;
-import com.insurance.ins.business.models.ContractModel;
-import com.insurance.ins.business.models.SearchContractModel;
+import com.insurance.ins.business.models.contract.AllContractsViewModel;
+import com.insurance.ins.business.models.contract.ContractModel;
+import com.insurance.ins.business.models.contract.SearchContractModel;
 import com.insurance.ins.utils.interfaces.FieldValueExists;
 import org.springframework.data.domain.Pageable;
 

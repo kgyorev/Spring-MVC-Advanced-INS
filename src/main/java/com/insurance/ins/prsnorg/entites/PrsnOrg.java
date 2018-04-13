@@ -19,11 +19,9 @@ public abstract class PrsnOrg {
     private String fullName;
 
     @Column(nullable = false)
-//    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @Column(nullable = false)
-//    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
