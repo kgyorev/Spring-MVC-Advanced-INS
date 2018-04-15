@@ -1,10 +1,12 @@
 package com.insurance.ins.financial;
 
 import com.insurance.ins.business.entites.Contract;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
 @Entity
+@Audited
 @Table(name = "money_ins")
 public class MoneyIn extends FinancialRoot {
 

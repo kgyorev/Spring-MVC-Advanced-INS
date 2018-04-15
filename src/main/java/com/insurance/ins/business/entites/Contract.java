@@ -5,6 +5,7 @@ import com.insurance.ins.business.enums.Status;
 import com.insurance.ins.financial.MoneyIn;
 import com.insurance.ins.financial.Premium;
 import com.insurance.ins.prsnorg.entites.prsn.Person;
+import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "contracts")
+@Audited
 public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

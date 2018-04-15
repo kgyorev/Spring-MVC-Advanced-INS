@@ -3,12 +3,14 @@ package com.insurance.ins.business.entites;
 
 import com.insurance.ins.prsnorg.entites.org.Organization;
 import com.insurance.ins.technical.entites.User;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Audited
 @Table(name = "distributors")
 public class Distributor {
     @Id

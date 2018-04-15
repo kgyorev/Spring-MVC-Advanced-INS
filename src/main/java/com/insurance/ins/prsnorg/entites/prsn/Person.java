@@ -2,6 +2,7 @@ package com.insurance.ins.prsnorg.entites.prsn;
 
 import com.insurance.ins.prsnorg.entites.PrsnOrg;
 import com.insurance.ins.prsnorg.entites.prsn.enums.Gender;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 @Entity
+@Audited
 @Table(name = "persons")
 public class Person extends PrsnOrg {
 

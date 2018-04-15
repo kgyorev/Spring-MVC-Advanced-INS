@@ -1,5 +1,6 @@
 package com.insurance.ins.technical.entites;
 
+import org.hibernate.envers.Audited;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
  * Created by K on 20.3.2018 г..
  */
 @Entity
+@Audited
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
 

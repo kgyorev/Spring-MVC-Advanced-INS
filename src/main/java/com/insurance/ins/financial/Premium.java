@@ -1,12 +1,14 @@
 package com.insurance.ins.financial;
 
 import com.insurance.ins.business.entites.Contract;
+import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Audited
 @Table(name = "premiums")
 public class Premium extends FinancialRoot{
 

@@ -1,5 +1,6 @@
 package com.insurance.ins.technical.entites;
 
+import org.hibernate.envers.Audited;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,6 +13,7 @@ import java.util.Set;
  * Created by K on 20.3.2018 г..
  */
 @Entity
+@Audited
 @Table(name = "users")
 public class User implements UserDetails {
 

@@ -1,11 +1,14 @@
 package com.insurance.ins.business.entites;
 
+import org.hibernate.envers.Audited;
+
 import javax.persistence.*;
 
 /**
  * Created by K on 30.3.2018 г..
  */
 @Entity
+@Audited
 @Table(name = "products")
 public class Product {
     @Id
