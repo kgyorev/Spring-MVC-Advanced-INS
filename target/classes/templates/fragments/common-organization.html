@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="common-organization">
+<div th:fragment="common-organization-confirm">
     <div class="form-group">
         <label for="fullName">Full Name</label>
         <input type="text" class="form-control" readonly
@@ -46,5 +46,47 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+
+<!--Create/Update-->
+<div th:fragment="common-organization-create-edit">
+    <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('fullName')}? 'is-invalid'"
+               id="fullName" name="fullName" th:field="*{fullName}"/>
+        <th:block th:each="error : ${#fields.errors('fullName')}">
+            <small id="fullNameHelp" class="text-danger"
+                   th:text="${error}">
+                Error Message
+            </small>
+        </th:block>
+    </div>
+    <div class="form-group" th:if="${organizationModel instanceof T(com.insurance.ins.prsnorg.entites.org.models.OrganizationModel)}">
+        <label for="vat">VAT</label>
+        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('vat')}? 'is-invalid'"
+               id="vat" name="vat" th:field="*{vat}" />
+        <th:block th:each="error : ${#fields.errors('vat')}">
+            <small id="egnHelp" class="text-danger"
+                   th:text="${error}">
+                Error Message
+            </small>
+        </th:block>
+    </div>
+    <div class="form-group" th:if="${organizationModel instanceof T(com.insurance.ins.prsnorg.entites.org.models.EditOrganizationModel)}">
+        <label for="vat">VAT</label>
+        <input type="text" class="form-control"
+               id="vat" name="vat" th:field="*{vat}" readonly/>
+    </div>
+    <div class="form-group">
+        <label for="startDate">Creation Date</label>
+        <input class="form-control" th:classappend="${#fields.hasErrors('startDate')}? 'border-danger'" type="date" id="startDate" name="startDate" th:field="*{startDate}">
+        <th:block th:each="error : ${#fields.errors('startDate')}">
+            <small id="startDateTurnHelp" class="text-danger"
+                   th:text="${error}">
+                Error Message
+            </small>
+        </th:block>
     </div>
 </div>

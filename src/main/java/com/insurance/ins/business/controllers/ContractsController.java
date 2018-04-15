@@ -61,6 +61,14 @@ public class ContractsController {
 
         return "redirect:/";
     }
+    @RequestMapping(value = "/premiumBillingBatch", method = RequestMethod.GET)
+    public String batchPremium() {
+
+        BusinessBatch batch = new BusinessBatch(this.premiumService);
+        batch.premiumBillingBatch();
+
+        return "redirect:/";
+    }
 
 
         @RequestMapping(value = "/contracts/{id}", method = RequestMethod.GET)

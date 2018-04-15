@@ -23,8 +23,8 @@
 
 <div class="container-fluid">
     <header th:replace="~{fragments/layout :: site-header}"></header>
-    <div class="container col-sm-4 align-content-center">
-        <h1>Users List</h1>
+    <div class="container col-sm-4 align-content-center mt-3">
+        <h2 class="text-center">Users List</h2>
         <div class="container">
             <form th:method="GET" th:action="@{/users}" th:object="${searchUserModel}">
 
@@ -36,15 +36,31 @@
                         <option value="username">Username</option>
                     </select>
                 </div>
-
-                <div class="form-group row">
-                    <label for="criteria" class="col-sm-2 col-form-label">Criteria</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="criteria" th:value="*{criteria}"
-                               name="criteria"
-                               placeholder="Search by Criteria...">
-                    </div>
+                <div class="form-group">
+                    <label for="criteria">Criteria</label>
+                    <input type="text" class="form-control" id="criteria" th:value="*{criteria}"
+                           name="criteria"
+                           placeholder="Search by Criteria...">
                 </div>
+
+
+                <!--<div class="form-group">-->
+                    <!--<label for="searchBy">Search By:</label>-->
+                    <!--<select class="form-control"-->
+                            <!--id="searchBy" name="frequency" th:field="*{searchBy}">-->
+                        <!--<option value="userId">User ID</option>-->
+                        <!--<option value="username">Username</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+
+                <!--<div class="form-group row">-->
+                    <!--<label for="criteria" class="col-sm-2 col-form-label">Criteria</label>-->
+                    <!--<div class="col-sm-10">-->
+                        <!--<input type="text" class="form-control" id="criteria" th:value="*{criteria}"-->
+                               <!--name="criteria"-->
+                               <!--placeholder="Search by Criteria...">-->
+                    <!--</div>-->
+                <!--</div>-->
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Search

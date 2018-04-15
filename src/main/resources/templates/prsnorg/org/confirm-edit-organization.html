@@ -30,7 +30,7 @@
         <form class="my-4" th:object="${organizationModel}"
               th:action="@{/organizations/edit/{id}/(id=${organizationModel.id})}" th:method="post">
             <h2 class="text-center" th:text="'Modification for Organization ID: '+${organizationModel.id}"></h2>
-            <div th:replace="~{fragments/common-organization :: common-organization}"></div>
+            <div th:replace="~{fragments/common-organization :: common-organization-confirm}"></div>
         </form>
     </div>
 </div>

@@ -51,43 +51,10 @@
                     </small>
                 </th:block>
             </div>
-            <!--<div class="form-check">-->
-            <!--<label class="form-check-label">-->
-            <!--<input type="checkbox" class="form-check-input" name="isSmoker" th:field="*{smoker}">-->
-            <!--Is Smoker?-->
-            <!--</label>-->
-            <!--</div>-->
-
             <div class="custom-control custom-checkbox mb-3">
                 <input type="checkbox" class="custom-control-input" name="isSmoker" id="isSmoker" th:field="*{smoker}">
                 <label class="custom-control-label" for="isSmoker">Is Smoker?</label>
             </div>
-
-
-            <!--<fieldset class="form-group">-->
-            <!--<legend>Gender</legend>-->
-            <!--<div class="form-check" th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'">-->
-            <!--<label class="form-check-label">-->
-            <!--<input type="radio" class="form-check-input" name="sex" id="male" value="MALE"-->
-            <!--th:field="*{sex}">-->
-            <!--Male-->
-            <!--</label>-->
-            <!--</div>-->
-            <!--<div class="form-check" th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'">-->
-            <!--<label class="form-check-label">-->
-            <!--<input type="radio" class="form-check-input"-->
-            <!--th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'" name="sex" id="female"-->
-            <!--value="FEMALE" th:field="*{sex}">-->
-            <!--Female-->
-            <!--</label>-->
-            <!--</div>-->
-            <!--<th:block th:each="error : ${#fields.errors('sex')}">-->
-            <!--<small id="sexHelp" class="text-danger"-->
-            <!--th:text="${error}">-->
-            <!--Error Message-->
-            <!--</small>-->
-            <!--</th:block>-->
-            <!--</fieldset>-->
             <fieldset class="form-group">
                 <legend>Gender</legend>
                 <div class="custom-control custom-radio">

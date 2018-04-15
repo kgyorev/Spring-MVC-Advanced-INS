@@ -29,7 +29,7 @@
     <div class="container mt-4">
         <form class="my-4" th:object="${personModel}" th:action="@{/persons/edit/{id}/(id=${personModel.id})}" th:method="post">
             <h2 class="text-center" th:text="'Modification for Person ID: '+${personModel.id}"></h2>
-            <div th:replace="~{fragments/common-person :: common-person}"></div>
+            <div th:replace="~{fragments/common-person :: common-person-confirm}"></div>
         </form>
     </div>
 </div>

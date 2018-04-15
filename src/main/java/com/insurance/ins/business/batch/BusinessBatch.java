@@ -31,4 +31,7 @@ public class BusinessBatch{
     }
 
 
+    public void premiumBillingBatch() {
+        premiumService.premiumBillingBatch();
+    }
 }

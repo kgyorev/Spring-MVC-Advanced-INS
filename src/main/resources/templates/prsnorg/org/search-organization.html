@@ -5,22 +5,21 @@
 <body>
 <div class="container-fluid">
     <header th:replace="~{fragments/layout :: site-header}"></header>
-    <div class="container">
+    <div class="container col-sm-4 mt-3">
         <form th:method="GET" th:action="@{/organizations}" th:object="${searchOrganizationModel}">
-            <div class="form-group row">
-                <label for="vat" class="col-sm-2 col-form-label">VAT</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="vat" th:value="*{vat}" name="vat"
-                           placeholder="Search by VAT...">
-                </div>
+            <div class="form-group">
+                <label for="vat">VAT</label>
+                <input type="text" class="form-control" id="vat" th:value="*{vat}" name="vat"
+                       placeholder="Search by VAT...">
             </div>
-            <div class="form-group row">
-                <label for="fullName" class="col-sm-2 col-form-label">Organization Full Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="fullName" th:value="*{fullName}" name="fullName"
-                           placeholder="Search by any phrase...">
-                </div>
+
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" th:value="*{fullName}" name="fullName"
+                       placeholder="Search by any phrase...">
             </div>
+
+
             <div class="form-group row">
                 <div class="col-sm-10">
                     <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Search</button>
@@ -54,7 +53,7 @@
                     </th>
                     <th th:text="*{id}"></th>
                     <td th:text="*{fullName}"></td>
-                    <td th:text="${#temporals.format(organization.startDate,'dd-MM-yyyy')}"></td>
+                    <td th:text="${#temporals.format(organization.startDate,'dd.MM.yyyy')}"></td>
                     <td th:text="*{vat}"></td>
                     <td><a th:href="@{/organizations/{id}(id=*{id})}"><i class="fas fa-binoculars"
                                                                      title="Organization details"></i></a></td>
