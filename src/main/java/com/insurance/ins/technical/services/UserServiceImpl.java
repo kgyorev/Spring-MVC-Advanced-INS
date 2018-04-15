@@ -1,14 +1,18 @@
 package com.insurance.ins.technical.services;
 
+
+import com.insurance.ins.models.service.UserServiceModel;
 import com.insurance.ins.technical.entites.Role;
 import com.insurance.ins.technical.entites.User;
-import com.insurance.ins.utils.DTOConvertUtil;
-import com.insurance.ins.models.binding.UserEditBindingModel;
-import com.insurance.ins.models.binding.UserRegisterBindingModel;
-import com.insurance.ins.models.service.UserServiceModel;
+import com.insurance.ins.technical.models.AllUsersViewModel;
+import com.insurance.ins.technical.models.EditUserModel;
+import com.insurance.ins.technical.models.SearchUserModel;
+import com.insurance.ins.technical.models.UserModel;
 import com.insurance.ins.technical.repositories.RoleRepository;
 import com.insurance.ins.technical.repositories.UserRepository;
+import com.insurance.ins.utils.DTOConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,7 +20,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -60,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User register(UserRegisterBindingModel userRegisterBindingModel) {
+    public User register(UserModel userRegisterBindingModel) {
         User user = DTOConvertUtil.convert(userRegisterBindingModel, User.class);
         user.setPassword(this.encoder.encode(userRegisterBindingModel.getPassword()));
         List<User> allUsers = this.userRepository.findAll();
@@ -112,11 +115,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long id) {
-         return this.userRepository.getOne(id);
+         return this.userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void edit(@Valid UserEditBindingModel userEditBindingModel) {
+    public void edit(EditUserModel userEditBindingModel) {
         User user = DTOConvertUtil.convert(userEditBindingModel, User.class);
         user.setPassword(this.encoder.encode(userEditBindingModel.getPassword()));
         this.setRoles(user.getProfile(),user);
@@ -127,4 +130,54 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
         this.userRepository.deleteById(id);
     }
+
+    @Override
+    public AllUsersViewModel searchUser(SearchUserModel searchUserModel, Pageable pageable) {
+        String searchBy = searchUserModel.getSearchBy();
+        String referenceCriteriaStr =   searchUserModel.getCriteria();
+        if(referenceCriteriaStr==null||referenceCriteriaStr.equals("")){
+            return  this.findAllByPage(pageable);
+        }
+        switch (searchBy){
+            case "username": return this.findAllByUsername(searchUserModel.getCriteria(),pageable);
+            default: return this.findAllById( Long.valueOf(searchUserModel.getCriteria()),pageable);
+        }
+    }
+
+
+    @Override
+    public AllUsersViewModel findAllById(Long id, Pageable pageable) {
+        AllUsersViewModel viewModel = new AllUsersViewModel();
+        viewModel.setUsers(this.userRepository.findAllById(id, pageable));
+        viewModel.setTotalPageCount(this.getTotalPages());
+        return viewModel;
+    }
+
+    @Override
+    public AllUsersViewModel findAllByUsername(String username, Pageable pageable) {
+
+        AllUsersViewModel viewModel = new AllUsersViewModel();
+
+        viewModel.setUsers(this.userRepository.findAllByUsername(username, pageable));
+        viewModel.setTotalPageCount(this.getTotalPages());
+
+        return viewModel;
+    }
+
+
+    @Override
+    public AllUsersViewModel findAllByPage(Pageable pageable) {
+        AllUsersViewModel viewModel = new AllUsersViewModel();
+        viewModel.setUsers(this.userRepository.findAll(pageable));
+        viewModel.setTotalPageCount(this.getTotalPages());
+        return viewModel;
+    }
+
+    @Override
+    public long getTotalPages(int size) {
+        return this.userRepository.count() / size;
+    }
+
+
+
 }

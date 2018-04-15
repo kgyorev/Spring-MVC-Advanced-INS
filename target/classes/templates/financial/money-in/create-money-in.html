@@ -24,8 +24,8 @@
     <title>Create Premium</title>
 </head>
 <body>
-<header th:replace="~{fragments/layout :: site-header}"></header>
 <div class="container-fluid">
+    <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container mt-4">
         <form class="my-4" th:object="${moneyInModel}" th:action="@{/contracts/create/money-in/{id}(id=${moneyInModel.cntrctId})}" method="post">
             <h2>Create Money In</h2>

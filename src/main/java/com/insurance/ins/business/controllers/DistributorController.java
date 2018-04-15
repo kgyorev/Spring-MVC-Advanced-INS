@@ -63,7 +63,7 @@ public class DistributorController {
         String selectedTab = distributorModel.getSelectedTab();
         distributorModel = DTOConvertUtil.convert(distributor, DistributorModel.class);
         distributorModel.setSelectedTab(selectedTab);
-        AllContractsViewModel contractAll = distributorService.searchContractsForDistributor(distributor, page);
+        AllContractsViewModel contractAll = contractService.searchContractsForDistributor(distributor, page);
         model.addAttribute("contractAll", contractAll);
 
         model.addAttribute("distributorModel", distributorModel);
@@ -165,18 +165,9 @@ public class DistributorController {
             notifyService.addErrorMessage("Cannot find distributor #" + id);
             return "redirect:/";
         }
-
         distributorModel = DTOConvertUtil.convert(distributor, DistributorModel.class);
         model.addAttribute("distributorModel", distributorModel);
-
-//        Client client = contract.getClient();
-//        model.addAttribute("contract", contract);
-//        Long clientId=client.getId();
-//        model.addAttribute("clientId", clientId);
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        String startdt = df.format(contract.getStartdt());
-//        model.addAttribute("startdt", startdt);
-        return "business/contract/edit-distributor";
+        return "business/distributor/edit-distributor";
     }
 
     @RequestMapping(value = "/distributors/confirm/edit/{id}", method = RequestMethod.GET)
@@ -207,62 +198,36 @@ public class DistributorController {
             notifyService.addErrorMessage("Please fill the form correctly!");
             return "/business/distributor/edit-distributor";
         }
-//        String startdt = contractModel.getStartdt();
-//        int duration = contractModel.getDuration();
-//        double amount=contractModel.getAmount();
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        Date startDate = df.parse(startdt);
-//        contract.setStartdt(startDate);
-//        contract.setAmount(amount);
-//        contract.setDuration(duration);
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(startDate);
-//        cal.add(Calendar.YEAR, duration);
-//        cal.add(Calendar.DATE, -1);
-//        Date endDate = cal.getTime();
-//        contract.setEnddt(endDate);
-//        int age=client.getAge(startDate)+1;
-//        Double premiumamount = age*amount/(duration*12*100);
-//        contract.setPremiumamount(premiumamount);
-//
-//        contractService.edit(contract);
-//        notifyService.addInfoMessage("Edit successful");
-
-        return "business/distributors/confirm-edit-distributor";
+        return "business/distributor/confirm-edit-distributor";
     }
 
     @RequestMapping(value = "/distributors/edit/{id}", method = RequestMethod.POST)
     public String edit(@Valid DistributorModel distributorModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         if (action.equals("return")) {
-            return "/business/contract/edit-distributors";
+            return "/business/distributor/edit-distributor";
         }
-//        Contract contract = contractService.findById(id);
-//        Client client = contract.getClient();
         if (distributorModel == null) {
             notifyService.addErrorMessage("Cannot find distributor #" + id);
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/contract/edit-distributor";
+            return "/business/distributor/edit-distributor";
         }
-//        String startdt = contractModel.getStartdt();
-//        int duration = contractModel.getDuration();
-//        double amount=contractModel.getAmount();
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        Date startDate = df.parse(startdt);
-//        contract.setStartdt(startDate);
-//        contract.setAmount(amount);
-//        contract.setDuration(duration);
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(startDate);
-//        cal.add(Calendar.YEAR, duration);
-//        cal.add(Calendar.DATE, -1);
-//        Date endDate = cal.getTime();
-//        contract.setEnddt(endDate);
-//        int age=client.getAge(startDate)+1;
-//        Double premiumamount = age*amount/(duration*12*100);
-//        contract.setPremiumamount(premiumamount);
+
+        String organizationId= distributorModel.getOrganization();
+        Organization organization = organizationService.findById(Long.valueOf(organizationId));
+        if (organization == null) {
+            notifyService.addErrorMessage("Reference organization not found!");
+            return "/business/distributor/edit-distributor";
+        }
+
+        String userId= distributorModel.getUser();
+        User user = userService.findById(Long.valueOf(userId));
+        if (user == null) {
+            notifyService.addErrorMessage("Reference user not found!");
+            return "/business/distributor/edit-distributor";
+        }
         distributorService.edit(distributorModel);
         notifyService.addInfoMessage("Edit successful");
         return "redirect:/distributors";
@@ -270,7 +235,7 @@ public class DistributorController {
 
     @RequestMapping(value = "/distributors/create", method = RequestMethod.GET)
     public String createPage(@ModelAttribute(name = "distributorModel") DistributorModel distributorModel) {
-        return "business/contract/create-distributor";
+        return "business/distributor/create-distributor";
     }
 
 

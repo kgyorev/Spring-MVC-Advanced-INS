@@ -4,45 +4,83 @@
 <head th:replace="fragments/layout :: site-head">
     <!--<meta charset="UTF-8">-->
     <!--<meta name="viewport"-->
-          <!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
     <!--<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css"/>-->
     <!--<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css">-->
     <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
-            <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
-            <!--crossorigin="anonymous"></script>-->
+    <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+    <!--crossorigin="anonymous"></script>-->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"-->
-            <!--integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"-->
-            <!--crossorigin="anonymous"></script>-->
+    <!--integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"-->
+    <!--crossorigin="anonymous"></script>-->
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"-->
-            <!--integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"-->
-            <!--crossorigin="anonymous"></script>-->
+    <!--integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"-->
+    <!--crossorigin="anonymous"></script>-->
     <title>User List</title>
 
 </head>
 <body>
-<header th:replace="~{fragments/layout :: site-header}"></header>
-    <div class="container-fluid">
-           <div class="container col-sm-4 align-content-center">
-               <h1>All Viruses</h1>
+
+<div class="container-fluid">
+    <header th:replace="~{fragments/layout :: site-header}"></header>
+    <div class="container col-sm-4 align-content-center">
+        <h1>Users List</h1>
+        <div class="container">
+            <form th:method="GET" th:action="@{/users}" th:object="${searchUserModel}">
+
+                <div class="form-group">
+                    <label for="searchBy">Search By:</label>
+                    <select class="form-control"
+                            id="searchBy" name="frequency" th:field="*{searchBy}">
+                        <option value="userId">User ID</option>
+                        <option value="username">Username</option>
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <label for="criteria" class="col-sm-2 col-form-label">Criteria</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="criteria" th:value="*{criteria}"
+                               name="criteria"
+                               placeholder="Search by Criteria...">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Search
+                        </button>
+                        <a class="btn btn-outline-secondary" th:href="@{/users}" type="submit"><i
+                                class="fas fa-eraser"></i> Reset </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="table-responsive-sm">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Profile</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <th:block th:each="user,index : ${users}" th:object="${user}">
+                <th:block th:each="user,index : ${users.getUsers()}" th:object="${user}">
                     <tr>
                         <th scope="row" th:text="${index.count}"></th>
+                        <td th:text="*{id}"></td>
                         <td th:text="*{username}"></td>
                         <td th:text="*{profile}"></td>
-                        <td><a th:href="@{/users/edit/{id}/(id=${user.id})}"><i class="fas fa-edit" title="Edit user"></i></a></td>
-                        <td><a data-toggle="modal" th:attr="data-target='#'+${user.id}" th:href="@{/users/delete/{id}/(id=${user.id})}"><i class="fas fa-trash-alt" title="Delete user"></i></a></td>
+                        <td><a th:href="@{/users/edit/{id}/(id=${user.id})}"><i class="fas fa-edit"
+                                                                                title="Edit user"></i></a></td>
+                        <td><a data-toggle="modal" th:attr="data-target='#'+${user.id}"
+                               th:href="@{/users/delete/{id}/(id=${user.id})}"><i class="fas fa-trash-alt"
+                                                                                  title="Delete user"></i></a></td>
                         <!-- Modal -->
-                        <div class="modal fade" th:id="${user.id}" tabindex="-1" role="dialog" aria-labelledby="deleteUserLabel" aria-hidden="true">
+                        <div class="modal fade" th:id="${user.id}" tabindex="-1" role="dialog"
+                             aria-labelledby="deleteUserLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -55,7 +93,8 @@
                                         Are you sure to delete this user?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                                        </button>
                                         <a class="btn btn-primary" th:href="@{/users/delete/{id}/(id=${user.id})}">Delete</a>
                                     </div>
                                 </div>
@@ -66,9 +105,23 @@
                 </tbody>
             </table>
         </div>
+        <nav>
+            <ul class="pagination">
+
+                <li class="page-item"><a class="page-link"
+                                         th:if="${users.getUsers().hasPrevious()&& users.getUsers().hasContent()}"
+                                         th:href="@{/users(searchBy=${searchUserModel.getSearchBy()},referenceId=${searchUserModel.getCriteria()},page=${users.getUsers().previousPageable().getPageNumber() + 1})}"><i
+                        class="fas fa-angle-left"></i> Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" th:if="${users.getUsers().hasNext()}"
+                                         th:href="@{/users(searchBy=${searchUserModel.getSearchBy()},criteria=${searchUserModel.getCriteria()},page=${users.getUsers().nextPageable().getPageNumber() + 1})}">Next
+                    <i class="fas fa-angle-right"></i></a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
-
+</div>
 <footer th:replace="~{fragments/layout :: site-footer}"></footer>
 </body>
 </html>

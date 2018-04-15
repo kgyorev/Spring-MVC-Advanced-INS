@@ -82,9 +82,6 @@ public class Distributor {
 
     @Override
     public String toString() {
-        return "Distributor{" +
-                "id=" + id +
-                ", fullName='" + fullName + '\'' +
-                '}';
+        return this.id.toString();
     }
 }

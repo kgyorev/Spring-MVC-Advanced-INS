@@ -45,7 +45,7 @@ public class MoneyInServiceImpl implements MoneyInService {
 
     @Override
     public MoneyIn findById(Long id) {
-        return this.moneyInRepository.getOne(id);
+        return this.moneyInRepository.findById(id).orElse(null);
     }
 
     @Override

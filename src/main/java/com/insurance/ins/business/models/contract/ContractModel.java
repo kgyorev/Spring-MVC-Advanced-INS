@@ -18,6 +18,9 @@ public class ContractModel {
     @Size(min = 1,message="Please enter Owner Id")
     @Existing(service = ContractService.class, fieldName = "owner", message = "Person with this id not exists.")
     private String owner;
+    @Size(min = 1,message="Please enter Distributor Id")
+    private String distributor;
+
     @NotNull(message="Please enter Contract Start Date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDt;
@@ -124,5 +127,13 @@ public class ContractModel {
 
     public void setSelectedTab(String selectedTab) {
         this.selectedTab = selectedTab;
+    }
+
+    public String getDistributor() {
+        return distributor;
+    }
+
+    public void setDistributor(String distributor) {
+        this.distributor = distributor;
     }
 }

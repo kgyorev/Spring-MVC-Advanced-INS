@@ -15,6 +15,7 @@ public class DistributorModel {
 
 
     public DistributorModel() {
+        this.selectedTab ="summary";
     }
 
     public Long getId() {

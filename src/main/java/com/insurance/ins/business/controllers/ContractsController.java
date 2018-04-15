@@ -1,5 +1,6 @@
 package com.insurance.ins.business.controllers;
 
+import com.insurance.ins.business.batch.BusinessBatch;
 import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.entites.Distributor;
 import com.insurance.ins.business.entites.Product;
@@ -51,7 +52,18 @@ public class ContractsController {
     @Autowired
     private NotificationService notifyService;
 
-    @RequestMapping(value = "/contracts/{id}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/batch", method = RequestMethod.GET)
+    public String batch() {
+
+        BusinessBatch batch = new BusinessBatch(this.premiumService);
+        batch.scheduleTaskUsingCronExpression();
+
+        return "redirect:/";
+    }
+
+
+        @RequestMapping(value = "/contracts/{id}", method = RequestMethod.GET)
     public String view(@ModelAttribute(name = "contractModel") ContractModel contractModel, @PathVariable("id") Long id, Model model,@PageableDefault(size = 10) Pageable page) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
@@ -189,21 +201,31 @@ public class ContractsController {
         if (action.equals("return")) {
             return "redirect:/contracts";
         }
+        if (bindingResult.hasErrors()) {
+            notifyService.addErrorMessage("Please fill the form correctly!");
+            return "/business/contract/edit-contract";
+        }
         String productIdntfr = contractModel.getProduct();
         Product product = productService.findByIdntfr(productIdntfr);
         if (product == null) {
             notifyService.addErrorMessage("Product not found!");
             return "/business/contract/edit-contract";
         }
+
+        String DistributorIdStr = contractModel.getDistributor();
+        long DistributorId = Long.parseLong(DistributorIdStr);
+        Distributor distributor = distributorService.findById(DistributorId);
+        if (distributor == null) {
+            notifyService.addErrorMessage("Distributor not found!");
+            return "/business/contract/edit-contract";
+        }
+
         Contract contract = contractService.findById(id);
         if (contract == null) {
             notifyService.addErrorMessage("Cannot find contract #" + id);
             return "redirect:/";
         }
-        if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/contract/edit-contract";
-        }
+
 //        String startdt = contractModel.getStartdt();
 //        int duration = contractModel.getDuration();
 //        double amount=contractModel.getAmount();
@@ -329,21 +351,26 @@ public class ContractsController {
         Contract contract = DTOConvertUtil.convert(contractModel, Contract.class);
         String id_str = contractModel.getOwner();
         long id = Long.parseLong(id_str);
-
         Person person = personService.findById(id);
         if (person == null) {
             notifyService.addErrorMessage("Owner not found!");
             return "/business/contract/create-contract";
         }
-        contract.setOwner(person);
         String productIdntfr = contractModel.getProduct();
         Product product = productService.findByIdntfr(productIdntfr);
         if (product == null) {
             notifyService.addErrorMessage("Product not found!");
             return "/business/contract/create-contract";
         }
+        String DistributorIdStr = contractModel.getDistributor();
+        long DistributorId = Long.parseLong(DistributorIdStr);
+        Distributor distributor = distributorService.findById(DistributorId);
+        if (distributor == null) {
+            notifyService.addErrorMessage("Distributor not found!");
+            return "/business/contract/create-contract";
+        }
+        contract.setOwner(person);
         contract.setProduct(product);
-        Distributor distributor = distributorService.findById(1L);
         contract.setDistributor(distributor);
         LocalDate endDate = contractModel.getStartDt().plusYears(contract.getDuration());
         contract.setEndDt(endDate);

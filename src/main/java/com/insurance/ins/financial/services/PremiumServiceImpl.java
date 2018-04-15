@@ -46,11 +46,11 @@ public class PremiumServiceImpl implements PremiumService {
 
     @Override
     public Premium findById(Long id) {
-        return this.premiumRepository.getOne(id);
+        return this.premiumRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Premium create(Contract contract,Premium premium) {
+    public Premium create(Contract contract, Premium premium) {
         premium.setRecordDate(LocalDate.now());
         LocalDate nextBillingDueDate = contractService.calculateNextBillingDueDate(contract);
         contract.setNextBillingDueDate(nextBillingDueDate);
@@ -87,6 +87,7 @@ public class PremiumServiceImpl implements PremiumService {
         premium.setStatus(Status.PAID);
         moneyIn.setStatus(Status.PAID);
         moneyIn.setPremium(premium);
+        premium.setMoneyIn(moneyIn);
         this.premiumRepository.save(premium);
         this.moneyInRepository.save(moneyIn);
     }
@@ -168,12 +169,42 @@ public class PremiumServiceImpl implements PremiumService {
 
         PremiumModel premiumModel = new PremiumModel();
         LocalDate nextBillingDueDate = contract.getNextBillingDueDate();
-        LocalDate nextBillingDueDateNew  =  contractService.calculateNextBillingDueDate(contract);
+        LocalDate nextBillingDueDateNew = contractService.calculateNextBillingDueDate(contract);
         premiumModel.setStartDate(nextBillingDueDate);
         premiumModel.setEndDate(nextBillingDueDateNew.minusDays(1));
         premiumModel.setOperationAmount(contract.getPremiumAmount());
         premiumModel.setCntrctId(String.valueOf(contract.getId()));
         return premiumModel;
+    }
+
+    @Override
+    public void premiumBillingBatch() {
+        List<Contract> contractList = contractRepository.findAllByNextBillingDueDateIsLessThanEqual(LocalDate.now());
+        for (Contract contract : contractList) {
+            Boolean process = true;
+            while (process) {
+                Premium premium = new Premium();
+                LocalDate nextBillingDueDate = contract.getNextBillingDueDate();
+                LocalDate nextBillingDueDateNew = contractService.calculateNextBillingDueDate(contract);
+                premium.setStartDate(nextBillingDueDate);
+                premium.setEndDate(nextBillingDueDateNew.minusDays(1));
+                premium.setOperationAmount(contract.getPremiumAmount());
+                premium.setContract(contract);
+                premium.setRecordDate(LocalDate.now());
+                contract.setNextBillingDueDate(nextBillingDueDateNew);
+                premiumRepository.saveAndFlush(premium);
+                contractRepository.saveAndFlush(contract);
+                MoneyIn moneyIn = this.moneyInRepository.findFirstByStatusAndContractOrderByRecordDate(Status.PENDING, contract);
+                if (moneyIn != null) {
+                    this.tryToPay(premium, moneyIn);
+                }
+                if (nextBillingDueDateNew.isAfter(LocalDate.now())) {
+                    process = false;
+                }
+
+            }
+
+        }
     }
 
     @Override

@@ -6,6 +6,8 @@ public class SearchDistributorModel {
     private String searchBy;
 
     public SearchDistributorModel() {
+        this.referenceId = "";
+        this.searchBy="distributorId";
     }
 
     public String getReferenceId() {

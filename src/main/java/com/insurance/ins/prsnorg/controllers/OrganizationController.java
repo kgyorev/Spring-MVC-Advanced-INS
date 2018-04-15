@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -40,8 +41,8 @@ public class OrganizationController {
 
         if((!searchOrganizationModel.getVat().equals("")||!searchOrganizationModel.getFullName().equals(""))
                 &&!organizationAll.getOrganizations().hasContent()) {
-                notifyService.addWarningMessage("Cannot find clients with given search criteria.");
-            }
+            notifyService.addWarningMessage("Cannot find clients with given search criteria.");
+        }
         model.addAttribute("organizationAll", organizationAll);
         return "prsnorg/org/search-organization";
     }
@@ -76,8 +77,8 @@ public class OrganizationController {
         return "prsnorg/org/view-organization";
     }
     @RequestMapping(value ="/organizations/edit/{id}", method = RequestMethod.GET)
-    public String editPage(@ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, @PathVariable("id") Long id, Model model) {
-
+    public String editPage(@ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel,@RequestParam(required=false,name="secondaryActivity") String secondaryActivity, @PathVariable("id") Long id, Model model) {
+        httpSession.setAttribute("secondaryActivity",secondaryActivity);
         Organization organization = organizationService.findById(id);
         if (organization == null) {
             notifyService.addErrorMessage("Cannot find organization #" + id);
@@ -103,7 +104,7 @@ public class OrganizationController {
         return "prsnorg/org/confirm-edit-organization";
     }
     @RequestMapping(value ="/organizations/edit/{id}", method = RequestMethod.POST)
-    public String edit(@Valid @ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, BindingResult bindingResult, @PathVariable("id") Long id, @RequestParam(value="action", required=true) String action){
+    public String edit(@Valid @ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, BindingResult bindingResult, @PathVariable("id") Long id, @RequestParam(value="action", required=true) String action,SessionStatus status){
         if(action.equals("return")){
             return "/prsnorg/org/edit-organization";
         }
@@ -120,6 +121,13 @@ public class OrganizationController {
         Organization organizationEdit = DTOConvertUtil.convert(organizationModel, Organization.class);
         organizationService.edit(organizationEdit);
         notifyService.addInfoMessage("Edit successful");
+        Object mainActivity = httpSession.getAttribute("mainActivity");
+        Object secondaryActivity = httpSession.getAttribute("secondaryActivity");
+        if(secondaryActivity!=null&&secondaryActivity.equals("true")){
+            httpSession.setAttribute("secondaryActivity",null);
+            httpSession.setAttribute("mainActivity",null);
+            return "redirect:/"+mainActivity;
+        }
         return "redirect:/organizations";
     }
     @GetMapping(value = "/organizations/create")

@@ -24,8 +24,8 @@
     <title>Create Premium</title>
 </head>
 <body>
-<header th:replace="~{fragments/layout :: site-header}"></header>
 <div class="container-fluid">
+    <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container mt-4">
         <form class="my-4" th:object="${premiumModel}" th:action="@{/contracts/create/premium/{id}(id=${premiumModel.cntrctId})}" method="post">
             <h2>Create Premium</h2>

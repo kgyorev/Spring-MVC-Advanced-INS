@@ -24,8 +24,8 @@
     <title>New Organization</title>
 </head>
 <body>
-<header th:replace="~{fragments/layout :: site-header}"></header>
 <div class="container-fluid">
+    <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container mt-4">
         <form class="my-4" th:object="${organizationModel}"
               th:action="@{/organizations/edit/{id}/(id=${organizationModel.id})}" th:method="post">

@@ -24,8 +24,8 @@
     <title>New Person</title>
 </head>
 <body>
-<header th:replace="~{fragments/layout :: site-header}"></header>
 <div class="container-fluid">
+    <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container mt-4">
         <form class="my-4" th:object="${personModel}" th:action="@{/persons/confirm/create}" th:method="get">
             <h2>New Person</h2>

@@ -31,5 +31,7 @@ public interface PremiumService  {
 
     PremiumModel createForView(Contract contract);
 
+    void premiumBillingBatch();
+
     Premium findOldestPendingPremium(Contract contract);
 }

@@ -24,8 +24,8 @@
     <title>New Organization</title>
 </head>
 <body>
-<header th:replace="~{fragments/layout :: site-header}"></header>
 <div class="container-fluid">
+    <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container mt-4">
         <form class="my-4" th:object="${organizationModel}"
               th:action="@{/organizations/confirm/edit/{id}/(id=${organizationModel.id})}">
@@ -64,9 +64,11 @@
                 </th:block>
             </div>
             <div class="text-center">
-                <button type="submit" name="action" value="return" class="btn btn-secondary"><i
-                        class="fas fa-chevron-circle-left"></i> Return
-                </button>
+                <!--<form action="">-->
+                    <button type="button" class="btn btn-secondary return"><i
+                            class="fas fa-chevron-circle-left"></i> Return
+                    </button>
+                <!--</form>-->
                 <button type="submit" name="action" value="save" class="btn btn-primary">Continue <i
                         class="fas fa-chevron-circle-right"></i></button>
             </div>

@@ -1,4 +1,4 @@
-package com.insurance.ins.controllers;
+package com.insurance.ins.technical.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

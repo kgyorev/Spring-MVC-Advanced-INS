@@ -20,6 +20,9 @@ public class Premium extends FinancialRoot{
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Contract contract;
 
+    @OneToOne
+    private MoneyIn moneyIn;
+
 
     public Premium() {
     }
@@ -46,5 +49,13 @@ public class Premium extends FinancialRoot{
 
     public void setContract(Contract contract) {
         this.contract = contract;
+    }
+
+    public MoneyIn getMoneyIn() {
+        return moneyIn;
+    }
+
+    public void setMoneyIn(MoneyIn moneyIn) {
+        this.moneyIn = moneyIn;
     }
 }

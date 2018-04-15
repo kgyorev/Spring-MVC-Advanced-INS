@@ -1,12 +1,14 @@
 package com.insurance.ins.business.services;
 
 import com.insurance.ins.business.entites.Contract;
+import com.insurance.ins.business.entites.Distributor;
 import com.insurance.ins.business.enums.Frequency;
 import com.insurance.ins.business.enums.Status;
 import com.insurance.ins.business.models.contract.AllContractsViewModel;
 import com.insurance.ins.business.models.contract.ContractModel;
 import com.insurance.ins.business.models.contract.SearchContractModel;
 import com.insurance.ins.business.repositories.ContractRepository;
+import com.insurance.ins.business.repositories.DistributorRepository;
 import com.insurance.ins.prsnorg.entites.prsn.reposiotries.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -24,11 +26,13 @@ public class ContractServiceImpl implements ContractService {
 
     private final ContractRepository contractRepository;
     private final PersonRepository personRepository;
+    private final DistributorRepository distributorRepository;
 
     @Autowired
-    public ContractServiceImpl(ContractRepository contractRepository, PersonRepository personRepository) {
+    public ContractServiceImpl(ContractRepository contractRepository, PersonRepository personRepository, DistributorRepository distributorRepository) {
         this.contractRepository = contractRepository;
         this.personRepository = personRepository;
+        this.distributorRepository = distributorRepository;
     }
 
     @Override
@@ -59,7 +63,7 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Contract findById(Long id) {
-        return this.contractRepository.getOne(id);
+        return this.contractRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -69,11 +73,13 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Contract edit(ContractModel contractModel) {
-
+        String distributorStr = contractModel.getDistributor();
+        Distributor distributor = distributorRepository.getOne(Long.valueOf(distributorStr));
         Contract contract = this.findById(contractModel.getId());
         contract.setFrequency(contractModel.getFrequency());
         contract.setDuration(contractModel.getDuration());
         contract.setAmount(contractModel.getAmount());
+        contract.setDistributor(distributor);
         contract.setPremiumAmount(contractModel.getPremiumAmount());
         contract.setNextBillingDueDate(contractModel.getNextBillingDueDate());
         return this.contractRepository.saveAndFlush(contract);
@@ -111,7 +117,13 @@ public class ContractServiceImpl implements ContractService {
 
         return viewModel;
     }
-
+    @Override
+    public AllContractsViewModel searchContractsForDistributor(Distributor distributor, Pageable page) {
+        AllContractsViewModel viewModel = new AllContractsViewModel();
+        viewModel.setContracts(this.contractRepository.findAllByDistributor(distributor, page));
+        viewModel.setTotalPageCount(this.getTotalPages());
+        return viewModel;
+    }
     @Override
     public AllContractsViewModel findAllByIdAndStatus(Long id, Status status, Pageable pageable) {
         AllContractsViewModel viewModel = new AllContractsViewModel();

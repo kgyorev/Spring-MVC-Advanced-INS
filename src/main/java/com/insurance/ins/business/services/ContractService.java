@@ -1,6 +1,7 @@
 package com.insurance.ins.business.services;
 
 import com.insurance.ins.business.entites.Contract;
+import com.insurance.ins.business.entites.Distributor;
 import com.insurance.ins.business.enums.Status;
 import com.insurance.ins.business.models.contract.AllContractsViewModel;
 import com.insurance.ins.business.models.contract.ContractModel;
@@ -24,6 +25,8 @@ public interface ContractService  extends FieldValueExists {
 
     AllContractsViewModel findAllByStatus(Status status, Pageable pageable);
 
+    AllContractsViewModel searchContractsForDistributor(Distributor distributor, Pageable page);
+
     AllContractsViewModel findAllByIdAndStatus(Long id, Status status, Pageable pageable);
     AllContractsViewModel findAllByPage(Pageable pageable);
 
@@ -32,5 +35,6 @@ public interface ContractService  extends FieldValueExists {
         return getTotalPages(10);
     }
     long getTotalPages(int size);
+
 
 }

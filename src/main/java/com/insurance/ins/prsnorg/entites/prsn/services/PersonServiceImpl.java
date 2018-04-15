@@ -80,7 +80,7 @@ public class PersonServiceImpl implements PersonService {
     }
     @Override
     public Person findById(Long id) {
-        return this.personRepository.getOne(id);
+        return this.personRepository.findById(id).orElse(null);
     }
 
     @Override
