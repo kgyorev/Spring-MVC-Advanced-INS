@@ -17,7 +17,8 @@ public interface ContractRepository extends
 
 
     List<Contract> findAllByNextBillingDueDateIsLessThanEqual(LocalDate date);
-
+    List<Contract> findAllByOwnerEgn(String ownerEgn);
+    List<Contract> findAllByStatusAndOwnerEgn(Status status, String ownerEgn);
     Page<Contract> findAllById(Long id, Pageable pageable);
 
     Page<Contract> findAllByStatus(Status status, Pageable pageable);

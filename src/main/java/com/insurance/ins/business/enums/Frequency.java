@@ -7,7 +7,7 @@ public enum Frequency {
     MONTHLY("Monthly"),
     TRIMESTER("Trimester"),
     SEMI_ANNUAL("Semi-Annual"),
-    ANNUAL("Annual");
+    ANUAL("Annual");
     private final String text;
 
     /**

@@ -43,6 +43,16 @@ public class PremiumServiceImpl implements PremiumService {
         return this.premiumRepository.findAll();
     }
 
+    @Override
+    public List<Premium> findAllByContract_OwnerEgn(String contractOwnerEgn) {
+        return this.premiumRepository.findAllByContract_OwnerEgn(contractOwnerEgn);
+    }
+
+    @Override
+    public List<Premium> findAllByStatusAndContract_OwnerEgn(Status status, String contractOwnerEgn) {
+        return this.premiumRepository.findAllByStatusAndContract_OwnerEgn(status,contractOwnerEgn);
+    }
+
 
     @Override
     public Premium findById(Long id) {

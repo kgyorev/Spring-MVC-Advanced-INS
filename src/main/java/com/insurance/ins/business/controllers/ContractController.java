@@ -33,7 +33,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 
 @Controller
-public class ContractsController {
+public class ContractController {
     public static final String CLIENT = "siteClient";
     @Autowired
     private HttpSession httpSession;
@@ -193,14 +193,6 @@ public class ContractsController {
 
         contractModel = DTOConvertUtil.convert(contract, ContractModel.class);
         model.addAttribute("contractModel", contractModel);
-
-//        Client client = contract.getClient();
-//        model.addAttribute("contract", contract);
-//        Long clientId=client.getId();
-//        model.addAttribute("clientId", clientId);
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        String startdt = df.format(contract.getStartdt());
-//        model.addAttribute("startdt", startdt);
         return "business/contract/edit-contract";
     }
 
@@ -233,33 +225,12 @@ public class ContractsController {
             notifyService.addErrorMessage("Cannot find contract #" + id);
             return "redirect:/";
         }
-
-//        String startdt = contractModel.getStartdt();
-//        int duration = contractModel.getDuration();
-//        double amount=contractModel.getAmount();
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        Date startDate = df.parse(startdt);
-//        contract.setStartdt(startDate);
-//        contract.setAmount(amount);
-//        contract.setDuration(duration);
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(startDate);
-//        cal.add(Calendar.YEAR, duration);
-//        cal.add(Calendar.DATE, -1);
-//        Date endDate = cal.getTime();
-//        contract.setEnddt(endDate);
-//        int age=client.getAge(startDate)+1;
-//        Double premiumamount = age*amount/(duration*12*100);
-//        contract.setPremiumamount(premiumamount);
-//
-//        contractService.edit(contract);
-//        notifyService.addInfoMessage("Edit successful");
         String id_str = contractModel.getOwner();
         long personId = Long.parseLong(id_str);
         Person person = personService.findById(personId);
-        int age = person.getAge(contractModel.getStartDt()) + 1;
+        int age = person.getAge(contractModel.getStartDt());
         Double premiumAmount = age * contractModel.getAmount() / (contractModel.getDuration() * 12 * 100);
-        contractModel.setPremiumAmount(premiumAmount);
+        contractModel.setPremiumAmount(Math.round(premiumAmount * 100.0) / 100.0);
         return "business/contract/confirm-edit-contract";
     }
 
@@ -315,35 +286,24 @@ public class ContractsController {
             notifyService.addErrorMessage("Please fill the form correctly!");
             return "/business/contract/create-contract";
         }
-//        Contract contract = DTOConvertUtil.convert(contractModel, Contract.class);
         String id_str = contractModel.getOwner();
         long id = Long.parseLong(id_str);
-//
         Person person = personService.findById(id);
-//        if (person == null) {
-//            notifyService.addErrorMessage("Owner not found!");
-//            return "/business/contract/create-contract";
-//        }
-//        contract.setOwner(person);
         String productIdntfr = contractModel.getProduct();
         Product product = productService.findByIdntfr(productIdntfr);
         if (product == null) {
             notifyService.addErrorMessage("Product not found!");
             return "/business/contract/create-contract";
         }
-//        contract.setProduct(product);
-//        Distributor distributor = distributorService.findById(1L);
-//        contract.setDistributor(distributor);
-//        LocalDate endDate = contractModel.getStartDt().plusYears(contract.getDuration());
-//        contract.setEndDt(endDate);
-//        contract.setCreationDt(LocalDate.now());
-//        contract.setStatus(Status.IN_FORCE);
+        Contract contract = DTOConvertUtil.convert(contractModel, Contract.class);
+        contract.setOwner(person);
+       if(!productService.checkProductRules(product,contract)){
+           return "/business/contract/create-contract";
+       }
         int age = person.getAge(contractModel.getStartDt()) + 1;
         Double premiumAmount = age * contractModel.getAmount() / (contractModel.getDuration() * 12 * 100);
-        contractModel.setPremiumAmount(premiumAmount);
-//        contractService.create(contract);
-//        notifyService.addInfoMessage("Contract with Id: " + contract.getId() + " was created.");
-        return "business/contract/confirm-create-contract";
+        contractModel.setPremiumAmount(Math.round(premiumAmount * 100.0) / 100.0);
+         return "business/contract/confirm-create-contract";
     }
 
 
@@ -378,6 +338,9 @@ public class ContractsController {
             return "/business/contract/create-contract";
         }
         contract.setOwner(person);
+        if(!productService.checkProductRules(product,contract)){
+            return "/business/contract/create-contract";
+        }
         contract.setProduct(product);
         contract.setDistributor(distributor);
         LocalDate endDate = contractModel.getStartDt().plusYears(contract.getDuration());
@@ -386,7 +349,7 @@ public class ContractsController {
         contract.setStatus(Status.IN_FORCE);
         int age = person.getAge(contract.getStartDt()) + 1;
         Double premiumAmount = age * contract.getAmount() / (contract.getDuration() * 12 * 100);
-        contract.setPremiumAmount(premiumAmount);
+        contract.setPremiumAmount(Math.round(premiumAmount * 100.0) / 100.0);
         contractService.create(contract);
         notifyService.addInfoMessage("Contract with Id: " + contract.getId() + " was created.");
         return "redirect:/";

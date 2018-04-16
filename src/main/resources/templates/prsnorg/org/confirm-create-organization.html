@@ -28,7 +28,7 @@
     <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container mt-4">
         <form class="my-4" th:object="${organizationModel}" th:action="@{/organizations/create}" th:method="post">
-            <h2 class="text-center">New Organization</h2>
+            <h2 class="text-center">Validation New Organization</h2>
             <div th:replace="~{fragments/common-organization :: common-organization-confirm}"></div>
         </form>
     </div>

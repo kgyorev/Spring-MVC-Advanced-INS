@@ -28,7 +28,7 @@
     <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container mt-4">
         <form class="my-4" th:object="${distributorModel}" th:action="@{/distributors/edit/{id}/(id=${distributorModel.id})}" th:method="post">
-            <h2 class="text-center" th:text="'Modification of Distributor ID: '+${distributorModel.id}"></h2>
+            <h2 class="text-center" th:text="'Validation Modification of Distributor ID: '+${distributorModel.id}"></h2>
             <div class="form-group">
                 <label for="user">Reference User ID</label>
                 <input type="text" class="form-control"

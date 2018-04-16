@@ -9,11 +9,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PremiumRepository extends
         JpaRepository<Premium, Long> {
 
 
+    List<Premium> findAllByContract_OwnerEgn(String contractOwnerEgn);
+    List<Premium> findAllByStatusAndContract_OwnerEgn(Status status, String contractOwnerEgn);
     Page<Premium> findAllByContract(Contract contract, Pageable pageable);
     Page<Premium> findAllById(Long id, Pageable pageable);
 

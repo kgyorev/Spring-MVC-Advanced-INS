@@ -15,6 +15,8 @@ import java.util.List;
 public interface ContractService  extends FieldValueExists {
     LocalDate calculateNextBillingDueDate(Contract contract);
     List<Contract> findAll();
+    List<Contract> findAllByOwnerEgn(String ownerEgn);
+    List<Contract> findAllByStatusAndOwnerEgn(Status status, String ownerEgn);
     Contract findById(Long id);
     Contract create(Contract contract);
     Contract edit(ContractModel contractModel);

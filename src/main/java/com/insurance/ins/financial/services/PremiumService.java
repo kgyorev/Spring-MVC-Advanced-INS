@@ -3,6 +3,7 @@ package com.insurance.ins.financial.services;
 import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.financial.MoneyIn;
 import com.insurance.ins.financial.Premium;
+import com.insurance.ins.financial.enums.Status;
 import com.insurance.ins.financial.models.AllPremiumsViewModel;
 import com.insurance.ins.financial.models.PremiumModel;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,8 @@ import java.util.List;
 
 public interface PremiumService  {
     List<Premium> findAll();
+    List<Premium> findAllByContract_OwnerEgn(String contractOwnerEgn);
+    List<Premium> findAllByStatusAndContract_OwnerEgn(Status status, String contractOwnerEgn);
     Premium findById(Long id);
     Premium create(Contract contract,Premium premium);
     void deleteById(Long id);

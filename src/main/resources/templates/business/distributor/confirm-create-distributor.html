@@ -28,39 +28,21 @@
     <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container mt-4">
         <form class="my-4" th:object="${distributorModel}" th:action="@{/distributors/create}" th:method="post">
-            <h2>Create Distributor</h2>
+            <h2 class="text-center">Validation New Distributor</h2>
             <div class="form-group">
                 <label for="user">Reference User ID</label>
                 <input type="text" class="form-control" th:classappend="${#fields.hasErrors('user')}? 'is-invalid'"
-                       id="user" name="product" th:field="*{user}"/>
-                <th:block th:each="error : ${#fields.errors('user')}">
-                    <small id="userHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
+                       id="user" name="product" th:field="*{user}" readonly/>
             </div>
             <div class="form-group">
                 <label for="organization">Reference Organization ID</label>
                 <input type="text" class="form-control" th:classappend="${#fields.hasErrors('organization')}? 'is-invalid'"
-                       id="organization" name="organization" th:field="*{organization}"/>
-                <th:block th:each="error : ${#fields.errors('organization')}">
-                    <small id="organizationHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
+                       id="organization" name="organization" th:field="*{organization}" readonly/>
             </div>
             <div class="form-group">
                 <label for="fullName">Full Name</label>
                 <input type="text" class="form-control" th:classappend="${#fields.hasErrors('fullName')}? 'is-invalid'"
-                       id="fullName" name="fullName" th:field="*{fullName}"/>
-                <th:block th:each="error : ${#fields.errors('fullName')}">
-                    <small id="fullNameHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
+                       id="fullName" name="fullName" th:field="*{fullName}" readonly/>
             </div>
             <div class="text-center">
                 <button type="submit" name="action" value="return" class="btn btn-secondary"><i

@@ -23,12 +23,16 @@ public class Person extends PrsnOrg {
 
     @Column(nullable = false,unique = true)
     private String egn;
-    public int getAge(LocalDate dateNow) {
+    public int getAge() {
         LocalDate birthdtLocal = this.getStartDate();
-        int diffInYears = (int) ChronoUnit.YEARS.between(birthdtLocal, dateNow);
-        return diffInYears;
+        int diffInYears = (int) ChronoUnit.YEARS.between(birthdtLocal, LocalDate.now());
+        return diffInYears+1;
     }
-
+    public int getAge(LocalDate localDate) {
+        LocalDate birthdtLocal = this.getStartDate();
+        int diffInYears = (int) ChronoUnit.YEARS.between(birthdtLocal, localDate);
+        return diffInYears+1;
+    }
     public Boolean getSmoker() {
         return smoker;
     }

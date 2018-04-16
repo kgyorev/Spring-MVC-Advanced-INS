@@ -76,7 +76,17 @@
                         </div>
                     </li>
 
-
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkProducts"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Product Workbench
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" href="/products/create">New
+                                Product</a>
+                            <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" href="/products">Product Area</a>
+                        </div>
+                    </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkCustomers"

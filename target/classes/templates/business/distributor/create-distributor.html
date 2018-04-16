@@ -28,7 +28,7 @@
     <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container mt-4">
         <form class="my-4" th:object="${distributorModel}" th:action="@{/distributors/confirm/create}">
-            <h2>Create Distributor</h2>
+            <h2 class="text-center">New Distributor</h2>
             <div class="form-group">
                 <label for="user">Reference User ID</label>
                 <input type="text" class="form-control" th:classappend="${#fields.hasErrors('user')}? 'is-invalid'"

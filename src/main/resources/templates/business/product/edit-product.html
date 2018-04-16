@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: site-head">
+    <!--<meta charset="UTF-8">-->
+    <!--<meta name="viewport"-->
+    <!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" href="../../../static/css/bootstrap.css"/>
+
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../../static/css/style.css">-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+    <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"-->
+    <!--integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+    <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
+    <!--integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
+    <!--crossorigin="anonymous"></script>-->
+    <title>New Person</title>
+</head>
+<body>
+<div class="container-fluid">
+    <header th:replace="~{fragments/layout :: site-header}"></header>
+    <div class="container mt-4">
+        <form class="my-4" th:object="${productModel}" th:action="@{/products/confirm/edit/{id}/(id=${productModel.id})}">
+            <h2 class="text-center" th:text="'Modification of Product Identifier: '+${productModel.idntfr}"></h2>
+            <div class="form-group">
+                <label for="idntfr">Product Identifier</label>
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('idntfr')}? 'is-invalid'"
+                       id="idntfr" name="idntfr" th:field="*{idntfr}"/>
+                <th:block th:each="error : ${#fields.errors('idntfr')}">
+                    <small id="idntfrHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="label">Product Label</label>
+                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('label')}? 'is-invalid'"
+                       id="label" name="label" th:field="*{label}"/>
+                <th:block th:each="error : ${#fields.errors('label')}">
+                    <small id="labelHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="minAge">Minimum Owner Age</label>
+                <input type="number" class="form-control"
+                       th:classappend="${#fields.hasErrors('minAge')}? 'is-invalid'"
+                       id="minAge" name="minAge" th:field="*{minAge}"/>
+                <th:block th:each="error : ${#fields.errors('minAge')}">
+                    <small id="minAgeHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="maxAge">Maximum Owner Age</label>
+                <input type="number" class="form-control"
+                       th:classappend="${#fields.hasErrors('maxAge')}? 'is-invalid'"
+                       id="maxAge" name="maxAge" th:field="*{maxAge}"/>
+                <th:block th:each="error : ${#fields.errors('maxAge')}">
+                    <small id="maxAgeHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="form-group">
+                <label for="frequencyRule">Frequency</label>
+                <select multiple="multiple" class="form-control" th:classappend="${#fields.hasErrors('frequencyRule')}? 'is-invalid'"
+                        id="frequencyRule" name="frequencyRule">
+                    <option th:each="freq : ${T(com.insurance.ins.business.enums.Frequency).values()}"
+                            th:value="${freq}" th:text="${freq.getFreqLabel()}" th:selected="${productModel.frequencyRule.contains(freq.toString())}"></option>
+                </select>
+                <th:block th:each="error : ${#fields.errors('frequencyRule')}">
+                    <small id="frequencyHelp" class="text-danger"
+                           th:text="${error}">
+                        Error Message
+                    </small>
+                </th:block>
+            </div>
+            <div class="text-center">
+                <button type="submit" name="action" value="return" class="btn btn-secondary"><i
+                        class="fas fa-chevron-circle-left"></i> Return
+                </button>
+                <button type="submit" name="action" value="save" class="btn btn-primary">Continue <i
+                        class="fas fa-chevron-circle-right"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+<footer th:replace="~{fragments/layout :: site-footer}"></footer>
+</body>
+</html>

@@ -48,7 +48,7 @@ public class ContractServiceImpl implements ContractService {
 
     private Long getFrequencyMonths(Frequency frequency) {
        switch (frequency){
-           case ANNUAL: return 12L;
+           case ANUAL: return 12L;
            case SEMI_ANNUAL: return 6L;
            case TRIMESTER: return 3L;
            default: return 1L;
@@ -58,6 +58,16 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public List<Contract> findAll() {
         return this.contractRepository.findAll();
+    }
+
+    @Override
+    public List<Contract> findAllByOwnerEgn(String ownerEgn) {
+        return this.contractRepository.findAllByOwnerEgn(ownerEgn);
+    }
+
+    @Override
+    public List<Contract> findAllByStatusAndOwnerEgn(Status status, String ownerEgn) {
+        return this.contractRepository.findAllByStatusAndOwnerEgn(status,ownerEgn);
     }
 
 

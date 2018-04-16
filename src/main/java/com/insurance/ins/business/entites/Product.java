@@ -17,8 +17,17 @@ public class Product {
 
     @Column(nullable = false, length = 10, unique = true)
     private String idntfr;
-    @Column(nullable = false, length = 30, unique = true)
+    @Column(nullable = false, length = 30)
     private String label;
+
+    @Column(nullable = false)
+    private int minAge;
+
+    @Column(nullable = false)
+    private int maxAge;
+
+    @Column(nullable = false)
+    private String frequencyRule;
 
     public Product() {
     }
@@ -45,6 +54,30 @@ public class Product {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public int getMinAge() {
+        return minAge;
+    }
+
+    public void setMinAge(int minAge) {
+        this.minAge = minAge;
+    }
+
+    public int getMaxAge() {
+        return maxAge;
+    }
+
+    public void setMaxAge(int maxAge) {
+        this.maxAge = maxAge;
+    }
+
+    public String getFrequencyRule() {
+        return frequencyRule;
+    }
+
+    public void setFrequencyRule(String frequencyRule) {
+        this.frequencyRule = frequencyRule;
     }
 
     @Override
