@@ -50,7 +50,9 @@ public class RestContractController {
         List<Premium> allByStatusAndOwnerEgn = this.premiumService.findAllByStatusAndContract_OwnerEgn(com.insurance.ins.financial.enums.Status.PENDING, egn);
         List<PremiumModel> premiumModels=new ArrayList<>();
         for (Premium premium : allByStatusAndOwnerEgn) {
-            premiumModels.add(DTOConvertUtil.convert(premium,PremiumModel.class));
+            PremiumModel premiumModel = DTOConvertUtil.convert(premium, PremiumModel.class);
+            premiumModel.setCntrctId(String.valueOf(premium.getContract().getId()));
+            premiumModels.add(premiumModel);
         }
         return premiumModels;
 
