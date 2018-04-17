@@ -21,7 +21,10 @@ import java.util.List;
 
 @Controller
 //@RequestMapping("/nuggets")
-@CrossOrigin(origins = "http://localhost:63343")
+//@CrossOrigin(origins = "http://localhost:63343")
+//@CrossOrigin(origins = "http://blog.android.bg")
+//91.215.216.96
+
 public class RestContractController {
 
 
@@ -35,6 +38,7 @@ public class RestContractController {
 
     @GetMapping(value="/contracts/client",produces = "application/json")
     @ResponseBody
+    @CrossOrigin
     public List<ContractModel> allContractsByClient(@RequestParam("egn") String egn) {
         List<Contract> allByStatusAndOwnerEgn = this.contractService.findAllByStatusAndOwnerEgn(Status.IN_FORCE, egn);
         List<ContractModel> contractModels=new ArrayList<>();
@@ -46,6 +50,7 @@ public class RestContractController {
     }
     @GetMapping(value="/premiums/client",produces = "application/json")
     @ResponseBody
+    @CrossOrigin
     public List<PremiumModel> allPremiumsByClient(@RequestParam("egn") String egn) {
         List<Premium> allByStatusAndOwnerEgn = this.premiumService.findAllByStatusAndContract_OwnerEgn(com.insurance.ins.financial.enums.Status.PENDING, egn);
         List<PremiumModel> premiumModels=new ArrayList<>();

@@ -27,16 +27,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.time.LocalDate;
 
 @Controller
 public class ContractController {
-    public static final String CLIENT = "siteClient";
-    @Autowired
-    private HttpSession httpSession;
     @Autowired
     private ContractService contractService;
     @Autowired
@@ -272,7 +268,7 @@ public class ContractController {
     }
 
     @RequestMapping(value = "/contracts/create", method = RequestMethod.GET)
-    public String createPage(@ModelAttribute(name = "contractModel") ContractModel contractModel) {
+    public String createPage(@ModelAttribute(name = "contractModel") ContractModel contractMode) {
         return "business/contract/create-contract";
     }
 
