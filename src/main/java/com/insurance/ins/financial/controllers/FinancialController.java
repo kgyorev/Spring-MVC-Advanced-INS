@@ -168,7 +168,7 @@ public class FinancialController {
 //        Product product = productService.findByIdntfr(productIdntfr);
 //        if (product == null) {
 //            notifyService.addErrorMessage("Product not found!");
-//            return "/business/contract/edit-contract";
+//            return "business/contract/edit-contract";
 //        }
 //        Contract contract = contractService.findById(id);
 //        if (contract == null) {
@@ -177,7 +177,7 @@ public class FinancialController {
 //        }
 //        if (bindingResult.hasErrors()) {
 //            notifyService.addErrorMessage("Please fill the form correctly!");
-//            return "/business/contract/edit-contract";
+//            return "business/contract/edit-contract";
 //        }
 ////        String startdt = contractModel.getStartdt();
 ////        int duration = contractModel.getDuration();
@@ -211,7 +211,7 @@ public class FinancialController {
 //    @RequestMapping(value = "/contracts/edit/{id}", method = RequestMethod.POST)
 //    public String edit(@Valid ContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
 //        if (action.equals("return")) {
-//            return "/business/contract/edit-contract";
+//            return "business/contract/edit-contract";
 //        }
 ////        Contract contract = contractService.findById(id);
 ////        Client client = contract.getClient();
@@ -221,7 +221,7 @@ public class FinancialController {
 //        }
 //        if (bindingResult.hasErrors()) {
 //            notifyService.addErrorMessage("Please fill the form correctly!");
-//            return "/business/contract/edit-contract";
+//            return "business/contract/edit-contract";
 //        }
 ////        String startdt = contractModel.getStartdt();
 ////        int duration = contractModel.getDuration();
@@ -287,7 +287,7 @@ public class FinancialController {
 //        }
 //        if (bindingResult.hasErrors()) {
 //            notifyService.addErrorMessage("Please fill the form correctly!");
-//            return "/business/contract/create-contract";
+//            return "business/contract/create-contract";
 //        }
 ////        Contract contract = DTOConvertUtil.convert(contractModel, Contract.class);
 //        String id_str = contractModel.getOwner();
@@ -296,14 +296,14 @@ public class FinancialController {
 //        Person person = personService.findById(id);
 ////        if (person == null) {
 ////            notifyService.addErrorMessage("Owner not found!");
-////            return "/business/contract/create-contract";
+////            return "business/contract/create-contract";
 ////        }
 ////        contract.setOwner(person);
 //        String productIdntfr = contractModel.getProduct();
 //        Product product = productService.findByIdntfr(productIdntfr);
 //        if (product == null) {
 //            notifyService.addErrorMessage("Product not found!");
-//            return "/business/contract/create-contract";
+//            return "business/contract/create-contract";
 //        }
 ////        contract.setProduct(product);
 ////        Distributor distributor = distributorService.findById(1L);
@@ -333,7 +333,7 @@ public class FinancialController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/financial/premium/create/create-premium";
+            return "financial/premium/create/create-premium";
         }
         Premium premium = DTOConvertUtil.convert(premiumModel, Premium.class);
         premiumService.create(contract, premium);
@@ -358,7 +358,7 @@ public class FinancialController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/financial/money-in/create/create-money-in";
+            return "financial/money-in/create/create-money-in";
         }
         MoneyIn moneyIn = DTOConvertUtil.convert(moneyInModel, MoneyIn.class);
         moneyInService.create(contract, moneyIn);

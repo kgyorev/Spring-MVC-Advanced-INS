@@ -179,14 +179,14 @@ public class DistributorController {
         Organization organization = organizationService.findById(Long.valueOf(organizationId));
         if (organization == null) {
             notifyService.addErrorMessage("Reference organization not found!");
-            return "/business/distributor/edit-distributor";
+            return "business/distributor/edit-distributor";
         }
 
         String userId= distributorModel.getUser();
         User user = userService.findById(Long.valueOf(userId));
         if (user == null) {
             notifyService.addErrorMessage("Reference user not found!");
-            return "/business/distributor/edit-distributor";
+            return "business/distributor/edit-distributor";
         }
 
         Distributor distributor = distributorService.findById(id);
@@ -196,7 +196,7 @@ public class DistributorController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/distributor/edit-distributor";
+            return "business/distributor/edit-distributor";
         }
         return "business/distributor/confirm-edit-distributor";
     }
@@ -204,7 +204,7 @@ public class DistributorController {
     @RequestMapping(value = "/distributors/edit/{id}", method = RequestMethod.POST)
     public String edit(@Valid DistributorModel distributorModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         if (action.equals("return")) {
-            return "/business/distributor/edit-distributor";
+            return "business/distributor/edit-distributor";
         }
         if (distributorModel == null) {
             notifyService.addErrorMessage("Cannot find distributor #" + id);
@@ -212,21 +212,21 @@ public class DistributorController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/distributor/edit-distributor";
+            return "business/distributor/edit-distributor";
         }
 
         String organizationId= distributorModel.getOrganization();
         Organization organization = organizationService.findById(Long.valueOf(organizationId));
         if (organization == null) {
             notifyService.addErrorMessage("Reference organization not found!");
-            return "/business/distributor/edit-distributor";
+            return "business/distributor/edit-distributor";
         }
 
         String userId= distributorModel.getUser();
         User user = userService.findById(Long.valueOf(userId));
         if (user == null) {
             notifyService.addErrorMessage("Reference user not found!");
-            return "/business/distributor/edit-distributor";
+            return "business/distributor/edit-distributor";
         }
         distributorService.edit(distributorModel);
         notifyService.addInfoMessage("Edit successful");
@@ -253,14 +253,14 @@ public class DistributorController {
         Organization organization = organizationService.findById(Long.valueOf(organizationId));
         if (organization == null) {
             notifyService.addErrorMessage("Reference organization not found!");
-            return "/business/distributor/create-distributor";
+            return "business/distributor/create-distributor";
         }
 
         String userId= distributorModel.getUser();
         User user = userService.findById(Long.valueOf(userId));
         if (user == null) {
             notifyService.addErrorMessage("Reference user not found!");
-            return "/business/distributor/create-distributor";
+            return "business/distributor/create-distributor";
         }
         return "business/distributor/confirm-create-distributor";
     }
@@ -269,11 +269,11 @@ public class DistributorController {
     @RequestMapping(value = "/distributors/create", method = RequestMethod.POST)
     public String create(@Valid DistributorModel distributorModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
-            return "/business/distributor/create-distributor";
+            return "business/distributor/create-distributor";
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/distributor/create-distributor";
+            return "business/distributor/create-distributor";
         }
         Distributor distributor = DTOConvertUtil.convert(distributorModel, Distributor.class);
 
@@ -282,14 +282,14 @@ public class DistributorController {
         Organization organization = organizationService.findById(Long.valueOf(organizationId));
         if (organization == null) {
             notifyService.addErrorMessage("Reference organization not found!");
-            return "/business/distributor/create-distributor";
+            return "business/distributor/create-distributor";
         }
 
         String userId= distributorModel.getUser();
         User user = userService.findById(Long.valueOf(userId));
         if (user == null) {
             notifyService.addErrorMessage("Reference user not found!");
-            return "/business/distributor/create-distributor";
+            return "business/distributor/create-distributor";
         }
 
 

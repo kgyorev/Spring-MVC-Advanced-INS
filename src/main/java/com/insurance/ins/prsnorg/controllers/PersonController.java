@@ -99,14 +99,14 @@ public class PersonController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/prsnorg/prsn/edit-person";
+            return "prsnorg/prsn/edit-person";
         }
         return "prsnorg/prsn/confirm-edit-person";
     }
     @RequestMapping(value ="/persons/edit/{id}", method = RequestMethod.POST)
     public String edit(@Valid @ModelAttribute(name = "personModel") EditPersonModel personModel, BindingResult bindingResult, @PathVariable("id") Long id,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
-            return "/prsnorg/prsn/edit-person";
+            return "prsnorg/prsn/edit-person";
         }
         Person person = personService.findById(id);
         if (person == null) {
@@ -115,7 +115,7 @@ public class PersonController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/prsnorg/prsn/edit-person";
+            return "prsnorg/prsn/edit-person";
         }
         Person personEdit = DTOConvertUtil.convert(personModel, Person.class);
         personService.edit(personEdit);
@@ -133,7 +133,7 @@ public class PersonController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/prsnorg/prsn/create-person";
+            return "prsnorg/prsn/create-person";
         }
         return "prsnorg/prsn/confirm-create-person";
     }
@@ -141,11 +141,11 @@ public class PersonController {
     @PostMapping(value = "/persons/create")
     public String create(@Valid PersonModel personModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
-            return "/prsnorg/prsn/create-person";
+            return "prsnorg/prsn/create-person";
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/prsnorg/prsn/create-person";
+            return "prsnorg/prsn/create-person";
         }
         Person person = DTOConvertUtil.convert(personModel, Person.class);
         this.personService.create(person);

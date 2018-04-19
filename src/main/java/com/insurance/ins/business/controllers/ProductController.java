@@ -89,7 +89,7 @@ public class ProductController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/product/edit-product";
+            return "business/product/edit-product";
         }
         Product product = productService.findById(id);
         if (product == null) {
@@ -102,7 +102,7 @@ public class ProductController {
     @RequestMapping(value = "/products/edit/{id}", method = RequestMethod.POST)
     public String edit(@Valid ProductModel productModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         if (action.equals("return")) {
-            return "/business/product/edit-product";
+            return "business/product/edit-product";
         }
         if (productModel == null) {
             notifyService.addErrorMessage("Cannot find product #" + id);
@@ -110,7 +110,7 @@ public class ProductController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/product/edit-product";
+            return "business/product/edit-product";
         }
 
         productService.edit(productModel);
@@ -131,7 +131,7 @@ public class ProductController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/product/create-product";
+            return "business/product/create-product";
         }
 
         return "business/product/confirm-create-product";
@@ -141,11 +141,11 @@ public class ProductController {
     @RequestMapping(value = "/products/create", method = RequestMethod.POST)
     public String create(@Valid ProductModel productModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
-            return "/business/product/create-product";
+            return "business/product/create-product";
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/product/create-product";
+            return "business/product/create-product";
         }
         Product product = DTOConvertUtil.convert(productModel, Product.class);
 

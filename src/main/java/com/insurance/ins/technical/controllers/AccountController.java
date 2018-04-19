@@ -68,12 +68,12 @@ public class AccountController {
     public String create(@Valid UserModel userModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/users/register";
+            return "users/register";
         }
 
         if (!userModel.getPassword().equals(userModel.getConfirmPassword())) {
             notifyService.addErrorMessage("Password and ConfirmPassword are not the same!");
-            return "/users/register";
+            return "users/register";
         }
         User user = userService.register(userModel);
         notifyService.addInfoMessage("User with Id: " + user.getId() + " was created.");
@@ -119,11 +119,11 @@ public class AccountController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/users/edit";
+            return "users/edit";
         }
         if (!editUserModel.getPassword().equals(editUserModel.getConfirmPassword())) {
             notifyService.addErrorMessage("Password and ConfirmPassword are not the same!");
-            return "/users/edit";
+            return "users/edit";
         }
         this.userService.edit(editUserModel);
         notifyService.addInfoMessage("Edit successful");

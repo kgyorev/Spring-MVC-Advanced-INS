@@ -99,14 +99,14 @@ public class OrganizationController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/prsnorg/org/edit-organization";
+            return "prsnorg/org/edit-organization";
         }
         return "prsnorg/org/confirm-edit-organization";
     }
     @RequestMapping(value ="/organizations/edit/{id}", method = RequestMethod.POST)
     public String edit(@Valid @ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, BindingResult bindingResult, @PathVariable("id") Long id, @RequestParam(value="action", required=true) String action,SessionStatus status){
         if(action.equals("return")){
-            return "/prsnorg/org/edit-organization";
+            return "prsnorg/org/edit-organization";
         }
 
         Organization organization = organizationService.findById(id);
@@ -116,7 +116,7 @@ public class OrganizationController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/prsnorg/org/edit-organization";
+            return "prsnorg/org/edit-organization";
         }
         Organization organizationEdit = DTOConvertUtil.convert(organizationModel, Organization.class);
         organizationService.edit(organizationEdit);
@@ -141,19 +141,19 @@ public class OrganizationController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/prsnorg/org/create-organization";
+            return "prsnorg/org/create-organization";
         }
-        return "/prsnorg/org/confirm-create-organization";
+        return "prsnorg/org/confirm-create-organization";
     }
 
     @PostMapping(value = "/organizations/create")
     public String create(@Valid OrganizationModel organizationModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
-            return "/prsnorg/org/create-organization";
+            return "prsnorg/org/create-organization";
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/prsnorg/org/create-organization";
+            return "prsnorg/org/create-organization";
         }
         Organization organization = DTOConvertUtil.convert(organizationModel, Organization.class);
         this.organizationService.create(organization);

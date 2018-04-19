@@ -199,13 +199,13 @@ public class ContractController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/contract/edit-contract";
+            return "business/contract/edit-contract";
         }
         String productIdntfr = contractModel.getProduct();
         Product product = productService.findByIdntfr(productIdntfr);
         if (product == null) {
             notifyService.addErrorMessage("Product not found!");
-            return "/business/contract/edit-contract";
+            return "business/contract/edit-contract";
         }
 
         String DistributorIdStr = contractModel.getDistributor();
@@ -213,7 +213,7 @@ public class ContractController {
         Distributor distributor = distributorService.findById(DistributorId);
         if (distributor == null) {
             notifyService.addErrorMessage("Distributor not found!");
-            return "/business/contract/edit-contract";
+            return "business/contract/edit-contract";
         }
 
         Contract contract = contractService.findById(id);
@@ -233,7 +233,7 @@ public class ContractController {
     @RequestMapping(value = "/contracts/edit/{id}", method = RequestMethod.POST)
     public String edit(@Valid ContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         if (action.equals("return")) {
-            return "/business/contract/edit-contract";
+            return "business/contract/edit-contract";
         }
 //        Contract contract = contractService.findById(id);
 //        Client client = contract.getClient();
@@ -243,7 +243,7 @@ public class ContractController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/contract/edit-contract";
+            return "business/contract/edit-contract";
         }
 //        String startdt = contractModel.getStartdt();
 //        int duration = contractModel.getDuration();
@@ -280,7 +280,7 @@ public class ContractController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/contract/create-contract";
+            return "business/contract/create-contract";
         }
         String id_str = contractModel.getOwner();
         long id = Long.parseLong(id_str);
@@ -289,12 +289,12 @@ public class ContractController {
         Product product = productService.findByIdntfr(productIdntfr);
         if (product == null) {
             notifyService.addErrorMessage("Product not found!");
-            return "/business/contract/create-contract";
+            return "business/contract/create-contract";
         }
         Contract contract = DTOConvertUtil.convert(contractModel, Contract.class);
         contract.setOwner(person);
        if(!productService.checkProductRules(product,contract)){
-           return "/business/contract/create-contract";
+           return "business/contract/create-contract";
        }
         int age = person.getAge(contractModel.getStartDt()) + 1;
         Double premiumAmount = age * contractModel.getAmount() / (contractModel.getDuration() * 12 * 100);
@@ -306,11 +306,11 @@ public class ContractController {
     @RequestMapping(value = "/contracts/create", method = RequestMethod.POST)
     public String create(@Valid ContractModel contractModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
-            return "/business/contract/create-contract";
+            return "business/contract/create-contract";
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/contract/create-contract";
+            return "business/contract/create-contract";
         }
         Contract contract = DTOConvertUtil.convert(contractModel, Contract.class);
         String id_str = contractModel.getOwner();
@@ -318,24 +318,24 @@ public class ContractController {
         Person person = personService.findById(id);
         if (person == null) {
             notifyService.addErrorMessage("Owner not found!");
-            return "/business/contract/create-contract";
+            return "business/contract/create-contract";
         }
         String productIdntfr = contractModel.getProduct();
         Product product = productService.findByIdntfr(productIdntfr);
         if (product == null) {
             notifyService.addErrorMessage("Product not found!");
-            return "/business/contract/create-contract";
+            return "business/contract/create-contract";
         }
         String DistributorIdStr = contractModel.getDistributor();
         long DistributorId = Long.parseLong(DistributorIdStr);
         Distributor distributor = distributorService.findById(DistributorId);
         if (distributor == null) {
             notifyService.addErrorMessage("Distributor not found!");
-            return "/business/contract/create-contract";
+            return "business/contract/create-contract";
         }
         contract.setOwner(person);
         if(!productService.checkProductRules(product,contract)){
-            return "/business/contract/create-contract";
+            return "business/contract/create-contract";
         }
         contract.setProduct(product);
         contract.setDistributor(distributor);
