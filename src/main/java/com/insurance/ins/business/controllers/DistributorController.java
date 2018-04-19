@@ -246,7 +246,7 @@ public class DistributorController {
         }
         if (bindingResult.hasErrors()) {
             notifyService.addErrorMessage("Please fill the form correctly!");
-            return "/business/distributor/create-distributor";
+            return "business/distributor/create-distributor";
         }
 
         String organizationId= distributorModel.getOrganization();
