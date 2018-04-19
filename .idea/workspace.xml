@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc342cc2-56d8-4d9a-b971-434d4de32925" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/system.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,16 +14,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RestContractController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/RestContractController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="47" column="30" lean-forward="false" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ContractController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -34,11 +24,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="system.properties" pinned="false" current-in-tab="true">
+      <file leaf-file-name="system.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/system.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
               <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="system.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/system.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -629,12 +629,9 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\business\product" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\users" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\java\com\insurance\ins\technical" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\business\distributor" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\financial\money-in" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\fragments" />
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\.idea" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.insurance.ins.business.controllers" />
@@ -643,9 +640,12 @@
       <recent name="com.insurance.ins.technical.entites" />
       <recent name="com.insurance.ins.business.models.distributor" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\fragments" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\.idea" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS" />
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\business\product" />
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\users" />
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\java\com\insurance\ins\technical" />
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\business\distributor" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -883,7 +883,7 @@
       <workItem from="1523778643517" duration="103000" />
       <workItem from="1523779115766" duration="636000" />
       <workItem from="1523780098339" duration="36671000" />
-      <workItem from="1524129450577" duration="1408000" />
+      <workItem from="1524129450577" duration="1698000" />
     </task>
     <servers />
   </component>
@@ -920,7 +920,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="329866000" />
+    <option name="totallyTimeSpent" value="330156000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1065,13 +1065,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/product/edit-product.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="95" column="52" lean-forward="false" selection-start-line="95" selection-start-column="52" selection-end-line="95" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/product/confirm-edit-product.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1394">
@@ -1450,6 +1443,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
