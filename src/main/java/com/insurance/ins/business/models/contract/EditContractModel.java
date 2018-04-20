@@ -2,9 +2,7 @@ package com.insurance.ins.business.models.contract;
 
 
 import com.insurance.ins.business.enums.Frequency;
-import com.insurance.ins.business.services.ContractService;
 import com.insurance.ins.business.services.DistributorService;
-import com.insurance.ins.business.services.ProductService;
 import com.insurance.ins.utils.annotations.Existing;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,12 +12,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-public class ContractModel {
+public class EditContractModel {
 
     private Long id;
-    @Size(min = 1,message="Please enter Owner Id")
-    @Existing(service = ContractService.class, fieldName = "owner", message = "Person with this id not exists.")
-    private String owner;
+//    @Size(min = 1,message="Please enter Owner Id")
+//    @Existing(service = ContractService.class, fieldName = "owner", message = "Person with this id not exists.")
+//    private String owner;
     @Existing(service = DistributorService.class, fieldName = "id", message = "Distributor with this id not exists.")
     @Size(min = 1,message="Please enter Distributor Id")
     private String distributor;
@@ -38,9 +36,9 @@ public class ContractModel {
     @Min(value=1,message = "Minimum Duration is 1 year") @Max(value = 10 ,message = "Maximum Duration is 10 years")
     private int duration;
 
-    @Size(min = 1,message="Please enter Product Id")
-    @Existing(service = ProductService.class, fieldName = "idntfr", message = "Product with this Idntfr not exists.")
-    private String product;
+//    @Size(min = 1,message="Please enter Product Id")
+//    @Existing(service = ProductService.class, fieldName = "idntfr", message = "Product with this Idntfr not exists.")
+//    private String product;
 
     private Frequency frequency;
 
@@ -48,7 +46,7 @@ public class ContractModel {
 
     private String selectedTab;
 
-    public ContractModel() {
+    public EditContractModel() {
         this.selectedTab ="summary";
         this.frequency=Frequency.MONTHLY;
     }
@@ -77,21 +75,21 @@ public class ContractModel {
         this.startDt = startDt;
     }
 
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    public String getProduct() {
-        return product;
-    }
-
-    public void setProduct(String product) {
-        this.product = product;
-    }
+//    public String getOwner() {
+//        return owner;
+//    }
+//
+//    public void setOwner(String owner) {
+//        this.owner = owner;
+//    }
+//
+//    public String getProduct() {
+//        return product;
+//    }
+//
+//    public void setProduct(String product) {
+//        this.product = product;
+//    }
 
     public Frequency getFrequency() {
         return frequency;

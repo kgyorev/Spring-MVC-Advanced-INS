@@ -16,4 +16,5 @@ public interface ProductRepository extends
     Product findByIdntfr(String idntfr);
     Page<Product> findAllByIdntfr(String idntfr, Pageable pageable);
 
+    boolean existsByIdntfr(String s);
 }

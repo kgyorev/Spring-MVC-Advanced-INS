@@ -249,19 +249,19 @@ public class DistributorController {
             return "business/distributor/create-distributor";
         }
 
-        String organizationId= distributorModel.getOrganization();
-        Organization organization = organizationService.findById(Long.valueOf(organizationId));
-        if (organization == null) {
-            notifyService.addErrorMessage("Reference organization not found!");
-            return "business/distributor/create-distributor";
-        }
+//        String organizationId= distributorModel.getOrganization();
+//        Organization organization = organizationService.findById(Long.valueOf(organizationId));
+//        if (organization == null) {
+//            notifyService.addErrorMessage("Reference organization not found!");
+//            return "business/distributor/create-distributor";
+//        }
 
-        String userId= distributorModel.getUser();
-        User user = userService.findById(Long.valueOf(userId));
-        if (user == null) {
-            notifyService.addErrorMessage("Reference user not found!");
-            return "business/distributor/create-distributor";
-        }
+//        String userId= distributorModel.getUser();
+//        User user = userService.findById(Long.valueOf(userId));
+//        if (user == null) {
+//            notifyService.addErrorMessage("Reference user not found!");
+//            return "business/distributor/create-distributor";
+//        }
         return "business/distributor/confirm-create-distributor";
     }
 

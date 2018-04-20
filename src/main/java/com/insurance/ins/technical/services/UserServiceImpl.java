@@ -11,6 +11,7 @@ import com.insurance.ins.technical.models.UserModel;
 import com.insurance.ins.technical.repositories.RoleRepository;
 import com.insurance.ins.technical.repositories.UserRepository;
 import com.insurance.ins.utils.DTOConvertUtil;
+import com.insurance.ins.utils.interfaces.FieldValueExists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,6 +20,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -31,7 +33,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, FieldValueExists {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -67,10 +69,10 @@ public class UserServiceImpl implements UserService {
         User user = DTOConvertUtil.convert(userRegisterBindingModel, User.class);
         user.setPassword(this.encoder.encode(userRegisterBindingModel.getPassword()));
         List<User> allUsers = this.userRepository.findAll();
-        if(allUsers.size()==0){
-            this.setRoles("ADMIN",user);
-        } else{
-            this.setRoles("USER",user);
+        if (allUsers.size() == 0) {
+            this.setRoles("ADMIN", user);
+        } else {
+            this.setRoles("USER", user);
         }
 
 //        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
@@ -82,7 +84,6 @@ public class UserServiceImpl implements UserService {
 //        user.setAuthorities(roles);
 
 
-
 //        this.roleRepository.save(role);
 
         return this.userRepository.saveAndFlush(user);
@@ -91,16 +92,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserServiceModel> getAllUsers() {
         List<UserServiceModel> allUsers = DTOConvertUtil.convert(this.userRepository.findAll(), UserServiceModel.class);
-        return allUsers ;
+        return allUsers;
     }
 
     @Override
-    public void setRoles(String profile,User user) {
+    public void setRoles(String profile, User user) {
         user.setProfile(profile);
-        if(profile.equals("ADMIN")){
+        if (profile.equals("ADMIN")) {
             Set<Role> allRolse = new HashSet<>(this.roleRepository.findAll());
             user.setAuthorities(allRolse);
-        } else if(profile.equals("MODERATOR")){
+        } else if (profile.equals("MODERATOR")) {
             Set<Role> profile_moderator = this.roleRepository.findAll().stream().filter(a -> !a.getAuthority().equals("ROLE_ADMIN")).collect(Collectors.toSet());
             user.setAuthorities(profile_moderator);
         } else {
@@ -115,14 +116,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long id) {
-         return this.userRepository.findById(id).orElse(null);
+        return this.userRepository.findById(id).orElse(null);
     }
 
     @Override
     public void edit(EditUserModel userEditBindingModel) {
         User user = DTOConvertUtil.convert(userEditBindingModel, User.class);
         user.setPassword(this.encoder.encode(userEditBindingModel.getPassword()));
-        this.setRoles(user.getProfile(),user);
+        this.setRoles(user.getProfile(), user);
         this.userRepository.saveAndFlush(user);
     }
 
@@ -134,13 +135,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public AllUsersViewModel searchUser(SearchUserModel searchUserModel, Pageable pageable) {
         String searchBy = searchUserModel.getSearchBy();
-        String referenceCriteriaStr =   searchUserModel.getCriteria();
-        if(referenceCriteriaStr==null||referenceCriteriaStr.equals("")){
-            return  this.findAllByPage(pageable);
+        String referenceCriteriaStr = searchUserModel.getCriteria();
+        if (referenceCriteriaStr == null || referenceCriteriaStr.equals("")) {
+            return this.findAllByPage(pageable);
         }
-        switch (searchBy){
-            case "username": return this.findAllByUsername(searchUserModel.getCriteria(),pageable);
-            default: return this.findAllById( Long.valueOf(searchUserModel.getCriteria()),pageable);
+        switch (searchBy) {
+            case "username":
+                return this.findAllByUsername(searchUserModel.getCriteria(), pageable);
+            default:
+                return this.findAllById(Long.valueOf(searchUserModel.getCriteria()), pageable);
         }
     }
 
@@ -179,5 +182,24 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+    public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
+        Assert.notNull(fieldName, "Can't be null");
 
+        if (!fieldName.equals("username")&&!fieldName.equals("id")) {
+            throw new UnsupportedOperationException("Field name not supported");
+        }
+
+        if (value == null) {
+            return false;
+        }
+        if(fieldName.equals("username")){
+            return this.userRepository.existsByUsername(value.toString());
+        } else
+        {
+            return this.userRepository.existsById(Long.valueOf(value.toString()));
+        }
+
+    }
 }
+

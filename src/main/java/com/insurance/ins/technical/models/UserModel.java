@@ -1,11 +1,15 @@
 package com.insurance.ins.technical.models;
 
 
+import com.insurance.ins.technical.services.UserServiceImpl;
+import com.insurance.ins.utils.annotations.Unique;
+
 import javax.validation.constraints.Size;
 
 public class UserModel {
     private Long id;
     @Size(min=4,message="Please enter Username minimum 5 symbols")
+    @Unique(service = UserServiceImpl.class, fieldName = "username", message = "This username is already taken.Please enter other.")
     private String username;
     @Size(min=4,message="Please enter Password minimum 5 symbols")
     private String password;

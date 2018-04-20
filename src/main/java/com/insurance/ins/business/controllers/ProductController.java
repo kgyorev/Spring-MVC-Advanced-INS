@@ -2,6 +2,7 @@ package com.insurance.ins.business.controllers;
 
 import com.insurance.ins.business.entites.Product;
 import com.insurance.ins.business.models.product.AllProductsViewModel;
+import com.insurance.ins.business.models.product.EditProductModel;
 import com.insurance.ins.business.models.product.ProductModel;
 import com.insurance.ins.business.models.product.SearchProductModel;
 import com.insurance.ins.business.services.ContractService;
@@ -26,7 +27,6 @@ import java.text.ParseException;
 
 @Controller
 public class ProductController {
-    public static final String CLIENT = "siteClient";
     @Autowired
     private HttpSession httpSession;
     @Autowired
@@ -70,20 +70,22 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/products/edit/{id}", method = RequestMethod.GET)
-    public String editPage(@ModelAttribute(name = "productModel") ProductModel productModel, @PathVariable("id") Long id, Model model) {
+    public String editPage(@ModelAttribute(name = "productModel") EditProductModel productModel, @PathVariable("id") Long id, Model model) {
         Product product = productService.findById(id);
         if (product == null) {
             notifyService.addErrorMessage("Cannot find product #" + id);
             return "redirect:/";
         }
 
-        productModel = DTOConvertUtil.convert(product, ProductModel.class);
+        productModel = DTOConvertUtil.convert(product, EditProductModel.class);
+        String productIdntfr = product.getIdntfr();
         model.addAttribute("productModel", productModel);
+        model.addAttribute("productIdntfr", productIdntfr);
         return "business/product/edit-product";
     }
 
     @RequestMapping(value = "/products/confirm/edit/{id}", method = RequestMethod.GET)
-    public String confirmEdit(@Valid @ModelAttribute(name = "productModel") ProductModel productModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) {
+    public String confirmEdit(@Valid @ModelAttribute(name = "productModel") EditProductModel productModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "redirect:/products";
         }
@@ -96,24 +98,28 @@ public class ProductController {
             notifyService.addErrorMessage("Cannot find product #" + id);
             return "redirect:/";
         }
+          model.addAttribute("producIdntfr", product.getIdntfr());
         return "business/product/confirm-edit-product";
     }
 
     @RequestMapping(value = "/products/edit/{id}", method = RequestMethod.POST)
-    public String edit(@Valid ProductModel productModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
-        if (action.equals("return")) {
-            return "business/product/edit-product";
-        }
-        if (productModel == null) {
+    public String edit(@Valid @ModelAttribute(name = "productModel") EditProductModel productModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
+        Product product = productService.findById(id);
+        if (product == null) {
             notifyService.addErrorMessage("Cannot find product #" + id);
             return "redirect:/";
         }
-        if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+        if (action.equals("return")) {
+            model.addAttribute("productIdntfr", product.getIdntfr());
             return "business/product/edit-product";
         }
 
-        productService.edit(productModel);
+        if (bindingResult.hasErrors()) {
+               notifyService.addErrorMessage("Please fill the form correctly!");
+            return "business/product/edit-product";
+        }
+
+        productService.edit(product,productModel);
         notifyService.addInfoMessage("Edit successful");
         return "redirect:/products";
     }

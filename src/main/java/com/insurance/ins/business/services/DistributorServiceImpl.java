@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -72,7 +73,6 @@ public class DistributorServiceImpl implements DistributorService {
 
     @Override
     public Distributor create(Distributor distributor) {
-
         return this.distributorRepository.saveAndFlush(distributor);
     }
 
@@ -133,5 +133,18 @@ public class DistributorServiceImpl implements DistributorService {
         return this.distributorRepository.count() / size;
     }
 
+    @Override
+    public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
+        Assert.notNull(fieldName, "Can't be null");
 
+        if (!fieldName.equals("id")) {
+            throw new UnsupportedOperationException("Field name not supported");
+        }
+
+        if (value == null) {
+            return false;
+        }
+
+        return this.distributorRepository.existsById(Long.valueOf(value.toString()));
+    }
 }

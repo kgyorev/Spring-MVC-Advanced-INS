@@ -28,67 +28,35 @@
     <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container mt-4">
         <form class="my-4" th:object="${productModel}" th:action="@{/products/edit/{id}/(id=${productModel.id})}" th:method="post">
-            <h2 class="text-center" th:text="'Modification of Product Identifier: '+${productModel.idntfr}"></h2>
+            <h2 class="text-center" th:text="'Modification of Product Identifier: '+${producIdntfr}"></h2>
             <div class="form-group">
-                <label for="idntfr">Product Identifier</label>
-                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('idntfr')}? 'is-invalid'"
-                       id="idntfr" name="idntfr" th:field="*{idntfr}" readonly/>
-                <th:block th:each="error : ${#fields.errors('idntfr')}">
-                    <small id="idntfrHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
+                <label for="producIdntfr">Product Identifier</label>
+                <input type="text" class="form-control"
+                       id="producIdntfr" name="producIdntfr" th:value="${producIdntfr}" readonly/>
             </div>
             <div class="form-group">
                 <label for="label">Product Label</label>
-                <input type="text" class="form-control" th:classappend="${#fields.hasErrors('label')}? 'is-invalid'"
+                <input type="text" class="form-control"
                        id="label" name="label" th:field="*{label}" readonly/>
-                <th:block th:each="error : ${#fields.errors('label')}">
-                    <small id="labelHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
             </div>
             <div class="form-group">
                 <label for="minAge">Minimum Owner Age</label>
                 <input type="number" class="form-control"
-                       th:classappend="${#fields.hasErrors('minAge')}? 'is-invalid'"
                        id="minAge" name="minAge" th:field="*{minAge}" readonly/>
-                <th:block th:each="error : ${#fields.errors('minAge')}">
-                    <small id="minAgeHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
             </div>
             <div class="form-group">
                 <label for="maxAge">Maximum Owner Age</label>
                 <input type="number" class="form-control"
-                       th:classappend="${#fields.hasErrors('maxAge')}? 'is-invalid'"
                        id="maxAge" name="maxAge" th:field="*{maxAge}" readonly/>
-                <th:block th:each="error : ${#fields.errors('maxAge')}">
-                    <small id="maxAgeHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
             </div>
             <input type="text" class="custom-control-input" name="frequencyRule" id="frequencyRule" th:field="*{frequencyRule}" hidden>
             <div class="form-group">
                 <label for="frequencyRuleDisplay">Frequency</label>
-                <select multiple class="form-control" th:classappend="${#fields.hasErrors('frequencyRule')}? 'is-invalid'"
+                <select multiple class="form-control"
                         id="frequencyRuleDisplay" name="frequencyRuleDisplay" readonly="readonly">
                     <option disabled th:readonly="true" th:each="freq : ${T(com.insurance.ins.business.enums.Frequency).values()}"
                             th:value="${freq}" th:text="${freq.getFreqLabel()}" th:selected="${productModel.frequencyRule.contains(freq.toString())}"></option>
                 </select>
-                <th:block th:each="error : ${#fields.errors('frequencyRule')}">
-                    <small id="frequencyRuleDisplayHelp" class="text-danger"
-                           th:text="${error}">
-                        Error Message
-                    </small>
-                </th:block>
             </div>
             <div class="text-center">
                 <button type="submit" name="action" value="return" class="btn btn-secondary"><i

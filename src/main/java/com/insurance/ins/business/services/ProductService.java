@@ -3,13 +3,16 @@ package com.insurance.ins.business.services;
 import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.entites.Product;
 import com.insurance.ins.business.models.product.AllProductsViewModel;
+import com.insurance.ins.business.models.product.EditProductModel;
 import com.insurance.ins.business.models.product.ProductModel;
 import com.insurance.ins.business.models.product.SearchProductModel;
+import com.insurance.ins.utils.interfaces.FieldValueExists;
 import org.springframework.data.domain.Pageable;
 
+import javax.validation.Valid;
 import java.util.List;
 
-public interface ProductService {
+public interface ProductService extends FieldValueExists {
     List<Product> findAll();
     Product findById(Long id);
     Product findByIdntfr(String idntfr);
@@ -28,4 +31,7 @@ public interface ProductService {
 
 
     boolean checkProductRules(Product product, Contract contract);
+
+    void edit(Product product, @Valid EditProductModel productModel);
+
 }

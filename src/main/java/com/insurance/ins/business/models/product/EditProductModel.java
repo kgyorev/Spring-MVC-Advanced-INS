@@ -1,22 +1,15 @@
 package com.insurance.ins.business.models.product;
 
 
-import com.insurance.ins.business.services.ProductService;
-import com.insurance.ins.utils.annotations.Unique;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class ProductModel {
+public class EditProductModel {
 
     private Long id;
 
-    @NotNull(message="Please enter Product Identifier")
-    @Size(min=3,max = 10,message="Please enter Product Identifier minimum 3 and maximum 10 symbols ")
-    @Unique(service = ProductService.class, fieldName = "idntfr", message = "There is already product with this Identifier!")
-    private String idntfr;
     @NotNull(message="Please enter Product Label")
     @Size(min=5,max = 30,message="Please enter Product Label minimum 5 and maximum 30 symbols ")
     private String label;
@@ -35,7 +28,7 @@ public class ProductModel {
     @Size(min=1,message="Please enter allowed Frequencies")
     private String frequencyRule;
 
-    public ProductModel() {
+    public EditProductModel() {
         this.frequencyRule="";
     }
 
@@ -45,14 +38,6 @@ public class ProductModel {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getIdntfr() {
-        return idntfr;
-    }
-
-    public void setIdntfr(String idntfr) {
-        this.idntfr = idntfr;
     }
 
     public String getLabel() {

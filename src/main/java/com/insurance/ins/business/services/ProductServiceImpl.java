@@ -4,6 +4,7 @@ import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.entites.Product;
 import com.insurance.ins.business.enums.Frequency;
 import com.insurance.ins.business.models.product.AllProductsViewModel;
+import com.insurance.ins.business.models.product.EditProductModel;
 import com.insurance.ins.business.models.product.ProductModel;
 import com.insurance.ins.business.models.product.SearchProductModel;
 import com.insurance.ins.business.repositories.ProductRepository;
@@ -14,7 +15,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -92,7 +95,7 @@ public class ProductServiceImpl implements ProductService {
         AllProductsViewModel allProductsViewModel;
         if (!idntfr.equals("")) {
             allProductsViewModel = this.findAllByIdntfr(idntfr, pageable);
-        }else {
+        } else {
             allProductsViewModel = this.findAllByPage(pageable);
         }
         return allProductsViewModel;
@@ -106,32 +109,56 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean checkProductRules(Product product, Contract contract) {
         LocalDate startDt = contract.getStartDt();
-        boolean output=true;
-        if(!product.getFrequencyRule().contains(contract.getFrequency().toString())){
+        boolean output = true;
+        if (!product.getFrequencyRule().contains(contract.getFrequency().toString())) {
             String[] freqRule = product.getFrequencyRule().split(",");
-            String concat="";
+            String concat = "";
             for (String s : freqRule) {
-                if(freqRule[freqRule.length-1].equals(s)){
-                    concat+= Frequency.valueOf(s).getFreqLabel()+"!";
-                }else
-                concat+= Frequency.valueOf(s).getFreqLabel()+", ";
+                if (freqRule[freqRule.length - 1].equals(s)) {
+                    concat += Frequency.valueOf(s).getFreqLabel() + "!";
+                } else
+                    concat += Frequency.valueOf(s).getFreqLabel() + ", ";
             }
-            notifyService.addErrorMessage("Please fill the form correctly, allowed frequencies for this product are "+concat);
-            output=false;
+            notifyService.addErrorMessage("Please fill the form correctly, allowed frequencies for this product are " + concat);
+            output = false;
         }
         int age = contract.getOwner().getAge(startDt);
         int maxAge = product.getMaxAge();
         int minAge = product.getMinAge();
-        if(age>maxAge){
-            notifyService.addErrorMessage(String.format("Please fill the form correctly, at contract start date Owner is %s years old, maximum allowed age for this product is %s!",age,maxAge));
-            output=false;
+        if (age > maxAge) {
+            notifyService.addErrorMessage(String.format("Please fill the form correctly, at contract start date Owner is %s years old, maximum allowed age for this product is %s!", age, maxAge));
+            output = false;
         }
-        if(age<minAge){
-            notifyService.addErrorMessage(String.format("Please fill the form correctly, at contract start date Owner is %s years old, minimum allowed age for this product is %s!",age,minAge));
-            output=false;
+        if (age < minAge) {
+            notifyService.addErrorMessage(String.format("Please fill the form correctly, at contract start date Owner is %s years old, minimum allowed age for this product is %s!", age, minAge));
+            output = false;
         }
-   return output;
+        return output;
+    }
+
+    @Override
+    public void edit(Product product, @Valid EditProductModel productModel) {
+        Product productFromModel = DTOConvertUtil.convert(productModel, Product.class);
+        productFromModel.setIdntfr(product.getIdntfr());
+        this.productRepository.saveAndFlush(productFromModel);
     }
 
 
+
+
+    @Override
+    public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
+        Assert.notNull(fieldName, "Can't be null");
+
+        if (!fieldName.equals("idntfr")) {
+            throw new UnsupportedOperationException("Field name not supported");
+        }
+
+        if (value == null) {
+            return false;
+        }
+
+        return this.productRepository.existsByIdntfr(value.toString());
+    }
 }
+

@@ -118,14 +118,18 @@ public class OrganizationServiceImpl implements OrganizationService {
     public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
         Assert.notNull(fieldName,"Can't be null");
 
-        if (!fieldName.equals("vat")) {
+        if (!fieldName.equals("vat")&&!fieldName.equals("id")) {
             throw new UnsupportedOperationException("Field name not supported");
         }
 
         if (value == null) {
             return false;
         }
+        if(fieldName.equals("vat")){
+            return this.organizationRepository.existsByVat(value.toString());
+        } else{
+            return this.organizationRepository.existsById(Long.valueOf(value.toString()));
+        }
 
-        return this.organizationRepository.existsByVat(value.toString());
     }
 }

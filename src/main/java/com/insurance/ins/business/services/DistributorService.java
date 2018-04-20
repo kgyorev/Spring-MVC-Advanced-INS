@@ -6,11 +6,12 @@ import com.insurance.ins.business.models.distributor.DistributorModel;
 import com.insurance.ins.business.models.distributor.SearchDistributorModel;
 import com.insurance.ins.prsnorg.entites.org.Organization;
 import com.insurance.ins.technical.entites.User;
+import com.insurance.ins.utils.interfaces.FieldValueExists;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface DistributorService {
+public interface DistributorService extends FieldValueExists {
     List<Distributor> findAll();
     Distributor findById(Long id);
     Distributor create(Distributor distributor);

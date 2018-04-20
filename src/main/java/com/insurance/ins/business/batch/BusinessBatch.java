@@ -18,7 +18,6 @@ public class BusinessBatch{
         this.premiumService = premiumService;
     }
 
-
     @Scheduled(cron = "0 0 1 ? * *")
     public void scheduleTaskUsingCronExpression() {
 
@@ -29,7 +28,6 @@ public class BusinessBatch{
        premiumService.premiumBillingBatch();
 
     }
-
 
     public void premiumBillingBatch() {
         premiumService.premiumBillingBatch();

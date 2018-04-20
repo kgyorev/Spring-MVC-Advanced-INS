@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,25 +38,21 @@ public class AccountController {
     }
 
 
-
-
     @GetMapping("/login")
     @PreAuthorize("isAnonymous()")
-    public ModelAndView login(@RequestParam(required=false,name="error") String error){
+    public ModelAndView login(@RequestParam(required = false, name = "error") String error) {
 
-        if(error!=null&&error.equals("true")){
+        if (error != null && error.equals("true")) {
             notifyService.addErrorMessage("User not exist, or wrong password!");
         }
         return new ModelAndView("users/login");
     }
+
     @PostMapping("/login")
-    public ModelAndView loginConfirm(ModelAndView modelAndView){
+    public ModelAndView loginConfirm(ModelAndView modelAndView) {
 
         return new ModelAndView("redirect:/");
     }
-
-
-
 
 
     @GetMapping(value = "/register")
@@ -79,7 +76,6 @@ public class AccountController {
         notifyService.addInfoMessage("User with Id: " + user.getId() + " was created.");
         return "redirect:/login";
     }
-
 
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
@@ -108,6 +104,7 @@ public class AccountController {
         model.addAttribute("editUserModel", editUserModel);
         return "users/edit";
     }
+
     @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.POST)
     public String edit(@Valid EditUserModel editUserModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         if (action.equals("return")) {
@@ -129,15 +126,30 @@ public class AccountController {
         notifyService.addInfoMessage("Edit successful");
         return "redirect:/users";
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users/delete/{id}")
-    public String delete(@PathVariable("id") Long id, Model model){
-        try {
-            this.userService.delete(id);
-        } catch (Exception e){
-            notifyService.addErrorMessage("Can't Delete this User,it has Distributor!");
+    public String delete(@PathVariable("id") Long id, Model model) {
+        User loggedUser = this.userService.findById(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        String profile = loggedUser.getProfile();
+        if(profile.equals("ADMIN")){
+            notifyService.addErrorMessage("Can't Delete User with profile Administrator!");
             return "redirect:/users";
         }
+        if(loggedUser.getUsername().equals(username)){
+            notifyService.addErrorMessage("Can't Delete your own user!");
+            return "redirect:/users";
+        }
+        try {
+            this.userService.delete(id);
+        } catch (Exception e) {
+            notifyService.addErrorMessage("Can't Delete this User,it is Distributor!");
+            return "redirect:/users";
+        }
+
+
         notifyService.addInfoMessage("Delete successful");
         return "redirect:/users";
     }
