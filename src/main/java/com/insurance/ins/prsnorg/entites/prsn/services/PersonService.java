@@ -2,6 +2,7 @@ package com.insurance.ins.prsnorg.entites.prsn.services;
 
 import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.models.AllPersonsViewModel;
+import com.insurance.ins.prsnorg.entites.prsn.models.EditPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
 import com.insurance.ins.utils.interfaces.FieldValueExists;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +30,7 @@ public interface PersonService extends FieldValueExists {
 
     Person create(Person client);
 
-    Person edit(Person client);
+    Person edit(Person client, EditPersonModel personModel);
 
     void deleteById(Long id);
 

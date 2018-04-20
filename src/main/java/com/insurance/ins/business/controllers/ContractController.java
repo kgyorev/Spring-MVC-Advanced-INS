@@ -7,19 +7,18 @@ import com.insurance.ins.business.models.contract.ContractModel;
 import com.insurance.ins.business.models.contract.EditContractModel;
 import com.insurance.ins.business.models.contract.SearchContractModel;
 import com.insurance.ins.business.services.ContractService;
-import com.insurance.ins.business.services.DistributorService;
 import com.insurance.ins.business.services.ProductService;
 import com.insurance.ins.financial.models.AllMoneyInsViewModel;
 import com.insurance.ins.financial.models.AllPremiumsViewModel;
 import com.insurance.ins.financial.services.MoneyInService;
 import com.insurance.ins.financial.services.PremiumService;
-import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
 import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,8 +33,8 @@ public class ContractController {
     private ContractService contractService;
     @Autowired
     private ProductService productService;
-    @Autowired
-    private DistributorService distributorService;
+//    @Autowired
+//    private DistributorService distributorService;
     @Autowired
     private PersonService personService;
     @Autowired
@@ -93,7 +92,7 @@ public class ContractController {
         model.addAttribute("contractall", contractall);
         return "business/contract/search-contract";
     }
-
+    @PreAuthorize("hasRole('MODERATOR')")
     @RequestMapping(value = "/contracts/edit/{id}", method = RequestMethod.GET)
     public String editPage(@ModelAttribute(name = "contractModel") EditContractModel contractModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
@@ -108,6 +107,7 @@ public class ContractController {
         return "business/contract/edit-contract";
     }
 
+    @PreAuthorize("hasRole('MODERATOR')")
     @RequestMapping(value = "/contracts/confirm/edit/{id}", method = RequestMethod.GET)
     public String confirmEdit(@Valid @ModelAttribute(name = "contractModel") EditContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) {
         Contract contract = contractService.findById(id);
@@ -124,17 +124,15 @@ public class ContractController {
             model.addAttribute("contractOwnerId", contract.getOwner().getId());
             return "business/contract/edit-contract";
         }
-        String id_str = String.valueOf(contract.getOwner().getId());
-        long personId = Long.parseLong(id_str);
-        Person person = personService.findById(personId);
-        int age = person.getAge(contractModel.getStartDt());
-        Double premiumAmount = age * contractModel.getAmount() / (contractModel.getDuration() * 12 * 100);
-        contractModel.setPremiumAmount(Math.round(premiumAmount * 100.0) / 100.0);
+        Contract contractEdit = contractService.prepareContractForEdit(contract,contractModel);
+        Double premiumAmount = contractService.calculatePremiumAmount(contractEdit);
+        contractModel.setPremiumAmount(premiumAmount);
         model.addAttribute("contractProductId", contract.getProduct().getIdntfr());
         model.addAttribute("contractOwnerId", contract.getOwner().getId());
         return "business/contract/confirm-edit-contract";
     }
 
+    @PreAuthorize("hasRole('MODERATOR')")
     @RequestMapping(value = "/contracts/edit/{id}", method = RequestMethod.POST)
     public String edit(@Valid @ModelAttribute(name = "contractModel") EditContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         Contract contract = contractService.findById(id);
@@ -156,10 +154,13 @@ public class ContractController {
         return "redirect:/contracts";
     }
 
+    @PreAuthorize("hasRole('MODERATOR')")
     @RequestMapping(value = "/contracts/create", method = RequestMethod.GET)
     public String createPage(@ModelAttribute(name = "contractModel") ContractModel contractMode) {
+        int a = 1/0;
         return "business/contract/create-contract";
     }
+    @PreAuthorize("hasRole('MODERATOR')")
     @RequestMapping(value = "/contracts/confirm/create", method = RequestMethod.GET)
     public String confirmCreate(@Valid @ModelAttribute(name = "contractModel") ContractModel contractModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
@@ -179,7 +180,7 @@ public class ContractController {
         return "business/contract/confirm-create-contract";
     }
 
-
+    @PreAuthorize("hasRole('MODERATOR')")
     @RequestMapping(value = "/contracts/create", method = RequestMethod.POST)
     public String create(@Valid ContractModel contractModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -47,7 +46,7 @@ public class OrganizationController {
         return "prsnorg/org/search-organization";
     }
 
-    @RequestMapping(value ="/organizations/delete/{id}", method = RequestMethod.GET)
+    @GetMapping(value ="/organizations/delete/{id}")
     public String delete(SearchOrganizationModel searchOrganizationModel, @PathVariable("id") Long id, Model model) {
         Organization organization = organizationService.findById(id);
         if (organization == null) {
@@ -64,7 +63,7 @@ public class OrganizationController {
         notifyService.addInfoMessage("Delete successful");
         return "redirect:/organizations";
     }
-    @RequestMapping(value ="/organizations/{id}", method = RequestMethod.GET)
+    @GetMapping(value ="/organizations/{id}")
     public String viewOrganization(@ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, @PathVariable("id") Long id, Model model) {
 
         Organization organization = organizationService.findById(id);
@@ -76,7 +75,7 @@ public class OrganizationController {
         model.addAttribute("organizationModel", organizationModel);
         return "prsnorg/org/view-organization";
     }
-    @RequestMapping(value ="/organizations/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value ="/organizations/edit/{id}")
     public String editPage(@ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel,@RequestParam(required=false,name="secondaryActivity") String secondaryActivity, @PathVariable("id") Long id, Model model) {
         httpSession.setAttribute("secondaryActivity",secondaryActivity);
         Organization organization = organizationService.findById(id);
@@ -88,7 +87,7 @@ public class OrganizationController {
         model.addAttribute("organizationModel", organizationModel);
         return "prsnorg/org/edit-organization";
     }
-    @RequestMapping(value ="/organizations/confirm/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value ="/organizations/confirm/edit/{id}")
     public String editConfirm(@Valid @ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, BindingResult bindingResult, @PathVariable("id") Long id, @RequestParam(value="action", required=true) String action){
         if(action.equals("return")){
             return "redirect:/organizations";
@@ -103,8 +102,8 @@ public class OrganizationController {
         }
         return "prsnorg/org/confirm-edit-organization";
     }
-    @RequestMapping(value ="/organizations/edit/{id}", method = RequestMethod.POST)
-    public String edit(@Valid @ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, BindingResult bindingResult, @PathVariable("id") Long id, @RequestParam(value="action", required=true) String action,SessionStatus status){
+    @PostMapping(value ="/organizations/edit/{id}")
+    public String edit(@Valid @ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, BindingResult bindingResult, @PathVariable("id") Long id, @RequestParam(value="action", required=true) String action){
         if(action.equals("return")){
             return "prsnorg/org/edit-organization";
         }
@@ -118,8 +117,7 @@ public class OrganizationController {
             notifyService.addErrorMessage("Please fill the form correctly!");
             return "prsnorg/org/edit-organization";
         }
-        Organization organizationEdit = DTOConvertUtil.convert(organizationModel, Organization.class);
-        organizationService.edit(organizationEdit);
+        organizationService.edit(organization,organizationModel);
         notifyService.addInfoMessage("Edit successful");
         Object mainActivity = httpSession.getAttribute("mainActivity");
         Object secondaryActivity = httpSession.getAttribute("secondaryActivity");

@@ -3,8 +3,10 @@ package com.insurance.ins.prsnorg.entites.prsn.services;
 import com.insurance.ins.business.repositories.DistributorRepository;
 import com.insurance.ins.prsnorg.entites.prsn.Person;
 import com.insurance.ins.prsnorg.entites.prsn.models.AllPersonsViewModel;
+import com.insurance.ins.prsnorg.entites.prsn.models.EditPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.reposiotries.PersonRepository;
+import com.insurance.ins.utils.DTOConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Pageable;
@@ -90,7 +92,9 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person edit(Person person) {
+    public Person edit(Person person, EditPersonModel personModel) {
+        Person personEdit = DTOConvertUtil.convert(personModel, Person.class);
+        personEdit.setEgn(person.getEgn());
         return this.personRepository.saveAndFlush(person);
     }
 

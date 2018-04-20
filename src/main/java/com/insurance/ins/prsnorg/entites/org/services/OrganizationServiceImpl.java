@@ -2,8 +2,10 @@ package com.insurance.ins.prsnorg.entites.org.services;
 
 import com.insurance.ins.prsnorg.entites.org.Organization;
 import com.insurance.ins.prsnorg.entites.org.models.AllOrganizationsViewModel;
+import com.insurance.ins.prsnorg.entites.org.models.EditOrganizationModel;
 import com.insurance.ins.prsnorg.entites.org.models.SearchOrganizationModel;
 import com.insurance.ins.prsnorg.entites.org.reposiotries.OrganizationRepository;
+import com.insurance.ins.utils.DTOConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Pageable;
@@ -86,8 +88,10 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public Organization edit(Organization organization) {
-        return this.organizationRepository.save(organization);
+    public Organization edit(Organization organization, EditOrganizationModel organizationModelEdit) {
+        Organization organizationEdit = DTOConvertUtil.convert(organizationModelEdit, Organization.class);
+        organizationEdit.setVat(organization.getVat());
+        return this.organizationRepository.save(organizationEdit);
     }
 
     @Override

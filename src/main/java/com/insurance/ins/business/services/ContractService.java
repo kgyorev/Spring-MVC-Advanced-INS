@@ -21,6 +21,9 @@ public interface ContractService  extends FieldValueExists {
     List<Contract> findAllByStatusAndOwnerEgn(Status status, String ownerEgn);
     Contract findById(Long id);
     Contract create(Contract contract);
+
+    Contract prepareContractForEdit(Contract contract, @Valid EditContractModel contractModel);
+
     void deleteById(Long id);
     void cancel(Contract contract);
     void inForce(Contract contract);

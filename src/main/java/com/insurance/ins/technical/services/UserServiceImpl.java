@@ -120,8 +120,9 @@ public class UserServiceImpl implements UserService, FieldValueExists {
     }
 
     @Override
-    public void edit(EditUserModel userEditBindingModel) {
+    public void edit(User userOld, EditUserModel userEditBindingModel) {
         User user = DTOConvertUtil.convert(userEditBindingModel, User.class);
+        user.setUsername(userOld.getUsername());
         user.setPassword(this.encoder.encode(userEditBindingModel.getPassword()));
         this.setRoles(user.getProfile(), user);
         this.userRepository.saveAndFlush(user);

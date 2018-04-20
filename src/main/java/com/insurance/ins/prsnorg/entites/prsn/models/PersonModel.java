@@ -3,6 +3,7 @@ package com.insurance.ins.prsnorg.entites.prsn.models;
 
 import com.insurance.ins.prsnorg.entites.prsn.enums.Gender;
 import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
+import com.insurance.ins.utils.annotations.PastDate;
 import com.insurance.ins.utils.annotations.Unique;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,6 +19,7 @@ public class PersonModel {
     @Unique(service = PersonService.class, fieldName = "egn", message = "There is person with this EGN, EGN must be unique")
     private String egn;
     @NotNull(message="Please enter Birth Date")
+    @PastDate(message = "Can't put future date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @NotNull(message="Please select Gender")

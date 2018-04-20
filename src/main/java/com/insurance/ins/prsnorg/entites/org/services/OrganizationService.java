@@ -2,6 +2,7 @@ package com.insurance.ins.prsnorg.entites.org.services;
 
 import com.insurance.ins.prsnorg.entites.org.Organization;
 import com.insurance.ins.prsnorg.entites.org.models.AllOrganizationsViewModel;
+import com.insurance.ins.prsnorg.entites.org.models.EditOrganizationModel;
 import com.insurance.ins.prsnorg.entites.org.models.SearchOrganizationModel;
 import com.insurance.ins.utils.interfaces.FieldValueExists;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +30,7 @@ public interface OrganizationService extends FieldValueExists {
 
     Organization create(Organization client);
 
-    Organization edit(Organization client);
+    Organization edit(Organization client, EditOrganizationModel organizationEdit);
 
     void deleteById(Long id);
 

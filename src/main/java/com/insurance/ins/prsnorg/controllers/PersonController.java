@@ -37,7 +37,6 @@ public class PersonController {
     @GetMapping(value = "/persons")
     public String view_all(@ModelAttribute(name = "searchPersonModel") SearchPersonModel searchPersonModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
         AllPersonsViewModel personAll =  personService.searchPerson(searchPersonModel,pageable);
-
         if(
                 (!searchPersonModel.getEgn().equals("")||!searchPersonModel.getFullName().equals(""))
                         &&!personAll.getPersons().hasContent()) {
@@ -47,7 +46,7 @@ public class PersonController {
         return "prsnorg/prsn/search-person";
     }
 
-    @RequestMapping(value ="/persons/delete/{id}", method = RequestMethod.GET)
+    @GetMapping(value ="/persons/delete/{id}")
     public String delete(SearchPersonModel searchPersonModel, @PathVariable("id") Long id, Model model) {
         Person person = personService.findById(id);
         if (person == null) {
@@ -57,14 +56,14 @@ public class PersonController {
         Set<Contract> contracts = person.getContracts();
         int contracts_count = contracts.size();
         if (contracts_count != 0) {
-            notifyService.addErrorMessage("Cannot delete client #" + id + " ,it has contracts.");
+            notifyService.addErrorMessage("Cannot delete person #" + id + " ,it has contracts.");
             return "redirect:/persons";
         }
         personService.deleteById(id);
         notifyService.addInfoMessage("Delete successful");
         return "redirect:/persons";
     }
-    @RequestMapping(value ="/persons/{id}", method = RequestMethod.GET)
+    @GetMapping(value ="/persons/{id}")
     public String viewPerson(@ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id, Model model) {
 
         Person person = personService.findById(id);
@@ -76,9 +75,8 @@ public class PersonController {
         model.addAttribute("personModel", personModel);
         return "prsnorg/prsn/view-person";
     }
-    @RequestMapping(value ="/persons/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value ="/persons/edit/{id}")
     public String editPage(@ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id, Model model) {
-
         Person person = personService.findById(id);
         if (person == null) {
             notifyService.addErrorMessage("Cannot find person #" + id);
@@ -88,7 +86,7 @@ public class PersonController {
         model.addAttribute("personModel", personModel);
         return "prsnorg/prsn/edit-person";
     }
-    @RequestMapping(value ="/persons/confirm/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value ="/persons/confirm/edit/{id}")
     public String confirmEditPage(@Valid @ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id,BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
             return "redirect:/persons";
@@ -103,7 +101,7 @@ public class PersonController {
         }
         return "prsnorg/prsn/confirm-edit-person";
     }
-    @RequestMapping(value ="/persons/edit/{id}", method = RequestMethod.POST)
+    @PostMapping(value ="/persons/edit/{id}")
     public String edit(@Valid @ModelAttribute(name = "personModel") EditPersonModel personModel, BindingResult bindingResult, @PathVariable("id") Long id,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
             return "prsnorg/prsn/edit-person";
@@ -117,8 +115,7 @@ public class PersonController {
             notifyService.addErrorMessage("Please fill the form correctly!");
             return "prsnorg/prsn/edit-person";
         }
-        Person personEdit = DTOConvertUtil.convert(personModel, Person.class);
-        personService.edit(personEdit);
+        personService.edit(person,personModel);
         notifyService.addInfoMessage("Edit successful");
         return "redirect:/persons";
     }

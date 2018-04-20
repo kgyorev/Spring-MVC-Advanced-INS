@@ -20,10 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/nuggets")
-//@CrossOrigin(origins = "http://localhost:63343")
-//@CrossOrigin(origins = "http://blog.android.bg")
-//91.215.216.96
 
 public class RestContractController {
 
@@ -62,36 +58,4 @@ public class RestContractController {
         return premiumModels;
 
     }
-//    @GetMapping(value="/watches/top",produces = "application/json")
-//    @ResponseBody
-//    public List<Watch> top() {
-//        List<Watch> all = this.watchService.findFirst4ByView();
-//        return all;
-//
-//    }
-//
-//    @GetMapping(value="/watches/details",produces = "application/json")
-//    @ResponseBody
-//    public Watch one(@RequestParam("id") Long id) {
-//
-//        Watch one = this.watchService.findById(id);
-//        watchService.viewIncrement(one);
-//          return one;
-//
-//    }
-//
-//    @PostMapping(value="/watches/add",produces = "application/json")
-//    @ResponseBody
-////    public Watch add( HttpServletRequest request) {
-////        Map<String, String[]> parameterMap = request.getParameterMap();
-//    public Watch add(
-//            @RequestParam("name") String name,
-//            @RequestParam("price") String price,
-//            @RequestParam("image") String image,
-//            @RequestParam("description") String description) {
-//        Watch one = this.watchService.create(name,price,image,description);
-//        return one;
-//
-//    }
-
 }

@@ -2,6 +2,7 @@ package com.insurance.ins.prsnorg.entites.prsn.models;
 
 
 import com.insurance.ins.prsnorg.entites.prsn.enums.Gender;
+import com.insurance.ins.utils.annotations.PastDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ public class EditPersonModel {
     private String fullName;
     private String egn;
     @NotNull(message="Please enter Birth Date")
+    @PastDate(message = "Can't put future date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @NotNull(message="Please select Gender")

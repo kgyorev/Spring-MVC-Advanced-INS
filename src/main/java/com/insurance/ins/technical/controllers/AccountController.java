@@ -110,7 +110,8 @@ public class AccountController {
         if (action.equals("return")) {
             return "redirect:/users";
         }
-        if (editUserModel == null) {
+        User userOld = userService.findById(id);
+        if (userOld == null) {
             notifyService.addErrorMessage("Cannot find user #" + id);
             return "redirect:/";
         }
@@ -122,7 +123,7 @@ public class AccountController {
             notifyService.addErrorMessage("Password and ConfirmPassword are not the same!");
             return "users/edit";
         }
-        this.userService.edit(editUserModel);
+        this.userService.edit(userOld,editUserModel);
         notifyService.addInfoMessage("Edit successful");
         return "redirect:/users";
     }
