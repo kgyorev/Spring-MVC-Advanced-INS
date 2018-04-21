@@ -30,7 +30,7 @@
         <form class="my-4" th:object="${contractModel}" th:action="@{/contracts/create}" th:method="post">
             <h2 class="text-center">Validation New Business</h2>
             <div class="form-group">
-                <label for="product">Product ID</label>
+                <label for="product">Product Identifier</label>
                 <input type="text" class="form-control" th:classappend="${#fields.hasErrors('product')}? 'is-invalid'"
                        id="product" name="product" th:field="*{product}" readonly/>
                 <th:block th:each="error : ${#fields.errors('product')}">

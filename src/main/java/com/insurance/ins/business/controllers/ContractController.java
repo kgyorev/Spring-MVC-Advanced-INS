@@ -47,12 +47,14 @@ public class ContractController {
     @GetMapping(value = "/batch")
     @PreAuthorize("hasRole('ADMIN')")
     public String batch() {
-
+      //ALL Batches should be here
         BusinessBatch batch = new BusinessBatch(this.premiumService);
-        batch.scheduleTaskUsingCronExpression();
+        batch.premiumBillingBatch();
 
         return "redirect:/";
+
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/premiumBillingBatch", method = RequestMethod.GET)
     public String batchPremium() {

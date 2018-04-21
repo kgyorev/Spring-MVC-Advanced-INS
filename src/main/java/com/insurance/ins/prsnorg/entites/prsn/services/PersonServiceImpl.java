@@ -95,7 +95,7 @@ public class PersonServiceImpl implements PersonService {
     public Person edit(Person person, EditPersonModel personModel) {
         Person personEdit = DTOConvertUtil.convert(personModel, Person.class);
         personEdit.setEgn(person.getEgn());
-        return this.personRepository.saveAndFlush(person);
+        return this.personRepository.saveAndFlush(personEdit);
     }
 
     @Override
