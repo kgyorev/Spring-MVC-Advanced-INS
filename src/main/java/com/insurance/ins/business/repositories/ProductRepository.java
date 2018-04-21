@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -15,6 +16,8 @@ public interface ProductRepository extends
     Optional<Product> findById(Long id);
     Product findByIdntfr(String idntfr);
     Page<Product> findAllByIdntfr(String idntfr, Pageable pageable);
+    List<Product> findAllByIdntfr(String idntfr);
+    List<Product> findAllByIdntfrContains(String idntfr);
 
     boolean existsByIdntfr(String s);
 }

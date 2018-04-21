@@ -50,18 +50,34 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public LocalDate calculateNextBillingDueDate(Contract contract) {
         Frequency frequency = contract.getFrequency();
-       Long months =  this.getFrequencyMonths(frequency);
-       return contract.getNextBillingDueDate().plusMonths(months);
-    }
-    private Long getFrequencyMonths(Frequency frequency) {
-       switch (frequency){
-           case ANUAL: return 12L;
-           case SEMI_ANNUAL: return 6L;
-           case TRIMESTER: return 3L;
-           default: return 1L;
-       }
+        Long months = this.getFrequencyMonths(frequency);
+        return contract.getNextBillingDueDate().plusMonths(months);
     }
 
+    private Long getFrequencyMonths(Frequency frequency) {
+        switch (frequency) {
+            case ANUAL:
+                return 12L;
+            case SEMI_ANNUAL:
+                return 6L;
+            case TRIMESTER:
+                return 3L;
+            default:
+                return 1L;
+        }
+    }
+    private Long getFrequencyPeriods(Frequency frequency) {
+        switch (frequency) {
+            case ANUAL:
+                return 1L;
+            case SEMI_ANNUAL:
+                return 2L;
+            case TRIMESTER:
+                return 4L;
+            default:
+                return 12L;
+        }
+    }
     @Override
     public List<Contract> findAll() {
         return this.contractRepository.findAll();
@@ -71,10 +87,12 @@ public class ContractServiceImpl implements ContractService {
     public List<Contract> findAllByOwnerEgn(String ownerEgn) {
         return this.contractRepository.findAllByOwnerEgn(ownerEgn);
     }
+
     @Override
     public List<Contract> findAllByStatusAndOwnerEgn(Status status, String ownerEgn) {
-        return this.contractRepository.findAllByStatusAndOwnerEgn(status,ownerEgn);
+        return this.contractRepository.findAllByStatusAndOwnerEgn(status, ownerEgn);
     }
+
     @Override
     public Contract findById(Long id) {
         return this.contractRepository.findById(id).orElse(null);
@@ -86,7 +104,7 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public void edit(Contract contract,EditContractModel contractModel) {
+    public void edit(Contract contract, EditContractModel contractModel) {
         String distributorStr = contractModel.getDistributor();
         Distributor distributor = distributorRepository.getOne(Long.valueOf(distributorStr));
         contract.setFrequency(contractModel.getFrequency());
@@ -122,7 +140,9 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public Double calculatePremiumAmount(Contract contract) {
         int age = contract.getOwner().getAge(contract.getStartDt()) + 1;
-        Double premiumAmount = age * contract.getAmount() / (contract.getDuration() * 12 * 100);
+        ;
+        Long frequencyPeriods = this.getFrequencyPeriods(contract.getFrequency());
+        Double premiumAmount = age * contract.getAmount() / (contract.getDuration() * 12 * 100) /frequencyPeriods;
         return Math.round(premiumAmount * 100.0) / 100.0;
     }
 
@@ -163,6 +183,7 @@ public class ContractServiceImpl implements ContractService {
         viewModel.setTotalPageCount(this.getTotalPages());
         return viewModel;
     }
+
     @Override
     public AllContractsViewModel searchContractsForDistributor(Distributor distributor, Pageable page) {
         AllContractsViewModel viewModel = new AllContractsViewModel();
@@ -170,6 +191,7 @@ public class ContractServiceImpl implements ContractService {
         viewModel.setTotalPageCount(this.getTotalPages());
         return viewModel;
     }
+
     @Override
     public AllContractsViewModel findAllByIdAndStatus(Long id, Status status, Pageable pageable) {
         AllContractsViewModel viewModel = new AllContractsViewModel();

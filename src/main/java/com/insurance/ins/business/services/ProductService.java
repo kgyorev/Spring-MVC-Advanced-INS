@@ -34,4 +34,6 @@ public interface ProductService extends FieldValueExists {
 
     void edit(Product product, @Valid EditProductModel productModel);
 
+    List<Product> findAllByIdntfrContains(String idntfr);
+
 }

@@ -134,6 +134,17 @@ public class DistributorServiceImpl implements DistributorService {
     }
 
     @Override
+    public List<Distributor> findAllByIdOrFullName(String criteria) {
+       long id= 0;
+        try {
+            id = Long.parseLong(criteria);
+        } catch (NumberFormatException e) {
+        }
+
+        return this.distributorRepository.findAllByIdOrFullNameContains(id,criteria);
+    }
+
+    @Override
     public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
         Assert.notNull(fieldName, "Can't be null");
 
@@ -141,7 +152,7 @@ public class DistributorServiceImpl implements DistributorService {
             throw new UnsupportedOperationException("Field name not supported");
         }
 
-        if (value == null) {
+        if (value == null|| value.equals("")) {
             return false;
         }
 

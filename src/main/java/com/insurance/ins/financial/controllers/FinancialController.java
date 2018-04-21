@@ -11,6 +11,7 @@ import com.insurance.ins.financial.services.PremiumService;
 import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,7 +34,8 @@ public class FinancialController {
         this.notifyService = notifyService;
     }
 
-    @RequestMapping(value = "/contracts/create/premium/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/contracts/create/premium/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String createPremium(@ModelAttribute(name = "premiumModel") PremiumModel premiumModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
@@ -42,18 +44,19 @@ public class FinancialController {
         }
 
         premiumModel = this.premiumService.createForView(contract);
-        MoneyIn moneyIn = this.moneyInService.findOldestPendingMoneyIn(contract);
-        MoneyInModel moneyInModel = null;
-        if (moneyIn != null) {
-            moneyInModel = DTOConvertUtil.convert(moneyIn, MoneyInModel.class);
-        }
-        model.addAttribute("moneyInModel", moneyInModel);
+//        MoneyIn moneyIn = this.moneyInService.findOldestPendingMoneyIn(contract);
+//        MoneyInModel moneyInModel = null;
+//        if (moneyIn != null) {
+//            moneyInModel = DTOConvertUtil.convert(moneyIn, MoneyInModel.class);
+//        }
+//        model.addAttribute("moneyInModel", moneyInModel);
         model.addAttribute("premiumModel", premiumModel);
 
         return "financial/premium/create-premium";
     }
 
-    @RequestMapping(value = "/contracts/create/money-in/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/contracts/create/money-in/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String createMoneyIn(@ModelAttribute(name = "moneyInModel") MoneyInModel moneyInModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
@@ -66,7 +69,8 @@ public class FinancialController {
 
         return "financial/money-in/create-money-in";
     }
-    @RequestMapping(value = "/contracts/create/premium/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/contracts/create/premium/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String createPremiumValidate(@Valid PremiumModel premiumModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action, @PathVariable("id") Long id) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
@@ -91,7 +95,8 @@ public class FinancialController {
         return "redirect:/contracts/" + id;
     }
 
-    @RequestMapping(value = "/contracts/create/money-in/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/contracts/create/money-in/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String createMoneyInValidate(@Valid MoneyInModel moneyInModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action, @PathVariable("id") Long id) {
         Contract contract = contractService.findById(id);
         if (contract == null) {

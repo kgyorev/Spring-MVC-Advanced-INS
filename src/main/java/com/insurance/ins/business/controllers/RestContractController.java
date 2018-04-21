@@ -56,6 +56,6 @@ public class RestContractController {
             premiumModels.add(premiumModel);
         }
         return premiumModels;
-
     }
+
 }

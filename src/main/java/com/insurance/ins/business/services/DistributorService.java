@@ -35,4 +35,5 @@ public interface DistributorService extends FieldValueExists {
     long getTotalPages(int size);
 
 
+    List<Distributor> findAllByIdOrFullName(String criteria);
 }

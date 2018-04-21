@@ -143,7 +143,10 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository.saveAndFlush(productFromModel);
     }
 
-
+    @Override
+    public List<Product> findAllByIdntfrContains(String idntfr) {
+        return this.productRepository.findAllByIdntfrContains(idntfr);
+    }
 
 
     @Override

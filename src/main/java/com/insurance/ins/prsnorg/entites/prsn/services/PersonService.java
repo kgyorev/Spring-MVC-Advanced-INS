@@ -35,4 +35,5 @@ public interface PersonService extends FieldValueExists {
     void deleteById(Long id);
 
     AllPersonsViewModel searchPerson(SearchPersonModel searchPersonModel, Pageable pageable);
+    List<Person> findAllByIdOrFullNameContainsOrEgnContains(String criteria);
 }

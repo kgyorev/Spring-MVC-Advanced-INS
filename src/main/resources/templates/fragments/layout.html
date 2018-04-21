@@ -64,7 +64,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/contracts">Contract Area</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li sec:authorize="hasRole('MODERATOR')" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkDistributors"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Distributors
@@ -76,7 +76,7 @@
                         </div>
                     </li>
 
-                    <li class="nav-item dropdown">
+                    <li  sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkProducts"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Product Workbench
@@ -108,7 +108,7 @@
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="/logs/all">Logs</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="/users/log">Logs</a>
                     </li>
 
                     <li sec:authorize="hasRole('ADMIN')" class="nav-item">

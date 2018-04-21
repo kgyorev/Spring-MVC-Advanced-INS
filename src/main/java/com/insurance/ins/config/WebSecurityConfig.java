@@ -18,7 +18,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String[] PERMITTED_ROUTES =
-            {"/","/login", "/register", "/css/**","/js/**","/img/**","/contracts/client","/premiums/client"};
+            {"/","/login", "/register", "/css/**","/js/**","/img/**","/contracts/client","/premiums/client","/rest/**"};
 
     @Qualifier("userServiceImpl")
     @Autowired

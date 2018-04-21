@@ -2,55 +2,70 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc342cc2-56d8-4d9a-b971-434d4de32925" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/GlobalExceptionController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/utils/annotations/PastDate.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/utils/validators/fields/PastDateValidator.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/error/404.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/error/error-template.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/error/unauthorized.html" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/UserLogsModel.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/users/logs-users.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/advanced-ins-system/index.html" afterPath="$PROJECT_DIR$/advanced-ins-system/index.html" />
-      <change beforePath="$PROJECT_DIR$/advanced-ins-system/js/ins-scripts.js" afterPath="$PROJECT_DIR$/advanced-ins-system/js/ins-scripts.js" />
+      <change beforePath="$PROJECT_DIR$/advanced-ins-system/.idea/workspace.xml" afterPath="$PROJECT_DIR$/advanced-ins-system/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/DistributorController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/DistributorController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ProductController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ProductController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/RestContractController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/RestContractController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractService.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractService.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/repositories/DistributorRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/repositories/DistributorRepository.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/repositories/ProductRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/repositories/ProductRepository.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/DistributorService.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/DistributorService.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/DistributorServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/DistributorServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductService.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductService.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/config/WebSecurityConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/config/WebSecurityConfig.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/OrganizationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/OrganizationController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/PersonController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/PersonController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/models/EditOrganizationModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/models/EditOrganizationModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/models/OrganizationModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/models/OrganizationModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/services/OrganizationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/services/OrganizationService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/services/OrganizationServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/services/OrganizationServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/models/EditPersonModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/models/EditPersonModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/models/PersonModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/models/PersonModel.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/reposiotries/PersonRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/reposiotries/PersonRepository.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonService.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonService.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonServiceImpl.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/AccountController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/AccountController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/HomeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/HomeController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/Event.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/Role.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/Role.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/User.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/repositories/RoleRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/repositories/RoleRepository.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/repositories/UserRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/repositories/UserRepository.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/services/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/services/UserService.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/services/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/services/UserServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/ins-scripts.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/ins-scripts.js" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/create-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/create-contract.html" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/edit-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/edit-contract.html" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/search-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/search-contract.html" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/batch/BusinessBatch.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/batch/BusinessBatch.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/controllers/ContractController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/controllers/ContractController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/controllers/RestContractController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/controllers/RestContractController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/ContractService.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/ContractService.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/controllers/DistributorController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/controllers/DistributorController.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/controllers/ProductController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/controllers/ProductController.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/repositories/DistributorRepository.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/repositories/DistributorRepository.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/repositories/ProductRepository.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/repositories/ProductRepository.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/ContractServiceImpl$1.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/ContractServiceImpl$1.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/ContractServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/ContractServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/DistributorService.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/DistributorService.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/DistributorServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/DistributorServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/ProductService.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/ProductService.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/ProductServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/business/services/ProductServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/config/WebSecurityConfig.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/config/WebSecurityConfig.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/controllers/FinancialController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/financial/controllers/FinancialController.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/controllers/OrganizationController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/controllers/OrganizationController.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/controllers/PersonController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/controllers/PersonController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/org/models/EditOrganizationModel.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/org/models/EditOrganizationModel.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/org/models/OrganizationModel.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/org/models/OrganizationModel.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/org/services/OrganizationService.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/org/services/OrganizationService.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/org/services/OrganizationServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/org/services/OrganizationServiceImpl.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/models/EditPersonModel.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/models/EditPersonModel.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/models/PersonModel.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/models/PersonModel.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/reposiotries/PersonRepository.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/reposiotries/PersonRepository.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/services/PersonService.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/services/PersonService.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/services/PersonServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/prsnorg/entites/prsn/services/PersonServiceImpl.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/controllers/AccountController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/controllers/AccountController.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/controllers/HomeController.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/controllers/HomeController.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/services/UserService.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/services/UserService.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/services/UserServiceImpl$1.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/services/UserServiceImpl$1.class" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/services/UserServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/services/UserServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/ins-scripts.js" afterPath="$PROJECT_DIR$/target/classes/static/js/ins-scripts.js" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/business/contract/create-contract.html" afterPath="$PROJECT_DIR$/target/classes/templates/business/contract/create-contract.html" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/business/contract/edit-contract.html" afterPath="$PROJECT_DIR$/target/classes/templates/business/contract/edit-contract.html" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/layout.html" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/layout.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -63,103 +78,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SearchUserModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/SearchUserModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditUserModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/EditUserModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AllUsersViewModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/AllUsersViewModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Role.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/Role.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ins-scripts.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/ins-scripts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1938">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuditEnversInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/AuditEnversInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BusinessBatch.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/batch/BusinessBatch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ContractController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="177" column="55" lean-forward="true" selection-start-line="177" selection-start-column="55" selection-end-line="177" selection-end-column="55" />
+            <state relative-caret-position="2091">
+              <caret line="156" column="34" lean-forward="false" selection-start-line="156" selection-start-column="34" selection-end-line="156" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GlobalExceptionController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/GlobalExceptionController.java">
+      <file leaf-file-name="InsApplicationTests.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/insurance/ins/InsApplicationTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrganizationController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/OrganizationController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="118" column="9" lean-forward="false" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContractServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="218" column="9" lean-forward="false" selection-start-line="218" selection-start-column="9" selection-end-line="218" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PersonController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/PersonController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="103" column="44" lean-forward="false" selection-start-line="103" selection-start-column="44" selection-end-line="103" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/AccountController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="81" column="30" lean-forward="false" selection-start-line="81" selection-start-column="30" selection-end-line="81" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="error-template.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/error/error-template.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="404.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/error/404.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="19" column="26" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit-person.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/edit-person.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="24" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="unauthorized.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/error/unauthorized.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
-              <caret line="16" column="59" lean-forward="true" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
+            <state relative-caret-position="969">
+              <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -172,8 +185,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -188,6 +201,7 @@
       <find>page</find>
       <find>contractall</find>
       <find>-contract</find>
+      <find>return &quot;/</find>
     </findStrings>
     <replaceStrings>
       <replace>Vat</replace>
@@ -202,6 +216,7 @@
       <replace>ProductModel</replace>
       <replace>/products</replace>
       <replace>-product</replace>
+      <replace>return &quot;</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\java</dir>
@@ -219,43 +234,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ProductController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/business/product/confirm-edit-product.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/business/product/view-product.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/business/distributor/create-distributor.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/business/distributor/confirm-create-distributor.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/enums/Frequency.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/Person.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/business/contract/confirm-create-contract.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/financial/money-in/create-money-in.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/financial/premium/create-premium.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/repositories/PremiumRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/repositories/ContractRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/services/PremiumServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/insurance/ins/InsApplicationTests.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/config/WebConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/config/MyConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/system.properties" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/reposiotries/PersonRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/batch/BusinessBatch.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/PersonController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/OrganizationController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/services/OrganizationServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/RestContractController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" />
         <option value="$PROJECT_DIR$/advanced-ins-system/index.html" />
-        <option value="$PROJECT_DIR$/advanced-ins-system/js/ins-scripts.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/AccountController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/services/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/errors/unauthorized.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/utils/annotations/PastDateValidator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/PrsnOrg.java" />
@@ -264,12 +245,46 @@
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/models/OrganizationModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/models/EditOrganizationModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/models/EditPersonModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/config/WebSecurityConfig.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/error/error-template.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/error/404.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/error/unauthorized.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/repositories/ProductRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/RestContractController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/DistributorServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/DistributorService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/config/WebSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/reposiotries/PersonRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/repositories/DistributorRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/ins-scripts.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/business/contract/create-contract.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/business/contract/edit-contract.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/repositories/EnversRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/UserLogsModel.java" />
+        <option value="$PROJECT_DIR$/advanced-ins-system/js/ins-scripts.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/GlobalExceptionController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/AccountController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/HomeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/DistributorController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ProductController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/OrganizationController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/PersonController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/business/contract/search-contract.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/users/logs-users.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/services/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/services/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/repositories/UserRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/repositories/RoleRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/Role.java" />
       </list>
     </option>
   </component>
@@ -286,7 +301,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -310,8 +325,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -420,7 +437,32 @@
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="business" type="462c0819:PsiDirectoryNode" />
-              <item name="entites" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="distributor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="repositories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -443,17 +485,6 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="insurance" type="462c0819:PsiDirectoryNode" />
-              <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="financial" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -477,57 +508,7 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="insurance" type="462c0819:PsiDirectoryNode" />
-              <item name="ins" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="insurance" type="462c0819:PsiDirectoryNode" />
-              <item name="ins" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-              <item name="entites" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="insurance" type="462c0819:PsiDirectoryNode" />
-              <item name="ins" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-              <item name="entites" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="insurance" type="462c0819:PsiDirectoryNode" />
-              <item name="ins" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-              <item name="entites" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="financial" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -539,10 +520,31 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="financial" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-              <item name="entites" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="reposiotries" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -555,8 +557,6 @@
               <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
               <item name="entites" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -608,20 +608,6 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-              <item name="entites" type="462c0819:PsiDirectoryNode" />
-              <item name="prsn" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="insurance" type="462c0819:PsiDirectoryNode" />
-              <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="technical" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -658,7 +644,7 @@
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="technical" type="462c0819:PsiDirectoryNode" />
-              <item name="listener" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -670,7 +656,7 @@
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="technical" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="repositories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -717,7 +703,7 @@
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="validators" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -729,8 +715,20 @@
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="validators" type="462c0819:PsiDirectoryNode" />
-              <item name="fields" type="462c0819:PsiDirectoryNode" />
+              <item name="notifications" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="insurance" type="462c0819:PsiDirectoryNode" />
+              <item name="ins" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="notifications" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -753,7 +751,35 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="contract" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -771,26 +797,36 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="financial" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="financial" type="462c0819:PsiDirectoryNode" />
+              <item name="money-in" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="financial" type="462c0819:PsiDirectoryNode" />
+              <item name="premium" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="fragments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-              <item name="prsn" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -845,8 +881,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -857,7 +891,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="C:/Program Files/nodejs/node" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaWebSpring2018/Exercise7_Right_Way_for_Architecture_Control_Flow/resident-evil" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaWebSpring2018/HistoricalManagment/resident-evil" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelWidth1" value="75" />
@@ -868,18 +902,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\users" />
       <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\error" />
       <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates" />
       <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\java\com\insurance\ins\utils\annotations" />
       <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS" />
-      <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\business\product" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.insurance.ins.technical.models" />
       <recent name="com.insurance.ins.technical.controllers" />
       <recent name="com.insurance.ins.business.controllers" />
       <recent name="com.insurance.ins.business.models.product" />
       <recent name="com.insurance.ins.technical.listener" />
-      <recent name="com.insurance.ins.technical.entites" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Krasimir\IdeaProjects\JavaWeb2018\Spring-MVC-Advanced-INS\src\main\resources\templates\error" />
@@ -899,7 +933,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.InsApplication">
+  <component name="RunManager" selected="JUnit.InsApplicationTests">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -1088,8 +1122,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Spring Boot.InsApplication" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.InsApplicationTests" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.InsApplicationTests" />
+        <item index="1" class="java.lang.String" itemvalue="Spring Boot.InsApplication" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.InsApplicationTests.OwnerMoreThen18years" />
         <item index="3" class="java.lang.String" itemvalue="Application.BatchExecute" />
         <item index="4" class="java.lang.String" itemvalue="Application.DemoScheduler" />
@@ -1124,16 +1158,12 @@
       <workItem from="1523780098339" duration="36671000" />
       <workItem from="1524129450577" duration="2267000" />
       <workItem from="1524222071260" duration="16048000" />
+      <workItem from="1524316987535" duration="1857000" />
+      <workItem from="1524319330072" duration="17598000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="InsApplicationTests - 2018.04.17 at 19h 31m 40s.xml">
-      <configuration name="InsApplicationTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="InsApplicationTests - 2018.04.17 at 19h 32m 10s.xml">
-      <configuration name="InsApplicationTests" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="InsApplicationTests - 2018.04.17 at 19h 33m 05s.xml">
       <configuration name="InsApplicationTests" configurationId="JUnit" />
     </history-entry>
@@ -1155,15 +1185,21 @@
     <history-entry file="InsApplicationTests - 2018.04.17 at 20h 57m 17s.xml">
       <configuration name="InsApplicationTests" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="InsApplicationTests - 2018.04.21 at 22h 15m 24s.xml">
+      <configuration name="InsApplicationTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="InsApplicationTests - 2018.04.21 at 22h 16m 21s.xml">
+      <configuration name="InsApplicationTests" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="InsApplicationTests_OwnerMoreThen18years - 2018.04.17 at 19h 36m 03s.xml">
       <configuration name="InsApplicationTests.OwnerMoreThen18years" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="346773000" />
+    <option name="totallyTimeSpent" value="390567000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1175,21 +1211,20 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48959777" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48945615" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31853497" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45214978" sideWeight="0.49485862" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.281909" sideWeight="0.49485862" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28084832" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36460555" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32732317" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1202,6 +1237,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1092545" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32732317" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1252,22 +1288,10 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java</url>
-          <line>137</line>
-          <properties />
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java</url>
-          <line>44</line>
+          <line>46</line>
           <properties />
           <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java</url>
-          <line>151</line>
-          <properties />
-          <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/listener/UserRevisionListener.java</url>
@@ -1276,32 +1300,14 @@
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ProductController.java</url>
-          <line>155</line>
-          <properties />
-          <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/RestContractController.java</url>
-          <line>57</line>
-          <properties />
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductServiceImpl.java</url>
           <line>107</line>
           <properties />
           <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java</url>
-          <line>126</line>
-          <properties />
-          <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/PersonController.java</url>
-          <line>80</line>
+          <line>84</line>
           <properties />
           <option name="timeStamp" value="125" />
         </line-breakpoint>
@@ -1318,139 +1324,79 @@
           <option name="timeStamp" value="128" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="129" />
+      <option name="time" value="138" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductServiceImpl.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state relative-caret-position="-213">
+          <caret line="568" column="0" lean-forward="false" selection-start-line="568" selection-start-column="0" selection-end-line="568" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/confirm-create-contract.html">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-envers/5.2.14.Final/hibernate-envers-5.2.14.Final.jar!/org/hibernate/envers/AuditReader.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="60" lean-forward="false" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+        <state relative-caret-position="248">
+          <caret line="48" column="11" lean-forward="false" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system.properties">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-envers/5.2.14.Final/hibernate-envers-5.2.14.Final.jar!/org/hibernate/envers/DefaultRevisionEntity.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-34">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="23" lean-forward="false" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/system.properties" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="56" lean-forward="false" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="35" column="4" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/services/OrganizationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/reposiotries/OrganizationRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/DistributorServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="146" column="0" lean-forward="true" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/reposiotries/PersonRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.0.4.RELEASE/spring-context-5.0.4.RELEASE.jar!/org/springframework/scheduling/annotation/Scheduled.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/batch/BusinessBatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="e#477#478#0" expanded="false" />
-            <element signature="e#529#530#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.4.RELEASE/spring-aop-5.0.4.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="481" column="0" lean-forward="false" selection-start-line="481" selection-start-column="0" selection-end-line="481" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="507" column="0" lean-forward="false" selection-start-line="507" selection-start-column="0" selection-end-line="507" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractService.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.4.RELEASE/spring-web-5.0.4.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+        <state relative-caret-position="245">
+          <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/search-organization.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="-34">
+          <caret line="31" column="36" lean-forward="false" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/services/PersonServiceImpl.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.0.4.RELEASE/spring-core-5.0.4.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="82" column="13" lean-forward="true" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
+        <state relative-caret-position="144">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/error/404.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/users/show-users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="871">
+          <caret line="63" column="44" lean-forward="true" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -1463,102 +1409,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/services/OrganizationServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/models/PersonModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="89" column="13" lean-forward="false" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
+        <state relative-caret-position="238">
+          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/financial/money-in/create-money-in.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/DistributorController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ProductController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="111" column="12" lean-forward="false" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/RestContractController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="43" column="48" lean-forward="false" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/advanced-ins-system/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="973">
-          <caret line="110" column="10" lean-forward="false" selection-start-line="110" selection-start-column="10" selection-end-line="110" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/advanced-ins-system/js/jquery-3.1.0.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-204">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="210" column="130" lean-forward="false" selection-start-line="210" selection-start-column="80" selection-end-line="210" selection-end-column="130" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/advanced-ins-system/js/ins-scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3971">
-          <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
-          <folding>
-            <marker date="1524233466348" expanded="false" signature="0:335" ph="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/EditUserModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="408">
+          <caret line="44" column="32" lean-forward="true" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/UserModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/Event.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/services/UserServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/utils/interfaces/FieldValueExists.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1061">
-          <caret line="125" column="65" lean-forward="false" selection-start-line="125" selection-start-column="65" selection-end-line="125" selection-end-column="65" />
+        <state relative-caret-position="34">
+          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/utils/DTOConvertUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="19" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/repositories/ContractRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2461">
+          <caret line="62" column="27" lean-forward="true" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/DistributorServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1696">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1747">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/financial/premium/create-premium.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-302">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1571,170 +1513,229 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/GlobalExceptionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/errors/unauthorized.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/PrsnOrg.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/utils/validators/fields/PastDateValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/utils/annotations/PastDate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/models/PersonModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="48" />
-          <folding>
-            <element signature="e#1136#1137#0" expanded="false" />
-            <element signature="e#1167#1168#0" expanded="false" />
-            <element signature="e#1215#1216#0" expanded="false" />
-            <element signature="e#1255#1256#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/models/OrganizationModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/org/models/EditOrganizationModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="2" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/entites/prsn/models/EditPersonModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/config/WebSecurityConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="27" column="53" lean-forward="true" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="17" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/AccountController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="81" column="30" lean-forward="false" selection-start-line="81" selection-start-column="30" selection-end-line="81" selection-end-column="30" />
+        <state relative-caret-position="1003">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/edit-person.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ProductController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="24" selection-end-column="7" />
+        <state relative-caret-position="78">
+          <caret line="142" column="37" lean-forward="false" selection-start-line="142" selection-start-column="37" selection-end-line="142" selection-end-column="37" />
+          <folding>
+            <marker date="1524334229127" expanded="true" signature="5330:5444" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/RestContractController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="53" column="30" lean-forward="true" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ContractServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="218" column="9" lean-forward="false" selection-start-line="218" selection-start-column="9" selection-end-line="218" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/error/404.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="19" column="26" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/error/unauthorized.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="16" column="59" lean-forward="true" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
+        <state relative-caret-position="537">
+          <caret line="98" column="41" lean-forward="false" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/OrganizationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="118" column="9" lean-forward="false" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="9" />
+        <state relative-caret-position="38">
+          <caret line="144" column="36" lean-forward="true" selection-start-line="144" selection-start-column="36" selection-end-line="144" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/PersonController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="103" column="44" lean-forward="false" selection-start-line="103" selection-start-column="44" selection-end-line="103" selection-end-column="44" />
+        <state relative-caret-position="-255">
+          <caret line="54" column="42" lean-forward="false" selection-start-line="54" selection-start-column="42" selection-end-line="54" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/DistributorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="180" column="41" lean-forward="false" selection-start-line="180" selection-start-column="41" selection-end-line="180" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="95" column="55" lean-forward="true" selection-start-line="95" selection-start-column="55" selection-end-line="95" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/search-contract.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="36" column="39" lean-forward="true" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/users/logs-users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="56" column="23" lean-forward="true" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/services/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/services/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/repositories/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/repositories/RoleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/UserModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/UserLogsModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/SearchUserModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/EditUserModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/models/AllUsersViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/entites/AuditEnversInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/batch/BusinessBatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="177" column="55" lean-forward="true" selection-start-line="177" selection-start-column="55" selection-end-line="177" selection-end-column="55" />
+        <state relative-caret-position="2091">
+          <caret line="156" column="34" lean-forward="false" selection-start-line="156" selection-start-column="34" selection-end-line="156" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/error/error-template.html">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/insurance/ins/InsApplicationTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+        <state relative-caret-position="969">
+          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/controllers/GlobalExceptionController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/ins-scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-1938">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

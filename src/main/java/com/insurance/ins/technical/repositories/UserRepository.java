@@ -9,9 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Created by K on 7.3.2018 г..
- */
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
 

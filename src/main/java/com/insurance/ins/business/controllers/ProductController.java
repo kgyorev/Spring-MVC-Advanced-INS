@@ -5,47 +5,36 @@ import com.insurance.ins.business.models.product.AllProductsViewModel;
 import com.insurance.ins.business.models.product.EditProductModel;
 import com.insurance.ins.business.models.product.ProductModel;
 import com.insurance.ins.business.models.product.SearchProductModel;
-import com.insurance.ins.business.services.ContractService;
-import com.insurance.ins.business.services.DistributorService;
 import com.insurance.ins.business.services.ProductService;
-import com.insurance.ins.financial.services.MoneyInService;
-import com.insurance.ins.financial.services.PremiumService;
-import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
 import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.ParseException;
+import java.util.List;
 
 @Controller
 public class ProductController {
+    private final ProductService productService;
+    private final NotificationService notifyService;
+
     @Autowired
-    private HttpSession httpSession;
-    @Autowired
-    private ContractService contractService;
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private DistributorService distributorService;
-    @Autowired
-    private PersonService personService;
-    @Autowired
-    private PremiumService premiumService;
-    @Autowired
-    private MoneyInService moneyInService;
-    @Autowired
-    private NotificationService notifyService;
+    public ProductController(ProductService productService, NotificationService notifyService) {
+        this.productService = productService;
+        this.notifyService = notifyService;
+    }
 
 
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/products/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String view(@ModelAttribute(name = "productModel") ProductModel productModel, @PathVariable("id") Long id, Model model) {
         Product product = productService.findById(id);
         if (product == null) {
@@ -57,7 +46,8 @@ public class ProductController {
         return "business/product/view-product";
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @GetMapping(value = "/products")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String view_all(@ModelAttribute(name = "searchProductModel") SearchProductModel searchProductModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
         AllProductsViewModel productall = productService.searchProduct(searchProductModel, pageable);
 
@@ -69,7 +59,8 @@ public class ProductController {
         return "business/product/search-product";
     }
 
-    @RequestMapping(value = "/products/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/products/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String editPage(@ModelAttribute(name = "productModel") EditProductModel productModel, @PathVariable("id") Long id, Model model) {
         Product product = productService.findById(id);
         if (product == null) {
@@ -84,7 +75,8 @@ public class ProductController {
         return "business/product/edit-product";
     }
 
-    @RequestMapping(value = "/products/confirm/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/products/confirm/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String confirmEdit(@Valid @ModelAttribute(name = "productModel") EditProductModel productModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "redirect:/products";
@@ -98,11 +90,12 @@ public class ProductController {
             notifyService.addErrorMessage("Cannot find product #" + id);
             return "redirect:/";
         }
-          model.addAttribute("producIdntfr", product.getIdntfr());
+        model.addAttribute("producIdntfr", product.getIdntfr());
         return "business/product/confirm-edit-product";
     }
 
-    @RequestMapping(value = "/products/edit/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/products/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String edit(@Valid @ModelAttribute(name = "productModel") EditProductModel productModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         Product product = productService.findById(id);
         if (product == null) {
@@ -115,22 +108,24 @@ public class ProductController {
         }
 
         if (bindingResult.hasErrors()) {
-               notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage("Please fill the form correctly!");
             return "business/product/edit-product";
         }
 
-        productService.edit(product,productModel);
+        productService.edit(product, productModel);
         notifyService.addInfoMessage("Edit successful");
         return "redirect:/products";
     }
 
-    @RequestMapping(value = "/products/create", method = RequestMethod.GET)
+    @GetMapping(value = "/products/create")
+    @PreAuthorize("hasRole('ADMIN')")
     public String createPage(@ModelAttribute(name = "productModel") ProductModel productModel) {
         return "business/product/create-product";
     }
 
 
-    @RequestMapping(value = "/products/confirm/create", method = RequestMethod.GET)
+    @GetMapping(value = "/products/confirm/create")
+    @PreAuthorize("hasRole('ADMIN')")
     public String confirmCreate(@Valid @ModelAttribute(name = "productModel") ProductModel productModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "redirect:/";
@@ -144,7 +139,8 @@ public class ProductController {
     }
 
 
-    @RequestMapping(value = "/products/create", method = RequestMethod.POST)
+    @PostMapping(value = "/products/create")
+    @PreAuthorize("hasRole('ADMIN')")
     public String create(@Valid ProductModel productModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "business/product/create-product";
@@ -158,5 +154,14 @@ public class ProductController {
         productService.create(product);
         notifyService.addInfoMessage("Product with Identifier: " + product.getIdntfr() + " was created.");
         return "redirect:/";
+    }
+
+    //    REST
+    @GetMapping(value = "/rest/products", produces = "application/json")
+    @ResponseBody
+    @CrossOrigin
+    public List<Product> allProducts(@RequestParam(value = "idntfr", required = false) String idntfr) {
+        List<Product> products = this.productService.findAllByIdntfrContains(idntfr);
+        return products;
     }
 }

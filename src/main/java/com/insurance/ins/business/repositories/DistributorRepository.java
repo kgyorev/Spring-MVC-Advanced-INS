@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface DistributorRepository extends
         JpaRepository<Distributor, Long> {
@@ -18,6 +20,7 @@ public interface DistributorRepository extends
     Page<Distributor> findAllByUser(User user, Pageable pageable);
 
     Page<Distributor> findAllByOrganization(Organization organization, Pageable pageable);
+    List<Distributor> findAllByIdOrFullNameContains(Long id, String fullName);
 
 }
 

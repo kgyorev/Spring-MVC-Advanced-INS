@@ -5,9 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
-/**
- * Created by K on 20.3.2018 г..
- */
 @Entity
 @Audited
 @Table(name = "roles")

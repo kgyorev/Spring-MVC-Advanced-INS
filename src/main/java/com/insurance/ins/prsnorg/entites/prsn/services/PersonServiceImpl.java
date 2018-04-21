@@ -122,6 +122,18 @@ public class PersonServiceImpl implements PersonService {
         }
         return personAll;
     }
+
+    @Override
+    public List<Person> findAllByIdOrFullNameContainsOrEgnContains(String criteria) {
+        long id= 0;
+        try {
+            id = Long.parseLong(criteria);
+        } catch (NumberFormatException e) {
+        }
+
+        return this.personRepository.findAllByIdOrFullNameContainsOrEgnContains(id,criteria,criteria);
+    }
+
     @Override
     public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
         Assert.notNull(fieldName,"Can't be null");

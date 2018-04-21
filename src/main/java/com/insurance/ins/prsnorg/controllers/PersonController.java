@@ -12,29 +12,30 @@ import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
 @Controller
 public class PersonController {
-    private final HttpSession httpSession;
     private final PersonService personService;
     private final NotificationService notifyService;
 
     @Autowired
-    public PersonController(NotificationService notifyService, HttpSession httpSession, PersonService personService) {
+    public PersonController(NotificationService notifyService, PersonService personService) {
         this.notifyService = notifyService;
-        this.httpSession = httpSession;
         this.personService = personService;
     }
     @GetMapping(value = "/persons")
+    @PreAuthorize("hasRole('USER')")
     public String view_all(@ModelAttribute(name = "searchPersonModel") SearchPersonModel searchPersonModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
         AllPersonsViewModel personAll =  personService.searchPerson(searchPersonModel,pageable);
         if(
@@ -47,6 +48,7 @@ public class PersonController {
     }
 
     @GetMapping(value ="/persons/delete/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String delete(SearchPersonModel searchPersonModel, @PathVariable("id") Long id, Model model) {
         Person person = personService.findById(id);
         if (person == null) {
@@ -64,6 +66,7 @@ public class PersonController {
         return "redirect:/persons";
     }
     @GetMapping(value ="/persons/{id}")
+    @PreAuthorize("hasRole('USER')")
     public String viewPerson(@ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id, Model model) {
 
         Person person = personService.findById(id);
@@ -76,6 +79,7 @@ public class PersonController {
         return "prsnorg/prsn/view-person";
     }
     @GetMapping(value ="/persons/edit/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String editPage(@ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id, Model model) {
         Person person = personService.findById(id);
         if (person == null) {
@@ -87,6 +91,7 @@ public class PersonController {
         return "prsnorg/prsn/edit-person";
     }
     @GetMapping(value ="/persons/confirm/edit/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String confirmEditPage(@Valid @ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id,BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
             return "redirect:/persons";
@@ -102,6 +107,7 @@ public class PersonController {
         return "prsnorg/prsn/confirm-edit-person";
     }
     @PostMapping(value ="/persons/edit/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String edit(@Valid @ModelAttribute(name = "personModel") EditPersonModel personModel, BindingResult bindingResult, @PathVariable("id") Long id,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
             return "prsnorg/prsn/edit-person";
@@ -120,10 +126,12 @@ public class PersonController {
         return "redirect:/persons";
     }
     @GetMapping(value = "/persons/create")
+    @PreAuthorize("hasRole('USER')")
     public String createPage(@ModelAttribute(name = "personModel") PersonModel personModel) {
         return "prsnorg/prsn/create-person";
     }
     @GetMapping(value = "/persons/confirm/create")
+    @PreAuthorize("hasRole('USER')")
     public String confirmPage(@Valid @ModelAttribute(name = "personModel") PersonModel personModel,BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
             return "redirect:/";
@@ -136,6 +144,7 @@ public class PersonController {
     }
 
     @PostMapping(value = "/persons/create")
+    @PreAuthorize("hasRole('USER')")
     public String create(@Valid PersonModel personModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
             return "prsnorg/prsn/create-person";
@@ -148,5 +157,17 @@ public class PersonController {
         this.personService.create(person);
         notifyService.addInfoMessage("Person with Id: " + person.getId() + " was created.");
         return "redirect:/";
+    }
+    @GetMapping(value="/rest/persons",produces = "application/json")
+    @ResponseBody
+    @CrossOrigin
+    public List<PersonModel> allPersons(@RequestParam(value="searchPersonCriteria" ,required = false) String criteria) {
+        List<Person> persons = this.personService.findAllByIdOrFullNameContainsOrEgnContains(criteria);
+        List<PersonModel> personModel=new ArrayList<>();
+        for (Person person : persons) {
+            PersonModel personModeled = DTOConvertUtil.convert(person, PersonModel.class);
+            personModel.add(personModeled);
+        }
+        return personModel;
     }
 }

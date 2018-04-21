@@ -9,9 +9,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by K on 20.3.2018 г..
- */
 @Entity
 @Audited
 @Table(name = "users")

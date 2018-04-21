@@ -12,7 +12,6 @@ import com.insurance.ins.financial.models.AllMoneyInsViewModel;
 import com.insurance.ins.financial.models.AllPremiumsViewModel;
 import com.insurance.ins.financial.services.MoneyInService;
 import com.insurance.ins.financial.services.PremiumService;
-import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
 import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,23 +28,24 @@ import java.text.ParseException;
 
 @Controller
 public class ContractController {
+    private final ContractService contractService;
+    private final ProductService productService;
+    private final PremiumService premiumService;
+    private final MoneyInService moneyInService;
+    private final NotificationService notifyService;
+
     @Autowired
-    private ContractService contractService;
-    @Autowired
-    private ProductService productService;
-//    @Autowired
-//    private DistributorService distributorService;
-    @Autowired
-    private PersonService personService;
-    @Autowired
-    private PremiumService premiumService;
-    @Autowired
-    private MoneyInService moneyInService;
-    @Autowired
-    private NotificationService notifyService;
+    public ContractController(ContractService contractService, ProductService productService, PremiumService premiumService, MoneyInService moneyInService, NotificationService notifyService) {
+        this.contractService = contractService;
+        this.productService = productService;
+        this.premiumService = premiumService;
+        this.moneyInService = moneyInService;
+        this.notifyService = notifyService;
+    }
 
 
-    @RequestMapping(value = "/batch", method = RequestMethod.GET)
+    @GetMapping(value = "/batch")
+    @PreAuthorize("hasRole('ADMIN')")
     public String batch() {
 
         BusinessBatch batch = new BusinessBatch(this.premiumService);
@@ -53,7 +53,7 @@ public class ContractController {
 
         return "redirect:/";
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/premiumBillingBatch", method = RequestMethod.GET)
     public String batchPremium() {
 
@@ -62,7 +62,8 @@ public class ContractController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/contracts/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/contracts/{id}")
+    @PreAuthorize("hasRole('USER')")
     public String view(@ModelAttribute(name = "contractModel") ContractModel contractModel, @PathVariable("id") Long id, Model model, @PageableDefault(size = 10) Pageable page) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
@@ -80,7 +81,8 @@ public class ContractController {
         return "business/contract/view-contract";
     }
 
-    @RequestMapping(value = "/contracts", method = RequestMethod.GET)
+    @GetMapping(value = "/contracts")
+    @PreAuthorize("hasRole('USER')")
     public String view_all(@ModelAttribute(name = "searchContractModel") SearchContractModel searchContractModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
         AllContractsViewModel contractall = contractService.searchContract(searchContractModel, pageable);
 
@@ -92,8 +94,9 @@ public class ContractController {
         model.addAttribute("contractall", contractall);
         return "business/contract/search-contract";
     }
+
     @PreAuthorize("hasRole('MODERATOR')")
-    @RequestMapping(value = "/contracts/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/contracts/edit/{id}")
     public String editPage(@ModelAttribute(name = "contractModel") EditContractModel contractModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
@@ -108,7 +111,7 @@ public class ContractController {
     }
 
     @PreAuthorize("hasRole('MODERATOR')")
-    @RequestMapping(value = "/contracts/confirm/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/contracts/confirm/edit/{id}")
     public String confirmEdit(@Valid @ModelAttribute(name = "contractModel") EditContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
@@ -124,7 +127,7 @@ public class ContractController {
             model.addAttribute("contractOwnerId", contract.getOwner().getId());
             return "business/contract/edit-contract";
         }
-        Contract contractEdit = contractService.prepareContractForEdit(contract,contractModel);
+        Contract contractEdit = contractService.prepareContractForEdit(contract, contractModel);
         Double premiumAmount = contractService.calculatePremiumAmount(contractEdit);
         contractModel.setPremiumAmount(premiumAmount);
         model.addAttribute("contractProductId", contract.getProduct().getIdntfr());
@@ -133,7 +136,7 @@ public class ContractController {
     }
 
     @PreAuthorize("hasRole('MODERATOR')")
-    @RequestMapping(value = "/contracts/edit/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/contracts/edit/{id}")
     public String edit(@Valid @ModelAttribute(name = "contractModel") EditContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         Contract contract = contractService.findById(id);
         if (contract == null) {
@@ -154,14 +157,14 @@ public class ContractController {
         return "redirect:/contracts";
     }
 
-    @PreAuthorize("hasRole('MODERATOR')")
-    @RequestMapping(value = "/contracts/create", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping(value = "/contracts/create")
     public String createPage(@ModelAttribute(name = "contractModel") ContractModel contractMode) {
-        int a = 1/0;
         return "business/contract/create-contract";
     }
-    @PreAuthorize("hasRole('MODERATOR')")
-    @RequestMapping(value = "/contracts/confirm/create", method = RequestMethod.GET)
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping(value = "/contracts/confirm/create")
     public String confirmCreate(@Valid @ModelAttribute(name = "contractModel") ContractModel contractModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "redirect:/";
@@ -180,8 +183,8 @@ public class ContractController {
         return "business/contract/confirm-create-contract";
     }
 
-    @PreAuthorize("hasRole('MODERATOR')")
-    @RequestMapping(value = "/contracts/create", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping(value = "/contracts/create")
     public String create(@Valid ContractModel contractModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "business/contract/create-contract";

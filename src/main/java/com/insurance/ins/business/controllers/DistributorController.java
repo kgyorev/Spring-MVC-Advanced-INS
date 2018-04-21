@@ -7,12 +7,8 @@ import com.insurance.ins.business.models.distributor.DistributorModel;
 import com.insurance.ins.business.models.distributor.SearchDistributorModel;
 import com.insurance.ins.business.services.ContractService;
 import com.insurance.ins.business.services.DistributorService;
-import com.insurance.ins.business.services.ProductService;
-import com.insurance.ins.financial.services.MoneyInService;
-import com.insurance.ins.financial.services.PremiumService;
 import com.insurance.ins.prsnorg.entites.org.Organization;
 import com.insurance.ins.prsnorg.entites.org.services.OrganizationService;
-import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
 import com.insurance.ins.technical.entites.User;
 import com.insurance.ins.technical.services.UserService;
 import com.insurance.ins.utils.DTOConvertUtil;
@@ -20,40 +16,37 @@ import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class DistributorController {
-    public static final String CLIENT = "siteClient";
-    @Autowired
-    private HttpSession httpSession;
-    @Autowired
-    private ContractService contractService;
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private DistributorService distributorService;
-    @Autowired
-    private OrganizationService organizationService;
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private PersonService personService;
-    @Autowired
-    private PremiumService premiumService;
-    @Autowired
-    private MoneyInService moneyInService;
-    @Autowired
-    private NotificationService notifyService;
+    private final ContractService contractService;
+    private final DistributorService distributorService;
+    private final OrganizationService organizationService;
+    private final UserService userService;
 
-    @RequestMapping(value = "/distributors/{id}", method = RequestMethod.GET)
+    private final NotificationService notifyService;
+
+    @Autowired
+    public DistributorController(ContractService contractService, DistributorService distributorService, OrganizationService organizationService, UserService userService, NotificationService notifyService) {
+        this.contractService = contractService;
+        this.distributorService = distributorService;
+        this.organizationService = organizationService;
+        this.userService = userService;
+        this.notifyService = notifyService;
+    }
+
+    @GetMapping(value = "/distributors/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String view(@ModelAttribute(name = "distributorModel") DistributorModel distributorModel, @PathVariable("id") Long id, Model model, @PageableDefault(size = 10) Pageable page) {
         Distributor distributor = distributorService.findById(id);
         if (distributor == null) {
@@ -71,7 +64,8 @@ public class DistributorController {
         return "business/distributor/view-distributor";
     }
 
-    @RequestMapping(value = "/distributors", method = RequestMethod.GET)
+    @GetMapping(value = "/distributors")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String view_all(@ModelAttribute(name = "searchDistributorModel") SearchDistributorModel searchDistributorModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
         AllDistributorsViewModel distributorall = distributorService.searchDistributor(searchDistributorModel, pageable);
 
@@ -84,81 +78,8 @@ public class DistributorController {
         return "business/distributor/search-distributor";
     }
 
-    //    @RequestMapping(value="/contracts",method = RequestMethod.POST)
-//    public String searchContract(SearchContractModel searchContractForm, Model model) {
-//        Long id = searchContractForm.getCntrctId();
-//        List<Contract> allcontracts = contractService.findAll();
-//        List<Contract> contractall;
-//        if(id!=null) {
-//            Stream<Contract> contractStream = allcontracts.stream().filter(u -> u.getId().equals(id));
-//            List<Contract> clientall_tmp = contractStream.collect(Collectors.toList());
-//            if(clientall_tmp.size()==0)
-//            {
-//                notifyService.addWarningMessage("Cannot find contract with Id: " + id);
-//                contractall= allcontracts;
-//            }
-//            else
-//                contractall = clientall_tmp;
-//        }
-//        else
-//            contractall= allcontracts;
-//        model.addAttribute("contractall", contractall);
-//        return "contracts/index_all";
-//    }
-//    @RequestMapping(value ="/contracts/delete/{id}", method = RequestMethod.GET)
-//    public String delete(@PathVariable("id") Long id, Model model) {
-//        Object user = httpSession.getAttribute(USER_LOGIN);
-//        if (user == null) {
-//            notifyService.addErrorMessage("Please Login!");
-//            return "redirect:/";
-//        }
-//        Contract contract = contractService.findById(id);
-//        if (contract == null) {
-//            notifyService.addErrorMessage("Cannot find contract #" + id);
-//            return "redirect:/";
-//        }
-//       contractService.deleteById(id);
-//        List<Contract> contractall = contractService.findAll();
-//        model.addAttribute("contractall", contractall);
-//        return "contracts/index_all";  // v primera e view.html
-//    }
-//    @RequestMapping(value ="/contracts/cancel/{id}", method = RequestMethod.GET)
-//    public String cancel(SearchContractModel searchContractForm, @PathVariable("id") Long id, Model model) {
-//        Object user = httpSession.getAttribute(USER_LOGIN);
-//        if (user == null) {
-//            notifyService.addErrorMessage("Please Login!");
-//            return "redirect:/";
-//        }
-//        Contract contract = contractService.findById(id);
-//        if (contract == null) {
-//            notifyService.addErrorMessage("Cannot find contract with Id: " + id);
-//            return "redirect:/";
-//        }
-//        notifyService.addInfoMessage("Contract with Id: " + id + " was canceled");
-//        contractService.cancel(contract);
-//        List<Contract> contractall = contractService.findAll();
-//        model.addAttribute("contractall", contractall);
-//        return "contracts/index_all";  // v primera e view.html
-//    }
-//    @RequestMapping(value ="/contracts/inforce/{id}", method = RequestMethod.GET)
-//    public String inforce(SearchContractModel searchContractForm, @PathVariable("id") Long id, Model model) {
-//        Object user = httpSession.getAttribute(USER_LOGIN);
-//        if (user == null) {
-//            notifyService.addErrorMessage("Please Login!");
-//            return "redirect:/";
-//        }
-//        Contract contract = contractService.findById(id);
-//        if (contract == null) {
-//            notifyService.addWarningMessage("Cannot find contract with Id: " + id);
-//            return "redirect:/";
-//        }
-//        notifyService.addInfoMessage("Contract with Id: " + id + " was Reactivated");
-//        contractService.inForce(contract);
-//        List<Contract> contractall = contractService.findAll();
-//        model.addAttribute("contractall", contractall);
-//        return "contracts/index_all";  // v primera e view.html
-//    }
-    @RequestMapping(value = "/distributors/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/distributors/edit/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String editPage(@ModelAttribute(name = "distributorModel") DistributorModel distributorModel, @PathVariable("id") Long id, Model model) {
         Distributor distributor = distributorService.findById(id);
         if (distributor == null) {
@@ -170,19 +91,20 @@ public class DistributorController {
         return "business/distributor/edit-distributor";
     }
 
-    @RequestMapping(value = "/distributors/confirm/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/distributors/confirm/edit/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String confirmEdit(@Valid @ModelAttribute(name = "distributorModel") DistributorModel distributorModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "redirect:/distributors";
         }
-        String organizationId= distributorModel.getOrganization();
+        String organizationId = distributorModel.getOrganization();
         Organization organization = organizationService.findById(Long.valueOf(organizationId));
         if (organization == null) {
             notifyService.addErrorMessage("Reference organization not found!");
             return "business/distributor/edit-distributor";
         }
 
-        String userId= distributorModel.getUser();
+        String userId = distributorModel.getUser();
         User user = userService.findById(Long.valueOf(userId));
         if (user == null) {
             notifyService.addErrorMessage("Reference user not found!");
@@ -201,7 +123,8 @@ public class DistributorController {
         return "business/distributor/confirm-edit-distributor";
     }
 
-    @RequestMapping(value = "/distributors/edit/{id}", method = RequestMethod.POST)
+    @PostMapping(value = "/distributors/edit/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String edit(@Valid DistributorModel distributorModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         if (action.equals("return")) {
             return "business/distributor/edit-distributor";
@@ -215,14 +138,14 @@ public class DistributorController {
             return "business/distributor/edit-distributor";
         }
 
-        String organizationId= distributorModel.getOrganization();
+        String organizationId = distributorModel.getOrganization();
         Organization organization = organizationService.findById(Long.valueOf(organizationId));
         if (organization == null) {
             notifyService.addErrorMessage("Reference organization not found!");
             return "business/distributor/edit-distributor";
         }
 
-        String userId= distributorModel.getUser();
+        String userId = distributorModel.getUser();
         User user = userService.findById(Long.valueOf(userId));
         if (user == null) {
             notifyService.addErrorMessage("Reference user not found!");
@@ -233,13 +156,15 @@ public class DistributorController {
         return "redirect:/distributors";
     }
 
-    @RequestMapping(value = "/distributors/create", method = RequestMethod.GET)
+    @GetMapping(value = "/distributors/create")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String createPage(@ModelAttribute(name = "distributorModel") DistributorModel distributorModel) {
         return "business/distributor/create-distributor";
     }
 
 
-    @RequestMapping(value = "/distributors/confirm/create", method = RequestMethod.GET)
+    @GetMapping(value = "/distributors/confirm/create")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String confirmCreate(@Valid @ModelAttribute(name = "distributorModel") DistributorModel distributorModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "redirect:/";
@@ -248,25 +173,12 @@ public class DistributorController {
             notifyService.addErrorMessage("Please fill the form correctly!");
             return "business/distributor/create-distributor";
         }
-
-//        String organizationId= distributorModel.getOrganization();
-//        Organization organization = organizationService.findById(Long.valueOf(organizationId));
-//        if (organization == null) {
-//            notifyService.addErrorMessage("Reference organization not found!");
-//            return "business/distributor/create-distributor";
-//        }
-
-//        String userId= distributorModel.getUser();
-//        User user = userService.findById(Long.valueOf(userId));
-//        if (user == null) {
-//            notifyService.addErrorMessage("Reference user not found!");
-//            return "business/distributor/create-distributor";
-//        }
         return "business/distributor/confirm-create-distributor";
     }
 
 
-    @RequestMapping(value = "/distributors/create", method = RequestMethod.POST)
+    @PostMapping(value = "/distributors/create")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String create(@Valid DistributorModel distributorModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "business/distributor/create-distributor";
@@ -278,14 +190,14 @@ public class DistributorController {
         Distributor distributor = DTOConvertUtil.convert(distributorModel, Distributor.class);
 
 
-        String organizationId= distributorModel.getOrganization();
+        String organizationId = distributorModel.getOrganization();
         Organization organization = organizationService.findById(Long.valueOf(organizationId));
         if (organization == null) {
             notifyService.addErrorMessage("Reference organization not found!");
             return "business/distributor/create-distributor";
         }
 
-        String userId= distributorModel.getUser();
+        String userId = distributorModel.getUser();
         User user = userService.findById(Long.valueOf(userId));
         if (user == null) {
             notifyService.addErrorMessage("Reference user not found!");
@@ -299,4 +211,18 @@ public class DistributorController {
         notifyService.addInfoMessage("Distributor with Id: " + distributor.getId() + " was created.");
         return "redirect:/";
     }
+
+    @GetMapping(value = "/rest/distributors", produces = "application/json")
+    @ResponseBody
+    @CrossOrigin
+    public List<DistributorModel> allProducts(@RequestParam(value = "searchDistributorCriteria", required = false) String criteria) {
+        List<Distributor> distributors = this.distributorService.findAllByIdOrFullName(criteria);
+        List<DistributorModel> distributorModel = new ArrayList<>();
+        for (Distributor distributor : distributors) {
+            DistributorModel distributorModeled = DTOConvertUtil.convert(distributor, DistributorModel.class);
+            distributorModel.add(distributorModeled);
+        }
+        return distributorModel;
+    }
 }
+

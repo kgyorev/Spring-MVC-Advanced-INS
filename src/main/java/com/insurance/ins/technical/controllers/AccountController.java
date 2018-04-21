@@ -1,10 +1,7 @@
 package com.insurance.ins.technical.controllers;
 
 import com.insurance.ins.technical.entites.User;
-import com.insurance.ins.technical.models.AllUsersViewModel;
-import com.insurance.ins.technical.models.EditUserModel;
-import com.insurance.ins.technical.models.SearchUserModel;
-import com.insurance.ins.technical.models.UserModel;
+import com.insurance.ins.technical.models.*;
 import com.insurance.ins.technical.services.UserService;
 import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.notifications.services.NotificationService;
@@ -21,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.text.ParseException;
+import java.util.List;
 
 /**
  * Created by K on 15.3.2018 г..
@@ -78,7 +76,7 @@ public class AccountController {
     }
 
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @GetMapping(value = "/users")
     @PreAuthorize("hasRole('ADMIN')")
     public String view_all(@ModelAttribute(name = "searchUserModel") SearchUserModel searchUserModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
         AllUsersViewModel users = userService.searchUser(searchUserModel, pageable);
@@ -93,7 +91,7 @@ public class AccountController {
 
 
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/users/edit/{id}")
     public String editPage(@ModelAttribute(name = "editUserModel") EditUserModel editUserModel, @PathVariable("id") Long id, Model model) {
         User user = userService.findById(id);
         if (user == null) {
@@ -104,8 +102,8 @@ public class AccountController {
         model.addAttribute("editUserModel", editUserModel);
         return "users/edit";
     }
-
-    @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping(value = "/users/edit/{id}")
     public String edit(@Valid EditUserModel editUserModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         if (action.equals("return")) {
             return "redirect:/users";
@@ -131,15 +129,15 @@ public class AccountController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users/delete/{id}")
     public String delete(@PathVariable("id") Long id, Model model) {
-        User loggedUser = this.userService.findById(id);
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = user.getUsername();
-        String profile = loggedUser.getProfile();
+        User user = this.userService.findById(id);
+        User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = loggedUser.getUsername();
+        String profile = user.getProfile();
         if(profile.equals("ADMIN")){
             notifyService.addErrorMessage("Can't Delete User with profile Administrator!");
             return "redirect:/users";
         }
-        if(loggedUser.getUsername().equals(username)){
+        if(user.getUsername().equals(username)){
             notifyService.addErrorMessage("Can't Delete your own user!");
             return "redirect:/users";
         }
@@ -154,4 +152,20 @@ public class AccountController {
         notifyService.addInfoMessage("Delete successful");
         return "redirect:/users";
     }
+    @GetMapping("/users/log")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String logUser(@ModelAttribute(name = "searchUserModel") SearchUserModel searchUserModel, Model model) {
+        String searchBy = searchUserModel.getSearchBy();
+        String criteria =  searchUserModel.getCriteria();
+        if(!criteria.equals("")){
+            List<UserLogsModel> userLogsModel = userService.searchUserLog(searchBy,criteria);
+            if (userLogsModel.size()==0) {
+                notifyService.addWarningMessage("Cannot find logs with given search criteria.");
+            }
+            model.addAttribute("logs", userLogsModel);
+        }
+        return "users/logs-users";
+    }
+
+
 }

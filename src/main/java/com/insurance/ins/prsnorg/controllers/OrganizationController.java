@@ -12,6 +12,7 @@ import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,6 +36,7 @@ public class OrganizationController {
         this.organizationService = organizationService;
     }
     @GetMapping(value = "/organizations")
+    @PreAuthorize("hasRole('USER')")
     public String view_all(@ModelAttribute(name = "searchOrganizationModel") SearchOrganizationModel searchOrganizationModel, Model model, @PageableDefault(size = 10) Pageable pageable) {
         AllOrganizationsViewModel organizationAll =  organizationService.searchOrganization(searchOrganizationModel,pageable);
 
@@ -47,6 +49,7 @@ public class OrganizationController {
     }
 
     @GetMapping(value ="/organizations/delete/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String delete(SearchOrganizationModel searchOrganizationModel, @PathVariable("id") Long id, Model model) {
         Organization organization = organizationService.findById(id);
         if (organization == null) {
@@ -64,6 +67,7 @@ public class OrganizationController {
         return "redirect:/organizations";
     }
     @GetMapping(value ="/organizations/{id}")
+    @PreAuthorize("hasRole('USER')")
     public String viewOrganization(@ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, @PathVariable("id") Long id, Model model) {
 
         Organization organization = organizationService.findById(id);
@@ -76,6 +80,7 @@ public class OrganizationController {
         return "prsnorg/org/view-organization";
     }
     @GetMapping(value ="/organizations/edit/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String editPage(@ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel,@RequestParam(required=false,name="secondaryActivity") String secondaryActivity, @PathVariable("id") Long id, Model model) {
         httpSession.setAttribute("secondaryActivity",secondaryActivity);
         Organization organization = organizationService.findById(id);
@@ -88,6 +93,7 @@ public class OrganizationController {
         return "prsnorg/org/edit-organization";
     }
     @GetMapping(value ="/organizations/confirm/edit/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String editConfirm(@Valid @ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, BindingResult bindingResult, @PathVariable("id") Long id, @RequestParam(value="action", required=true) String action){
         if(action.equals("return")){
             return "redirect:/organizations";
@@ -103,6 +109,7 @@ public class OrganizationController {
         return "prsnorg/org/confirm-edit-organization";
     }
     @PostMapping(value ="/organizations/edit/{id}")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String edit(@Valid @ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, BindingResult bindingResult, @PathVariable("id") Long id, @RequestParam(value="action", required=true) String action){
         if(action.equals("return")){
             return "prsnorg/org/edit-organization";
@@ -129,6 +136,7 @@ public class OrganizationController {
         return "redirect:/organizations";
     }
     @GetMapping(value = "/organizations/create")
+    @PreAuthorize("hasRole('USER')")
     public String createPage(@ModelAttribute(name = "organizationModel") OrganizationModel organizationModel) {
         return "prsnorg/org/create-organization";
     }
@@ -145,6 +153,7 @@ public class OrganizationController {
     }
 
     @PostMapping(value = "/organizations/create")
+    @PreAuthorize("hasRole('USER')")
     public String create(@Valid OrganizationModel organizationModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
             return "prsnorg/org/create-organization";

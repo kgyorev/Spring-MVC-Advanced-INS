@@ -1,17 +1,22 @@
 package com.insurance.ins.technical.services;
 
 
+import com.insurance.ins.business.entites.Contract;
+import com.insurance.ins.business.services.ContractService;
 import com.insurance.ins.models.service.UserServiceModel;
+import com.insurance.ins.technical.entites.AuditEnversInfo;
 import com.insurance.ins.technical.entites.Role;
 import com.insurance.ins.technical.entites.User;
-import com.insurance.ins.technical.models.AllUsersViewModel;
-import com.insurance.ins.technical.models.EditUserModel;
-import com.insurance.ins.technical.models.SearchUserModel;
-import com.insurance.ins.technical.models.UserModel;
+import com.insurance.ins.technical.models.*;
 import com.insurance.ins.technical.repositories.RoleRepository;
 import com.insurance.ins.technical.repositories.UserRepository;
 import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.interfaces.FieldValueExists;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
+import org.hibernate.envers.RevisionType;
+import org.hibernate.envers.query.AuditEntity;
+import org.hibernate.envers.query.AuditQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,15 +27,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Created by K on 20.3.2018 г..
- */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService, FieldValueExists {
@@ -38,12 +40,15 @@ public class UserServiceImpl implements UserService, FieldValueExists {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder encoder;
+    private final EntityManager entityManager;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder encoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder encoder, ContractService contractService, EntityManager entityManager) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.encoder = encoder;
+        this.entityManager = entityManager;
+
     }
 
 
@@ -53,14 +58,8 @@ public class UserServiceImpl implements UserService, FieldValueExists {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-//        UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-//                new HashSet<>());
-//        Set<SimpleGrantedAuthority> roles = user.getAuthorities().stream().map(r -> new SimpleGrantedAuthority("ROLE_"+r.getAuthority())).collect(Collectors.toSet());
-//        UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),
-//                roles);
         Collection<? extends GrantedAuthority> auth = user.getAuthorities();
         return new User(user.getUsername(), user.getPassword(), true, true, true, true, (Set<Role>) auth);
-//        return userDetails;
     }
 
 
@@ -74,18 +73,6 @@ public class UserServiceImpl implements UserService, FieldValueExists {
         } else {
             this.setRoles("USER", user);
         }
-
-//        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
-//       HashSet<Role> authorities = (HashSet<Role>) user.getAuthorities();
-
-
-//        Set<Role> roles = new HashSet<>();
-//        roles.add(role);
-//        user.setAuthorities(roles);
-
-
-//        this.roleRepository.save(role);
-
         return this.userRepository.saveAndFlush(user);
     }
 
@@ -144,7 +131,16 @@ public class UserServiceImpl implements UserService, FieldValueExists {
             case "username":
                 return this.findAllByUsername(searchUserModel.getCriteria(), pageable);
             default:
-                return this.findAllById(Long.valueOf(searchUserModel.getCriteria()), pageable);
+            {
+                Long idUser = 0L;
+                try{
+                    idUser = Long.valueOf(searchUserModel.getCriteria());
+                }
+                catch(Exception e){
+                }
+                return this.findAllById(idUser, pageable);
+            }
+
         }
     }
 
@@ -182,22 +178,66 @@ public class UserServiceImpl implements UserService, FieldValueExists {
         return this.userRepository.count() / size;
     }
 
+    @Override
+    public List<UserLogsModel> searchUserLog(String searchBy, String criteria) {
+        User user = null;
+        if (searchBy.equals("userId")) {
+            Long idUser = 0L;
+            try{
+                idUser = Long.valueOf(criteria);
+            }
+            catch(Exception e){
+
+            }
+            user = this.findById(idUser);
+        } else {
+            user = userRepository.findByUsername(criteria);
+        }
+        List<UserLogsModel> revLs = new ArrayList<UserLogsModel>();
+        if (user != null) {
+            String username = user.getUsername();
+            AuditReader auditReader = AuditReaderFactory.get(this.entityManager);
+            AuditQuery query = auditReader.createQuery()
+                    .forRevisionsOfEntity(Contract.class, false, true);
+            query.add(AuditEntity.revisionProperty("userId").eq(username));
+            List<Object> resultList = query.getResultList();
+            for (Object rev : resultList) {
+                UserLogsModel userLogsModel = new UserLogsModel();
+                Object[] revision = (Object[]) rev;
+                Contract revisionEntity = (Contract) revision[0];
+                AuditEnversInfo revisionInfo = (AuditEnversInfo) revision[1];
+                RevisionType revisionType = (RevisionType) revision[2];
+                Integer id1 = revisionInfo.getId();
+
+                userLogsModel.setId(Long.valueOf(id1));
+                userLogsModel.setContractId(revisionEntity.getId());
+                Date revisionDate = auditReader.getRevisionDate(id1);
+                LocalDate revisionDateLocalDate = revisionDate.toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+                userLogsModel.setModificationDate(revisionDateLocalDate);
+                userLogsModel.setModification(revisionType.toString());
+                revLs.add(userLogsModel);
+            }
+        }
+        return revLs;
+    }
+
 
     @Override
     public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
         Assert.notNull(fieldName, "Can't be null");
 
-        if (!fieldName.equals("username")&&!fieldName.equals("id")) {
+        if (!fieldName.equals("username") && !fieldName.equals("id")) {
             throw new UnsupportedOperationException("Field name not supported");
         }
 
         if (value == null) {
             return false;
         }
-        if(fieldName.equals("username")){
+        if (fieldName.equals("username")) {
             return this.userRepository.existsByUsername(value.toString());
-        } else
-        {
+        } else {
             return this.userRepository.existsById(Long.valueOf(value.toString()));
         }
 
