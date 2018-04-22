@@ -2,53 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc342cc2-56d8-4d9a-b971-434d4de32925" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/financial/controllers/FinancialController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/interceptors/LogInterceptor.java" afterPath="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/interceptors/LogInterceptor.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/ins-scripts.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/ins-scripts.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/confirm-create-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/confirm-create-contract.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/confirm-edit-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/confirm-edit-contract.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/create-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/create-contract.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/edit-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/edit-contract.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/search-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/search-contract.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/confirm-create-distributor.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/confirm-create-distributor.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/confirm-edit-distributor.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/confirm-edit-distributor.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/create-distributor.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/create-distributor.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/edit-distributor.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/edit-distributor.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/search-distributor.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/search-distributor.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/view-distributor.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/distributor/view-distributor.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/product/confirm-create-product.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/product/confirm-create-product.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/product/confirm-edit-product.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/product/confirm-edit-product.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/product/create-product.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/product/create-product.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/product/edit-product.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/product/edit-product.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/product/search-product.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/product/search-product.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/business/product/view-product.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/business/product/view-product.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error/404.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/error/404.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error/error-template.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/error/error-template.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error/unauthorized.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/error/unauthorized.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/financial/money-in/create-money-in.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/financial/money-in/create-money-in.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/financial/premium/create-premium.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/financial/premium/create-premium.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/layout.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home/index.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/home/index.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/confirm-create-organization.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/confirm-create-organization.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/confirm-edit-organization.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/confirm-edit-organization.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/create-organization.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/create-organization.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/edit-organization.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/edit-organization.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/search-organization.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/search-organization.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/view-organization.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/org/view-organization.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/confirm-create-person.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/confirm-create-person.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/confirm-edit-person.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/confirm-edit-person.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/create-person.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/create-person.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/edit-person.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/edit-person.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/search-person.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/search-person.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/view-person.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/prsnorg/prsn/view-person.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/users/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/users/edit.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/users/login.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/users/login.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/users/logs-users.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/users/logs-users.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/users/logs/view.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/users/logs/view.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/users/register.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/users/register.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/users/show-users.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/users/show-users.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/advanced-ins-system/img/INS-logo.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/advanced-ins-system/img/favicon.ico" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/advanced-ins-system/img/site-logo.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/advanced-ins-system/index.html" afterPath="$PROJECT_DIR$/advanced-ins-system/index.html" />
+      <change beforePath="$PROJECT_DIR$/advanced-ins-system/js/ins-scripts.js" afterPath="$PROJECT_DIR$/advanced-ins-system/js/ins-scripts.js" />
+      <change beforePath="$PROJECT_DIR$/advanced-ins-system/messages.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/advanced-ins-system/messages.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/advanced-ins-system/scripts/jquery-3.0.0.min.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/advanced-ins-system/scripts/msg-system.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/interceptors/LogInterceptor.class" afterPath="$PROJECT_DIR$/target/classes/com/insurance/ins/technical/interceptors/LogInterceptor.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,27 +24,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/users/register.html">
+      <file leaf-file-name="ins-scripts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/advanced-ins-system/js/ins-scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="76" />
+            <state relative-caret-position="187">
+              <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show-users.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/users/show-users.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContractController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ContractController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/business/controllers/ContractController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1170">
@@ -95,16 +49,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1275">
               <caret line="93" column="52" lean-forward="false" selection-start-line="93" selection-start-column="52" selection-end-line="93" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create-money-in.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/financial/money-in/create-money-in.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-509">
-              <caret line="6" column="7" lean-forward="true" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -130,11 +74,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrganizationController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/OrganizationController.java">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/advanced-ins-system/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="157" column="26" lean-forward="true" selection-start-line="157" selection-start-column="26" selection-end-line="157" selection-end-column="47" />
+            <state relative-caret-position="204">
+              <caret line="12" column="19" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -145,16 +99,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
               <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HandlerExecutionChain.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.4.RELEASE/spring-webmvc-5.0.4.RELEASE.jar!/org/springframework/web/servlet/HandlerExecutionChain.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -218,8 +162,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/ProductServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/business/services/DistributorServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/fragments/common-organization.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/prsnorg/controllers/OrganizationController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/ins-scripts.js" />
@@ -269,6 +211,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/financial/premium/create-premium.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/business/contract/view-contract.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/insurance/ins/technical/interceptors/LogInterceptor.java" />
+        <option value="$PROJECT_DIR$/advanced-ins-system/js/ins-scripts.js" />
+        <option value="$PROJECT_DIR$/advanced-ins-system/index.html" />
       </list>
     </option>
   </component>
@@ -324,12 +268,6 @@
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
               <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
               <item name="advanced-ins-system" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="advanced-ins-system" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -494,18 +432,6 @@
               <item name="insurance" type="462c0819:PsiDirectoryNode" />
               <item name="ins" type="462c0819:PsiDirectoryNode" />
               <item name="financial" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="insurance" type="462c0819:PsiDirectoryNode" />
-              <item name="ins" type="462c0819:PsiDirectoryNode" />
-              <item name="financial" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -748,192 +674,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="business" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="business" type="462c0819:PsiDirectoryNode" />
-              <item name="contract" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="business" type="462c0819:PsiDirectoryNode" />
-              <item name="distributor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="business" type="462c0819:PsiDirectoryNode" />
-              <item name="product" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="error" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="financial" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="financial" type="462c0819:PsiDirectoryNode" />
-              <item name="money-in" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="financial" type="462c0819:PsiDirectoryNode" />
-              <item name="premium" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="fragments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="prsnorg" type="462c0819:PsiDirectoryNode" />
-              <item name="prsn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ins" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Spring-MVC-Advanced-INS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ins" type="b2602c69:ProjectViewProjectNode" />
@@ -1257,7 +997,7 @@
       <workItem from="1524129450577" duration="2267000" />
       <workItem from="1524222071260" duration="16048000" />
       <workItem from="1524316987535" duration="1857000" />
-      <workItem from="1524319330072" duration="39551000" />
+      <workItem from="1524319330072" duration="40660000" />
     </task>
     <servers />
   </component>
@@ -1294,11 +1034,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="412520000" />
+    <option name="totallyTimeSpent" value="413629000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45214978" sideWeight="0.5051414" order="4" side_tool="true" content_ui="tabs" />
@@ -1320,7 +1059,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3773585" sideWeight="0.49485862" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2585288" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2585288" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32732317" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1427,46 +1166,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/ins-scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/confirm-create-contract.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/confirm-edit-contract.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/create-contract.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="66" lean-forward="false" selection-start-line="11" selection-start-column="66" selection-end-line="11" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/edit-contract.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="59" lean-forward="false" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/business/contract/search-contract.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1831,6 +1530,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1170">
           <caret line="49" column="8" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/advanced-ins-system/js/ins-scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/advanced-ins-system/messages.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/advanced-ins-system/messages.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/advanced-ins-system/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="19" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
           <folding />
         </state>
       </provider>

@@ -1,21 +1,9 @@
-// $(function() {
-//     $('#messages div').click(function() {
-//         $(this).fadeOut();
-//     });
-//     setTimeout(function() {
-//         $('#messages div.alert-success').fadeOut();
-//     }, 3000);
-//     $(".return").on('click',function () {
-//         window.history.back();
-//         console.log('click')
-//     });
-// });
 function startApp() {
 
     // const baseUrl = "http://localhost:8080/";
-    // const baseUrl = "http://87.120.100.227:8080/";
+    const baseUrl = "http://87.120.100.227:8080/";
 
-    const baseUrl = "https://spring-mvc-advanced-ins.herokuapp.com/";
+    // const baseUrl = "https://spring-mvc-advanced-ins.herokuapp.com/";
 
 
 // Clear user auth data
@@ -32,14 +20,7 @@ function startApp() {
         $(this).fadeOut();
     });
 
-    // $('#loadingBox').hide();
-    // $('#infoBox').hide();
-    // $('#errorBox').hide();
-
-
     showHideMenuLinks();
-
-
 
     function showHideMenuLinks() {
         $('#loadingBox').hide();
@@ -49,19 +30,36 @@ function startApp() {
         $("#contractAreaDisplay").hide();
         $("#premiumAreaDisplay").hide();
     }
-    $("#premiumArea").on('click', function (){
-        showHideMenuLinks();
-        $('#myContracts').empty();
-        $("#premiumAreaDisplay").show();
-        }
-    )
 
-    $("#contractArea").on('click', function (){
+    $("#premiumArea").on('click', function () {
+            showHideMenuLinks();
+            $('#myContracts').empty();
+            $("#premiumAreaDisplay").show();
+        }
+    );
+    $("#home").on('click', function () {
+            showHideMenuLinks()
+        }
+    );
+    $("#contractArea").on('click', function () {
             showHideMenuLinks();
             $('#myPremiums').empty();
             $("#contractAreaDisplay").show();
-    }
-    )
+        }
+    );
+
+    $(".reset-button").on('click', function () {
+            $('#myPremiums').empty();
+            $('#myContracts').empty();
+            $('#egn').val('');
+            $('#egnPrem').val('');
+            $('#loadingBox').hide();
+            $('#infoBox').hide();
+            $('#errorBox').hide();
+            $('#warninngBox').hide();
+        }
+    );
+
 
     //CONTRACT SEARCH
     $("#buttonSearch").on('click', function () {
@@ -69,14 +67,10 @@ function startApp() {
             let egn = $('#egn').val();
             console.log(egn);
             if (egn !== "") {
-
-
                 $('#myContracts').empty();
-                // showView('viewMyMessages');
                 $.ajax({
                         method: "GET",
                         url: baseUrl + 'contracts/client?egn=' + egn,  //Contracts
-                        // headers: getKinveyUserAuthHeaders(),
                         success: loadMessagesSuccess,
                         error: handleAjaxError
                     }
@@ -87,7 +81,6 @@ function startApp() {
             function loadMessagesSuccess(messages) {
 
                 if (messages.length == 0) {
-                    // $('#myContracts').text('No contracts in the system.');
                     showWarnning("No contracts in the system.");
                 } else {
                     showInfo('Contracts Received loaded.');
@@ -96,7 +89,7 @@ function startApp() {
                             '<th scope="col">#</th><th scope="col">Contract ID</th><th scope="col">Product</th>',
                             '<th scope="col">Duration(Years)</th>'))).append($('<tbody>'));
                     let num = 0;
-                    for (let message of messages){
+                    for (let message of messages) {
                         num++;
                         appendMessageRow(num, message, messagesTable);
                     }
@@ -111,10 +104,7 @@ function startApp() {
             let egn = $('#egnPrem').val();
             console.log(egn);
             if (egn !== "") {
-
-
                 $('#myPremiums').empty();
-                // showView('viewMyMessages');
                 $.ajax({
                         method: "GET",
                         url: baseUrl + 'premiums/client?egn=' + egn,  //Contracts
@@ -127,17 +117,17 @@ function startApp() {
 
 
             function loadMessagesSuccess(messages) {
-                  if (messages.length == 0) {
+                if (messages.length == 0) {
                     // $('#myContracts').text('No premiums in the system.');
                     showWarnning("No premiums in the system.");
                 } else {
-                      showInfo('Premiums Received loaded.');
+                    showInfo('Premiums Received loaded.');
                     let messagesTable = $('<table class="table table-striped">')
                         .append($('<thead>').append($('<tr>').append(
                             '<th scope="col">#</th><th scope="col">Contract ID</th><th scope="col">Start Date</th><th scope="col">End Date</th>',
                             '<th scope="col">Premium Amount(EUR)</th>'))).append($('<tbody>'));
                     let num = 0;
-                    for (let message of messages){
+                    for (let message of messages) {
                         num++;
                         appendMessageRowPrem(num, message, messagesTable);
                     }
@@ -148,75 +138,21 @@ function startApp() {
     });
 }
 
-
-
-//List of Messages------------------------------------------------------
-// function showContractView() {
-//     let egn = $('#egn').val();
-//     console.log(egn);
-//     if (egn !== "") {
-//
-//
-//         $('#myMessages').empty();
-//         // showView('viewMyMessages');
-//         $.ajax({
-//                 method: "GET",
-//                 url: baseUrl + 'contracts/client?egn=' + egn,  //Contracts
-//                 // headers: getKinveyUserAuthHeaders(),
-//                 success: loadMessagesSuccess,
-//                 error: handleAjaxError
-//             }
-//         )
-//     }
-//
-//
-//     function loadMessagesSuccess(messages) {
-//         showInfo('Messages Received loaded.');
-//         if (messages.length == 0) {
-//             $('#myMessages').text('No messages in the system.');
-//         } else {
-//             let messagesTable = $('<table>')
-//                 .append($('<tr>').append(
-//                     '<th>From</th><th>Message</th>',
-//                     '<th>Date Received</th>'));// Removed <th>Actions</th>
-//             for (let message of messages)
-//                 appendMessageRow(message, messagesTable);
-//             $('#myMessages').append(messagesTable);
-//         }
-//     }
-// }
-function appendMessageRow(num,message, messagesTable) {
+function appendMessageRow(num, message, messagesTable) {
     let contract_id = message.id;
     let duration = message.duration;
     let product = message.product;
-    // messagesTable.append($('<tbody>').append($('<th scope="row">').text(num).append( $('<tr>').append(
-    //     $('<th>').text(contract_id),
-    //     $('<td>').text(product),
-    //     $('<td>').text(duration)
-    // ))));
 
-
-
-    messagesTable.append($("<tr><th scope=\"row\">"+num+"</th><th>"+contract_id+"</th><td>"+product+"</td><td>"+duration+"</td></tr>"))
-
-
-
+    messagesTable.append($("<tr><th scope=\"row\">" + num + "</th><th>" + contract_id + "</th><td>" + product + "</td><td>" + duration + "</td></tr>"))
 }
-function appendMessageRowPrem(num,message, messagesTable) {
+
+function appendMessageRowPrem(num, message, messagesTable) {
     let contract_id = message.cntrctId;
     let start_date = message.startDate;
     let end_date = message.endDate;
     let operation_amount = message.operationAmount;
-    // messagesTable.append($('<tbody>').append($('<th scope="row">').text(num).append( $('<tr>').append(
-    //     $('<th>').text(contract_id),
-    //     $('<td>').text(product),
-    //     $('<td>').text(duration)
-    // ))));
 
-
-
-    messagesTable.append($("<tr><th scope=\"row\">"+num+"</th><th>"+contract_id+"</th><td>"+formatDate(start_date)+"</td><td>"+formatDate(end_date)+"</td><td>"+operation_amount+"</td></tr>"))
-
+    messagesTable.append($("<tr><th scope=\"row\">" + num + "</th><th>" + contract_id + "</th><td>" + formatDate(start_date) + "</td><td>" + formatDate(end_date) + "</td><td>" + operation_amount + "</td></tr>"))
 
 
 }
@@ -240,6 +176,7 @@ function showInfo(message) {
         $('#infoBox').fadeOut();
     }, 3000);
 }
+
 //Display Error message in main screen
 function showWarnning(warninngMsg) {
     $('#warninngBox').text(warninngMsg);
@@ -258,10 +195,7 @@ function formatDate(dateISO8601) {
     if (Number.isNaN(date.getDate()))
         return '';
     return date.getDate() + '.' + padZeros(date.getMonth() + 1) +
-        "." + date.getFullYear()
-        // + ' ' + date.getHours() + ':' +
-        // padZeros(date.getMinutes()) + ':' + padZeros(date.getSeconds());
-
+        "." + date.getFullYear();
     function padZeros(num) {
         return ('0' + num).slice(-2);
     }
