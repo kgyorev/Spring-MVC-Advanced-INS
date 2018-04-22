@@ -1,4 +1,4 @@
-package com.insurance.ins.config;
+package com.insurance.ins.technical.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

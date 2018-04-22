@@ -1,4 +1,5 @@
-package com.insurance.ins.config;
+package com.insurance.ins.technical.config;
+
 
 import com.insurance.ins.technical.interceptors.LogInterceptor;
 import org.springframework.context.annotation.Configuration;

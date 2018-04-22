@@ -2,7 +2,16 @@
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="ApplicationWebConfig" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/insurance/ins/technical/config/ApplicationWebConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/insurance/ins/InsApplication.java</file>
+        </fileset>
+        <fileset id="fileset2" name="WebSecurityConfig" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/insurance/ins/technical/config/WebSecurityConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/insurance/ins/InsApplication.java</file>
+        </fileset>
+      </configuration>
     </facet>
     <facet type="web" name="Web">
       <configuration>

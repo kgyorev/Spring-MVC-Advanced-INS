@@ -1,6 +1,6 @@
 package com.insurance.ins.technical.services;
 
-import com.insurance.ins.models.service.UserServiceModel;
+import com.insurance.ins.technical.models.UserServiceModel;
 import com.insurance.ins.technical.entites.User;
 import com.insurance.ins.technical.models.*;
 import org.springframework.data.domain.Pageable;

@@ -3,7 +3,7 @@ package com.insurance.ins.technical.services;
 
 import com.insurance.ins.business.entites.Contract;
 import com.insurance.ins.business.services.ContractService;
-import com.insurance.ins.models.service.UserServiceModel;
+import com.insurance.ins.technical.models.UserServiceModel;
 import com.insurance.ins.technical.entites.AuditEnversInfo;
 import com.insurance.ins.technical.entites.Role;
 import com.insurance.ins.technical.entites.User;

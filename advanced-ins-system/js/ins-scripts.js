@@ -1,9 +1,9 @@
 function startApp() {
 
     // const baseUrl = "http://localhost:8080/";
-    const baseUrl = "http://87.120.100.227:8080/";
+    // const baseUrl = "http://87.120.100.227:8080/";
 
-    // const baseUrl = "https://spring-mvc-advanced-ins.herokuapp.com/";
+    const baseUrl = "https://spring-mvc-advanced-ins.herokuapp.com/";
 
 
 // Clear user auth data

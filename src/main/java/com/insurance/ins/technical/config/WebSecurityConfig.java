@@ -1,4 +1,4 @@
-package com.insurance.ins.config;
+package com.insurance.ins.technical.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

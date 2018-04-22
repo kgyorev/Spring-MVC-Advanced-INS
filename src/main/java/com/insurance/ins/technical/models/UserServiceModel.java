@@ -1,4 +1,4 @@
-package com.insurance.ins.models.service;
+package com.insurance.ins.technical.models;
 
 /**
  * Created by K on 20.3.2018 г..
