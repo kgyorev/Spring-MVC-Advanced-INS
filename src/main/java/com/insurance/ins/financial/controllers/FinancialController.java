@@ -20,8 +20,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import static com.insurance.ins.technical.store.WebConstants.*;
+
 @Controller
 public class FinancialController {
+
     private final ContractService contractService;
     private final PremiumService premiumService;
     private final MoneyInService moneyInService;
@@ -40,7 +43,7 @@ public class FinancialController {
     public String createPremium(@ModelAttribute(name = "premiumModel") PremiumModel premiumModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
-            notifyService.addErrorMessage("Cannot find contract #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_CONTRACT + id);
             return "redirect:/";
         }
 
@@ -55,7 +58,7 @@ public class FinancialController {
     public String createMoneyIn(@ModelAttribute(name = "moneyInModel") MoneyInModel moneyInModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
-            notifyService.addErrorMessage("Cannot find contract #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_CONTRACT + id);
             return "redirect:/";
         }
 
@@ -70,14 +73,14 @@ public class FinancialController {
     public String createPremiumValidate(@Valid PremiumModel premiumModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action, @PathVariable("id") Long id) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
-            notifyService.addErrorMessage("Cannot find contract #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_CONTRACT + id);
             return "redirect:/";
         }
         if (action.equals("return")) {
             return "redirect:/contracts/" + id;
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "financial/premium/create/create-premium";
         }
         Premium premium = DTOConvertUtil.convert(premiumModel, Premium.class);
@@ -85,9 +88,9 @@ public class FinancialController {
         MoneyIn moneyIn = this.moneyInService.findOldestPendingMoneyIn(contract);
         if (moneyIn != null) {
             premiumService.tryToPay(premium, moneyIn);
-            notifyService.addWarningMessage("Premium with Id: " + premium.getId() + " was created. And Money In with Id: " + moneyIn.getId() + " was applied to it.");
+            notifyService.addWarningMessage(String.format(PREMIUM_WITH_ID_S_WAS_CREATED_AND_MONEY_IN_WITH_ID_S_WAS_APPLIED_TO_IT,premium.getId(),moneyIn.getId()));
         } else
-            notifyService.addInfoMessage("Premium with Id: " + premium.getId() + " was created.");
+            notifyService.addInfoMessage(String.format(PREMIUM_WITH_ID_S_WAS_CREATED,premium.getId()));
         return "redirect:/contracts/" + id;
     }
 
@@ -97,14 +100,14 @@ public class FinancialController {
     public String createMoneyInValidate(@Valid MoneyInModel moneyInModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action, @PathVariable("id") Long id) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
-            notifyService.addErrorMessage("Cannot find contract #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_CONTRACT + id);
             return "redirect:/";
         }
         if (action.equals("return")) {
             return "redirect:/contracts/" + id;
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "financial/money-in/create/create-money-in";
         }
         MoneyIn moneyIn = DTOConvertUtil.convert(moneyInModel, MoneyIn.class);
@@ -112,9 +115,9 @@ public class FinancialController {
         Premium premium = this.premiumService.findOldestPendingPremium(contract);
         if (premium != null) {
             premiumService.tryToPay(premium, moneyIn);
-            notifyService.addWarningMessage("Money In with Id: " + moneyIn.getId() + " was created. And Premium with Id: " + premium.getId() + " was paid with it.");
+            notifyService.addWarningMessage(String.format(MONEY_IN_WITH_ID_S_WAS_CREATED_AND_PREMIUM_WITH_ID_S_WAS_PAID_WITH_IT,moneyIn.getId(),premium.getId()));
         } else
-            notifyService.addInfoMessage("Money In with Id: " + moneyIn.getId() + " was created.");
+            notifyService.addInfoMessage(String.format(MONEY_IN_WITH_ID_S_WAS_CREATED, moneyIn.getId() ));
         return "redirect:/contracts/" + id;
     }
 }

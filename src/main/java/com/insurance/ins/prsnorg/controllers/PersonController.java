@@ -7,6 +7,7 @@ import com.insurance.ins.prsnorg.entites.prsn.models.EditPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.PersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
+import com.insurance.ins.technical.store.WebConstants;
 import com.insurance.ins.utils.DTOConvertUtil;
 import com.insurance.ins.utils.annotations.Log;
 import com.insurance.ins.utils.notifications.services.NotificationService;
@@ -24,9 +25,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static com.insurance.ins.technical.store.WebConstants.*;
+
 
 @Controller
 public class PersonController {
+
+
+
     private final PersonService personService;
     private final NotificationService notifyService;
 
@@ -42,7 +48,7 @@ public class PersonController {
         if(
                 (!searchPersonModel.getEgn().equals("")||!searchPersonModel.getFullName().equals(""))
                         &&!personAll.getPersons().hasContent()) {
-                notifyService.addWarningMessage("Cannot find clients with given search criteria.");
+                notifyService.addWarningMessage(CANNOT_FIND_CLIENTS_WITH_GIVEN_SEARCH_CRITERIA);
             }
         model.addAttribute("personAll", personAll);
         return "prsnorg/prsn/search-person";
@@ -54,17 +60,17 @@ public class PersonController {
     public String delete(SearchPersonModel searchPersonModel, @PathVariable("id") Long id, Model model) {
         Person person = personService.findById(id);
         if (person == null) {
-            notifyService.addErrorMessage("Cannot find person #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_PERSON + id);
             return "redirect:/";
         }
         Set<Contract> contracts = person.getContracts();
         int contracts_count = contracts.size();
         if (contracts_count != 0) {
-            notifyService.addErrorMessage("Cannot delete person #" + id + " ,it has contracts.");
+            notifyService.addErrorMessage(String.format(CANNOT_DELETE_PERSON_S_IT_HAS_CONTRACTS,id));
             return "redirect:/persons";
         }
         personService.deleteById(id);
-        notifyService.addInfoMessage("Delete successful");
+        notifyService.addInfoMessage(DELETE_SUCCESSFUL);
         return "redirect:/persons";
     }
     @GetMapping(value ="/persons/{id}")
@@ -73,7 +79,7 @@ public class PersonController {
 
         Person person = personService.findById(id);
         if (person == null) {
-            notifyService.addErrorMessage("Cannot find person #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_PERSON + id);
             return "redirect:/";
         }
         personModel = DTOConvertUtil.convert(person, EditPersonModel.class);
@@ -85,7 +91,7 @@ public class PersonController {
     public String editPage(@ModelAttribute(name = "personModel") EditPersonModel personModel, @PathVariable("id") Long id, Model model) {
         Person person = personService.findById(id);
         if (person == null) {
-            notifyService.addErrorMessage("Cannot find person #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_PERSON + id);
             return "redirect:/";
         }
         personModel = DTOConvertUtil.convert(person, EditPersonModel.class);
@@ -99,11 +105,11 @@ public class PersonController {
             return "redirect:/persons";
         }
         if (personModel == null) {
-            notifyService.addErrorMessage("Cannot find person #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_PERSON + id);
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "prsnorg/prsn/edit-person";
         }
         return "prsnorg/prsn/confirm-edit-person";
@@ -117,15 +123,15 @@ public class PersonController {
         }
         Person person = personService.findById(id);
         if (person == null) {
-            notifyService.addErrorMessage("Cannot find person #" + id);
+            notifyService.addErrorMessage(WebConstants.CANNOT_FIND_PERSON + id);
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "prsnorg/prsn/edit-person";
         }
         personService.edit(person,personModel);
-        notifyService.addInfoMessage("Edit successful");
+        notifyService.addInfoMessage(EDIT_SUCCESSFUL);
         return "redirect:/persons";
     }
     @GetMapping(value = "/persons/create")
@@ -140,7 +146,7 @@ public class PersonController {
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "prsnorg/prsn/create-person";
         }
         return "prsnorg/prsn/confirm-create-person";
@@ -154,12 +160,12 @@ public class PersonController {
             return "prsnorg/prsn/create-person";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "prsnorg/prsn/create-person";
         }
         Person person = DTOConvertUtil.convert(personModel, Person.class);
         this.personService.create(person);
-        notifyService.addInfoMessage("Person with Id: " + person.getId() + " was created.");
+        notifyService.addInfoMessage(String.format(PERSON_WITH_ID_S_WAS_CREATED,person.getId()));
         return "redirect:/";
     }
     @GetMapping(value="/rest/persons",produces = "application/json")

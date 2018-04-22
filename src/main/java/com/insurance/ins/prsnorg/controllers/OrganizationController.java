@@ -23,9 +23,13 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Set;
 
+import static com.insurance.ins.technical.store.WebConstants.*;
+
 
 @Controller
 public class OrganizationController {
+
+
     private final HttpSession httpSession;
     private final OrganizationService organizationService;
     private final NotificationService notifyService;
@@ -43,7 +47,7 @@ public class OrganizationController {
 
         if((!searchOrganizationModel.getVat().equals("")||!searchOrganizationModel.getFullName().equals(""))
                 &&!organizationAll.getOrganizations().hasContent()) {
-            notifyService.addWarningMessage("Cannot find clients with given search criteria.");
+            notifyService.addWarningMessage(CANNOT_FIND_CLIENTS_WITH_GIVEN_SEARCH_CRITERIA);
         }
         model.addAttribute("organizationAll", organizationAll);
         return "prsnorg/org/search-organization";
@@ -55,17 +59,17 @@ public class OrganizationController {
     public String delete(SearchOrganizationModel searchOrganizationModel, @PathVariable("id") Long id, Model model) {
         Organization organization = organizationService.findById(id);
         if (organization == null) {
-            notifyService.addErrorMessage("Cannot find organization #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_ORGANIZATION + id);
             return "redirect:/";
         }
         Set<Contract> contracts = organization.getContracts();
         int contracts_count = contracts.size();
         if (contracts_count != 0) {
-            notifyService.addErrorMessage("Cannot delete organization #" + id + " ,it has contracts.");
+            notifyService.addErrorMessage(String.format(CANNOT_DELETE_ORGANIZATION_S_IT_HAS_CONTRACTS,id));
             return "redirect:/organizations";
         }
         organizationService.deleteById(id);
-        notifyService.addInfoMessage("Delete successful");
+        notifyService.addInfoMessage(DELETE_SUCCESSFUL);
         return "redirect:/organizations";
     }
     @GetMapping(value ="/organizations/{id}")
@@ -74,7 +78,7 @@ public class OrganizationController {
 
         Organization organization = organizationService.findById(id);
         if (organization == null) {
-            notifyService.addErrorMessage("Cannot find organization #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_ORGANIZATION + id);
             return "redirect:/";
         }
         organizationModel = DTOConvertUtil.convert(organization, EditOrganizationModel.class);
@@ -87,7 +91,7 @@ public class OrganizationController {
         httpSession.setAttribute("secondaryActivity",secondaryActivity);
         Organization organization = organizationService.findById(id);
         if (organization == null) {
-            notifyService.addErrorMessage("Cannot find organization #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_ORGANIZATION + id);
             return "redirect:/";
         }
         organizationModel = DTOConvertUtil.convert(organization, EditOrganizationModel.class);
@@ -101,11 +105,11 @@ public class OrganizationController {
             return "redirect:/organizations";
         }
         if (organizationModel == null) {
-            notifyService.addErrorMessage("Cannot find organization #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_ORGANIZATION + id);
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "prsnorg/org/edit-organization";
         }
         return "prsnorg/org/confirm-edit-organization";
@@ -120,15 +124,15 @@ public class OrganizationController {
 
         Organization organization = organizationService.findById(id);
         if (organization == null) {
-            notifyService.addErrorMessage("Cannot find organization #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_ORGANIZATION + id);
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "prsnorg/org/edit-organization";
         }
         organizationService.edit(organization,organizationModel);
-        notifyService.addInfoMessage("Edit successful");
+        notifyService.addInfoMessage(EDIT_SUCCESSFUL);
         Object mainActivity = httpSession.getAttribute("mainActivity");
         Object secondaryActivity = httpSession.getAttribute("secondaryActivity");
         if(secondaryActivity!=null&&secondaryActivity.equals("true")){
@@ -149,7 +153,7 @@ public class OrganizationController {
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "prsnorg/org/create-organization";
         }
         return "prsnorg/org/confirm-create-organization";
@@ -163,12 +167,12 @@ public class OrganizationController {
             return "prsnorg/org/create-organization";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "prsnorg/org/create-organization";
         }
         Organization organization = DTOConvertUtil.convert(organizationModel, Organization.class);
         this.organizationService.create(organization);
-        notifyService.addInfoMessage("Organization with Id: " + organization.getId() + " was created.");
+        notifyService.addInfoMessage(String.format(ORGANIZATION_WITH_ID_S_WAS_CREATED,organization.getId()));
         return "redirect:/";
     }
 }

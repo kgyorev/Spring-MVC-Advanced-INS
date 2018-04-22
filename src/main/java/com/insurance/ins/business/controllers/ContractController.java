@@ -27,8 +27,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 
+import static com.insurance.ins.technical.store.WebConstants.*;
+
 @Controller
 public class ContractController {
+
     private final ContractService contractService;
     private final ProductService productService;
     private final PremiumService premiumService;
@@ -71,7 +74,7 @@ public class ContractController {
     public String view(@ModelAttribute(name = "contractModel") ContractModel contractModel, @PathVariable("id") Long id, Model model, @PageableDefault(size = 10) Pageable page) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
-            notifyService.addErrorMessage("Cannot find contract #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_CONTRACT + id);
             return "redirect:/";
         }
         String selectedTab = contractModel.getSelectedTab();
@@ -93,7 +96,7 @@ public class ContractController {
         if (
                 (!searchContractModel.getCntrctId().equals("") || !(searchContractModel.getStatus() == null))
                         && !contractall.getContracts().hasContent()) {
-            notifyService.addWarningMessage("Cannot find contracts with given search criteria.");
+            notifyService.addWarningMessage(CANNOT_FIND_CONTRACTS_WITH_GIVEN_SEARCH_CRITERIA);
         }
         model.addAttribute("contractall", contractall);
         return "business/contract/search-contract";
@@ -104,7 +107,7 @@ public class ContractController {
     public String editPage(@ModelAttribute(name = "contractModel") EditContractModel contractModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
-            notifyService.addErrorMessage("Cannot find contract #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_CONTRACT + id);
             return "redirect:/";
         }
         contractModel = DTOConvertUtil.convert(contract, EditContractModel.class);
@@ -119,14 +122,14 @@ public class ContractController {
     public String confirmEdit(@Valid @ModelAttribute(name = "contractModel") EditContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) {
         Contract contract = contractService.findById(id);
         if (contract == null) {
-            notifyService.addErrorMessage("Cannot find contract #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_CONTRACT + id);
             return "redirect:/";
         }
         if (action.equals("return")) {
             return "redirect:/contracts";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             model.addAttribute("contractProductId", contract.getProduct().getIdntfr());
             model.addAttribute("contractOwnerId", contract.getOwner().getId());
             return "business/contract/edit-contract";
@@ -145,7 +148,7 @@ public class ContractController {
     public String edit(@Valid @ModelAttribute(name = "contractModel") EditContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         Contract contract = contractService.findById(id);
         if (contract == null) {
-            notifyService.addErrorMessage("Cannot find contract #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_CONTRACT + id);
             return "redirect:/";
         }
         model.addAttribute("contractProductId", contract.getProduct().getIdntfr());
@@ -154,11 +157,11 @@ public class ContractController {
             return "business/contract/edit-contract";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/contract/edit-contract";
         }
         contractService.edit(contract, contractModel);
-        notifyService.addInfoMessage("Edit successful");
+        notifyService.addInfoMessage(EDIT_SUCCESSFUL);
         return "redirect:/contracts";
     }
 
@@ -175,7 +178,7 @@ public class ContractController {
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/contract/create-contract";
         }
         Contract contract = contractService.prepareContractForCreation(contractModel);
@@ -196,7 +199,7 @@ public class ContractController {
             return "business/contract/create-contract";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/contract/create-contract";
         }
         Contract contract = contractService.prepareContractForCreation(contractModel);
@@ -204,7 +207,7 @@ public class ContractController {
             return "business/contract/create-contract";
         }
         contractService.create(contract);
-        notifyService.addInfoMessage("Contract with Id: " + contract.getId() + " was created.");
+        notifyService.addInfoMessage(String.format(CONTRACT_WITH_ID_S_WAS_CREATED,contract.getId()));
         return "redirect:/";
     }
 }

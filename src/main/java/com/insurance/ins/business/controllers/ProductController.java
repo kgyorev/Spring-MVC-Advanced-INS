@@ -22,8 +22,12 @@ import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
 
+import static com.insurance.ins.technical.store.WebConstants.*;
+
 @Controller
 public class ProductController {
+
+
     private final ProductService productService;
     private final NotificationService notifyService;
 
@@ -39,7 +43,7 @@ public class ProductController {
     public String view(@ModelAttribute(name = "productModel") ProductModel productModel, @PathVariable("id") Long id, Model model) {
         Product product = productService.findById(id);
         if (product == null) {
-            notifyService.addErrorMessage("Cannot find product #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_PRODUCT + id);
             return "redirect:/";
         }
         productModel = DTOConvertUtil.convert(product, ProductModel.class);
@@ -54,7 +58,7 @@ public class ProductController {
 
         if ((!searchProductModel.getProductId().equals(""))
                 && !productall.getProducts().hasContent()) {
-            notifyService.addWarningMessage("Cannot find products with given search criteria.");
+            notifyService.addWarningMessage(CANNOT_FIND_PRODUCTS_WITH_GIVEN_SEARCH_CRITERIA);
         }
         model.addAttribute("productall", productall);
         return "business/product/search-product";
@@ -65,7 +69,7 @@ public class ProductController {
     public String editPage(@ModelAttribute(name = "productModel") EditProductModel productModel, @PathVariable("id") Long id, Model model) {
         Product product = productService.findById(id);
         if (product == null) {
-            notifyService.addErrorMessage("Cannot find product #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_PRODUCT + id);
             return "redirect:/";
         }
 
@@ -83,12 +87,12 @@ public class ProductController {
             return "redirect:/products";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/product/edit-product";
         }
         Product product = productService.findById(id);
         if (product == null) {
-            notifyService.addErrorMessage("Cannot find product #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_PRODUCT + id);
             return "redirect:/";
         }
         model.addAttribute("producIdntfr", product.getIdntfr());
@@ -101,7 +105,7 @@ public class ProductController {
     public String edit(@Valid @ModelAttribute(name = "productModel") EditProductModel productModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         Product product = productService.findById(id);
         if (product == null) {
-            notifyService.addErrorMessage("Cannot find product #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_PRODUCT + id);
             return "redirect:/";
         }
         if (action.equals("return")) {
@@ -110,12 +114,12 @@ public class ProductController {
         }
 
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/product/edit-product";
         }
 
         productService.edit(product, productModel);
-        notifyService.addInfoMessage("Edit successful");
+        notifyService.addInfoMessage(EDIT_SUCCESSFUL);
         return "redirect:/products";
     }
 
@@ -133,7 +137,7 @@ public class ProductController {
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/product/create-product";
         }
 
@@ -149,13 +153,13 @@ public class ProductController {
             return "business/product/create-product";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/product/create-product";
         }
         Product product = DTOConvertUtil.convert(productModel, Product.class);
 
         productService.create(product);
-        notifyService.addInfoMessage("Product with Identifier: " + product.getIdntfr() + " was created.");
+        notifyService.addInfoMessage(String.format(PRODUCT_WITH_IDENTIFIER_S_WAS_CREATED,product.getIdntfr()));
         return "redirect:/";
     }
 

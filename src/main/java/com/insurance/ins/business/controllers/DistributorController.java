@@ -28,8 +28,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.insurance.ins.technical.store.WebConstants.*;
+
 @Controller
 public class DistributorController {
+
     private final ContractService contractService;
     private final DistributorService distributorService;
     private final OrganizationService organizationService;
@@ -51,7 +54,7 @@ public class DistributorController {
     public String view(@ModelAttribute(name = "distributorModel") DistributorModel distributorModel, @PathVariable("id") Long id, Model model, @PageableDefault(size = 10) Pageable page) {
         Distributor distributor = distributorService.findById(id);
         if (distributor == null) {
-            notifyService.addErrorMessage("Cannot find distributor #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_DISTRIBUTOR + id);
             return "redirect:/";
         }
         String selectedTab = distributorModel.getSelectedTab();
@@ -73,7 +76,7 @@ public class DistributorController {
         if (
                 (!searchDistributorModel.getReferenceId().equals("") || !(searchDistributorModel.getReferenceId() == null))
                         && !distributorall.getDistributors().hasContent()) {
-            notifyService.addWarningMessage("Cannot find distributors with given search criteria.");
+            notifyService.addWarningMessage(CANNOT_FIND_DISTRIBUTORS_WITH_GIVEN_SEARCH_CRITERIA);
         }
         model.addAttribute("distributorall", distributorall);
         return "business/distributor/search-distributor";
@@ -84,7 +87,7 @@ public class DistributorController {
     public String editPage(@ModelAttribute(name = "distributorModel") DistributorModel distributorModel, @PathVariable("id") Long id, Model model) {
         Distributor distributor = distributorService.findById(id);
         if (distributor == null) {
-            notifyService.addErrorMessage("Cannot find distributor #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_DISTRIBUTOR + id);
             return "redirect:/";
         }
         distributorModel = DTOConvertUtil.convert(distributor, DistributorModel.class);
@@ -101,24 +104,24 @@ public class DistributorController {
         String organizationId = distributorModel.getOrganization();
         Organization organization = organizationService.findById(Long.valueOf(organizationId));
         if (organization == null) {
-            notifyService.addErrorMessage("Reference organization not found!");
+            notifyService.addErrorMessage(REFERENCE_ORGANIZATION_NOT_FOUND);
             return "business/distributor/edit-distributor";
         }
 
         String userId = distributorModel.getUser();
         User user = userService.findById(Long.valueOf(userId));
         if (user == null) {
-            notifyService.addErrorMessage("Reference user not found!");
+            notifyService.addErrorMessage(REFERENCE_USER_NOT_FOUND);
             return "business/distributor/edit-distributor";
         }
 
         Distributor distributor = distributorService.findById(id);
         if (distributor == null) {
-            notifyService.addErrorMessage("Cannot find distributor #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_DISTRIBUTOR + id);
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/distributor/edit-distributor";
         }
         return "business/distributor/confirm-edit-distributor";
@@ -132,29 +135,29 @@ public class DistributorController {
             return "business/distributor/edit-distributor";
         }
         if (distributorModel == null) {
-            notifyService.addErrorMessage("Cannot find distributor #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_DISTRIBUTOR + id);
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/distributor/edit-distributor";
         }
 
         String organizationId = distributorModel.getOrganization();
         Organization organization = organizationService.findById(Long.valueOf(organizationId));
         if (organization == null) {
-            notifyService.addErrorMessage("Reference organization not found!");
+            notifyService.addErrorMessage(REFERENCE_ORGANIZATION_NOT_FOUND);
             return "business/distributor/edit-distributor";
         }
 
         String userId = distributorModel.getUser();
         User user = userService.findById(Long.valueOf(userId));
         if (user == null) {
-            notifyService.addErrorMessage("Reference user not found!");
+            notifyService.addErrorMessage(REFERENCE_USER_NOT_FOUND);
             return "business/distributor/edit-distributor";
         }
         distributorService.edit(distributorModel);
-        notifyService.addInfoMessage("Edit successful");
+        notifyService.addInfoMessage(EDIT_SUCCESSFUL);
         return "redirect:/distributors";
     }
 
@@ -172,7 +175,7 @@ public class DistributorController {
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/distributor/create-distributor";
         }
         return "business/distributor/confirm-create-distributor";
@@ -187,7 +190,7 @@ public class DistributorController {
             return "business/distributor/create-distributor";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "business/distributor/create-distributor";
         }
         Distributor distributor = DTOConvertUtil.convert(distributorModel, Distributor.class);
@@ -196,14 +199,14 @@ public class DistributorController {
         String organizationId = distributorModel.getOrganization();
         Organization organization = organizationService.findById(Long.valueOf(organizationId));
         if (organization == null) {
-            notifyService.addErrorMessage("Reference organization not found!");
+            notifyService.addErrorMessage(REFERENCE_ORGANIZATION_NOT_FOUND);
             return "business/distributor/create-distributor";
         }
 
         String userId = distributorModel.getUser();
         User user = userService.findById(Long.valueOf(userId));
         if (user == null) {
-            notifyService.addErrorMessage("Reference user not found!");
+            notifyService.addErrorMessage(REFERENCE_USER_NOT_FOUND);
             return "business/distributor/create-distributor";
         }
 
@@ -211,7 +214,7 @@ public class DistributorController {
         distributor.setOrganization(organization);
         distributor.setUser(user);
         distributorService.create(distributor);
-        notifyService.addInfoMessage("Distributor with Id: " + distributor.getId() + " was created.");
+        notifyService.addInfoMessage(String.format(DISTRIBUTOR_WITH_ID_S_WAS_CREATED,distributor.getId()));
         return "redirect:/";
     }
 

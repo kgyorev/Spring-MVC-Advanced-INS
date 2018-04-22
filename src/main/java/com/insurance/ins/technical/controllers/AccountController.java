@@ -21,11 +21,14 @@ import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
 
+import static com.insurance.ins.technical.store.WebConstants.*;
+
 /**
  * Created by K on 15.3.2018 г..
  */
 @Controller
 public class AccountController {
+
 
     private final UserService userService;
     private final NotificationService notifyService;
@@ -42,7 +45,7 @@ public class AccountController {
     public ModelAndView login(@RequestParam(required = false, name = "error") String error) {
 
         if (error != null && error.equals("true")) {
-            notifyService.addErrorMessage("User not exist, or wrong password!");
+            notifyService.addErrorMessage(USER_NOT_EXIST_OR_WRONG_PASSWORD);
         }
         return new ModelAndView("users/login");
     }
@@ -63,16 +66,16 @@ public class AccountController {
     @PostMapping(value = "/register")
     public String create(@Valid UserModel userModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "users/register";
         }
 
         if (!userModel.getPassword().equals(userModel.getConfirmPassword())) {
-            notifyService.addErrorMessage("Password and ConfirmPassword are not the same!");
+            notifyService.addErrorMessage(PASSWORD_AND_CONFIRM_PASSWORD_ARE_NOT_THE_SAME);
             return "users/register";
         }
         User user = userService.register(userModel);
-        notifyService.addInfoMessage("User with Id: " + user.getId() + " was created.");
+        notifyService.addInfoMessage(String.format(USER_WITH_ID_S_WAS_CREATED,user.getId()));
         return "redirect:/login";
     }
 
@@ -84,7 +87,7 @@ public class AccountController {
         if (
                 (!searchUserModel.getCriteria().equals("") || !(searchUserModel.getCriteria() == null))
                         && !users.getUsers().hasContent()) {
-            notifyService.addWarningMessage("Cannot find users with given search criteria.");
+            notifyService.addWarningMessage(CANNOT_FIND_USERS_WITH_GIVEN_SEARCH_CRITERIA);
         }
         model.addAttribute("users", users);
         return "users/show-users";
@@ -96,7 +99,7 @@ public class AccountController {
     public String editPage(@ModelAttribute(name = "editUserModel") EditUserModel editUserModel, @PathVariable("id") Long id, Model model) {
         User user = userService.findById(id);
         if (user == null) {
-            notifyService.addErrorMessage("Cannot find user #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_USER + id);
             return "redirect:/";
         }
         editUserModel = DTOConvertUtil.convert(user, EditUserModel.class);
@@ -112,19 +115,19 @@ public class AccountController {
         }
         User userOld = userService.findById(id);
         if (userOld == null) {
-            notifyService.addErrorMessage("Cannot find user #" + id);
+            notifyService.addErrorMessage(CANNOT_FIND_USER + id);
             return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
-            notifyService.addErrorMessage("Please fill the form correctly!");
+            notifyService.addErrorMessage(PLEASE_FILL_THE_FORM_CORRECTLY);
             return "users/edit";
         }
         if (!editUserModel.getPassword().equals(editUserModel.getConfirmPassword())) {
-            notifyService.addErrorMessage("Password and ConfirmPassword are not the same!");
+            notifyService.addErrorMessage(PASSWORD_AND_CONFIRM_PASSWORD_ARE_NOT_THE_SAME);
             return "users/edit";
         }
         this.userService.edit(userOld,editUserModel);
-        notifyService.addInfoMessage("Edit successful");
+        notifyService.addInfoMessage(EDIT_SUCCESSFUL);
         return "redirect:/users";
     }
 
@@ -137,22 +140,20 @@ public class AccountController {
         String username = loggedUser.getUsername();
         String profile = user.getProfile();
         if(profile.equals("ADMIN")){
-            notifyService.addErrorMessage("Can't Delete User with profile Administrator!");
+            notifyService.addErrorMessage(CAN_T_DELETE_USER_WITH_PROFILE_ADMINISTRATOR);
             return "redirect:/users";
         }
         if(user.getUsername().equals(username)){
-            notifyService.addErrorMessage("Can't Delete your own user!");
+            notifyService.addErrorMessage(CAN_T_DELETE_YOUR_OWN_USER);
             return "redirect:/users";
         }
         try {
             this.userService.delete(id);
         } catch (Exception e) {
-            notifyService.addErrorMessage("Can't Delete this User,it is Distributor!");
+            notifyService.addErrorMessage(CAN_T_DELETE_THIS_USER_IT_IS_DISTRIBUTOR);
             return "redirect:/users";
         }
-
-
-        notifyService.addInfoMessage("Delete successful");
+        notifyService.addInfoMessage(DELETE_SUCCESSFUL);
         return "redirect:/users";
     }
     @GetMapping("/users/log")
@@ -163,7 +164,7 @@ public class AccountController {
         if(!criteria.equals("")){
             List<UserLogsModel> userLogsModel = userService.searchUserLog(searchBy,criteria);
             if (userLogsModel.size()==0) {
-                notifyService.addWarningMessage("Cannot find logs with given search criteria.");
+                notifyService.addWarningMessage(CANNOT_FIND_LOGS_WITH_GIVEN_SEARCH_CRITERIA);
             }
             model.addAttribute("logs", userLogsModel);
         }

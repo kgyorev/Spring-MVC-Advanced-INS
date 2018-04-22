@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import static com.insurance.ins.technical.store.WebConstants.DEFAULT_ERROR_MESSAGE;
 
 
 @ControllerAdvice
 public class GlobalExceptionController {
-    private static final String DEFAULT_ERROR_MESSAGE = "There was an error with your request. Please Call Application Administrator for Support.";
 
     @ExceptionHandler(RuntimeException.class)
     public String getException(RuntimeException e,Model model) {
