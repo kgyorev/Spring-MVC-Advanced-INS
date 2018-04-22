@@ -55,7 +55,7 @@
     <div class="form-group">
         <label for="fullName">Full Name</label>
         <input type="text" class="form-control" th:classappend="${#fields.hasErrors('fullName')}? 'is-invalid'"
-               id="fullName" name="fullName" th:field="*{fullName}"/>
+               id="fullName" name="fullName" th:field="*{fullName}" required/>
         <th:block th:each="error : ${#fields.errors('fullName')}">
             <small id="fullNameHelp" class="text-danger"
                    th:text="${error}">
@@ -66,7 +66,7 @@
     <div class="form-group" th:if="${organizationModel instanceof T(com.insurance.ins.prsnorg.entites.org.models.OrganizationModel)}">
         <label for="vat">VAT</label>
         <input type="text" class="form-control" th:classappend="${#fields.hasErrors('vat')}? 'is-invalid'"
-               id="vat" name="vat" th:field="*{vat}" />
+               id="vat" name="vat" th:field="*{vat}" required />
         <th:block th:each="error : ${#fields.errors('vat')}">
             <small id="egnHelp" class="text-danger"
                    th:text="${error}">
@@ -81,7 +81,7 @@
     </div>
     <div class="form-group">
         <label for="startDate">Creation Date</label>
-        <input class="form-control" th:classappend="${#fields.hasErrors('startDate')}? 'border-danger'" type="date" id="startDate" name="startDate" th:field="*{startDate}">
+        <input class="form-control" th:classappend="${#fields.hasErrors('startDate')}? 'border-danger'" type="date" id="startDate" name="startDate" th:field="*{startDate}" required/>
         <th:block th:each="error : ${#fields.errors('startDate')}">
             <small id="startDateTurnHelp" class="text-danger"
                    th:text="${error}">

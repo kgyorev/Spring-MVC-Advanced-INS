@@ -12,6 +12,7 @@ import com.insurance.ins.prsnorg.entites.org.services.OrganizationService;
 import com.insurance.ins.technical.entites.User;
 import com.insurance.ins.technical.services.UserService;
 import com.insurance.ins.utils.DTOConvertUtil;
+import com.insurance.ins.utils.annotations.Log;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -124,6 +125,7 @@ public class DistributorController {
     }
 
     @PostMapping(value = "/distributors/edit/{id}")
+    @Log
     @PreAuthorize("hasRole('MODERATOR')")
     public String edit(@Valid DistributorModel distributorModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         if (action.equals("return")) {
@@ -179,6 +181,7 @@ public class DistributorController {
 
     @PostMapping(value = "/distributors/create")
     @PreAuthorize("hasRole('MODERATOR')")
+    @Log
     public String create(@Valid DistributorModel distributorModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "business/distributor/create-distributor";

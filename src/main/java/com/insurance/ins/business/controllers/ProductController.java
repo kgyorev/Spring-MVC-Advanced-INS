@@ -7,6 +7,7 @@ import com.insurance.ins.business.models.product.ProductModel;
 import com.insurance.ins.business.models.product.SearchProductModel;
 import com.insurance.ins.business.services.ProductService;
 import com.insurance.ins.utils.DTOConvertUtil;
+import com.insurance.ins.utils.annotations.Log;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -96,6 +97,7 @@ public class ProductController {
 
     @PostMapping(value = "/products/edit/{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @Log
     public String edit(@Valid @ModelAttribute(name = "productModel") EditProductModel productModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         Product product = productService.findById(id);
         if (product == null) {
@@ -141,6 +143,7 @@ public class ProductController {
 
     @PostMapping(value = "/products/create")
     @PreAuthorize("hasRole('ADMIN')")
+    @Log
     public String create(@Valid ProductModel productModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "business/product/create-product";

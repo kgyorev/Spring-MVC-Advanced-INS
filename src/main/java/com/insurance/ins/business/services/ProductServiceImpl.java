@@ -157,7 +157,7 @@ public class ProductServiceImpl implements ProductService {
             throw new UnsupportedOperationException("Field name not supported");
         }
 
-        if (value == null) {
+        if (value == null||value.equals("")) {
             return false;
         }
 

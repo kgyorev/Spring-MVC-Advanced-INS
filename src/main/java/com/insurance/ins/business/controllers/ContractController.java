@@ -13,6 +13,7 @@ import com.insurance.ins.financial.models.AllPremiumsViewModel;
 import com.insurance.ins.financial.services.MoneyInService;
 import com.insurance.ins.financial.services.PremiumService;
 import com.insurance.ins.utils.DTOConvertUtil;
+import com.insurance.ins.utils.annotations.Log;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -139,6 +140,7 @@ public class ContractController {
 
     @PreAuthorize("hasRole('MODERATOR')")
     @PostMapping(value = "/contracts/edit/{id}")
+    @Log
     public String edit(@Valid @ModelAttribute(name = "contractModel") EditContractModel contractModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         Contract contract = contractService.findById(id);
         if (contract == null) {
@@ -187,6 +189,7 @@ public class ContractController {
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping(value = "/contracts/create")
+    @Log
     public String create(@Valid ContractModel contractModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("return")) {
             return "business/contract/create-contract";

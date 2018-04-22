@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: site-head">
+    <!--<meta charset="UTF-8">-->
+    <!--<meta name="viewport"-->
+    <!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css">-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+    <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"-->
+    <!--integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"-->
+    <!--crossorigin="anonymous"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"-->
+    <!--integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"-->
+    <!--crossorigin="anonymous"></script>-->
+    <title>User List</title>
+
+</head>
+<body>
+<div class="container-fluid">
+    <header th:replace="~{fragments/layout :: site-header}"></header>
+    <div class="container d-flex justify-content-md-center mt-5 mb-5">
+        <form class="mx-auto" th:method="GET" th:action="@{/logs/search}">
+            <input type="text" name="name" placeholder="Username...">
+            <button class="btn btn-primary" type="submit">Search Logs</button>
+        </form>
+        <form class="mx-auto" th:method="GET" th:action="@{/logs/clear}">
+            <button class="btn btn-warning" data-toggle="modal" data-target="#clearLogs" type="button">Clear All Logs</button>
+            <div class="modal fade" id="clearLogs" tabindex="-1" role="dialog"
+                 aria-labelledby="deleteUserLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteUserLabel">This action can't be undone</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure to Clear all Logs?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button name="action" value="save" class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Operation</th>
+            <th scope="col">Modified Table</th>
+            <th scope="col">Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="log : ${viewLogs}" th:object="${log}">
+            <tr>
+                <td th:text="*{name}"></td>
+                <td th:text="*{operation}"></td>
+                <td th:text="*{modifiedTable}"></td>
+                <td th:text="*{time}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <footer th:replace="~{fragments/layout :: site-footer}"></footer>
+</div>
+
+</body>
+</html>

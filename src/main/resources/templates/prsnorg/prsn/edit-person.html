@@ -32,7 +32,7 @@
             <div class="form-group">
                 <label for="fullName">Full Name</label>
                 <input type="text" class="form-control" th:classappend="${#fields.hasErrors('fullName')}? 'is-invalid'"
-                       id="fullName" name="fullName" th:field="*{fullName}"/>
+                       id="fullName" name="fullName" th:field="*{fullName}" required/>
                 <th:block th:each="error : ${#fields.errors('fullName')}">
                     <small id="fullNameHelp" class="text-danger"
                            th:text="${error}">
@@ -59,12 +59,12 @@
                 <legend>Gender</legend>
                 <div class="custom-control custom-radio">
                     <input type="radio" class="custom-control-input" th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'"  id="male"
-                           name="sex" value="MALE" th:field="*{sex}">
+                           name="sex" value="MALE" th:field="*{sex}"required/>
                     <label class="custom-control-label" for="male">Male</label>
                 </div>
                 <div class="custom-control custom-radio mb-3">
                     <input type="radio" class="custom-control-input"  th:classappend="${#fields.hasErrors('sex')}? 'is-invalid'"  id="female"
-                           name="sex" value="FEMALE" th:field="*{sex}">
+                           name="sex" value="FEMALE" th:field="*{sex}"required/>
                     <label class="custom-control-label" for="female">Female</label>
                 </div>
                 <th:block th:each="error : ${#fields.errors('sex')}">
@@ -76,7 +76,7 @@
             </fieldset>
             <div class="form-group">
                 <label for="startDate">Birth Date</label>
-                <input class="form-control" th:classappend="${#fields.hasErrors('startDate')}? 'border-danger'" type="date" id="startDate" name="startDate" th:field="*{startDate}">
+                <input class="form-control" th:classappend="${#fields.hasErrors('startDate')}? 'border-danger'" type="date" id="startDate" name="startDate" th:field="*{startDate}" required/>
                 <th:block th:each="error : ${#fields.errors('startDate')}">
                     <small id="startDateTurnHelp" class="text-danger"
                            th:text="${error}">
@@ -90,7 +90,7 @@
             </div>
         </form>
     </div>
+    <footer th:replace="~{fragments/layout :: site-footer}"></footer>
 </div>
-<footer th:replace="~{fragments/layout :: site-footer}"></footer>
 </body>
 </html>

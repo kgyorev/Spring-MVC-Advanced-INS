@@ -136,16 +136,28 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
+
         Assert.notNull(fieldName,"Can't be null");
 
-        if (!fieldName.equals("egn")) {
+        if (!fieldName.equals("egn")&&!fieldName.equals("id")) {
             throw new UnsupportedOperationException("Field name not supported");
         }
 
-        if (value == null) {
+        if (value == null||value.equals("")) {
             return false;
         }
+        if(fieldName.equals("egn")){
+            return this.personRepository.existsByEgn(value.toString());
+        } else{
+            Long id=null;
+            try{
+                id = Long.valueOf(value.toString());
+            } catch(Exception e){
+                return false;
+            }
+            return this.personRepository.existsById(id);
+        }
 
-        return this.personRepository.existsByEgn(value.toString());
+
     }
 }

@@ -60,7 +60,7 @@
                     </div>
                     <input type="text" class="form-control"
                            th:classappend="${#fields.hasErrors('distributor')}? 'is-invalid'"
-                           id="distributor" name="distributor" th:field="*{distributor}"/>
+                           id="distributor" name="distributor" th:field="*{distributor}" required/>
                 </div>
                 <th:block th:each="error : ${#fields.errors('distributor')}">
                     <small id="distributorHelp" class="text-danger"
@@ -81,7 +81,7 @@
             </div>
             <div class="form-group">
                 <label for="nextBillingDueDate">Next Billing Due Date</label>
-                <input class="form-control" th:classappend="${#fields.hasErrors('nextBillingDueDate')}? 'border-danger'" type="date" id="nextBillingDueDate" name="nextBillingDueDate" th:field="*{nextBillingDueDate}">
+                <input class="form-control" th:classappend="${#fields.hasErrors('nextBillingDueDate')}? 'border-danger'" type="date" id="nextBillingDueDate" name="nextBillingDueDate" th:field="*{nextBillingDueDate}" required/>
                 <th:block th:each="error : ${#fields.errors('nextBillingDueDate')}">
                     <small id="nextBillingDueDateHelp" class="text-danger"
                            th:text="${error}">
@@ -92,7 +92,7 @@
             <div class="form-group">
                 <label for="duration">Contract Duration(in Years)</label>
                 <input type="number" class="form-control" th:classappend="${#fields.hasErrors('duration')}? 'is-invalid'"
-                       id="duration" name="duration" th:field="*{duration}"/>
+                       id="duration" name="duration" th:field="*{duration}" required/>
                 <th:block th:each="error : ${#fields.errors('duration')}">
                     <small id="durationHelp" class="text-danger"
                            th:text="${error}">
@@ -116,7 +116,7 @@
             <div class="form-group">
                 <label for="amount">Beneficiary Amount(in EUR)</label>
                 <input type="number" class="form-control" th:classappend="${#fields.hasErrors('amount')}? 'is-invalid'"
-                       id="amount" name="amount" th:field="*{amount}"/>
+                       id="amount" name="amount" th:field="*{amount}" required/>
                 <th:block th:each="error : ${#fields.errors('amount')}">
                     <small id="amountHelp" class="text-danger"
                            th:text="${error}">
@@ -185,7 +185,7 @@
             </div>
         </div>
     </div>
+    <footer th:replace="~{fragments/layout :: site-footer}"></footer>
 </div>
-<footer th:replace="~{fragments/layout :: site-footer}"></footer>
 </body>
 </html>

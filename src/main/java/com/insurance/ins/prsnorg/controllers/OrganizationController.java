@@ -8,6 +8,7 @@ import com.insurance.ins.prsnorg.entites.org.models.OrganizationModel;
 import com.insurance.ins.prsnorg.entites.org.models.SearchOrganizationModel;
 import com.insurance.ins.prsnorg.entites.org.services.OrganizationService;
 import com.insurance.ins.utils.DTOConvertUtil;
+import com.insurance.ins.utils.annotations.Log;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -50,6 +51,7 @@ public class OrganizationController {
 
     @GetMapping(value ="/organizations/delete/{id}")
     @PreAuthorize("hasRole('MODERATOR')")
+    @Log
     public String delete(SearchOrganizationModel searchOrganizationModel, @PathVariable("id") Long id, Model model) {
         Organization organization = organizationService.findById(id);
         if (organization == null) {
@@ -110,6 +112,7 @@ public class OrganizationController {
     }
     @PostMapping(value ="/organizations/edit/{id}")
     @PreAuthorize("hasRole('MODERATOR')")
+    @Log
     public String edit(@Valid @ModelAttribute(name = "organizationModel") EditOrganizationModel organizationModel, BindingResult bindingResult, @PathVariable("id") Long id, @RequestParam(value="action", required=true) String action){
         if(action.equals("return")){
             return "prsnorg/org/edit-organization";
@@ -154,6 +157,7 @@ public class OrganizationController {
 
     @PostMapping(value = "/organizations/create")
     @PreAuthorize("hasRole('USER')")
+    @Log
     public String create(@Valid OrganizationModel organizationModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
             return "prsnorg/org/create-organization";

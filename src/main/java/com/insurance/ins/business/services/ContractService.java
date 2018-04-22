@@ -7,14 +7,14 @@ import com.insurance.ins.business.models.contract.AllContractsViewModel;
 import com.insurance.ins.business.models.contract.ContractModel;
 import com.insurance.ins.business.models.contract.EditContractModel;
 import com.insurance.ins.business.models.contract.SearchContractModel;
-import com.insurance.ins.utils.interfaces.FieldValueExists;
 import org.springframework.data.domain.Pageable;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface ContractService  extends FieldValueExists {
+//public interface ContractService  extends FieldValueExists {
+    public interface ContractService {
     LocalDate calculateNextBillingDueDate(Contract contract);
     List<Contract> findAll();
     List<Contract> findAllByOwnerEgn(String ownerEgn);

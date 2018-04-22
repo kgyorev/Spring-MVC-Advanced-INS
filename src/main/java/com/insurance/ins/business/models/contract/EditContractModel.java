@@ -15,9 +15,6 @@ import java.time.LocalDate;
 public class EditContractModel {
 
     private Long id;
-//    @Size(min = 1,message="Please enter Owner Id")
-//    @Existing(service = ContractService.class, fieldName = "owner", message = "Person with this id not exists.")
-//    private String owner;
     @Existing(service = DistributorService.class, fieldName = "id", message = "Distributor with this id not exists.")
     @Size(min = 1,message="Please enter Distributor Id")
     private String distributor;

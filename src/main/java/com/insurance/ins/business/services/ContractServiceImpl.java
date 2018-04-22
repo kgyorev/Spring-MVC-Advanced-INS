@@ -232,16 +232,16 @@ public class ContractServiceImpl implements ContractService {
     }
 
 
-    @Override
-    public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
-
-        if (!fieldName.equals("owner")) {
-            throw new UnsupportedOperationException("Field name not supported");
-        }
-        if (value.equals("")) {
-            return true;
-        }
-
-        return this.personRepository.findById(Long.parseLong(value.toString())).isPresent();
-    }
+//    @Override
+//    public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
+//
+//        if (!fieldName.equals("owner")) {
+//            throw new UnsupportedOperationException("Field name not supported");
+//        }
+//        if (value.equals("")) {
+//            return true;
+//        }
+//
+//        return this.personRepository.findById(Long.parseLong(value.toString())).isPresent();
+//    }
 }

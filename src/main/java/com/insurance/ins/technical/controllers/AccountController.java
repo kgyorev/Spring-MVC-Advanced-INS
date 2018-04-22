@@ -4,6 +4,7 @@ import com.insurance.ins.technical.entites.User;
 import com.insurance.ins.technical.models.*;
 import com.insurance.ins.technical.services.UserService;
 import com.insurance.ins.utils.DTOConvertUtil;
+import com.insurance.ins.utils.annotations.Log;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -104,6 +105,7 @@ public class AccountController {
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/users/edit/{id}")
+    @Log
     public String edit(@Valid EditUserModel editUserModel, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam(value = "action", required = true) String action) throws ParseException {
         if (action.equals("return")) {
             return "redirect:/users";
@@ -128,6 +130,7 @@ public class AccountController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users/delete/{id}")
+    @Log
     public String delete(@PathVariable("id") Long id, Model model) {
         User user = this.userService.findById(id);
         User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

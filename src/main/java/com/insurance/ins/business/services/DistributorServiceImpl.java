@@ -155,7 +155,13 @@ public class DistributorServiceImpl implements DistributorService {
         if (value == null|| value.equals("")) {
             return false;
         }
+        Long id=null;
+        try{
+           id = Long.valueOf(value.toString());
+        } catch(Exception e){
+            return false;
+        }
 
-        return this.distributorRepository.existsById(Long.valueOf(value.toString()));
+        return this.distributorRepository.existsById(id);
     }
 }

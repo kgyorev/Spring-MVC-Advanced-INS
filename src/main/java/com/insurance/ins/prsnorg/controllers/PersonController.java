@@ -8,6 +8,7 @@ import com.insurance.ins.prsnorg.entites.prsn.models.PersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.models.SearchPersonModel;
 import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
 import com.insurance.ins.utils.DTOConvertUtil;
+import com.insurance.ins.utils.annotations.Log;
 import com.insurance.ins.utils.notifications.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -49,6 +50,7 @@ public class PersonController {
 
     @GetMapping(value ="/persons/delete/{id}")
     @PreAuthorize("hasRole('MODERATOR')")
+    @Log
     public String delete(SearchPersonModel searchPersonModel, @PathVariable("id") Long id, Model model) {
         Person person = personService.findById(id);
         if (person == null) {
@@ -108,6 +110,7 @@ public class PersonController {
     }
     @PostMapping(value ="/persons/edit/{id}")
     @PreAuthorize("hasRole('MODERATOR')")
+    @Log
     public String edit(@Valid @ModelAttribute(name = "personModel") EditPersonModel personModel, BindingResult bindingResult, @PathVariable("id") Long id,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
             return "prsnorg/prsn/edit-person";
@@ -145,6 +148,7 @@ public class PersonController {
 
     @PostMapping(value = "/persons/create")
     @PreAuthorize("hasRole('USER')")
+    @Log
     public String create(@Valid PersonModel personModel, BindingResult bindingResult,@RequestParam(value="action", required=true) String action) {
         if(action.equals("return")){
             return "prsnorg/prsn/create-person";

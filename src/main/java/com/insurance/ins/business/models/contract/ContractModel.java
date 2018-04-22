@@ -2,9 +2,9 @@ package com.insurance.ins.business.models.contract;
 
 
 import com.insurance.ins.business.enums.Frequency;
-import com.insurance.ins.business.services.ContractService;
 import com.insurance.ins.business.services.DistributorService;
 import com.insurance.ins.business.services.ProductService;
+import com.insurance.ins.prsnorg.entites.prsn.services.PersonService;
 import com.insurance.ins.utils.annotations.Existing;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,10 +18,11 @@ public class ContractModel {
 
     private Long id;
     @Size(min = 1,message="Please enter Owner Id")
-    @Existing(service = ContractService.class, fieldName = "owner", message = "Person with this id not exists.")
+    @Existing(service = PersonService.class, fieldName = "id", message = "Person with this id not exists.")
     private String owner;
-    @Existing(service = DistributorService.class, fieldName = "id", message = "Distributor with this id not exists.")
+
     @Size(min = 1,message="Please enter Distributor Id")
+    @Existing(service = DistributorService.class, fieldName = "id", message = "Distributor with this id not exists.")
     private String distributor;
 
     @NotNull(message="Please enter Contract Start Date")

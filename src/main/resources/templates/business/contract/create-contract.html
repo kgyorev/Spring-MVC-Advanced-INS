@@ -39,7 +39,7 @@
                     </div>
                     <input type="text" class="form-control"
                            th:classappend="${#fields.hasErrors('product')}? 'is-invalid'"
-                           id="product" name="product" th:field="*{product}"/>
+                           id="product" name="product" th:field="*{product}" required/>
                 </div>
                 <th:block th:each="error : ${#fields.errors('product')}">
                     <small id="productHelp" class="text-danger"
@@ -59,7 +59,7 @@
                     </div>
                     <input type="text" class="form-control"
                            th:classappend="${#fields.hasErrors('distributor')}? 'is-invalid'"
-                           id="distributor" name="distributor" th:field="*{distributor}"/>
+                           id="distributor" name="distributor" th:field="*{distributor}" required/>
                 </div>
                 <th:block th:each="error : ${#fields.errors('distributor')}">
                     <small id="distributorHelp" class="text-danger"
@@ -80,7 +80,7 @@
                     </div>
                     <input type="text" class="form-control"
                            th:classappend="${#fields.hasErrors('owner')}? 'is-invalid'"
-                           id="owner" name="owner" th:field="*{owner}"/>
+                           id="owner" name="owner" th:field="*{owner}" required/>
                 </div>
                 <th:block th:each="error : ${#fields.errors('owner')}">
                     <small id="ownerHelp" class="text-danger"
@@ -92,7 +92,7 @@
             <div class="form-group">
                 <label for="startDt">Contract Start Date</label>
                 <input class="form-control" th:classappend="${#fields.hasErrors('startDt')}? 'border-danger'"
-                       type="date" id="startDt" name="startDate" th:field="*{startDt}">
+                       type="date" id="startDt" name="startDate" th:field="*{startDt}" required/>
                 <th:block th:each="error : ${#fields.errors('startDt')}">
                     <small id="startDtTurnHelp" class="text-danger"
                            th:text="${error}">
@@ -105,7 +105,7 @@
                 <input class="form-control"
                        th:classappend="${#fields.hasErrors('nextBillingDueDate')}? 'border-danger'"
                        type="date" id="nextBillingDueDate" name="nextBillingDueDate"
-                       th:field="*{nextBillingDueDate}">
+                       th:field="*{nextBillingDueDate}" required/>
                 <th:block th:each="error : ${#fields.errors('nextBillingDueDate')}">
                     <small id="nextBillingDueDateHelp" class="text-danger"
                            th:text="${error}">
@@ -117,7 +117,7 @@
                 <label for="duration">Contract Duration(in Years)</label>
                 <input type="number" class="form-control"
                        th:classappend="${#fields.hasErrors('duration')}? 'is-invalid'"
-                       id="duration" name="duration" th:field="*{duration}"/>
+                       id="duration" name="duration" th:field="*{duration}" required/>
                 <th:block th:each="error : ${#fields.errors('duration')}">
                     <small id="durationHelp" class="text-danger"
                            th:text="${error}">
@@ -143,7 +143,7 @@
                 <label for="amount">Beneficiary Amount(in EUR)</label>
                 <input type="number" class="form-control"
                        th:classappend="${#fields.hasErrors('amount')}? 'is-invalid'"
-                       id="amount" name="amount" th:field="*{amount}"/>
+                       id="amount" name="amount" th:field="*{amount}" required/>
                 <th:block th:each="error : ${#fields.errors('amount')}">
                     <small id="amountHelp" class="text-danger"
                            th:text="${error}">
@@ -313,8 +313,7 @@
             </div>
         </div>
     </div>
+    <footer th:replace="~{fragments/layout :: site-footer}"></footer>
 </div>
-</div>
-<footer th:replace="~{fragments/layout :: site-footer}"></footer>
 </body>
 </html>
