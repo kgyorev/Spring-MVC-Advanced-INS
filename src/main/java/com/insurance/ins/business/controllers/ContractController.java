@@ -45,19 +45,20 @@ public class ContractController {
     }
 
 
+    //FULL BATCH RUN
     @GetMapping(value = "/batch")
+    @Log
     @PreAuthorize("hasRole('ADMIN')")
     public String batch() {
-      //ALL Batches should be here
         BusinessBatch batch = new BusinessBatch(this.premiumService);
-        batch.premiumBillingBatch();
-
+        batch.scheduleTaskUsingCronExpression();
         return "redirect:/";
-
     }
 
+    //PREMIUM CREATION BATCH RUN ONLY
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/premiumBillingBatch", method = RequestMethod.GET)
+    @Log
+    @GetMapping(value = "/premiumBillingBatch")
     public String batchPremium() {
 
         BusinessBatch batch = new BusinessBatch(this.premiumService);

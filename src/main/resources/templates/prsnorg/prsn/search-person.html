@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: site-head">
+<head th:replace="fragments/layout :: site-head(pageTitle='Search Person')">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" href="../../../static/css/bootstrap.css"/>
+    <title>Search Person</title>
+</head>
 <body>
-
-
 <div class="container-fluid">
     <header th:replace="~{fragments/layout :: site-header}"></header>
     <div class="container col-sm-4  mt-3">

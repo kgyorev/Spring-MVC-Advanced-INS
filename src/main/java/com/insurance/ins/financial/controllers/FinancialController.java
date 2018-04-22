@@ -35,7 +35,7 @@ public class FinancialController {
         this.notifyService = notifyService;
     }
 
-    @GetMapping(value = "/contracts/create/premium/{id}")
+    @GetMapping(value = "/premiums/create/contract/{id}")
     @PreAuthorize("hasRole('MODERATOR')")
     public String createPremium(@ModelAttribute(name = "premiumModel") PremiumModel premiumModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
@@ -50,7 +50,7 @@ public class FinancialController {
         return "financial/premium/create-premium";
     }
 
-    @GetMapping(value = "/contracts/create/money-in/{id}")
+    @GetMapping(value = "/money-ins/create/contract/{id}")
     @PreAuthorize("hasRole('MODERATOR')")
     public String createMoneyIn(@ModelAttribute(name = "moneyInModel") MoneyInModel moneyInModel, @PathVariable("id") Long id, Model model) {
         Contract contract = contractService.findById(id);
@@ -64,7 +64,7 @@ public class FinancialController {
 
         return "financial/money-in/create-money-in";
     }
-    @PostMapping(value = "/contracts/create/premium/{id}")
+    @PostMapping(value = "/premiums/create/contract/{id}")
     @PreAuthorize("hasRole('MODERATOR')")
     @Log
     public String createPremiumValidate(@Valid PremiumModel premiumModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action, @PathVariable("id") Long id) {
@@ -91,7 +91,7 @@ public class FinancialController {
         return "redirect:/contracts/" + id;
     }
 
-    @PostMapping(value = "/contracts/create/money-in/{id}")
+    @PostMapping(value = "/money-ins/create/contract/{id}")
     @PreAuthorize("hasRole('MODERATOR')")
     @Log
     public String createMoneyInValidate(@Valid MoneyInModel moneyInModel, BindingResult bindingResult, @RequestParam(value = "action", required = true) String action, @PathVariable("id") Long id) {
